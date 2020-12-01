@@ -1,5 +1,10 @@
-import { createStore } from 'redux';
+import { createStore, combineReducers } from 'redux';
+import { AuthReducer } from './reducers';
 
-const getStore = () => createStore(() => {});
+const getStore = () => createStore(
+  combineReducers({
+    AuthReducer
+  })
+);
 
 export default getStore();

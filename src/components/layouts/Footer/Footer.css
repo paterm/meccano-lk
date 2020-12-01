@@ -25,10 +25,14 @@
   border-radius: 50%;
   cursor: pointer;
   text-decoration: none;
-  transition: opacity .2s
+  transition: opacity .2s;
+  outline: none;
 }
-.footer__button:hover {
-  opacity: .8;
+.footer__button svg path {
+  transition: fill-opacity .2s;
+}
+.footer__button:hover svg path {
+  fill-opacity: 1;
 }
 .footer__button + .footer__button {
   margin-left: 24px;
