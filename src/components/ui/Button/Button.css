@@ -1,0 +1,115 @@
+.button {
+  height: 48px;
+  padding: 0 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  transition: background-color .2s, color .2s, opacity .2s;
+  outline: none;
+}
+.button:hover {
+  opacity: .9;
+}
+.button:disabled {
+  opacity: .24;
+}
+
+.button:not(.button--inline).button--48 {
+  height: 48px;
+}
+.button:not(.button--inline).button--36 {
+  height: 36px;
+}
+
+.button--rounded.button--48 {
+  border-radius: 24px;
+}
+.button--rounded.button--36 {
+  border-radius: 18px;
+}
+
+.button--inline {
+  background: none;
+  border-radius: unset;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.75;
+  color: var(--coral);
+}
+
+.button--square {
+  border-radius: 4px;
+}
+
+.button--coral {
+  background-color: var(--coral-3);
+  color: var(--coral);
+}
+.button--coral:active {
+  box-shadow: 0 12px 12px -4px rgba(255, 92, 78, 0.12), 0 4px 4px -1px rgba(27, 10, 82, 0.12), 0 1px 1px 0 rgba(255, 92, 78, 0.24);
+  background-color: #fc6c63;
+  color: var(--white);
+}
+
+.button--green {
+  background-color: var(--bluish-green-3);
+  color: var(--bluish-green);
+}
+.button--green:active {
+  box-shadow: 0 8px 8px -4px rgba(22, 184, 98, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(22, 184, 98, 0.24);
+  background-color: var(--bluish-green);
+  color: var(--white);
+}
+
+.button--blue {
+  background-color: var(--bright-sky-blue-3);
+  color: var(--bright-sky-blue);
+}
+.button--blue:active {
+  box-shadow: 0 8px 8px -4px rgba(0, 187, 255, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(0, 187, 255, 0.24);
+  background-color: var(--bright-sky-blue);
+  color: var(--white);
+}
+
+.button--violet {
+  background-color: var(--purple-pink-3);
+  color: var(--purple-pink);
+}
+.button--violet:active {
+  box-shadow: 0 8px 8px -4px rgba(195, 45, 225, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(195, 45, 225, 0.24);
+  background-color: var(--purple-pink);
+  color: var(--white);
+}
+
+.button--filled.button--coral {
+  background-color: var(--coral);
+  box-shadow: 0 8px 8px -4px rgba(255, 92, 78, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(255, 92, 78, 0.24);
+  color: var(--white);
+}
+.button--filled.button--green {
+  background-color: var(--bluish-green);
+  box-shadow: 0 8px 8px -4px rgba(22, 184, 98, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(22, 184, 98, 0.24);
+  color: var(--white);
+}
+.button--filled.button--blue {
+  background-color: var(--bright-sky-blue);
+  box-shadow: 0 8px 8px -4px rgba(0, 187, 255, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(0, 187, 255, 0.24);
+  color: var(--white);
+}
+.button--filled.button--violet {
+  background-color: var(--purple-pink);
+  box-shadow: 0 8px 8px -4px rgba(195, 45, 225, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(195, 45, 225, 0.24);
+  color: var(--white);
+}
+.button-filled.button--dark {
+  background-color: var(--pale-lilac-2);
+  color: var(--white);
+}
+.button__left-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+}

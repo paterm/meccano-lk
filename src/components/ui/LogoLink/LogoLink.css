@@ -1,0 +1,9 @@
+.logo-link {
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 1.33;
+  letter-spacing: -1.5px;
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+}

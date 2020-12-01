@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  align-items: center;
+  height: 72px;
+  padding: 0 72px;
+  background-color: var(--dark);
+}
+.header__container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.header__buttons {
+  margin-left: auto;
+}
