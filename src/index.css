@@ -1,5 +1,6 @@
 :root {
   --midnight-purple-80: rgba(20,1,41,.8);
+  --midnight-purple-60: rgba(20, 1, 41, 0.6);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);

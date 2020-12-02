@@ -1,39 +1,33 @@
 import React from 'react';
-import { classes } from '../../../utils/helpers';
-import Button from '../../ui/Button/Button';
+import { useSelector } from 'react-redux';
 import LogoLink from '../../ui/LogoLink/LogoLink';
+import { IStore } from '../../../interfaces';
+import { classes } from '../../../utils/helpers';
 import './Header.css';
 
 const cls = classes('header');
 interface IHeader {
   onSignIn?: () => void,
-  onSignUp?: () => void
+  onSignUp?: () => void,
+  onLogout?: () => void
 }
 
-const Header: React.FC<IHeader> = ({ onSignIn, onSignUp }) => (
-  <header { ...cls() }>
-    <div { ...cls('container', '', 'container') }>
-      <LogoLink />
+const Header: React.FC<IHeader> = () => {
+  const profile = useSelector((state:IStore) => state.profile);
 
-      <div { ...cls('buttons') }>
-        <Button
-          onClick={ onSignIn }
-          rounded
-          filled
-          color="dark"
-        >
-          Вход
-        </Button>
-        <Button
-          onClick={ onSignUp }
-          rounded
-          filled
-        >
-          Зарегистрироваться
-        </Button>
+  return (
+    <header { ...cls() }>
+      <div { ...cls('container', '', 'container') }>
+        <LogoLink />
+
+        <div { ...cls('buttons') }>
+          {profile && (
+            <></>
+          )}
+        </div>
       </div>
-    </div>
-  </header>
-);
+    </header>
+  );
+};
 
 export default Header;
