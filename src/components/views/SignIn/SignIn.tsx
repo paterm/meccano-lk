@@ -16,7 +16,7 @@ const SignIn:React.FC = () => {
     event.preventDefault();
   };
 
-  const handleStoredAuth = (checked: boolean) => {
+  const handleKeepAuth = (checked: boolean) => {
     setKeepAuth(checked);
   };
 
@@ -56,7 +56,7 @@ const SignIn:React.FC = () => {
         <Checkbox
           { ...cls('keep-auth') }
           label="Оставаться в системе"
-          onChange={ handleStoredAuth }
+          onChange={ handleKeepAuth }
           checked={ keepAuth }
           color="coral"
         />

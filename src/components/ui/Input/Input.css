@@ -45,6 +45,7 @@
   font-weight: 500;
   font-style: normal;
   width: 100%;
+  padding-bottom: 4px;
 }
 
 .input::placeholder {
@@ -77,4 +78,21 @@
   position: absolute;
   top: 33px;
   right: 12px;
+}
+
+.input__field--password {
+  padding-right: 40px;
+}
+
+.input__search-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  position: absolute;
+  top: 33px;
+  left: 12px;
+}
+
+.input__field--search {
+  padding-left: 40px;
 }

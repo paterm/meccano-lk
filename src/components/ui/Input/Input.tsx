@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { ReactComponent as VisibilityIcon } from '../../../assets/icons/input/visibility.svg';
+import { ReactComponent as SearchIcon } from '../../../assets/icons/input/search.svg';
 import { classes } from '../../../utils/helpers';
 import './Input.css';
 
@@ -54,11 +55,12 @@ const Input: React.FC<InputProps> = ({
       <input
         { ...cls('field', {
           [size]: true,
-          placeholder,
+          [type]: true,
           invalid: !isValid,
           disabled,
         }) }
         type={ type }
+        placeholder={ placeholder }
         disabled={ disabled }
         onChange={ onChange }
         ref={ inputRef }
@@ -69,6 +71,11 @@ const Input: React.FC<InputProps> = ({
           onMouseDown={ showPassword }
           onMouseUp={ hidePassword }
           onMouseLeave={ hidePassword }
+        />
+      )}
+      {type === 'search' && (
+        <SearchIcon
+          { ...cls('search-icon') }
         />
       )}
       {!!message && (
