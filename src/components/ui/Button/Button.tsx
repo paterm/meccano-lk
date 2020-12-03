@@ -6,7 +6,7 @@ const cls = classes('button');
 
 interface ButtonProps {
   className?: string
-  color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark'
+  color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray'
   type?: 'button' | 'submit' | 'reset'
   size?: 48 | 36
   rounded?: boolean
@@ -14,8 +14,8 @@ interface ButtonProps {
   filled?: boolean
   square?: boolean
   leftIcon?: React.ReactNode
-  children: React.ReactNode
-
+  children?: React.ReactNode
+  icon?: React.ComponentType
   onClick?: () => void
 }
 
@@ -30,23 +30,29 @@ const Button: React.FC<ButtonProps> = ({
   inline,
   filled,
   square,
-  leftIcon
-}) => (
-  <button
-    { ...cls('', {
-      [color]: true,
-      [size]: true,
-      rounded,
-      inline,
-      filled,
-      square
-    }, className) }
-    onClick={ onClick }
-    type={ type }
-  >
-    { leftIcon && <span { ...cls('left-icon') }>{ leftIcon }</span> }
-    { children }
-  </button>
-);
+  leftIcon,
+  icon: Icon = () => null,
+}) => {
+  const icon = typeof Icon === 'object';
+
+  return (
+    <button
+      { ...cls('', {
+        [color]: true,
+        [size]: true,
+        rounded,
+        inline,
+        filled,
+        square,
+        icon
+      }, className) }
+      onClick={ onClick }
+      type={ type }
+    >
+      { leftIcon && <span { ...cls('left-icon') }>{ leftIcon }</span> }
+      { children || <Icon /> }
+    </button>
+  );
+};
 
 export default Button;
