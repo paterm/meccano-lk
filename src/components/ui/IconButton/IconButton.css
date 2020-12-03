@@ -1,0 +1,20 @@
+.icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background-color: var(--pale-lilac-3);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s;
+  outline: none;
+}
+.icon-button [fill-opacity] {
+  transition: fill-opacity .2s;
+}
+.icon-button:hover [fill-opacity] {
+  fill-opacity: 1;
+}

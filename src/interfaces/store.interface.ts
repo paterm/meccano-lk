@@ -1,5 +1,6 @@
-import { ProfileType } from '../store/types';
+import { AuthType, ProfileType } from '../types';
 
 export interface IStore {
-  profile: ProfileType
+  auth: AuthType,
+  profile: ProfileType,
 }

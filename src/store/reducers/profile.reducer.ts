@@ -1,7 +1,7 @@
-import { ProfileType } from '../types';
+import { ProfileType } from '@types';
 import { StoreAction } from '../storeEnum';
 
-export const ProfileReducer = (state:ProfileType = { firstName: '', lastName: '' }, action:any) => {
+export const profile = (state:ProfileType = { firstName: '', lastName: '' }, action: any) => {
   switch (action.type) {
     case StoreAction.SET_PROFILE:
       return {

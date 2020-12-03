@@ -1,5 +1,6 @@
 import React, { Suspense, useEffect } from 'react';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
 import Router from './Router';
 
 import Header from '../../components/layouts/Header/Header';
@@ -9,6 +10,7 @@ import { setAuth, setProfile } from '../../store/actions';
 import './App.css';
 
 const App: React.FC = () => {
+  const dispatch = useDispatch();
   const history = useHistory();
   const handleSignIn = () => history.push('/sign-in');
   const handleSignUp = () => history.push('/sign-up');
@@ -17,12 +19,12 @@ const App: React.FC = () => {
     const user = {
       firstName: 'Иван',
       lastName: 'Бризинский',
-      avatar: 'https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.phpfoxer.com%2Fproducts-and-services%2Fphpfox-default-avatar&psig=AOvVaw3nyiaWO2Za8bDp9nKdNJuG&ust=1606999022055000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCOCToYKor-0CFQAAAAAdAAAAABAD'
+      avatar: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-9.jpg'
     };
 
-    setProfile(user);
-    setAuth({ loggedIn: true });
-  }, []);
+    dispatch(setAuth(true));
+    dispatch(setProfile(user));
+  }, [ dispatch ]);
 
   return (
     <div className="app">

@@ -1,7 +1,6 @@
-import { AuthType } from '../types';
 import { StoreAction } from '../storeEnum';
 
-export const setAuth = (action:AuthType) => ({
+export const setAuth = (loggedIn: boolean) => ({
   type: StoreAction.LOGGED_IN,
-  loggedIn: action.loggedIn
+  payload: loggedIn
 });

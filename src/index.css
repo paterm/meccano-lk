@@ -19,6 +19,7 @@
   --bluish-green-3: rgba(22, 184, 98, 0.03);
   --bright-sky-blue: #00bbff;
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
+  --grey-icon: #E0E0FF;
 }
 
 html, body {
@@ -40,6 +41,10 @@ code {
 
 * {
   box-sizing: border-box;
+}
+
+button {
+  padding: 0;
 }
 
 .container {

@@ -11,5 +11,13 @@
   height: 100%;
 }
 .header__buttons {
+  display: flex;
+  align-items: center;
   margin-left: auto;
+}
+.header__buttons * + * {
+  margin-left: 16px;
+}
+.header__account {
+  margin-left: 24px;
 }
