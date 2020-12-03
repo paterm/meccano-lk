@@ -1,0 +1,25 @@
+.dashboard__header {
+  position: relative;
+  margin: 48px 72px 0;
+  display: flex;
+  align-items: center;
+}
+
+.dashboard__title {
+  margin: 0;
+  padding: 0 0 0 108px;
+  flex-basis: 100%;
+}
+
+.dashboard__toolbar {
+  margin: 0 0 0 auto;
+  flex-shrink: 0;
+}
+
+.dashboard__button {
+  margin: 0 12px 0 0;
+}
+
+.dashboard__button:last-of-type {
+  margin: 0;
+}
