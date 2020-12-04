@@ -6,6 +6,12 @@
   padding: 24px;
 }
 
+@media screen and (max-width: 425px) {
+  .sign-in {
+    padding: 16px;
+  }
+}
+
 .sign-in__form {
   display: flex;
   flex-direction: column;
@@ -19,12 +25,25 @@
   background-color: var(--white);
 }
 
+@media screen and (max-width: 425px) {
+  .sign-in__form {
+    padding: 24px;
+  }
+}
+
 .sign-in__title {
   text-align: left;
   margin: 0 0 36px 0;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1;
   color: var(--dark-80);
+}
+
+@media screen and (max-width: 425px) {
+  .sign-in__title {
+    margin: 0 0 24px 0;
+  }
 }
 
 .sign-in__input {
