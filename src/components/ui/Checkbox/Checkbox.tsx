@@ -1,20 +1,20 @@
 import React from 'react';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
 import './Checkbox.css';
 
 const cls = classes('checkbox');
 
-interface InputProps {
+interface ICheckbox {
   className?: string
   color?: 'coral' | 'green'
-  size?: 's' | 'm'
+  size?: 's' | 'm' | 'l'
   label?: string
   checked: boolean
   disabled?: boolean
   onChange: (checked: boolean) => void
 }
 
-const Checkbox: React.FC<InputProps> = ({
+const Checkbox: React.FC<ICheckbox> = ({
   className,
   color = 'coral',
   size = 'm',

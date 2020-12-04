@@ -31,7 +31,7 @@
   margin: 0 0 24px 0;
 }
 
-.sign-in__input:last-of-type {
+.sign-in__input--last {
   margin: 0;
 }
 

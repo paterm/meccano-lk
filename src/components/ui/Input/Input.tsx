@@ -1,12 +1,12 @@
 import React, { useRef } from 'react';
-import { ReactComponent as VisibilityIcon } from '../../../assets/icons/input/visibility.svg';
-import { ReactComponent as SearchIcon } from '../../../assets/icons/input/search.svg';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
+import { ReactComponent as VisibilityIcon } from '@assets/icons/input/visibility.svg';
+import { ReactComponent as SearchIcon } from '@assets/icons/input/search.svg';
 import './Input.css';
 
 const cls = classes('input');
 
-interface InputProps {
+interface IInput {
   className?: string
   type?: 'text' | 'search' | 'number' | 'password'
   size?: 48 | 36
@@ -19,7 +19,7 @@ interface InputProps {
   ref?: HTMLInputElement
 }
 
-const Input: React.FC<InputProps> = ({
+const Input: React.FC<IInput> = ({
   className,
   type = 'text',
   size = 48,
@@ -52,39 +52,41 @@ const Input: React.FC<InputProps> = ({
           { label }
         </span>
       )}
-      <input
-        { ...cls('field', {
-          [size]: true,
-          [type]: true,
-          invalid: !isValid,
-          disabled,
-        }) }
-        type={ type }
-        placeholder={ placeholder }
-        disabled={ disabled }
-        onChange={ onChange }
-        ref={ inputRef }
-      />
-      {type === 'password' && (
-        <VisibilityIcon
-          { ...cls('visibility-icon') }
-          onMouseDown={ showPassword }
-          onMouseUp={ hidePassword }
-          onMouseLeave={ hidePassword }
+      <div { ...cls('field-wrapper') }>
+        <input
+          { ...cls('field', {
+            [size]: true,
+            [type]: true,
+            invalid: !isValid,
+            disabled,
+          }) }
+          type={ type }
+          placeholder={ placeholder }
+          disabled={ disabled }
+          onChange={ onChange }
+          ref={ inputRef }
         />
-      )}
-      {type === 'search' && (
-        <SearchIcon
-          { ...cls('search-icon') }
-        />
-      )}
-      {!!message && (
-        <span
-          { ...cls('message', { invalid: !isValid }) }
-        >
-          { message }
-        </span>
-      )}
+        {type === 'password' && (
+          <VisibilityIcon
+            { ...cls('visibility-icon') }
+            onMouseDown={ showPassword }
+            onMouseUp={ hidePassword }
+            onMouseLeave={ hidePassword }
+          />
+        )}
+        {type === 'search' && (
+          <SearchIcon
+            { ...cls('search-icon') }
+          />
+        )}
+        {!!message && (
+          <span
+            { ...cls('message', { invalid: !isValid }) }
+          >
+            { message }
+          </span>
+        )}
+      </div>
     </label>
   );
 };

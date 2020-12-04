@@ -48,8 +48,21 @@
   padding-bottom: 4px;
 }
 
+.input__field--36 {
+  min-height: 36px;
+}
+
+.input__field--48 {
+  min-height: 48px;
+}
+
 .input::placeholder {
   color: var(--dark-60);
+}
+
+.input__field-wrapper {
+  width: 100%;
+  position: relative;
 }
 
 .input__field:focus {
@@ -72,12 +85,12 @@
 
 .input__visibility-icon {
   width: 24px;
-  height: 24px;
+  height: 100%;
   object-fit: contain;
-  cursor: pointer;
   position: absolute;
-  top: 33px;
+  top: 0;
   right: 12px;
+  cursor: pointer;
 }
 
 .input__field--password {
@@ -86,11 +99,12 @@
 
 .input__search-icon {
   width: 24px;
-  height: 24px;
+  height: 100%;
   object-fit: contain;
   position: absolute;
-  top: 33px;
+  top: 0;
   left: 12px;
+  pointer-events: none;
 }
 
 .input__field--search {
