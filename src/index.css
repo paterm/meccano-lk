@@ -1,6 +1,7 @@
 :root {
   --midnight-purple-80: rgba(20,1,41,.8);
   --midnight-purple-60: rgba(20, 1, 41, 0.6);
+  --midnight-purple-2: rgba(20, 1, 41, 0.02);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);
@@ -10,6 +11,7 @@
   --pale-lilac-3: rgba(224, 224, 255, 0.03);
   --pale-lilac-60: rgba(224, 224, 255, 0.6);
   --coral: #ff5c4e;
+  --coral-two: #f55c45;
   --watermelon: #f54562;
   --coral-3: rgba(255,92,78,.03);
   --white: #fff;

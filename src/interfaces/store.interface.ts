@@ -1,6 +1,6 @@
-import { AuthType, ProfileType } from '../types';
+import { TAuth, TProfile } from '@types';
 
 export interface IStore {
-  auth: AuthType,
-  profile: ProfileType,
+  auth: TAuth,
+  profile: TProfile,
 }

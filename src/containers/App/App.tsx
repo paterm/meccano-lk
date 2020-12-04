@@ -1,6 +1,7 @@
 import React, { Suspense, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
+import { TProfile } from '@types';
 import Router from './Router';
 
 import Header from '../../components/layouts/Header/Header';
@@ -16,14 +17,16 @@ const App: React.FC = () => {
   const handleSignUp = () => history.push('/sign-up');
 
   useEffect(() => {
-    const user = {
+    const User: TProfile = {
       firstName: 'Иван',
       lastName: 'Бризинский',
-      avatar: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-9.jpg'
+      avatar: 'https://icon-library.com/images/avatar-icon-png/avatar-icon-png-9.jpg',
+      post: 'Руководитель',
+      department: 'департамент PR'
     };
 
     dispatch(setAuth(true));
-    dispatch(setProfile(user));
+    dispatch(setProfile(User));
   }, [ dispatch ]);
 
   return (

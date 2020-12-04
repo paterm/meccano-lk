@@ -1,0 +1,61 @@
+.subscribes-list {
+  padding: 16px;
+  border-radius: 4px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  text-align: left;
+}
+.subscribes-list__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 40px;
+}
+.subscribes-list__item {
+  display: flex;
+}
+.subscribes-list__item + .subscribes-list__item {
+  margin-top: 24px;
+}
+.subscribes-list__item-col:first-child {
+  flex: 1;
+}
+.subscribes-list__item-title,
+.subscribes-list__item-renewal-link {
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  color: var(--dark-60);
+}
+.subscribes-list__item-renewal-link {
+  color: var(--dark-80);
+}
+.subscribes-list__item-renewal-link:hover {
+  text-decoration: none;
+}
+.subscribes-list__item-days {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 28px;
+  margin-bottom: 4px;
+  padding: 6px 16px;
+  border-radius: 2px;
+  background-color: var(--coral-two);
+  text-align: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  white-space: nowrap;
+  color: var(--white);
+}
+.subscribes-list__item-day-text {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.33;
+  color: var(--dark-60);
+}
+.subscribes-list .button {
+  width: 100%;
+}

@@ -23,6 +23,9 @@
     "paths": {
       "@assets": ["src/assets"],
       "@components": ["src/components"],
+      "@ui": ["src/components/ui"],
+      "@layouts": ["src/components/layouts"],
+      "@views": ["src/components/views"],
       "@utils": ["src/utils"],
       "@store": ["src/store"],
       "@interfaces": ["src/interfaces"],

@@ -1,7 +1,7 @@
-import { ProfileType } from '@types';
+import { TProfile } from '@types';
 import { StoreAction } from '../storeEnum';
 
-export const profile = (state:ProfileType = { firstName: '', lastName: '' }, action: any) => {
+export const profile = (state:TProfile = { firstName: '', lastName: '' }, action: any) => {
   switch (action.type) {
     case StoreAction.SET_PROFILE:
       return {

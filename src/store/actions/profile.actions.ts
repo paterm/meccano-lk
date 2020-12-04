@@ -1,7 +1,7 @@
-import { ProfileType } from '../../types';
+import { TProfile } from '../../types';
 import { StoreAction } from '../storeEnum';
 
-export const setProfile = (data:ProfileType) => ({
+export const setProfile = (data:TProfile) => ({
   type: StoreAction.SET_PROFILE,
   payload: data
 });

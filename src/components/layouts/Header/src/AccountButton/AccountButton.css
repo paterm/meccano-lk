@@ -7,6 +7,9 @@
   outline: none;
   cursor: pointer;
 }
+.account-button__wrapper {
+  position: relative;
+}
 .account-button__avatar {
   width: 48px;
   height: 48px;
@@ -20,4 +23,53 @@
   font-weight: 500;
   line-height: 1.5;
   color: var(--white);
+}
+.account-button__drop-down {
+  right: 0;
+  width: 285px;
+}
+.account-button__drop-container {
+  padding: 0 16px;
+}
+button.account-button__row {
+  width: 100%;
+  height: 36px;
+  padding: 0 16px;
+  background-color: var(--white);
+  border: none;
+  transition: background-color .2s;
+  cursor: pointer;
+  outline: none;
+}
+button.account-button__row:hover {
+  background-color: var(--midnight-purple-2);
+}
+.account-button__row {
+  display: flex;
+  align-items: center;
+  min-height: 24px;
+}
+.account-button__row + .account-button__row {
+  margin-top: 8px;
+}
+.account-button__text {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--dark-60);
+}
+.account-button__text--dark-80 {
+  color: var(--dark-80);
+}
+.account-button__text--14 {
+  font-size: 14px;
+  font-weight: 500;
+}
+.account-button__text + .account-button__text {
+  margin-left: auto;
+}
+.account-button__subscribes-list {
+  margin-bottom: 24px;
+}
+.account-button__icon {
+  margin-right: 12px;
 }

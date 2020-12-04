@@ -1,5 +1,5 @@
 import React from 'react';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
 import './Button.css';
 
 const cls = classes('button');
@@ -14,7 +14,7 @@ interface ButtonProps {
   filled?: boolean
   square?: boolean
   leftIcon?: React.ReactNode
-  children?: React.ReactNode
+  children?: React.ReactNode | string
   icon?: React.ComponentType
   onClick?: () => void
 }
