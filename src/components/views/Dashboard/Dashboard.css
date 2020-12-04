@@ -1,6 +1,10 @@
+.dashboard {
+  padding: 0 72px;
+}
+
 .dashboard__header {
   position: relative;
-  margin: 48px 72px 0;
+  margin: 48px 0 0;
   display: flex;
   align-items: center;
 }

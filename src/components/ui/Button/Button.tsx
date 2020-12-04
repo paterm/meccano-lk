@@ -1,10 +1,10 @@
 import React from 'react';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
 import './Button.css';
 
 const cls = classes('button');
 
-interface ButtonProps {
+interface IButton {
   className?: string
   color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray'
   type?: 'button' | 'submit' | 'reset'
@@ -19,7 +19,7 @@ interface ButtonProps {
   onClick?: () => void
 }
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<IButton> = ({
   className,
   onClick = () => {},
   color = 'coral',
