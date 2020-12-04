@@ -1,6 +1,7 @@
 :root {
   --midnight-purple-80: rgba(20,1,41,.8);
   --midnight-purple-60: rgba(20, 1, 41, 0.6);
+  --midnight-purple-6: rgba(20, 1, 41, 0.06);
   --midnight-purple-2: rgba(20, 1, 41, 0.02);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
@@ -44,6 +45,23 @@ code {
 
 * {
   box-sizing: border-box;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--midnight-purple-2);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--midnight-purple-6);
+  border-radius: 4px;
 }
 
 button {

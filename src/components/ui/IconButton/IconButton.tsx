@@ -9,15 +9,21 @@ interface IIconButton {
   icon: React.ComponentType
   title?: string,
   children?: React.ReactNode
+  onClick?: () => void
 }
 
 const IconButton: React.FC<IIconButton> = ({
   className,
   icon: Icon,
   title,
-  children
+  children,
+  onClick = () => {}
 }) => (
-  <button { ...cls('', '', className) } title={ title }>
+  <button
+    { ...cls('', '', className) }
+    title={ title }
+    onClick={ onClick }
+  >
     <Icon />
     { children }
   </button>

@@ -30,10 +30,21 @@ const DropDown: React.FC<IDropDown> = ({
     }
   }, [ isOpen, onClose, canCloseByClick ]);
 
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape' && isOpen) {
+      onClose();
+    }
+  }, [ isOpen, onClose ]);
+
   useEffect(() => {
     document.addEventListener('click', handleClickOutside, true);
     return () => document.removeEventListener('click', handleClickOutside, true);
   }, [ handleClickOutside ]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [ handleKeyDown ]);
 
   return isOpen ? (
     <div

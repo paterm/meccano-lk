@@ -15,7 +15,7 @@
   align-items: center;
   margin-left: auto;
 }
-.header__buttons * + * {
+.header__buttons > * + * {
   margin-left: 16px;
 }
 .header__account {
