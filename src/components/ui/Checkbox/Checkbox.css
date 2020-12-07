@@ -14,17 +14,25 @@
   content: '';
   display: block;
   border-radius: 2px;
-  transition: 0.1s;
+  transition: background-color 0.1s, background-size 0.2s;
   cursor: pointer;
   pointer-events: none;
-  background-image: url(../../../assets/icons/input/check.svg);
+  background-image: url(@assets/icons/input/check.svg);
   background-repeat: no-repeat;
-  background-position-y: -16px;
+  background-position: center;
+  background-size: 0%;
+  flex-shrink: 0;
 }
 
 .checkbox--checked::before {
-  background-position-y: 0;
+  background-size: 100%;
   cursor: pointer;
+}
+
+.checkbox--l::before {
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
 }
 
 .checkbox--m::before {
@@ -37,11 +45,16 @@
   height: 12px;
 }
 
-.checkbox--coral::before {
+.checkbox--coral::before,
+.checkbox--green::before {
+  background-color: var(--dark-2);
+}
+
+.checkbox--coral.checkbox--checked::before {
   background-color: var(--coral);
 }
 
-.checkbox--green::before {
+.checkbox--green.checkbox--checked::before {
   background-color: var(--bluish-green);
 }
 
