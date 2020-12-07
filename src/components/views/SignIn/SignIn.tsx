@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
 import Button from '../../ui/Button/Button';
 import Checkbox from '../../ui/Checkbox/Checkbox';
 import Input from '../../ui/Input/Input';
@@ -36,7 +36,7 @@ const SignIn:React.FC = () => {
           label="Email"
         />
         <Input
-          { ...cls('input') }
+          { ...cls('input', 'last', '') }
           label="Пароль"
           type="password"
         />
@@ -59,6 +59,7 @@ const SignIn:React.FC = () => {
           onChange={ handleKeepAuth }
           checked={ keepAuth }
           color="coral"
+          size="l"
         />
       </form>
     </div>
