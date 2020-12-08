@@ -9,6 +9,9 @@
   color: var(--white);
   transition: background-color .2s, color .2s, opacity .2s;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button:hover {
   opacity: .9;
@@ -18,10 +21,10 @@
 }
 
 .button:not(.button--inline).button--48 {
-  height: 48px;
+  min-height: 48px;
 }
 .button:not(.button--inline).button--36 {
-  height: 36px;
+  min-height: 36px;
 }
 
 .button--rounded.button--48 {
@@ -122,6 +125,12 @@
   width: 20px;
   height: 20px;
   margin-right: 12px;
+}
+
+.button__right-icon {
+  display: block;
+  margin: 0 0 0 auto;
+  height: 24px;
 }
 
 .button--icon {

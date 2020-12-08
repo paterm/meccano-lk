@@ -16,6 +16,7 @@ interface IButton {
   leftIcon?: React.ReactNode
   children?: React.ReactNode | string
   icon?: React.ComponentType
+  rightIcon?: React.ComponentType
   onClick?: () => void
 }
 
@@ -31,9 +32,11 @@ const Button: React.FC<IButton> = ({
   filled,
   square,
   leftIcon,
+  rightIcon: RightIcon = () => null,
   icon: Icon = () => null,
 }) => {
   const icon = typeof Icon === 'object';
+  const rightIcon = typeof RightIcon === 'object';
 
   return (
     <button
@@ -51,6 +54,7 @@ const Button: React.FC<IButton> = ({
     >
       { leftIcon && <span { ...cls('left-icon') }>{ leftIcon }</span> }
       { children || <Icon /> }
+      { rightIcon && <span { ...cls('right-icon') }><RightIcon /></span> }
     </button>
   );
 };

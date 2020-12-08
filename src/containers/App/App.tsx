@@ -6,7 +6,7 @@ import Router from './Router';
 
 import Header from '../../components/layouts/Header/Header';
 import Footer from '../../components/layouts/Footer/Footer';
-import { setAuth, setProfile } from '../../store/actions';
+import { setAuth, setProfile, setMobile } from '../../store/actions';
 
 import './App.css';
 
@@ -15,6 +15,26 @@ const App: React.FC = () => {
   const history = useHistory();
   const handleSignIn = () => history.push('/sign-in');
   const handleSignUp = () => history.push('/sign-up');
+
+  useEffect(() => {
+    if (window.innerWidth < 720) dispatch(setMobile(true));
+    let isMobileWidth: boolean;
+    const resizeListener = () => {
+      if (window.innerWidth < 720) {
+        if (isMobileWidth === true) return;
+        isMobileWidth = !isMobileWidth;
+        dispatch(setMobile(true));
+      } else {
+        if (isMobileWidth === false) return;
+        isMobileWidth = !isMobileWidth;
+        dispatch(setMobile(false));
+      }
+    };
+    window.addEventListener('resize', resizeListener);
+    return () => {
+      window.removeEventListener('resize', resizeListener);
+    };
+  }, [ dispatch ]);
 
   useEffect(() => {
     const User: TProfile = {
