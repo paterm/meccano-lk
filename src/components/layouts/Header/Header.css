@@ -21,6 +21,9 @@
 .header__account {
   margin-left: 24px;
 }
+.header__logo:not(.header__logo--container) {
+  position: absolute;
+}
 
 .header__logo--container {
   display: none;
