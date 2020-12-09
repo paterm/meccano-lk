@@ -9,6 +9,7 @@ import Footer from '../../components/layouts/Footer/Footer';
 import { setAuth, setProfile, setMobile } from '../../store/actions';
 
 import './App.css';
+import Sidebar from '../../components/layouts/Sidebar/Sidebar';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,7 @@ const App: React.FC = () => {
       <Suspense fallback={ () => 'Загрузка' }>
         <Header onSignIn={ handleSignIn } onSignUp={ handleSignUp } />
         <section className="content">
+          <Sidebar />
           <Router />
         </section>
         <Footer />

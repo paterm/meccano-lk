@@ -81,3 +81,7 @@
   margin-right: 4px;
   color: var(--pale-lilac-60);
 }
+
+@media screen and (max-width: 992px) {
+
+}

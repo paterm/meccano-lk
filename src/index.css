@@ -25,6 +25,7 @@
   --bright-sky-blue: #00bbff;
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
   --grey-icon: #E0E0FF;
+  --very-light-pink: #fffaf9;
 }
 
 html, body {
@@ -71,8 +72,9 @@ button {
 
 .container {
   width: 100%;
-  max-width: 1110px;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 #root {
@@ -80,5 +82,6 @@ button {
 }
 
 .content {
+  position: relative;
   flex: 1;
 }
