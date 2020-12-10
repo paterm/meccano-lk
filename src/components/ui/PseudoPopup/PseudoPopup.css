@@ -23,7 +23,10 @@
   background-color: var(--white);
   z-index: 5;
   overflow: hidden;
+  padding: 0;
 }
+
+/* Основаня сетка */
 
 @media screen and (max-width: 719px) {
   .pseudo-popup__container {
@@ -66,4 +69,30 @@
 
 .pseudo-popup__body {
   grid-area: body;
+}
+
+/* Меню */
+
+.pseudo-popup__menu-with-drop-down {
+  position: relative;
+}
+
+.pseudo-popup__menu-button {
+  padding-left: 48px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 719px) {
+  .pseudo-popup__menu-button {
+    padding-left: 24px;
+  }
+}
+
+.pseudo-popup__drop-down {
+  width: 100%;
+  top: 0;
+  padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
 }

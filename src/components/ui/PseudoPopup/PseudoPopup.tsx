@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { classes } from '@utils';
+import { IStore } from '@interfaces';
+import { useSelector } from 'react-redux';
+import { ReactComponent as DropDownIcon } from '@assets/icons/button/drop-down.svg';
 import Overlay from '../Overlay/Overlay';
+import DropDown from '../DropDown/DropDown';
+import Button from '../Button/Button';
 import './PseudoPopup.css';
 
 const cls = classes('pseudo-popup');
@@ -10,8 +15,13 @@ interface IPseudoPopup {
   overlay?: boolean
   overlayPosition?: 'absolute' | 'fixed'
   title?: string
+  activePageName?: string
   children?: React.ReactNode | string
   bar?: React.ReactNode | string
+  menu?: {
+    text: string
+    onClick?: () => void
+  }[]
 }
 
 const PseudoPopup: React.FC<IPseudoPopup> = ({
@@ -19,23 +29,71 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   overlay = true,
   overlayPosition = 'absolute',
   title,
+  activePageName,
   children,
   bar,
-}) => (
-  <div { ...cls('', '', className) }>
-    <div { ...cls('container', '', 'container') }>
-      <div { ...cls('title') }>
-        {title}
-      </div>
-      <div { ...cls('bar') }>
-        {bar}
-      </div>
-      <div { ...cls('body') }>
-        {children}
-      </div>
+  menu,
+}) => {
+  const { isMobile } = useSelector((state:IStore) => state.mobile);
+  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+
+  const handleCloseDropDown = () => {
+    setIsOpenDropDown(false);
+  };
+
+  const menuElement = (
+    <ul { ...cls('menu-list') }>
+      {menu?.map(({ text, onClick }, index) => (
+        <li key={ index } { ...cls('menu-item') }>
+          <Button
+            { ...cls('menu-button') }
+            filled={ text === activePageName }
+            onClick={ onClick }
+          >
+            {text}
+          </Button>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const drowDownWithMenuElement = (
+    <div { ...cls('menu-with-drop-down') }>
+      <Button
+        { ...cls('menu-button') }
+        rightIcon={ DropDownIcon }
+        rounded
+        onClick={ () => setIsOpenDropDown(!isOpenDropDown) }
+      >
+        {activePageName}
+      </Button>
+      <DropDown
+        { ...cls('drop-down') }
+        isOpen={ isOpenDropDown }
+        onClose={ handleCloseDropDown }
+      >
+        {menuElement}
+      </DropDown>
     </div>
-    {overlay && <Overlay position={ overlayPosition } />}
-  </div>
-);
+  );
+
+  return (
+    <div { ...cls('', '', className) }>
+      <div { ...cls('container', '', 'container') }>
+        <div { ...cls('title') }>
+          {title}
+        </div>
+        <div { ...cls('bar') }>
+          { !!menu && !isMobile ? menuElement : drowDownWithMenuElement }
+          {bar}
+        </div>
+        <div { ...cls('body') }>
+          {children}
+        </div>
+      </div>
+      {overlay && <Overlay position={ overlayPosition } />}
+    </div>
+  );
+};
 
 export default PseudoPopup;

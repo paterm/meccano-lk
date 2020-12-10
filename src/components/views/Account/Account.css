@@ -22,25 +22,6 @@
   }
 }
 
-@media screen and (max-width: 719px) {
-  .account__menu--dropdown {
-    height: 48px;
-    overflow: hidden;
-  }
-}
-
-.account__menu-button {
-  padding-left: 48px;
-  width: 100%;
-  justify-content: flex-start;
-}
-
-@media screen and (max-width: 719px) {
-  .account__menu-button {
-    padding-left: 24px;
-  }
-}
-
 .account__setting-main-title {
   margin: 0 0 16px;
   font-size: 16px;
@@ -79,18 +60,6 @@
 
 .account__setting-main-avatar-button:last-of-type {
   margin: 8px 0 16px 0;
-}
-
-.account__menu-with-drop-down {
-  position: relative;
-}
-
-.account__drop-down {
-  width: 100%;
-  top: 0;
-  padding: 0;
-  border-radius: 24px;
-  overflow: hidden;
 }
 
 .account__setting-main-person-data {

@@ -1,12 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import { classes } from '@utils';
-import { IStore } from '@interfaces';
-import { useSelector } from 'react-redux';
-import { ReactComponent as DropDownIcon } from '@assets/icons/button/drop-down.svg';
 import defautAvatar from '@assets/images/defaultAvatar.jpg';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
-import DropDown from '../../ui/DropDown/DropDown';
 import Button from '../../ui/Button/Button';
 import Input from '../../ui/Input/Input';
 import './Account.css';
@@ -14,56 +10,13 @@ import './Account.css';
 const cls = classes('account');
 
 const Account:React.FC = () => {
-  const { isMobile } = useSelector((state:IStore) => state.mobile);
-  const [isOpenDropDown, setIsOpenDropDown] = useState(false);
-
-  const handleClose = () => {
-    setIsOpenDropDown(false);
-  };
-
-  const menuArray = [
+  const menu = [
     { text: 'Общие', onClick: () => console.log('Нажал Общие') },
     { text: 'Реагирование', onClick: () => console.log('Нажал Реагирование') },
     { text: 'Уведомления', onClick: () => console.log('Нажал Уведомления') },
     { text: 'Пароль', onClick: () => console.log('Нажал Пароль') },
     { text: 'Интерфейс', onClick: () => console.log('Нажал Интерфейс') },
   ];
-
-  const menuElement = (
-    <ul { ...cls('menu-list') }>
-      {menuArray.map(({ text, onClick }, index) => (
-        <li key={ index } { ...cls('menu-item') }>
-          <Button
-            { ...cls('menu-button') }
-            filled={ text === 'Общие' }
-            onClick={ onClick }
-          >
-            {text}
-          </Button>
-        </li>
-      ))}
-    </ul>
-  );
-
-  const drowDownWithMenuElement = (
-    <div { ...cls('menu-with-drop-down') }>
-      <Button
-        { ...cls('menu-button') }
-        rightIcon={ DropDownIcon }
-        rounded
-        onClick={ () => setIsOpenDropDown(!isOpenDropDown) }
-      >
-        Общие
-      </Button>
-      <DropDown
-        { ...cls('drop-down') }
-        isOpen={ isOpenDropDown }
-        onClose={ handleClose }
-      >
-        {menuElement}
-      </DropDown>
-    </div>
-  );
 
   const personElement = (
     <div { ...cls('setting-main-person-data') }>
@@ -130,7 +83,8 @@ const Account:React.FC = () => {
       </Helmet>
       <PseudoPopup
         title="Настройки аккаунта"
-        bar={ !isMobile ? menuElement : drowDownWithMenuElement }
+        activePageName="Общие"
+        menu={ menu }
       >
         {bodyElement}
       </PseudoPopup>
