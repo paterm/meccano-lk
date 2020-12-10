@@ -15,11 +15,11 @@ interface IPseudoPopup {
   overlay?: boolean
   overlayPosition?: 'absolute' | 'fixed'
   title?: string
-  activePageName?: string
+  childrenViewName?: string
   children?: React.ReactNode | string
   bar?: React.ReactNode | string
   menu?: {
-    text: string
+    name: string
     onClick?: () => void
   }[]
 }
@@ -29,7 +29,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   overlay = true,
   overlayPosition = 'absolute',
   title,
-  activePageName,
+  childrenViewName,
   children,
   bar,
   menu,
@@ -43,14 +43,14 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
 
   const menuElement = (
     <ul { ...cls('menu-list') }>
-      {menu?.map(({ text, onClick }, index) => (
+      {menu?.map(({ name, onClick }, index) => (
         <li key={ index } { ...cls('menu-item') }>
           <Button
             { ...cls('menu-button') }
-            filled={ text === activePageName }
+            filled={ name === childrenViewName }
             onClick={ onClick }
           >
-            {text}
+            {name}
           </Button>
         </li>
       ))}
@@ -65,7 +65,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
         rounded
         onClick={ () => setIsOpenDropDown(!isOpenDropDown) }
       >
-        {activePageName}
+        {childrenViewName}
       </Button>
       <DropDown
         { ...cls('drop-down') }
