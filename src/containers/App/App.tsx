@@ -18,10 +18,10 @@ const App: React.FC = () => {
   const handleSignUp = () => history.push('/sign-up');
 
   useEffect(() => {
-    if (window.innerWidth < 720) dispatch(setMobile(true));
+    if (window.innerWidth < 768) dispatch(setMobile(true));
     let isMobileWidth: boolean;
     const resizeListener = () => {
-      if (window.innerWidth < 720) {
+      if (window.innerWidth < 768) {
         if (isMobileWidth === true) return;
         isMobileWidth = !isMobileWidth;
         dispatch(setMobile(true));

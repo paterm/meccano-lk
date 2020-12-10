@@ -18,11 +18,13 @@ interface IButton {
   icon?: React.ComponentType
   rightIcon?: React.ComponentType
   onClick?: () => void
+  onClickCallback?: () => void
 }
 
 const Button: React.FC<IButton> = ({
   className,
   onClick = () => {},
+  onClickCallback = () => {},
   color = 'coral',
   type = 'button',
   children,
@@ -38,6 +40,11 @@ const Button: React.FC<IButton> = ({
   const icon = typeof Icon === 'object';
   const rightIcon = typeof RightIcon === 'object';
 
+  const handleClick = () => {
+    onClick();
+    onClickCallback();
+  };
+
   return (
     <button
       { ...cls('', {
@@ -49,7 +56,7 @@ const Button: React.FC<IButton> = ({
         square,
         icon
       }, className) }
-      onClick={ onClick }
+      onClick={ handleClick }
       type={ type }
     >
       { leftIcon && <span { ...cls('left-icon') }>{ leftIcon }</span> }

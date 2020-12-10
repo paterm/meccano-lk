@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
-import { classes } from '@utils';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './AccountGeneral/AccountGeneral';
 import AccountResponse from './AccountResponse/AccountResponse';
-
-const cls = classes('account');
 
 const views = [
   { name: 'Общие', component: AccountGeneral, },

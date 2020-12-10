@@ -4,7 +4,7 @@
   height: 100%;
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 767px) {
   .pseudo-popup {
     padding: 0;
     height: auto;
@@ -28,7 +28,7 @@
 
 /* Основаня сетка */
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 767px) {
   .pseudo-popup__container {
     grid-template-columns: auto;
     grid-template-rows: auto;
@@ -49,7 +49,7 @@
   color: var(--dark-80);
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 767px) {
   .pseudo-popup__title {
     padding: 24px 16px;
   }
@@ -60,7 +60,7 @@
   z-index: 1;
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 767px) {
   .pseudo-popup__bar {
     padding: 24px 16px;
     box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
@@ -83,7 +83,7 @@
   justify-content: flex-start;
 }
 
-@media screen and (max-width: 719px) {
+@media screen and (max-width: 767px) {
   .pseudo-popup__menu-button {
     padding-left: 24px;
   }

@@ -9,15 +9,15 @@
   height: calc(100% - 164px);
 }
 
-@media screen and (max-width: 719px) {
-  .account-response__setting-main {
+@media screen and (max-width: 767px) {
+  .account-response {
     margin: 0;
     padding: 24px 16px;
     box-shadow: none;
   }
 }
 
-.account-response__setting-main-title {
+.account-response__title {
   margin: 0 0 16px;
   font-size: 16px;
   font-weight: 600;
@@ -25,71 +25,25 @@
   color: var(--dark-80);
 }
 
-.account-response__setting-main-avatar {
-  margin: 0 0 24px;
-  display: flex;
-  align-items: flex-end;
+.account-response__switch {
+  max-width: 300px;
 }
 
-.account-response__setting-main-avatar-image {
-  display: block;
-  width: 106px;
-  height: 106px;
-  object-fit: cover;
-  border-radius: 4px;
-  margin: 0 16px 0 0;
-}
-
-.account-response__setting-main-avatar-button {
-  display: block;
-  background: none;
-  border: none;
-  outline: none;
-  color: var(--dark-60);
-  text-align: left;
-  font-family: inherit;
-  font-size: 13px;
-  font-weight: 500;
-  cursor: pointer;
-}
-
-.account-response__setting-main-avatar-button:last-of-type {
-  margin: 8px 0 16px 0;
-}
-
-.account-response__setting-main-person-data {
-  margin: 0 0 40px;
-}
-
-@media screen and (max-width: 719px) {
-  .account-response__setting-main-person-data {
-    margin: 0 0 24px;
-  }
-}
-
-.account-response__setting-main-person-contacts {
-  margin: 0 0 40px;
-}
-
-.account-response__setting-main-inputs {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-}
-
-@media screen and (max-width: 991px) {
-  .account-response__setting-main-inputs {
-    grid-template-columns: repeat(1, 1fr);
-  }
-}
-
-.account-response__setting-submit-button {
+.account-response__submit-button {
   margin: auto 0 0 0;
   max-width: 198px;
 }
 
-@media screen and (max-width: 719px) {
-  .account-response__setting-submit-button {
+@media screen and (max-width: 575px) {
+  .account-response__submit-button {
     max-width: none;
   }
+}
+
+.account-response__feedback {
+  margin: 0 0 40px 0;
+}
+
+.account-response__quick-answers {
+  margin: 0 0 40px 0;
 }

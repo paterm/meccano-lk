@@ -9,30 +9,30 @@ const cls = classes('account-general');
 
 const AccountGeneral:React.FC = () => {
   const personElement = (
-    <div { ...cls('setting-main-person-data') }>
-      <h3 { ...cls('setting-main-title') }>Личные данные</h3>
-      <div { ...cls('setting-main-avatar') }>
+    <div { ...cls('person-data') }>
+      <h3 { ...cls('title') }>Личные данные</h3>
+      <div { ...cls('avatar') }>
         <img
-          { ...cls('setting-main-avatar-image') }
+          { ...cls('avatar-image') }
           src={ defautAvatar }
           alt="Аватар пользователя"
         />
-        <div { ...cls('setting-main-avatar-buttons') }>
+        <div { ...cls('avatar-buttons') }>
           <button
-            { ...cls('setting-main-avatar-button') }
+            { ...cls('avatar-button') }
             onClick={ () => console.log('Удалить фото') }
           >
             Удалить фото
           </button>
           <button
-            { ...cls('setting-main-avatar-button') }
+            { ...cls('avatar-button') }
             onClick={ () => console.log('Загрузить новое') }
           >
             Загрузить новое
           </button>
         </div>
       </div>
-      <div { ...cls('setting-main-inputs') }>
+      <div { ...cls('inputs') }>
         <Input size={ 36 } value="Михаил" />
         <Input size={ 36 } value="Ершов" />
         <Input size={ 36 } value="Руководитель" />
@@ -42,9 +42,9 @@ const AccountGeneral:React.FC = () => {
   );
 
   const personContacts = (
-    <div { ...cls('setting-main-person-contacts') }>
-      <h3 { ...cls('setting-main-title') }>Личные данные</h3>
-      <div { ...cls('setting-main-inputs') }>
+    <div { ...cls('person-contacts') }>
+      <h3 { ...cls('title') }>Личные данные</h3>
+      <div { ...cls('inputs') }>
         <Input size={ 36 } value="+7 983 233-22-22" />
         <Input size={ 36 } value="ershov@mail.ru" />
       </div>
@@ -56,7 +56,7 @@ const AccountGeneral:React.FC = () => {
       {personElement}
       {personContacts}
       <Button
-        { ...cls('setting-submit-button') }
+        { ...cls('submit-button') }
         type="submit"
         filled
         square

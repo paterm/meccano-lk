@@ -49,6 +49,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
             { ...cls('menu-button') }
             filled={ name === childrenViewName }
             onClick={ onClick }
+            onClickCallback={ handleCloseDropDown }
           >
             {name}
           </Button>

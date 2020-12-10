@@ -9,15 +9,15 @@
   height: calc(100% - 164px);
 }
 
-@media screen and (max-width: 719px) {
-  .account-general__setting-main {
+@media screen and (max-width: 767px) {
+  .account-general {
     margin: 0;
     padding: 24px 16px;
     box-shadow: none;
   }
 }
 
-.account-general__setting-main-title {
+.account-general__title {
   margin: 0 0 16px;
   font-size: 16px;
   font-weight: 600;
@@ -25,13 +25,13 @@
   color: var(--dark-80);
 }
 
-.account-general__setting-main-avatar {
+.account-general__avatar {
   margin: 0 0 24px;
   display: flex;
   align-items: flex-end;
 }
 
-.account-general__setting-main-avatar-image {
+.account-general__avatar-image {
   display: block;
   width: 106px;
   height: 106px;
@@ -40,7 +40,7 @@
   margin: 0 16px 0 0;
 }
 
-.account-general__setting-main-avatar-button {
+.account-general__avatar-button {
   display: block;
   background: none;
   border: none;
@@ -53,43 +53,43 @@
   cursor: pointer;
 }
 
-.account-general__setting-main-avatar-button:last-of-type {
+.account-general__avatar-button:last-of-type {
   margin: 8px 0 16px 0;
 }
 
-.account-general__setting-main-person-data {
+.account-general__person-data {
   margin: 0 0 40px;
 }
 
-@media screen and (max-width: 719px) {
-  .account-general__setting-main-person-data {
+@media screen and (max-width: 767px) {
+  .account-general__person-data {
     margin: 0 0 24px;
   }
 }
 
-.account-general__setting-main-person-contacts {
+.account-general__person-contacts {
   margin: 0 0 40px;
 }
 
-.account-general__setting-main-inputs {
+.account-general__inputs {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 24px;
 }
 
 @media screen and (max-width: 991px) {
-  .account-general__setting-main-inputs {
+  .account-general__inputs {
     grid-template-columns: repeat(1, 1fr);
   }
 }
 
-.account-general__setting-submit-button {
+.account-general__submit-button {
   margin: auto 0 0 0;
   max-width: 198px;
 }
 
-@media screen and (max-width: 719px) {
-  .account-general__setting-submit-button {
+@media screen and (max-width: 575px) {
+  .account-general__submit-button {
     max-width: none;
   }
 }
