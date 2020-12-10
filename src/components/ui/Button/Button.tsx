@@ -14,7 +14,7 @@ interface IButton {
   filled?: boolean
   square?: boolean
   leftIcon?: React.ReactNode
-  children?: React.ReactNode
+  children?: React.ReactNode | string
   icon?: React.ComponentType
   onClick?: () => void
 }

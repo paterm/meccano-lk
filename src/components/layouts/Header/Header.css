@@ -15,9 +15,28 @@
   align-items: center;
   margin-left: auto;
 }
-.header__buttons * + * {
+.header__buttons > * + * {
   margin-left: 16px;
 }
 .header__account {
   margin-left: 24px;
+}
+.header__logo:not(.header__logo--container) {
+  position: absolute;
+}
+
+.header__logo--container {
+  display: none;
+}
+
+@media screen and (max-width: 1280px) {
+  .header {
+    padding: 0;
+  }
+  .header__logo {
+    display: none;
+  }
+  .header__logo--container {
+    display: block;
+  }
 }

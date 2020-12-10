@@ -1,7 +1,7 @@
 import React from 'react';
 import dayjs from 'dayjs';
 import { Link } from 'react-router-dom';
-import { classes } from '../../../utils/helpers';
+import { classes } from '@utils';
 import { contacts, generalData } from '../../../utils/config';
 import { ReactComponent as TelegramIcon } from '../../../assets/icons/footer/footer-telegram.svg';
 import { ReactComponent as FacebookIcon } from '../../../assets/icons/footer/footer-facebook.svg';
@@ -19,13 +19,13 @@ const Footer: React.FC = () => (
   <footer { ...cls('') }>
     <div { ...cls('container', '', 'container') }>
       <div { ...cls('row') }>
-        <div { ...cls('column', 'left') }>
+        <div { ...cls('column', 'social') }>
           <a { ...cls('button') } href={ contacts.social.telegram }><TelegramIcon /></a>
           <a { ...cls('button') } href={ contacts.social.facebook }><FacebookIcon /></a>
           <a { ...cls('button') } href={ contacts.social.linkedIn }><LinkedInIcon /></a>
           <a { ...cls('button') } href={ contacts.social.youtube }><YoutubeIcon /></a>
         </div>
-        <div { ...cls('column', 'center') }>
+        <div { ...cls('column', 'contacts') }>
           <a
             { ...cls('link') }
             href={ `tel:${contacts.phone}` }

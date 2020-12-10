@@ -1,6 +1,8 @@
 :root {
   --midnight-purple-80: rgba(20,1,41,.8);
   --midnight-purple-60: rgba(20, 1, 41, 0.6);
+  --midnight-purple-6: rgba(20, 1, 41, 0.06);
+  --midnight-purple-2: rgba(20, 1, 41, 0.02);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);
@@ -10,6 +12,7 @@
   --pale-lilac-3: rgba(224, 224, 255, 0.03);
   --pale-lilac-60: rgba(224, 224, 255, 0.6);
   --coral: #ff5c4e;
+  --coral-two: #f55c45;
   --watermelon: #f54562;
   --coral-3: rgba(255,92,78,.03);
   --white: #fff;
@@ -21,6 +24,7 @@
   --bright-sky-blue: #00bbff;
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
   --grey-icon: #E0E0FF;
+  --very-light-pink: #fffaf9;
 }
 
 html, body {
@@ -44,14 +48,32 @@ code {
   box-sizing: border-box;
 }
 
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+*::-webkit-scrollbar {
+  width: 6px;
+}
+*::-webkit-scrollbar-track {
+  background-color: var(--midnight-purple-2);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--midnight-purple-6);
+  border-radius: 4px;
+}
+
 button {
   padding: 0;
 }
 
 .container {
   width: 100%;
-  max-width: 1110px;
+  max-width: 1150px;
   margin: 0 auto;
+  padding: 0 20px;
 }
 
 #root {
@@ -59,5 +81,6 @@ button {
 }
 
 .content {
+  position: relative;
   flex: 1;
 }

@@ -1,0 +1,88 @@
+.sidebar {
+  position: absolute;;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 72px;
+  /*width: 310px;*/
+  padding-top: 48px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  overflow: hidden;
+  z-index: 1;
+}
+.sidebar:hover {
+  width: 310px;
+  overflow: unset;
+}
+
+.sidebar__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 56px;
+  padding: 0 16px 8px 24px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-60);
+  transition: background-color .2s, color .2s;
+  white-space: nowrap;
+}
+/* For remove submenu jumps via hover items */
+.sidebar__item:after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 48px;
+  transition: background-color .2s;
+}
+.sidebar__item:hover,
+.sidebar__item--active {
+  color: var(--coral);
+}
+.sidebar__item:hover:after,
+.sidebar__item--active:after {
+  background-color: var(--coral-3);
+}
+.sidebar__item--active {
+  border-left: 2px solid var(--coral);
+}
+.sidebar__item:first-child {
+  margin-bottom: 30px;
+}
+.sidebar__item-name {
+  flex: 1;
+  padding-left: 24px;
+}
+.sidebar__item [fill-opacity] {
+  transition: fill .2s, fill-opacity .2s;
+}
+.sidebar__item:hover [fill-opacity],
+.sidebar__item--active [fill-opacity] {
+  fill: var(--coral);
+  fill-opacity: 1;
+}
+
+.sidebar__link {
+  display: inherit;
+  align-items: inherit;
+  color: inherit;
+  text-decoration: none;
+  white-space: inherit;
+}
+.sidebar__icon {
+  flex: 0 0 24px;
+}
+
+.sidebar .sidebar-submenu {
+  display: none;
+}
+
+.sidebar__item:hover .sidebar-submenu {
+  display: flex;
+}
+

@@ -21,8 +21,10 @@ const Header: React.FC<IHeader> = () => {
 
   return (
     <header { ...cls() }>
+      <LogoLink { ...cls('logo') } />
+
       <div { ...cls('container', '', 'container') }>
-        <LogoLink />
+        <LogoLink { ...cls('logo', 'container') } />
 
         {loggedIn && (
           <div { ...cls('buttons') }>

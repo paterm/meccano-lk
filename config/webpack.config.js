@@ -337,7 +337,10 @@ module.exports = function (webpackEnv) {
         "@store": path.resolve(__dirname, "../src/store"),
         "@interfaces": path.resolve(__dirname, "../src/interfaces"),
         "@types": path.resolve(__dirname, "../src/types"),
-        "@enums": path.resolve(__dirname, "../src/enums")
+        "@enums": path.resolve(__dirname, "../src/enums"),
+        "@ui": path.resolve(__dirname, "../src/components/ui"),
+        "@layouts": path.resolve(__dirname, "../src/components/layouts"),
+        "@views": path.resolve(__dirname, "../src/components/views"),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

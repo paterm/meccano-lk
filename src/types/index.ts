@@ -1,2 +1,2 @@
-export * from './AuthType';
-export * from './ProfileType';
+export * from './TAuth';
+export * from './TProfile';

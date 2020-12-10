@@ -38,6 +38,7 @@
     "react/jsx-curly-spacing": [2, {"when": "always"}],
     "react/button-has-type": "off",
     "react/jsx-one-expression-per-line": "off",
-    "@typescript-eslint/comma-dangle": "off"
+    "@typescript-eslint/comma-dangle": "off",
+    "react/no-array-index-key": "off"
   }
 }
