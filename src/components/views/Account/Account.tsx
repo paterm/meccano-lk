@@ -3,11 +3,12 @@ import { Helmet } from 'react-helmet';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './AccountGeneral/AccountGeneral';
 import AccountResponse from './AccountResponse/AccountResponse';
+import AccountNotifications from './AccountNotifications/AccountNotifications';
 
 const views = [
   { name: 'Общие', component: AccountGeneral, },
   { name: 'Реагирование', component: AccountResponse, },
-  { name: 'Уведомления', component: AccountGeneral, },
+  { name: 'Уведомления', component: AccountNotifications, },
   { name: 'Пароль', component: AccountGeneral, },
   { name: 'Интерфейс', component: AccountGeneral, },
 ];
