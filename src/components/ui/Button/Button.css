@@ -143,6 +143,12 @@
 
 .button--icon.button--36 {
   width: 36px;
+  height: 36px;
+}
+
+.button--icon.button--24 {
+  width: 24px;
+  height: 24px;
 }
 
 .button--icon svg {
@@ -150,4 +156,8 @@
   display: block;
   margin: auto;
   pointer-events: none;
+}
+
+.button--transparent {
+  background-color: transparent;
 }

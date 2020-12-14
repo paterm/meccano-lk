@@ -8,10 +8,11 @@ interface IButton {
   className?: string
   color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray'
   type?: 'button' | 'submit' | 'reset'
-  size?: 48 | 36
+  size?: 48 | 36 | 24
   rounded?: boolean
   inline?: boolean
   filled?: boolean
+  transparent?: boolean
   square?: boolean
   leftIcon?: React.ReactNode
   children?: React.ReactNode | string
@@ -32,6 +33,7 @@ const Button: React.FC<IButton> = ({
   rounded,
   inline,
   filled,
+  transparent,
   square,
   leftIcon,
   rightIcon: RightIcon = () => null,
@@ -53,6 +55,7 @@ const Button: React.FC<IButton> = ({
         rounded,
         inline,
         filled,
+        transparent,
         square,
         icon
       }, className) }

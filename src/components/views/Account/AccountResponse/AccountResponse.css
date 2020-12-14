@@ -29,6 +29,12 @@
   max-width: 300px;
 }
 
+@media screen and (max-width: 575px) {
+  .account-response__switch {
+    max-width: none;
+  }
+}
+
 .account-response__submit-button {
   margin: auto 0 0 0;
   max-width: 198px;
@@ -46,4 +52,27 @@
 
 .account-response__quick-answers {
   margin: 0 0 40px 0;
+}
+
+.account-response__phrases {
+  margin: 24px 0 0;
+}
+
+.account-response__phrase-item {
+  display: flex;
+  align-items: center;
+  margin: 0 0 12px;
+}
+
+.account-response__phrase-text {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--coral-two);
+  background-color: var(--coral-3);
+  padding: 6px 8px;
+  min-height: 28px;
+  margin: 0 16px 0 0;
 }
