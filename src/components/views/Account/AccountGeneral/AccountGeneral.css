@@ -83,6 +83,12 @@
   }
 }
 
+@media screen and (max-width: 575px) {
+  .account-general__inputs {
+    gap: 12px;
+  }
+}
+
 .account-general__submit-button {
   margin: auto 0 0 0;
   max-width: 198px;

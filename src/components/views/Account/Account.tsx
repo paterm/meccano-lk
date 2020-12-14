@@ -4,12 +4,13 @@ import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './AccountGeneral/AccountGeneral';
 import AccountResponse from './AccountResponse/AccountResponse';
 import AccountNotifications from './AccountNotifications/AccountNotifications';
+import AccountPassword from './AccountPassword/AccountPassword';
 
 const views = [
   { name: 'Общие', component: AccountGeneral, },
   { name: 'Реагирование', component: AccountResponse, },
   { name: 'Уведомления', component: AccountNotifications, },
-  { name: 'Пароль', component: AccountGeneral, },
+  { name: 'Пароль', component: AccountPassword, },
   { name: 'Интерфейс', component: AccountGeneral, },
 ];
 
