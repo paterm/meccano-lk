@@ -5,13 +5,14 @@ import AccountGeneral from './AccountGeneral/AccountGeneral';
 import AccountResponse from './AccountResponse/AccountResponse';
 import AccountNotifications from './AccountNotifications/AccountNotifications';
 import AccountPassword from './AccountPassword/AccountPassword';
+import AccountUserInterface from './AccountUserInterface/AccountUserInterface';
 
 const views = [
   { name: 'Общие', component: AccountGeneral, },
   { name: 'Реагирование', component: AccountResponse, },
   { name: 'Уведомления', component: AccountNotifications, },
   { name: 'Пароль', component: AccountPassword, },
-  { name: 'Интерфейс', component: AccountGeneral, },
+  { name: 'Интерфейс', component: AccountUserInterface, },
 ];
 
 const Account:React.FC = () => {
