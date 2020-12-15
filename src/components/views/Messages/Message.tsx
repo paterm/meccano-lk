@@ -3,6 +3,7 @@ import { classes } from '@utils';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
 import './Messages.css';
+import DatePicker from '../../ui/DatePicker/DatePicker';
 
 const cls = classes('messages');
 const pOptions: ISelectOption[] = [
@@ -36,6 +37,8 @@ const Messages: React.FC = () => {
           ] }
           onChange={ (buttonId) => setActiveType(buttonId) }
         />
+
+        <DatePicker />
       </section>
     </div>
   );

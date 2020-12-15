@@ -19,7 +19,6 @@ const ButtonSwitcher: React.FC<IButtonSwitcher> = ({ buttons, activeButtonId, on
   const backEffectRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    console.log(activeButtonId);
     if (backEffectRef && backEffectRef.current && activeButtonId) {
       const btn: HTMLButtonElement | null = document.querySelector(`.button-switcher__item[data-id=${activeButtonId}]`);
 
@@ -27,8 +26,6 @@ const ButtonSwitcher: React.FC<IButtonSwitcher> = ({ buttons, activeButtonId, on
       backEffectRef.current.style.left = `${btn?.offsetLeft}px`;
     }
   }, [ activeButtonId, backEffectRef ]);
-
-  console.log(buttons);
 
   return (
     <div { ...cls() }>

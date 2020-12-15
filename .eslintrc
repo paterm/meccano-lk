@@ -40,6 +40,7 @@
     "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/comma-dangle": "off",
     "react/no-array-index-key": "off",
-    "no-nested-ternary": "off"
+    "no-nested-ternary": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   }
 }
