@@ -1,6 +1,8 @@
 import React from 'react';
 import { classes } from '@utils';
 import defautAvatar from '@assets/images/defaultAvatar.jpg';
+import { IStore } from '@interfaces';
+import { useSelector } from 'react-redux';
 import Button from '../../../ui/Button/Button';
 import Input from '../../../ui/Input/Input';
 import './AccountGeneral.css';
@@ -8,13 +10,15 @@ import './AccountGeneral.css';
 const cls = classes('account-general');
 
 const AccountGeneral:React.FC = () => {
+  const profile = useSelector((state: IStore) => state.profile);
+
   const personElement = (
     <div { ...cls('person-data') }>
       <h3 { ...cls('title') }>Личные данные</h3>
       <div { ...cls('avatar') }>
         <img
           { ...cls('avatar-image') }
-          src={ defautAvatar }
+          src={ profile.avatar }
           alt="Аватар пользователя"
         />
         <div { ...cls('avatar-buttons') }>
@@ -33,10 +37,10 @@ const AccountGeneral:React.FC = () => {
         </div>
       </div>
       <div { ...cls('inputs') }>
-        <Input size={ 36 } value="Михаил" />
-        <Input size={ 36 } value="Ершов" />
-        <Input size={ 36 } value="Руководитель" />
-        <Input size={ 36 } value="Департамент PR" />
+        <Input size={ 36 } value={ profile.firstName } />
+        <Input size={ 36 } value={ profile.lastName } />
+        <Input size={ 36 } value={ profile.post } />
+        <Input size={ 36 } value={ profile.department } />
       </div>
     </div>
   );

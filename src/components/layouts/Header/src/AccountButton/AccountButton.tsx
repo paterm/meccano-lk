@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import { TProfile } from '@types';
 import { classes } from '@utils';
 import { ReactComponent as ArrowDown } from '@assets/icons/profile/profile__down-arrow.svg';
@@ -17,6 +18,8 @@ interface IAccountButton {
 }
 
 const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
+  const history = useHistory();
+
   const [ isOpen, setIsOpen ] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -59,7 +62,10 @@ const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
           <SubscribesList { ...cls('subscribes-list') } />
         </div>
 
-        <button { ...cls('row') }>
+        <button
+          { ...cls('row') }
+          onClick={ () => history.push('/account') }
+        >
           <ConfigIcon { ...cls('icon') } /> <span { ...cls('text', '14') }>Настройки аккаунта</span>
         </button>
 
