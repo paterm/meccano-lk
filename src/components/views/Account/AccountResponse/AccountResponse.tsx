@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import { ReactComponent as AddIcon } from '@assets/icons/button/add.svg';
+import Input from '../../../ui/Input/Input';
 import Button from '../../../ui/Button/Button';
 import Switch from '../../../ui/Switch/Switch';
 import './AccountResponse.css';
@@ -34,16 +36,32 @@ const AccountResponse:React.FC = () => {
   );
 
   const phrases = [
-    'Здравствуйте! Извините за неудобства',
-    'Здравствуйте! Назовите номер вашего договора',
-    'Могу вам чем то помочь?',
+    {
+      text: 'Здравствуйте! Извините за неудобства',
+      color: 'coral'
+    },
+    {
+      text: 'Здравствуйте! Назовите номер вашего договора',
+      color: 'blue'
+    },
+    {
+      text: 'Могу вам чем то помочь?',
+      color: 'purple'
+    },
   ];
 
   const phrasesElement = (
     <ul { ...cls('phrases') }>
       {phrases.map((phrase, index) => (
-        <li key={ index } { ...cls('phrase-item') }>
-          <span { ...cls('phrase-text') }>{ phrase }</span>
+        <li
+          { ...cls('phrase-item') }
+          key={ index }
+        >
+          <span
+            { ...cls('phrase-text', `color-${phrase.color}`) }
+          >
+            { phrase.text }
+          </span>
           <Button
             icon={ CloseIcon }
             size={ 24 }
@@ -65,6 +83,25 @@ const AccountResponse:React.FC = () => {
         label="Быстрые сообщения"
       />
       { phrasesElement }
+      <form
+        { ...cls('message-form') }
+        onSubmit={ () => console.log('Субмит сообщения') }
+      >
+        <Input
+          { ...cls('message-input') }
+          size={ 36 }
+          placeholder="Добавьте быстрое ссобщение"
+        />
+        <Button
+          { ...cls('message-button') }
+          icon={ AddIcon }
+          type="submit"
+          size={ 36 }
+          color="coral"
+          filled
+          square
+        />
+      </form>
     </div>
   );
 
