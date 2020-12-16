@@ -8,3 +8,21 @@
 .messages__head .select {
   width: 300px;
 }
+
+.messages__filter-with-drop-down {
+  position: relative;
+}
+
+.messages__filter-drop-down {
+  margin: 24px 0 0;
+  padding: 0;
+  width: 264px;
+  height: calc(100vh - 194px - 24px);
+  max-height: 790px;
+  left: auto;
+  right: 0;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 32px 32px -4px rgba(20, 16, 41, 0.06), 0 64px 96px 0 rgba(20, 16, 41, 0.12), 0 8px 16px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}

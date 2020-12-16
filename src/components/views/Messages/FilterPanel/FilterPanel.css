@@ -1,0 +1,47 @@
+.filter-panel {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.filter-panel__header {
+  padding: 0;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+
+.filter-panel__scroll-container {
+  overflow-y: auto;
+}
+
+.filter-panel__group {
+  margin: 16px 0 0;
+}
+
+.filter-panel__setting-button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.filter-panel__setting-button svg {
+  margin: 0 8px 0 0;
+}
+
+.filter-panel__body {
+  min-height: 48px;
+  padding: 16px;
+}
+
+/* TODO: На исправление? Пришлось перебить вес селектора .filter-panel__select */
+.filter-panel__select.select {
+  width: 100%;
+}
+
+/* TODO: Сделать пропс для селектора square | rounded, как у кнопок */
+.filter-panel__select.select .select__control {
+  border-radius: 0;
+  padding: 0 12px;
+}

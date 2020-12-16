@@ -1,0 +1,38 @@
+.filter-panel-group {
+  margin: 0;
+  overflow: hidden;
+  transition: 0.25s;
+}
+
+.filter-panel-group__header {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  background-color: var(--coral-3);
+  padding: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--coral);
+}
+
+.filter-panel-group__open-button {
+  height: 20px !important;
+  width: 20px;
+  margin: 0 4px 0 0;
+  background: transparent;
+}
+
+.filter-panel-group__open-button svg {
+  height: 20px;
+  width: 20px;
+}
+
+.filter-panel-group__value {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-60);
+}
