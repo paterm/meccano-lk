@@ -13,19 +13,23 @@ interface IFilterPanel {
   filters: {
     group: string,
     label: string,
-    icon: string
+    isActived: boolean
   }[]
   templates: ISelectOption[]
   activeTemplate: string
   onApply?: () => void
   onReset?: () => void
+  onCheck: any
+  onDelete: any
 }
 
 const FilterPanel: React.FC<IFilterPanel> = ({
   className,
   filters,
   templates,
-  activeTemplate
+  activeTemplate,
+  onCheck,
+  onDelete
 }) => {
   const groups = Array.from(new Set(filters.map((el) => el.group)));
   const groupedFilters = groups.map((g) => (
@@ -67,6 +71,8 @@ const FilterPanel: React.FC<IFilterPanel> = ({
               key={ index }
               name={ group }
               values={ values }
+              onCheck={ onCheck }
+              onDelete={ onDelete }
             />
           ))}
         </div>

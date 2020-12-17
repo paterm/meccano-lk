@@ -23,18 +23,18 @@ const filterTemplates: ISelectOption[] = [
   { label: <span>Шаблон 2</span>, value: 'template-2' },
   { label: <span>Шаблон 3</span>, value: 'template-3' },
 ];
-const filters = [
-  { group: 'Тональность', label: '😁 Позитив', icon: '' },
-  { group: 'Тональность', label: '😐 Нейтрал', icon: '' },
-  { group: 'Тональность', label: '😡 Негатив', icon: '' },
-  { group: 'Источники', label: 'ТВ 400', icon: '' },
-  { group: 'Источники', label: 'Радио 34', icon: '' },
-  { group: 'Источники', label: 'Печатные СМИ 600', icon: '' },
-  { group: 'География', label: 'Россия 400', icon: '' },
-  { group: 'География', label: 'Беларусь 34', icon: '' },
-  { group: 'Что-то ещё', label: 'Компании 443', icon: '' },
-  { group: 'Что-то ещё', label: 'Конкуренты 3363', icon: '' },
-  { group: 'Что-то ещё', label: 'Отрасль 7030', icon: '' },
+const initFilters = [
+  { group: 'Тональность', label: '😁 Позитив', isActived: true },
+  { group: 'Тональность', label: '😐 Нейтрал', isActived: false },
+  { group: 'Тональность', label: '😡 Негатив', isActived: false },
+  { group: 'Источники', label: 'ТВ 400', isActived: true },
+  { group: 'Источники', label: 'Радио 34', isActived: true },
+  { group: 'Источники', label: 'Печатные СМИ 600', isActived: true },
+  { group: 'География', label: 'Россия 400', isActived: false },
+  { group: 'География', label: 'Беларусь 34', isActived: false },
+  { group: 'Что-то ещё', label: 'Компании 443', isActived: false },
+  { group: 'Что-то ещё', label: 'Конкуренты 3363', isActived: false },
+  { group: 'Что-то ещё', label: 'Отрасль 7030', isActived: false },
 ];
 
 enum ScreenType {
@@ -44,7 +44,25 @@ enum ScreenType {
 
 const Messages: React.FC = () => {
   const [ activeType, setActiveType ] = useState<string | number>(ScreenType.SMI);
+  const [ filters, setFilters ] = useState(initFilters);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
+
+  const handleCheckFilter = (values: any) => {
+    const updatedFilres = [...filters];
+    values.forEach((value: any) => {
+      const filterIndex = filters.findIndex((el) => el.label === value.label);
+      updatedFilres[filterIndex] = value;
+    });
+    setFilters(updatedFilres);
+  };
+
+  const handleDeleteFilter = (values: any) => {
+    const updatedFilres = [...filters];
+    const deleteIndices = values.map((value: any) => filters
+      .findIndex((el) => el.label === value.label));
+    updatedFilres.splice(deleteIndices[0], deleteIndices.length);
+    setFilters(updatedFilres);
+  };
 
   return (
     <div { ...cls('', '', 'container') }>
@@ -92,6 +110,8 @@ const Messages: React.FC = () => {
               activeTemplate="template-2"
               onReset={ console.log }
               onApply={ console.log }
+              onCheck={ handleCheckFilter }
+              onDelete={ handleDeleteFilter }
             />
           </DropDown>
         </div>
