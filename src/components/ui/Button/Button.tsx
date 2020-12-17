@@ -10,6 +10,7 @@ interface IButton {
   type?: 'button' | 'submit' | 'reset'
   size?: 48 | 36 | 24
   rounded?: boolean
+  disabled?: boolean
   inline?: boolean
   filled?: boolean
   transparent?: boolean
@@ -31,6 +32,7 @@ const Button: React.FC<IButton> = ({
   children,
   size = 48,
   rounded,
+  disabled,
   inline,
   filled,
   transparent,
@@ -59,6 +61,7 @@ const Button: React.FC<IButton> = ({
         square,
         icon
       }, className) }
+      disabled={ disabled }
       onClick={ handleClick }
       type={ type }
     >

@@ -1,0 +1,10 @@
+.messages {
+  padding: 50px 0;
+}
+.messages__head {
+  display: flex;
+  justify-content: space-between;
+}
+.messages__head .select {
+  width: 300px;
+}

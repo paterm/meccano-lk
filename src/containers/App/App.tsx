@@ -7,10 +7,10 @@ import Router from './Router';
 
 import Header from '../../components/layouts/Header/Header';
 import Footer from '../../components/layouts/Footer/Footer';
+import Sidebar from '../../components/layouts/Sidebar/Sidebar';
 import { setAuth, setProfile, setMobile } from '../../store/actions';
 
 import './App.css';
-import Sidebar from '../../components/layouts/Sidebar/Sidebar';
 
 const App: React.FC = () => {
   const dispatch = useDispatch();
