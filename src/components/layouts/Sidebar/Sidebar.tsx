@@ -9,21 +9,24 @@ import './Sidebar.css';
 const cls = classes('sidebar');
 
 const Sidebar: React.FC = () => (
-  <aside { ...cls() }>
-    <nav { ...cls('nav') }>
-      { SIDEBAR_MENU.map((item, itemIndex) => (
-        <li { ...cls('item', { active: item.active }) } key={ itemIndex }>
-          <LinkOrFragment href={ item.link } { ...cls('link') }>
-            { item.Icon }
-            <span { ...cls('item-name') }>{ item.label }</span>
-            { item.rightArrow && <RightArrow { ...cls('right-arrow') } />}
+  <>
+    <aside { ...cls() }>
+      <nav { ...cls('nav') }>
+        { SIDEBAR_MENU.map((item, itemIndex) => (
+          <li { ...cls('item', { active: item.active }) } key={ itemIndex }>
+            <LinkOrFragment href={ item.link } { ...cls('link') }>
+              { item.Icon }
+              <span { ...cls('item-name') }>{ item.label }</span>
+              { item.rightArrow && <RightArrow { ...cls('right-arrow') } />}
 
-            { item.children && <SidebarSubmenu data={ item.children } /> }
-          </LinkOrFragment>
-        </li>
-      ))}
-    </nav>
-  </aside>
+              { item.children && <SidebarSubmenu data={ item.children } /> }
+            </LinkOrFragment>
+          </li>
+        ))}
+      </nav>
+    </aside>
+    <div { ...cls('overlay') } />
+  </>
 );
 
 export default Sidebar;
