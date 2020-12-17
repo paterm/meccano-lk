@@ -9,6 +9,9 @@
   color: var(--white);
   transition: background-color .2s, color .2s, opacity .2s;
   outline: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .button:hover {
   opacity: .9;
@@ -18,10 +21,10 @@
 }
 
 .button:not(.button--inline).button--48 {
-  height: 48px;
+  min-height: 48px;
 }
 .button:not(.button--inline).button--36 {
-  height: 36px;
+  min-height: 36px;
 }
 
 .button--rounded.button--48 {
@@ -135,6 +138,12 @@
   margin-right: 12px;
 }
 
+.button__right-icon {
+  display: block;
+  margin: 0 0 0 auto;
+  height: 24px;
+}
+
 .button--icon {
   padding: 0;
   margin: 0;
@@ -145,6 +154,12 @@
 
 .button--icon.button--36 {
   width: 36px;
+  height: 36px;
+}
+
+.button--icon.button--24 {
+  width: 24px;
+  height: 24px;
 }
 
 .button--icon svg {
@@ -152,4 +167,8 @@
   display: block;
   margin: auto;
   pointer-events: none;
+}
+
+.button--transparent {
+  background-color: transparent;
 }

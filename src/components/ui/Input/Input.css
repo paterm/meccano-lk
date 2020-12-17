@@ -48,14 +48,6 @@
   padding-bottom: 4px;
 }
 
-.input__field--36 {
-  min-height: 36px;
-}
-
-.input__field--48 {
-  min-height: 48px;
-}
-
 .input::placeholder {
   color: var(--dark-60);
 }
@@ -75,11 +67,16 @@
 }
 
 .input__field--disabled {
-  color: var(--dark-20);
+  color: var(--dark-40);
 }
 
 .input__field--48 {
-  height: 48px;
+  min-height: 48px;
+  padding: 0 16px;
+}
+
+.input__field--36 {
+  min-height: 36px;
   padding: 0 16px;
 }
 
