@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
+import moment from 'moment';
+import { TDatesPeriod } from '@types';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
-import './Messages.css';
 import DatePicker from '../../ui/DatePicker/DatePicker';
+import './Messages.css';
 
 const cls = classes('messages');
 const pOptions: ISelectOption[] = [
@@ -18,8 +20,14 @@ enum ScreenType {
   SOCIAL = 'social',
 }
 
+const initialPeriod: TDatesPeriod = {
+  startDate: moment().subtract(1, 'w').startOf('day'),
+  endDate: moment()
+};
+
 const Messages: React.FC = () => {
   const [ activeType, setActiveType ] = useState<string | number>(ScreenType.SMI);
+  const [ datePeriod, setDatePeriod ] = useState<TDatesPeriod>(initialPeriod);
 
   return (
     <div { ...cls('', '', 'container') }>
@@ -38,7 +46,7 @@ const Messages: React.FC = () => {
           onChange={ (buttonId) => setActiveType(buttonId) }
         />
 
-        <DatePicker />
+        <DatePicker value={ datePeriod } onChange={ setDatePeriod } />
       </section>
     </div>
   );
