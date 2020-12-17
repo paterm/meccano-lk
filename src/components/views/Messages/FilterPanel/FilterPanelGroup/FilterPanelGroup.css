@@ -2,6 +2,7 @@
   margin: 0;
   overflow: hidden;
   transition: 0.25s;
+  flex-shrink: 0;
 }
 
 .filter-panel-group__header {
@@ -27,6 +28,7 @@
   width: 20px;
   margin: 0 0 0 4px;
   background: transparent;
+  color: var(--dark-40)
 }
 
 .filter-panel-group__group-name {

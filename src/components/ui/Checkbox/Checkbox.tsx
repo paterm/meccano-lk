@@ -6,6 +6,7 @@ const cls = classes('checkbox');
 
 interface ICheckbox {
   className?: string
+  type?: 'tick' | 'minus'
   color?: 'coral' | 'green'
   size?: 's' | 'm' | 'l'
   label?: string
@@ -16,6 +17,7 @@ interface ICheckbox {
 
 const Checkbox: React.FC<ICheckbox> = ({
   className,
+  type = 'tick',
   color = 'coral',
   size = 'm',
   label,
@@ -33,6 +35,7 @@ const Checkbox: React.FC<ICheckbox> = ({
       { ...cls('', {
         [color]: true,
         [size]: true,
+        [type]: true,
         checked,
         disabled,
       }, className) }

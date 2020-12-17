@@ -24,9 +24,16 @@
   flex-shrink: 0;
 }
 
+.checkbox--minus::before {
+  background-size: 100%;
+  background-image: url(@assets/icons/input/minus.svg);
+  filter: invert(0.15);
+}
+
 .checkbox--checked::before {
   background-size: 100%;
   cursor: pointer;
+  filter: invert(0);
 }
 
 .checkbox--l::before {

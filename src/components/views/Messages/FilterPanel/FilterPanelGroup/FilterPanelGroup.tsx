@@ -81,6 +81,7 @@ const FilterPanelGroup: React.FC<IFilterPanelGroup> = ({
         <Checkbox
           { ...cls('checkbox') }
           size="s"
+          type="minus"
           checked={ checkStateGroup() }
           onChange={ (value) => hangleCheckGroup(value) }
         />
@@ -101,6 +102,7 @@ const FilterPanelGroup: React.FC<IFilterPanelGroup> = ({
           <Checkbox
             { ...cls('checkbox') }
             size="s"
+            type="minus"
             checked={ checkStateLabel(label) }
             onChange={ (value) => hangleCheckOne(label, value) }
           />

@@ -65,16 +65,37 @@ const FilterPanel: React.FC<IFilterPanel> = ({
             selected={ activeTemplate }
             onChange={ console.log }
           />
-          {groupedFilters.map(({ group, values }, index) => (
-            <FilterPanelGroup
-              { ...cls('group') }
-              key={ index }
-              name={ group }
-              values={ values }
-              onCheck={ onCheck }
-              onDelete={ onDelete }
-            />
-          ))}
+          <div { ...cls('groups') }>
+            {groupedFilters.map(({ group, values }, index) => (
+              <FilterPanelGroup
+                { ...cls('group') }
+                key={ index }
+                name={ group }
+                values={ values }
+                onCheck={ onCheck }
+                onDelete={ onDelete }
+              />
+            ))}
+          </div>
+          <div { ...cls('buttons') }>
+            <Button
+              { ...cls('apply-button') }
+              size={ 36 }
+              color="coral"
+              filled
+              square
+            >
+              Применить
+            </Button>
+            <Button
+              { ...cls('reset-button') }
+              size={ 36 }
+              color="gray"
+              square
+            >
+              Сбросить все
+            </Button>
+          </div>
         </div>
       </div>
     </div>
