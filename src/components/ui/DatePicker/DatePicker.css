@@ -1,0 +1,112 @@
+.date-picker {
+  position: relative;
+}
+.date-picker__picker-wrapper {
+  position: absolute;
+  top: calc(100% + 32px);
+  right: 0;
+  background-color: var(--white);
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+.date-picker__picker-wrapper--opened {
+  display: block;
+}
+.date-picker__field {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0 24px;
+  background: var(--dark-2);
+  border-radius: 24px;
+  cursor: pointer;
+}
+.date-picker__field-input {
+  background: none;
+  border: none;
+  outline: none;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark-60);
+  cursor: pointer;
+}
+.date-picker__field-icon {
+  margin-right: 16px;
+}
+.date-picker__buttons {
+  display: flex;
+}
+.date-picker__button {
+  flex: 1;
+}
+
+.date-picker .CalendarMonth_caption strong {
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+  text-transform: capitalize;
+}
+.date-picker .DayPicker__withBorder {
+  box-shadow: none;
+}
+.date-picker .CalendarDay {
+  font-family: Montserrat, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark-60);
+  border-color: var(--white);
+}
+.date-picker .CalendarDay__selected,
+.date-picker .CalendarDay__selected:active,
+.date-picker .CalendarDay__selected:hover {
+  background-color: var(--coral);
+  border-color: var(--white);
+  color: var(--white);
+}
+.date-picker .CalendarDay__selected_span {
+  background-color: var(--coral-7);
+  border-color: var(--white);
+  color: var(--dark-80);
+}
+.date-picker .CalendarDay__hovered_span,
+.date-picker .CalendarDay__hovered_span:hover {
+  background-color: var(--coral-7);
+  border-color: var(--white);
+  color: var(--dark-80);
+}
+.date-picker .DayPicker_weekHeader_li small {
+  font-size: 14px;
+  font-weight: 500;;
+  color: var(--dark-60);
+  text-transform: capitalize;
+}
+.date-picker .DayPickerNavigation__horizontal {
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 24px;
+}
+.date-picker__times {
+  display: flex;
+  margin-bottom: 16px;
+}
+.date-picker__times .time-picker {
+  flex: 1;
+}
+.date-picker__ranges {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.date-picker__range-button {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-60) !important;
+}
+.date-picker__range-button--active {
+  color: var(--coral) !important;
+}
