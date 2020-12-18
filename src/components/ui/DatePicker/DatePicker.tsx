@@ -42,6 +42,7 @@ const DatePicker: React.FC<IDatePicker> = (
   }
 ) => {
   const [ isOpen, setIsOpen ] = useState(false);
+  const [ isMobile, setIsMobile ] = useState(window.outerWidth < 1024);
   const [ dates, setDates ] = useState<TDatesPeriod>(value);
   const [ activeRange, setActiveRange ] = useState<string>(Ranges[0].id);
   const [ focusedInput, setFocusedInput ] = useState<TFocusChange>('startDate');
@@ -83,6 +84,18 @@ const DatePicker: React.FC<IDatePicker> = (
       }
     }
   }, [ isOpen ]);
+  const handleResize = useCallback((event) => {
+    const mobile = event.target.outerWidth < 1024;
+
+    if (mobile !== isMobile) {
+      setIsMobile(mobile);
+    }
+  }, [ isMobile, setIsMobile ]);
+  const handleKeyDown = useCallback((event) => {
+    if (event.key === 'Escape') {
+      setIsOpen(false);
+    }
+  }, []);
 
   useEffect(() => {
     if (value !== dates) {
@@ -93,9 +106,15 @@ const DatePicker: React.FC<IDatePicker> = (
 
   useEffect(() => {
     document.addEventListener('click', handleOutsideClick);
+    document.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('resize', handleResize);
 
-    return () => document.removeEventListener('click', handleOutsideClick);
-  }, [ handleOutsideClick ]);
+    return () => {
+      document.removeEventListener('click', handleOutsideClick);
+      document.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [ handleOutsideClick, handleResize, handleKeyDown ]);
 
   return (
     <div { ...cls() } ref={ containerRef }>
@@ -123,32 +142,47 @@ const DatePicker: React.FC<IDatePicker> = (
             focusedInput={ focusedInput }
             startDate={ dates.startDate }
             endDate={ dates.endDate }
-            numberOfMonths={ 2 }
+            numberOfMonths={ isMobile ? 1 : 2 }
             initialVisibleMonth={ () => moment() }
             hideKeyboardShortcutsPanel
-            daySize={ 63 }
+            daySize={ isMobile ? 47 : 63 }
             // onOutsideClick={ () => isOpen && setIsOpen(false) }
             navPrev={ LeftIcon }
             navNext={ RightIcon }
           />
 
           <div { ...cls('times') }>
-            { dates.startDate && <TimePicker dateTime={ dates.startDate } showDate /> }
-            { dates.endDate && <TimePicker dateTime={ dates.endDate } showDate revert /> }
+            { dates.startDate && (
+              <TimePicker
+                { ...cls('time-picker') }
+                dateTime={ dates.startDate }
+                showDate
+              />
+            ) }
+            { dates.endDate && (
+              <TimePicker
+                { ...cls('time-picker') }
+                dateTime={ dates.endDate }
+                showDate
+                revert
+              />
+            ) }
           </div>
 
-          <div { ...cls('ranges') }>
-            { Ranges.map((item, itemIndex) => (
-              <Button
-                { ...cls('range-button', { active: activeRange === item.id }) }
-                key={ itemIndex }
-                inline
-                onClick={ () => handleChangeRange(item) }
-              >
-                { item.label }
-              </Button>
-            )) }
-          </div>
+          { !isMobile && (
+            <div { ...cls('ranges') }>
+              { Ranges.map((item, itemIndex) => (
+                <Button
+                  { ...cls('range-button', { active: activeRange === item.id }) }
+                  key={ itemIndex }
+                  inline
+                  onClick={ () => handleChangeRange(item) }
+                >
+                  { item.label }
+                </Button>
+              )) }
+            </div>
+          ) }
 
           <div { ...cls('buttons') }>
             <Button

@@ -29,3 +29,13 @@
   margin-right: unset;
   margin-left: 24px;
 }
+
+@media screen and (max-width: 720px) {
+  .time-picker {
+    height: 48px;
+  }
+  .time-picker__icon {
+    width: 24px;
+    height: 24px;
+  }
+}

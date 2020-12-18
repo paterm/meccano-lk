@@ -28,6 +28,10 @@
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
   --grey-icon: #E0E0FF;
   --very-light-pink: #fffaf9;
+
+  --header-height: 72px;
+  --m-header-height: 48px;
+  --sidebar-width: 72px;
 }
 
 html, body {
@@ -89,4 +93,24 @@ button {
 .content {
   position: relative;
   flex: 1;
+}
+.main {
+  width: 100%;
+}
+
+@media screen and (max-width: calc(1294px)) {
+  .main {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .main {
+    width: 100%;
+    margin-left: unset;
+  }
+  .sidebar {
+    display: none;
+  }
 }
