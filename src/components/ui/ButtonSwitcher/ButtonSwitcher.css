@@ -6,6 +6,7 @@
   background-color: var(--dark-2);
 }
 .button-switcher__item {
+  flex: 1;
   position: relative;
   height: 100%;
   background: none;
@@ -20,6 +21,7 @@
   cursor: pointer;
   outline: none;
   transition: color .2s;
+  white-space: nowrap;
   z-index: 1;
 }
 .button-switcher__item--active {
