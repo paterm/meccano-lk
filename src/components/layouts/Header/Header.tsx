@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IStore } from '@interfaces';
 import { classes } from '@utils';
 import { useSelector } from 'react-redux';
@@ -18,9 +18,10 @@ interface IHeader {
 const Header: React.FC<IHeader> = () => {
   const profile = useSelector((state:IStore) => state.profile);
   const { loggedIn } = useSelector((state:IStore) => state.auth);
+  const [ isOpen, setIsOpen ] = useState(false);
 
   return (
-    <header { ...cls() }>
+    <header { ...cls('', { opened: isOpen }) }>
       <LogoLink { ...cls('logo') } />
 
       <div { ...cls('container', '', 'container') }>
@@ -39,6 +40,10 @@ const Header: React.FC<IHeader> = () => {
             profile={ profile }
           />
         )}
+
+        <button { ...cls('mobile-button') } onClick={ () => setIsOpen(!isOpen) }>
+          <div { ...cls('burger') } />
+        </button>
       </div>
     </header>
   );

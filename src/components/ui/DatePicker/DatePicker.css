@@ -130,18 +130,24 @@
   .date-picker__time-picker + .date-picker__time-picker {
     margin-top: 8px;
   }
+  .date-picker .DayPicker__withBorder {
+    margin: 0 auto;
+  }
 }
 
 @media screen and (max-width: 720px) {
   .date-picker__picker-wrapper {
     position: fixed;
-    top: 0;
+    top: var(--m-header-height);
     left: 0;
     right: 0;
     bottom: 0;
+    display: flex;
+    flex-direction: column;
   }
   .date-picker__buttons {
     flex-direction: column;
+    margin-top: auto;
     padding: 16px;
   }
   .date-picker__button + .date-picker__button {

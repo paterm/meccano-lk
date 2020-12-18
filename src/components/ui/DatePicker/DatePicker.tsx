@@ -42,7 +42,7 @@ const DatePicker: React.FC<IDatePicker> = (
   }
 ) => {
   const [ isOpen, setIsOpen ] = useState(false);
-  const [ isMobile, setIsMobile ] = useState(window.outerWidth < 1024);
+  const [ isMobile, setIsMobile ] = useState(window.innerWidth < 1024);
   const [ dates, setDates ] = useState<TDatesPeriod>(value);
   const [ activeRange, setActiveRange ] = useState<string>(Ranges[0].id);
   const [ focusedInput, setFocusedInput ] = useState<TFocusChange>('startDate');
@@ -85,7 +85,7 @@ const DatePicker: React.FC<IDatePicker> = (
     }
   }, [ isOpen ]);
   const handleResize = useCallback((event) => {
-    const mobile = event.target.outerWidth < 1024;
+    const mobile = event.target.innerWidth < 1024;
 
     if (mobile !== isMobile) {
       setIsMobile(mobile);
