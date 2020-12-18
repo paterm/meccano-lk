@@ -2,11 +2,13 @@
   --midnight-purple-80: rgba(20,1,41,.8);
   --midnight-purple-60: rgba(20, 1, 41, 0.6);
   --midnight-purple-6: rgba(20, 1, 41, 0.06);
+  --midnight-purple-3: rgba(20, 1, 41, 0.03);
   --midnight-purple-2: rgba(20, 1, 41, 0.02);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);
   --dark-40: rgba(20,16,41,.4);
+  --dark-12: rgba(23, 23, 31, 0.12);
   --dark-2: rgba(20,16,41,.02);
   --pale-lilac-2: rgba(224, 224, 255, 0.02);
   --pale-lilac-3: rgba(224, 224, 255, 0.03);

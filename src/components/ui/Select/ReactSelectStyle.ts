@@ -27,7 +27,8 @@ export function ReactSelectStyle({ rounded = false, size = 48 }: IReactSelectSty
       ...provided,
       boxShadow: '0 16px 16px -4px rgba(20, 16, 41, 0.06), 0 4px 8px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12)',
       backgroundColor: 'white',
-      padding: size === 48 ? '16px 0 0 0' : '16px 0'
+      padding: size === 48 ? '16px 0 0 0' : '16px 0',
+      zIndex: 3
     }),
     valueContainer: (provided: any) => ({
       ...provided,

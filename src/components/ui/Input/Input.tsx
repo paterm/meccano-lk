@@ -15,6 +15,7 @@ interface IInput {
   isValid?: boolean
   disabled?: boolean
   message?: string
+  value?: string
   onChange?: (event: React.ChangeEvent) => void
   ref?: HTMLInputElement
 }
@@ -25,6 +26,7 @@ const Input: React.FC<IInput> = ({
   size = 48,
   label,
   placeholder,
+  value,
   isValid = true,
   disabled,
   message,
@@ -61,6 +63,7 @@ const Input: React.FC<IInput> = ({
             disabled,
           }) }
           type={ type }
+          defaultValue={ value }
           placeholder={ placeholder }
           disabled={ disabled }
           onChange={ onChange }

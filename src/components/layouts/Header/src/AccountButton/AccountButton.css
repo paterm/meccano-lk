@@ -9,6 +9,7 @@
 }
 .account-button__wrapper {
   position: relative;
+  z-index: 6;
 }
 .account-button__avatar {
   width: 48px;

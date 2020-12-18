@@ -1,0 +1,122 @@
+.account-response {
+  margin: 134px 16px 30px 0;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 164px);
+}
+
+@media screen and (max-width: 767px) {
+  .account-response {
+    margin: 0;
+    padding: 24px 16px;
+    box-shadow: none;
+  }
+}
+
+.account-response__title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+}
+
+.account-response__switch {
+  max-width: 300px;
+}
+
+@media screen and (max-width: 575px) {
+  .account-response__switch {
+    max-width: none;
+  }
+}
+
+.account-response__submit-button {
+  margin: auto 0 0 0;
+  max-width: 198px;
+}
+
+@media screen and (max-width: 575px) {
+  .account-response__submit-button {
+    max-width: none;
+  }
+}
+
+.account-response__feedback {
+  margin: 0 0 40px 0;
+}
+
+.account-response__quick-answers {
+  margin: 0 0 40px 0;
+}
+
+.account-response__phrases {
+  margin: 24px 0 0;
+}
+
+.account-response__phrase-item {
+  display: flex;
+  align-items: center;
+  margin: 0 0 12px;
+}
+
+.account-response__phrase-text {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--coral-two);
+  background-color: var(--coral-3);
+  padding: 6px 8px;
+  min-height: 28px;
+  margin: 0 16px 0 0;
+}
+
+.account-response__phrase-text--color-coral {
+  color: var(--coral-two);
+  background-color: var(--coral-3);
+}
+
+.account-response__phrase-text--color-blue {
+  color: var(--bright-sky-blue);
+  background-color: var(--bright-sky-blue-3);
+}
+
+.account-response__phrase-text--color-purple {
+  color: var(--purple-pink);
+  background-color: var(--purple-pink-3);
+}
+
+.account-response__phrase-text--color-green {
+  color: var(--bluish-green);
+  background-color: var(--bluish-green-3);
+}
+
+.account-response__message-form {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 0;
+}
+
+.account-response__message-input {
+  width: 100%;
+  max-width: 342px;
+  margin: 0 16px 0 0;
+}
+
+.account-response__message-button {
+  flex-shrink: 0;
+}
+
+@media screen and (max-width: 575px) {
+  .account-response__message-input {
+    max-width: none;
+  }
+}
+

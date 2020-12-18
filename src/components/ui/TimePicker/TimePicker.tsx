@@ -2,37 +2,57 @@ import React, { useState } from 'react';
 import moment from 'moment';
 import { classes } from '@utils';
 import StringInputNumber from './StringInputNumber/StringInputNumber';
+import { ReactComponent as TimeIcon } from './assets/time-icon.svg';
+import './TimePicker.css';
 
 const cls = classes('time-picker');
 
-export interface ITime {
-  hours: string | number
-  minutes: string | number
-  seconds?: string | number
-}
-
 interface ITimePicker {
-  time: ITime | string | moment.Moment
+  className?: string
+  dateTime?: moment.Moment
+  showDate?: boolean
+  dateFormat?: string
+  revert?: boolean
 }
 
-const TimePicker: React.FC<ITimePicker> = ({ time }) => {
-  const [ hours, setHours ] = useState(0);
-  const [ minutes, setMinutes ] = useState(0);
-  // const [ seconds, setSeconds ] = useState(0);
+const TimePicker: React.FC<ITimePicker> = (
+  {
+    className,
+    dateTime = moment(),
+    showDate,
+    dateFormat = 'DD. MM. YY',
+    revert,
+  }
+) => {
+  const [ hours, setHours ] = useState<number>(+dateTime.format('H'));
+  const [ minutes, setMinutes ] = useState<number>(+dateTime?.format('m'));
 
   return (
-    <div { ...cls() }>
+    <div { ...cls('', { revert }, className) }>
+      <TimeIcon { ...cls('icon') } />
+
+      {showDate && (
+        <span { ...cls('date') }>{ dateTime?.format(dateFormat) }</span>
+      )}
+
       <StringInputNumber
+        { ...cls('field') }
         value={ hours }
         onChange={ (value) => setHours(value) }
+        buttonPosition="left"
+        max={ 23 }
+        min={ 0 }
       />
-      :
+      <span { ...cls('separator') }>:</span>
       <StringInputNumber
+        { ...cls('field') }
         value={ minutes }
         onChange={ (value) => setMinutes(value) }
+        max={ 59 }
+        min={ 0 }
       />
     </div>
-  )
+  );
 };
 
 export default TimePicker;

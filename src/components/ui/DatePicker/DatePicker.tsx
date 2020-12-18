@@ -1,35 +1,54 @@
-import React, { useState } from 'react';
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState
+} from 'react';
+import ReactDOM from 'react-dom';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerRangeController } from 'react-dates';
 import moment from 'moment';
 import { classes } from '@utils';
-import { ReactComponent as CalendarIcon } from '@assets/icons/date-picker/calendar.svg';
-import { ReactComponent as ChevronLeft } from '@assets/icons/date-picker/chevron-left.svg';
-import { ReactComponent as ChevronRight } from '@assets/icons/date-picker/chevron-right.svg';
+import { TDatesPeriod } from '@types';
+import { ReactComponent as CalendarIcon } from './assets/calendar.svg';
+import { ReactComponent as ChevronLeft } from './assets/chevron-left.svg';
+import { ReactComponent as ChevronRight } from './assets/chevron-right.svg';
+import Button from '../Button/Button';
+import TimePicker from '../TimePicker/TimePicker';
+import { ERangeIds, IRangeItem, Ranges } from './Ranges';
+
 import './DatePicker.css';
 import 'moment/locale/ru';
-import Button from '../Button/Button';
 
 moment.locale('ru');
+
+interface IDatePicker {
+  value?: TDatesPeriod
+  onChange?: (period: TDatesPeriod) => void
+}
 
 const cls = classes('date-picker');
 const LeftIcon = React.createElement(ChevronLeft, { ...cls('icon', 'left') });
 const RightIcon = React.createElement(ChevronRight, { ...cls('icon', 'right') });
 
-type IDatesChange = {
-  startDate: moment.Moment | null;
-  endDate: moment.Moment | null;
-};
-
 type TFocusChange = 'startDate' | 'endDate' | null;
 
-const DatePicker: React.FC = () => {
+const DatePicker: React.FC<IDatePicker> = (
+  {
+    value = { startDate: moment().subtract(1, 'w'), endDate: moment() },
+    onChange = () => {
+    },
+  }
+) => {
   const [ isOpen, setIsOpen ] = useState(false);
-  const [ dates, setDates ] = useState<IDatesChange>({ startDate: moment().subtract(1, 'w'), endDate: moment() });
+  const [ dates, setDates ] = useState<TDatesPeriod>(value);
+  const [ activeRange, setActiveRange ] = useState<string>(Ranges[0].id);
   const [ focusedInput, setFocusedInput ] = useState<TFocusChange>('startDate');
-  const onDatesChange = (newDates: IDatesChange):void => {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const onDatesChange = (newDates: TDatesPeriod): void => {
     setDates(newDates);
+    Ranges[0].period = newDates;
   };
   const onFocusChange = (focused: TFocusChange): void => {
     setFocusedInput(focused || 'startDate');
@@ -38,9 +57,48 @@ const DatePicker: React.FC = () => {
     if (isOpen) return;
     setIsOpen(true);
   };
+  const handleChangeRange = (item: IRangeItem) => {
+    if (!item.disabled && item.period) {
+      if (item.id === ERangeIds.PREV_MONTH) {
+        const prevBtn: HTMLButtonElement | null = document
+          .querySelector('[aria-label="Move backward to switch to the previous month."]');
+
+        if (prevBtn) {
+          prevBtn.click();
+        }
+      }
+
+      setDates(item.period);
+      setActiveRange(item.id);
+    }
+  };
+  const handleApply = () => {
+    onChange(dates);
+    setIsOpen(false);
+  };
+  const handleOutsideClick = useCallback((event: MouseEvent) => {
+    if (isOpen && containerRef && containerRef.current && event.target) {
+      if (!containerRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+      }
+    }
+  }, [ isOpen ]);
+
+  useEffect(() => {
+    if (value !== dates) {
+      setDates(value);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [ value ]);
+
+  useEffect(() => {
+    document.addEventListener('click', handleOutsideClick);
+
+    return () => document.removeEventListener('click', handleOutsideClick);
+  }, [ handleOutsideClick ]);
 
   return (
-    <div { ...cls() }>
+    <div { ...cls() } ref={ containerRef }>
       <div
         { ...cls('field') }
         onClick={ handleOpen }
@@ -52,12 +110,12 @@ const DatePicker: React.FC = () => {
         <input
           { ...cls('field-input') }
           type="text"
-          value={ `${dates.startDate?.format('DD.MM.YY')} - ${dates.endDate?.format('DD.MM.YY') || ''}` }
+          value={ `${value.startDate?.format('DD.MM.YY')} - ${value.endDate?.format('DD.MM.YY') || ''}` }
           readOnly
         />
       </div>
 
-      {isOpen && (
+      { isOpen && (
         <div { ...cls('picker-wrapper') }>
           <DayPickerRangeController
             onDatesChange={ onDatesChange }
@@ -69,27 +127,47 @@ const DatePicker: React.FC = () => {
             initialVisibleMonth={ () => moment() }
             hideKeyboardShortcutsPanel
             daySize={ 63 }
-            onOutsideClick={ () => isOpen && setIsOpen(false) }
+            // onOutsideClick={ () => isOpen && setIsOpen(false) }
             navPrev={ LeftIcon }
             navNext={ RightIcon }
           />
 
           <div { ...cls('times') }>
-            Time
+            { dates.startDate && <TimePicker dateTime={ dates.startDate } showDate /> }
+            { dates.endDate && <TimePicker dateTime={ dates.endDate } showDate revert /> }
+          </div>
+
+          <div { ...cls('ranges') }>
+            { Ranges.map((item, itemIndex) => (
+              <Button
+                { ...cls('range-button', { active: activeRange === item.id }) }
+                key={ itemIndex }
+                inline
+                onClick={ () => handleChangeRange(item) }
+              >
+                { item.label }
+              </Button>
+            )) }
           </div>
 
           <div { ...cls('buttons') }>
-            <Button { ...cls('button') }>Отмена</Button>
+            <Button
+              { ...cls('button') }
+              onClick={ () => setIsOpen(false) }
+            >
+              Отмена
+            </Button>
             <Button
               { ...cls('button') }
               disabled={ !dates.startDate || !dates.endDate }
+              onClick={ handleApply }
               filled
             >
               Применить
             </Button>
           </div>
         </div>
-      )}
+      ) }
     </div>
   );
 };

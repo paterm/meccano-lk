@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 // import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import moment from 'moment';
+import { TDatesPeriod } from '@types';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
-import './Messages.css';
 import DatePicker from '../../ui/DatePicker/DatePicker';
 import Button from '../../ui/Button/Button';
 import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
+import './Messages.css';
 
 const cls = classes('messages');
 const pOptions: ISelectOption[] = [
@@ -42,8 +44,14 @@ enum ScreenType {
   SOCIAL = 'social',
 }
 
+const initialPeriod: TDatesPeriod = {
+  startDate: moment().subtract(1, 'w').startOf('day'),
+  endDate: moment()
+};
+
 const Messages: React.FC = () => {
   const [ activeType, setActiveType ] = useState<string | number>(ScreenType.SMI);
+  const [ datePeriod, setDatePeriod ] = useState<TDatesPeriod>(initialPeriod);
   const [ filters, setFilters ] = useState(initFilters);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
 
@@ -82,7 +90,7 @@ const Messages: React.FC = () => {
           onChange={ (buttonId) => setActiveType(buttonId) }
         />
 
-        <DatePicker />
+        <DatePicker value={ datePeriod } onChange={ setDatePeriod } />
 
         <div { ...cls('filter-with-drop-down') }>
           <Button

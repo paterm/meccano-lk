@@ -90,3 +90,23 @@
   justify-content: space-between;
   padding: 0 24px;
 }
+.date-picker__times {
+  display: flex;
+  margin-bottom: 16px;
+}
+.date-picker__times .time-picker {
+  flex: 1;
+}
+.date-picker__ranges {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.date-picker__range-button {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--dark-60) !important;
+}
+.date-picker__range-button--active {
+  color: var(--coral) !important;
+}
