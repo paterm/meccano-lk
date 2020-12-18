@@ -12,6 +12,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-shrink: 0;
 }
 .button:hover {
   opacity: .9;
@@ -21,10 +22,10 @@
 }
 
 .button:not(.button--inline).button--48 {
-  min-height: 48px;
+  height: 48px;
 }
 .button:not(.button--inline).button--36 {
-  min-height: 36px;
+  height: 36px;
 }
 
 .button--rounded.button--48 {
@@ -99,8 +100,8 @@
 }
 
 .button--gray {
-  background-color: var(--dark-2);
   color: var(--dark-60);
+  background-color: var(--dark-2);
 }
 .button--gray:active {
   box-shadow: 0 8px 8px -4px rgba(128, 128, 128, 0.12), 0 2px 4px -1px rgba(27, 10, 82, 0.12), 0 0 1px 0 rgba(195, 45, 225, 0.24);
@@ -133,15 +134,22 @@
   color: var(--white);
 }
 .button__left-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 12px;
+  display: block;
+  margin: 0 12px 0 0;
+  height: 24px;
 }
 
 .button__right-icon {
   display: block;
   margin: 0 0 0 auto;
   height: 24px;
+}
+
+.button__left-icon svg,
+.button__right-icon svg {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
 }
 
 .button--icon {

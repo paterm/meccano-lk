@@ -15,9 +15,9 @@ interface IButton {
   filled?: boolean
   transparent?: boolean
   square?: boolean
-  leftIcon?: React.ReactNode
   children?: React.ReactNode | string
   icon?: React.ComponentType
+  leftIcon?: React.ComponentType
   rightIcon?: React.ComponentType
   onClick?: () => void
   onClickCallback?: () => void
@@ -37,11 +37,12 @@ const Button: React.FC<IButton> = ({
   filled,
   transparent,
   square,
-  leftIcon,
-  rightIcon: RightIcon = () => null,
   icon: Icon = () => null,
+  leftIcon: LeftIcon = () => null,
+  rightIcon: RightIcon = () => null,
 }) => {
   const icon = typeof Icon === 'object';
+  const leftIcon = typeof LeftIcon === 'object';
   const rightIcon = typeof RightIcon === 'object';
 
   const handleClick = () => {
@@ -65,7 +66,7 @@ const Button: React.FC<IButton> = ({
       onClick={ handleClick }
       type={ type }
     >
-      { leftIcon && <span { ...cls('left-icon') }>{ leftIcon }</span> }
+      { leftIcon && <span { ...cls('left-icon') }><LeftIcon /></span> }
       { children || <Icon /> }
       { rightIcon && <span { ...cls('right-icon') }><RightIcon /></span> }
     </button>

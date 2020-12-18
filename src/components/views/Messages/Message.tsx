@@ -20,10 +20,11 @@ const pOptions: ISelectOption[] = [
   { label: <span>Обработанные <b>795</b></span>, value: 'processed' },
   { label: <span>Назначенные мне <b>4</b></span>, value: 'my' },
 ];
-const filterTemplates: ISelectOption[] = [
-  { label: <span>Шаблон 1</span>, value: 'template-1' },
-  { label: <span>Шаблон 2</span>, value: 'template-2' },
-  { label: <span>Шаблон 3</span>, value: 'template-3' },
+const filterTemplates = [
+  { name: 'Шаблон #1', id: 'a2r' },
+  { name: 'Шаблон #2', id: 'b4d' },
+  { name: 'Обработка негатива', id: 'k6d' },
+  { name: 'Шаблон #4', id: 'uu7' },
 ];
 const initFilters = [
   { group: 'Тональность', label: '😁 Позитив', isActived: true },
@@ -53,6 +54,7 @@ const Messages: React.FC = () => {
   const [ activeType, setActiveType ] = useState<string | number>(ScreenType.SMI);
   const [ datePeriod, setDatePeriod ] = useState<TDatesPeriod>(initialPeriod);
   const [ filters, setFilters ] = useState(initFilters);
+  const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
 
   const handleCheckFilter = (values: any) => {
@@ -70,6 +72,10 @@ const Messages: React.FC = () => {
       .findIndex((el) => el.label === value.label));
     updatedFilres.splice(deleteIndices[0], deleteIndices.length);
     setFilters(updatedFilres);
+  };
+
+  const handleChangeFilterTemplate = (id: string) => {
+    setActiveFilterTemplateId(id);
   };
 
   return (
@@ -117,9 +123,10 @@ const Messages: React.FC = () => {
             <FilterPanel
               filters={ filters }
               templates={ filterTemplates }
-              activeTemplate="template-2"
-              onReset={ console.log }
-              onApply={ console.log }
+              activeTemplateId={ activeFilterTemplateId }
+              onReset={ () => console.log('Нажал сброс') }
+              onApply={ () => console.log('Нажал применить') }
+              onChangeTemplate={ handleChangeFilterTemplate }
               onCheck={ handleCheckFilter }
               onDelete={ handleDeleteFilter }
             />

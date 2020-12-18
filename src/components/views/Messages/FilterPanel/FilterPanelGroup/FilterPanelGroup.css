@@ -17,16 +17,14 @@
 }
 
 .filter-panel-group__open-button {
-  min-height: 20px !important;
-  height: 20px;
+  height: 20px !important;
   width: 20px;
   margin: 0 4px 0 0;
   background: transparent;
 }
 
 .filter-panel-group__delete-button {
-  min-height: 20px !important;
-  height: 20px;
+  height: 20px !important;
   width: 20px;
   margin: 0 0 0 4px;
   background: transparent;
