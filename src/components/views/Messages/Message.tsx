@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
-// import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import moment from 'moment';
 import { TDatesPeriod } from '@types';
 import Select, { ISelectOption } from '../../ui/Select/Select';
@@ -75,7 +75,6 @@ const Messages: React.FC = () => {
   return (
     <div { ...cls('', '', 'container') }>
       <section { ...cls('head') }>
-        {/* TODO: Мне кажется у селекторов нужно сделать как у кнопок rounded | square */}
         <Select
           options={ pOptions }
           selected="not-processed"
@@ -100,18 +99,21 @@ const Messages: React.FC = () => {
             rounded
             onClick={ () => setIsOpenFilter(!isOpenFilter) }
           />
+          {isOpenFilter && (
+            <Button
+              { ...cls('filter-close-button') }
+              icon={ CloseIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+              onClick={ () => setIsOpenFilter(true) }
+            />
+          )}
           <DropDown
             { ...cls('filter-drop-down') }
             isOpen={ isOpenFilter }
             onClose={ () => setIsOpenFilter(false) }
           >
-            {// TODO: Размер 24 и програчность есть в ветке 179, активировать как вольётся в dev
-            /* <Button
-              icon={ CloseIcon }
-              // size={ 24 }
-              color="gray"
-              // transparent
-            /> */}
             <FilterPanel
               filters={ filters }
               templates={ filterTemplates }

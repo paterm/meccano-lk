@@ -47,7 +47,7 @@ const FilterPanel: React.FC<IFilterPanel> = ({
           { ...cls('setting-button') }
           size={ 48 }
           color="coral"
-          // transparent
+          transparent
         >
           <FilterIcon />
           Настроить фильтр
@@ -59,6 +59,7 @@ const FilterPanel: React.FC<IFilterPanel> = ({
         <div
           { ...cls('body') }
         >
+          TODO: Тут не селект, в макете есть отображение
           <Select
             { ...cls('select') }
             options={ templates }
