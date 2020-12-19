@@ -3,8 +3,8 @@ import { classes } from '@utils';
 import defautAvatar from '@assets/images/defaultAvatar.jpg';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
-import Button from '../../../ui/Button/Button';
-import Input from '../../../ui/Input/Input';
+import Button from '../../../../ui/Button/Button';
+import Input from '../../../../ui/Input/Input';
 import './AccountGeneral.css';
 
 const cls = classes('account-general');

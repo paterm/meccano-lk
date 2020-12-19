@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import { ReactComponent as AddIcon } from '@assets/icons/button/add.svg';
-import Input from '../../../ui/Input/Input';
-import Button from '../../../ui/Button/Button';
-import Switch from '../../../ui/Switch/Switch';
+import Input from '../../../../ui/Input/Input';
+import Button from '../../../../ui/Button/Button';
+import Switch from '../../../../ui/Switch/Switch';
 import './AccountResponse.css';
 
 const cls = classes('account-response');

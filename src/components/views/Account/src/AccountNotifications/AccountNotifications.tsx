@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
-import Button from '../../../ui/Button/Button';
-import Input from '../../../ui/Input/Input';
-import Switch from '../../../ui/Switch/Switch';
+import Button from '../../../../ui/Button/Button';
+import Input from '../../../../ui/Input/Input';
+import Switch from '../../../../ui/Switch/Switch';
 import './AccountNotifications.css';
 
 const cls = classes('account-notifications');
