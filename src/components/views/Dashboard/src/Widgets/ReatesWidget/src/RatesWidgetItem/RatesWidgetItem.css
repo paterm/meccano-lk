@@ -1,0 +1,72 @@
+.rates-widget-item {
+  flex: 1 0 257px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+.rates-widget-item__content {
+  padding: 0 16px 16px;
+}
+.rates-widget-item__image {
+  width: 100%;
+  height: 128px;
+  margin-bottom: 16px;
+  background-size: cover;
+  background-position: center;
+}
+.rates-widget-item__title {
+  margin-bottom: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-80);
+}
+.rates-widget-item__description {
+  margin: 0 0 24px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--dark-60);
+}
+.rates-widget-item__pricing {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+.rates-widget-item__pricing-text {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--dark-60);
+}
+.rates-widget-item__pricing-value {
+  font-family: Averta, sans-serif;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 1;
+  color: var(--dark-80);
+}
+.rates-widget-item__pricing-value i {
+  font-size: 14px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: 1.14;
+  letter-spacing: normal;
+  color: var(--dark-60);
+}
+.rates-widget-item__button {
+  width: 100%;
+}
+.rates-widget-item__button-link {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: var(--coral);
+  text-decoration: none;
+  transition: color .2s;
+}
+.rates-widget-item__button:active .rates-widget-item__button-link {
+  color: var(--white);
+}
