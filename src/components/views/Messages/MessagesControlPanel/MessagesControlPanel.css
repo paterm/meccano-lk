@@ -1,0 +1,48 @@
+.messages-control-panel {
+  display: flex;
+  align-items: center;
+  min-height: 48px;
+  padding: 0 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+
+.messages-control-panel__select-all {
+  margin: 0 12px 0 0;
+}
+
+.messages-control-panel__search {
+  margin: 0 12px 0 0;
+}
+
+.messages-control-panel__search .input__field {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.messages-control-panel__search .input__search-icon {
+  width: 20px;
+}
+
+.messages-control-panel__sort-button {
+  margin: 0 auto;
+}
+
+.messages-control-panel__pagination {
+  display: flex;
+  align-items: center;
+}
+
+.messages-control-panel__pagination-range {
+  margin: 0 8px;
+}
+
+.messages-control-panel__pagination-total-count {
+  margin: 0 0 0 16px;
+}
+
+.messages-control-panel__more-button {
+  margin: 0 0 0 32px;
+}

@@ -6,6 +6,7 @@ import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
 import DatePicker from '../../ui/DatePicker/DatePicker';
 import './Messages.css';
+import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 
 const cls = classes('messages');
 const pOptions: ISelectOption[] = [
@@ -29,6 +30,10 @@ const Messages: React.FC = () => {
   const [ activeType, setActiveType ] = useState<string | number>(ScreenType.SMI);
   const [ datePeriod, setDatePeriod ] = useState<TDatesPeriod>(initialPeriod);
 
+  const handleSeletAllMessages = (value: boolean) => {
+    console.log(value);
+  };
+
   return (
     <div { ...cls('', '', 'container') }>
       <section { ...cls('head') }>
@@ -47,6 +52,20 @@ const Messages: React.FC = () => {
         />
 
         <DatePicker value={ datePeriod } onChange={ setDatePeriod } />
+      </section>
+      <section { ...cls('body') }>
+        <MessagesControlPanel
+          { ...cls('messages-control-panel') }
+          onSelectAll={ handleSeletAllMessages }
+          pagination={
+            {
+              currentPage: 1,
+              pageCount: 5,
+              totalCount: 86,
+              perPage: 20
+            }
+          }
+        />
       </section>
     </div>
   );

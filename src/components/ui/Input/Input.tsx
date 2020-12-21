@@ -9,8 +9,9 @@ const cls = classes('input');
 interface IInput {
   className?: string
   type?: 'text' | 'search' | 'number' | 'password'
-  size?: 48 | 36
+  size?: 48 | 32 | 36
   label?: string
+  rounded?: boolean
   placeholder?: string
   isValid?: boolean
   disabled?: boolean
@@ -28,6 +29,7 @@ const Input: React.FC<IInput> = ({
   placeholder,
   value,
   isValid = true,
+  rounded,
   disabled,
   message,
   onChange,
@@ -59,6 +61,7 @@ const Input: React.FC<IInput> = ({
           { ...cls('field', {
             [size]: true,
             [type]: true,
+            rounded,
             invalid: !isValid,
             disabled,
           }) }
