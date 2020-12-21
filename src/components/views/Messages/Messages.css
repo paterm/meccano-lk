@@ -41,6 +41,9 @@
   .messages__head .select {
     display: none;
   }
+  .messages__filter-with-drop-down {
+    display: none;
+  }
 }
 
 @media screen and (max-width: 720px) {
