@@ -1,4 +1,10 @@
 .messages-control-panel {
+
+}
+
+/* Главная панель */
+
+.messages-control-panel__main-panel {
   display: flex;
   align-items: center;
   min-height: 48px;
@@ -13,6 +19,13 @@
 }
 
 .messages-control-panel__search {
+  max-width: 220px;
+  display: flex;
+  align-items: center;
+}
+
+.messages-control-panel__search-input {
+  flex-grow: 1;
   margin: 0 12px 0 0;
 }
 
@@ -26,8 +39,28 @@
   width: 20px;
 }
 
-.messages-control-panel__sort-button {
+@media screen and (max-width: 767px) {
+  .messages-control-panel__search-button {
+    margin: 0 0 0 12px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .messages-control-panel__filter-button {
+    margin: 0 0 0 12px;
+  }
+}
+
+
+
+.messages-control-panel__sort-menu {
   margin: 0 auto;
+}
+
+@media screen and (max-width: 767px) {
+  .messages-control-panel__sort-menu {
+    margin: 0 0 0 16px;
+  }
 }
 
 .messages-control-panel__pagination {
@@ -43,6 +76,17 @@
   margin: 0 0 0 16px;
 }
 
-.messages-control-panel__more-button {
+.messages-control-panel__more-menu {
   margin: 0 0 0 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .messages-control-panel__more-menu {
+    margin: 0 0 0 auto;
+  }
+}
+
+/* Панель поиска */
+.messages-control-panel__search {
+  max-width: none;
 }

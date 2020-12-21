@@ -2,11 +2,14 @@ import React from 'react';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Input from 'src/components/ui/Input/Input';
+import { IStore } from '@interfaces';
+import { useSelector } from 'react-redux';
 import { ReactComponent as HelpIcon } from '@assets/icons/button/help.svg';
 import { ReactComponent as SortIcon } from '@assets/icons/button/sort.svg';
 import { ReactComponent as ArrowLeftIcon } from '@assets/icons/button/arrow-left.svg';
 import { ReactComponent as ArrowRightIcon } from '@assets/icons/button/arrow-right.svg';
 import { ReactComponent as MoreIcon } from '@assets/icons/button/more.svg';
+import { ReactComponent as SearchIcon } from '@assets/icons/button/search.svg';
 import './MessagesControlPanel.css';
 import Button from 'src/components/ui/Button/Button';
 
@@ -18,8 +21,9 @@ interface IMessagesControlPanel {
     currentPage: number,
     pageCount: number,
     totalCount: number,
-    perPage: number
+    perPage: number,
   }
+  filterPortal?: React.ComponentType
   onSelectAll: (value: boolean) => void
 }
 
@@ -27,7 +31,10 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   className,
   pagination,
   onSelectAll,
+  filterPortal: FilterPortal = () => null,
 }) => {
+  const { isMobile } = useSelector((state: IStore) => state.mobile);
+
   const selectAllCheckboxElement = (
     <Checkbox
       { ...cls('select-all') }
@@ -38,25 +45,34 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   );
 
   const searchElement = (
-    <Input
-      { ...cls('search') }
-      type="search"
-      placeholder="Поиск ..."
-      size={ 32 }
-      rounded
-    />
+    <div { ...cls('search') }>
+      <Input
+        { ...cls('search-input') }
+        type="search"
+        placeholder="Поиск ..."
+        size={ 32 }
+        rounded
+      />
+      <Button
+        icon={ HelpIcon }
+        size={ 24 }
+        color="gray"
+        transparent
+      />
+    </div>
   );
 
   const softElement = (
     // TODO заменить на leftIcon после вливания ветки MECCANO-190
     <Button
-      { ...cls('sort-button') }
+      { ...cls('sort-menu') }
       size={ 24 }
       color="gray"
       transparent
+      icon={ !isMobile ? undefined : SortIcon }
     >
       <SortIcon />
-      Сначала экспортированные
+      { !isMobile && <span>Сначала экспортированные</span> }
     </Button>
   );
 
@@ -86,26 +102,46 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   );
 
   return (
-    <div
-      { ...cls('', '', className) }
-    >
-      { selectAllCheckboxElement }
-      { searchElement }
-      <Button
-        icon={ HelpIcon }
-        size={ 24 }
-        color="gray"
-        transparent
-      />
-      { softElement }
-      { pagination && paginationElement }
-      <Button
-        { ...cls('more-button') }
-        icon={ MoreIcon }
-        size={ 24 }
-        color="gray"
-        transparent
-      />
+    <div { ...cls('', '', className) }>
+      <div { ...cls('main-panel') }>
+        { selectAllCheckboxElement }
+        { !isMobile
+          ? searchElement
+          : (
+            <Button
+              { ...cls('search-button') }
+              icon={ SearchIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+          )}
+        { softElement }
+        { !isMobile && pagination && paginationElement }
+        { isMobile && (
+          <div { ...cls('filter-drop-down') }>
+            <Button
+              // TODO Заменить на иконку фильтра, после вливания MECCANO-190
+              { ...cls('filter-button') }
+              icon={ SearchIcon }
+              size={ 24 }
+              color="coral"
+              transparent
+            />
+            <FilterPortal />
+          </div>
+        ) }
+        <Button
+          { ...cls('more-menu') }
+          icon={ MoreIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+        />
+      </div>
+      {/* <div { ...cls('search-panel') }>
+        { isMobile && searchElement }
+      </div> */}
     </div>
   );
 };
