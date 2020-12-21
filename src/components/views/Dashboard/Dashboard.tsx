@@ -4,6 +4,7 @@ import { classes } from '@utils';
 import { ReactComponent as AddIcon } from '@assets/icons/dashboard/add.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/dashboard/config.svg';
 import Button from '../../ui/Button/Button';
+import RatesWidget from './src/Widgets/ReatesWidget/RatesWidget';
 import './Dashboard.css';
 
 const cls = classes('dashboard');
@@ -33,6 +34,8 @@ const Dashboard:React.FC = () => (
           />
         </div>
       </div>
+
+      <RatesWidget />
     </div>
 
   </div>
