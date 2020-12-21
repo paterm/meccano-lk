@@ -1,5 +1,6 @@
 .messages {
-  padding: 50px 0;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 .messages__head {
   display: flex;
@@ -31,4 +32,29 @@
   position: absolute;
   top: 72px;
   right: -32px;
+}
+.messages__head > * + * {
+  margin-left: 8px;
+}
+
+@media screen and (max-width: 992px) {
+  .messages__head .select {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .messages {
+    padding-top: 24px;
+    padding-bottom: 24px;
+  }
+  .messages__head {
+    flex-direction: column;
+  }
+  .messages__head > * + * {
+    margin-left: unset;
+  }
+  .messages__head .button-switcher {
+    margin-bottom: 16px;
+  }
 }

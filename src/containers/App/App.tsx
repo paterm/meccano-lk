@@ -55,7 +55,9 @@ const App: React.FC = () => {
         <Header onSignIn={ handleSignIn } onSignUp={ handleSignUp } />
         <section className="content">
           <Sidebar />
-          <Router />
+          <div className="main">
+            <Router />
+          </div>
         </section>
         <Footer />
       </Suspense>

@@ -7,6 +7,7 @@
   right: 0;
   background-color: var(--white);
   box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  z-index: 3;
 }
 .date-picker__picker-wrapper--opened {
   display: block;
@@ -21,6 +22,7 @@
   cursor: pointer;
 }
 .date-picker__field-input {
+  width: 140px;
   background: none;
   border: none;
   outline: none;
@@ -94,7 +96,7 @@
   display: flex;
   margin-bottom: 16px;
 }
-.date-picker__times .time-picker {
+.date-picker__time-picker {
   flex: 1;
 }
 .date-picker__ranges {
@@ -109,4 +111,46 @@
 }
 .date-picker__range-button--active {
   color: var(--coral) !important;
+}
+
+@media screen and (max-width: 1024px) {
+  .date-picker__times {
+    flex-direction: column;
+  }
+
+  .date-picker__time-picker {
+    flex: 0 0 48px;
+    height: 48px;
+  }
+  .date-picker__time-picker .time-picker__icon {
+    height: 24px;
+    width: 24px;
+  }
+
+  .date-picker__time-picker + .date-picker__time-picker {
+    margin-top: 8px;
+  }
+  .date-picker .DayPicker__withBorder {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .date-picker__picker-wrapper {
+    position: fixed;
+    top: var(--m-header-height);
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+  }
+  .date-picker__buttons {
+    flex-direction: column;
+    margin-top: auto;
+    padding: 16px;
+  }
+  .date-picker__button + .date-picker__button {
+    margin-top: 16px;
+  }
 }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
-import AccountGeneral from './AccountGeneral/AccountGeneral';
-import AccountResponse from './AccountResponse/AccountResponse';
-import AccountNotifications from './AccountNotifications/AccountNotifications';
-import AccountPassword from './AccountPassword/AccountPassword';
-import AccountUserInterface from './AccountUserInterface/AccountUserInterface';
+import AccountGeneral from './src/AccountGeneral/AccountGeneral';
+import AccountResponse from './src/AccountResponse/AccountResponse';
+import AccountNotifications from './src/AccountNotifications/AccountNotifications';
+import AccountPassword from './src/AccountPassword/AccountPassword';
+import AccountUserInterface from './src/AccountUserInterface/AccountUserInterface';
 
 const views = [
   { name: 'Общие', component: AccountGeneral, },

@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
 import { Link } from 'react-router-dom';
-import Button from '../../../ui/Button/Button';
-import Switch from '../../../ui/Switch/Switch';
+import Button from '../../../../ui/Button/Button';
+import Switch from '../../../../ui/Switch/Switch';
 import './AccountUserInterface.css';
 
 const cls = classes('account-user-interface');
