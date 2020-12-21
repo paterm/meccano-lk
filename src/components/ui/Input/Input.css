@@ -70,13 +70,18 @@
   color: var(--dark-40);
 }
 
-.input__field--48 {
-  min-height: 48px;
+.input__field--32 {
+  min-height: 32px;
   padding: 0 16px;
 }
 
 .input__field--36 {
   min-height: 36px;
+  padding: 0 16px;
+}
+
+.input__field--48 {
+  min-height: 48px;
   padding: 0 16px;
 }
 
@@ -106,4 +111,16 @@
 
 .input__field--search {
   padding-left: 40px;
+}
+
+.input__field--rounded.input__field--24 {
+  border-radius: 12px;
+}
+
+.input__field--rounded.input__field--32 {
+  border-radius: 16px;
+}
+
+.input__field--rounded.input__field--36 {
+  border-radius: 18px;
 }

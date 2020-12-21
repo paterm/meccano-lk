@@ -11,6 +11,7 @@ import Button from '../../ui/Button/Button';
 import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
 import './Messages.css';
+import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 
 const cls = classes('messages');
 const pOptions: ISelectOption[] = [
@@ -78,6 +79,10 @@ const Messages: React.FC = () => {
     setActiveFilterTemplateId(id);
   };
 
+  const handleSeletAllMessages = (value: boolean) => {
+    console.log(value);
+  };
+
   return (
     <div { ...cls('', '', 'container') }>
       <section { ...cls('head') }>
@@ -133,6 +138,20 @@ const Messages: React.FC = () => {
             />
           </DropDown>
         </div>
+      </section>
+      <section { ...cls('body') }>
+        <MessagesControlPanel
+          { ...cls('messages-control-panel') }
+          onSelectAll={ handleSeletAllMessages }
+          pagination={
+            {
+              currentPage: 1,
+              pageCount: 5,
+              totalCount: 86,
+              perPage: 20
+            }
+          }
+        />
       </section>
     </div>
   );
