@@ -13,6 +13,7 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  position: relative;
 }
 .button:hover {
   opacity: .9;
@@ -179,4 +180,23 @@
 
 .button--transparent {
   background-color: transparent;
+}
+
+.button__badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  right: 0;
+  top: -15px;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 10px;
+  padding: 0 5px;
+  background-color: var(--coral);
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1;
+  text-align: center;
+  color: var(--white);
 }

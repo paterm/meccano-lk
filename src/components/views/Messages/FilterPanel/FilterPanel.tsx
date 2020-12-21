@@ -175,6 +175,11 @@ const FilterPanel: React.FC<IFilterPanel> = ({
           <FilterIcon />
           Настроить фильтр
         </Button>
+        {!isOpenTemplates && (
+          <div { ...cls('filter-counter') }>
+            4
+          </div>
+        )}
       </div>
       <div { ...cls('scroll-container') }>
         {!isOpenTemplates ? filtersElement : templatesElement }

@@ -9,6 +9,7 @@ interface IButton {
   color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray'
   type?: 'button' | 'submit' | 'reset'
   size?: 48 | 36 | 24
+  badge?: string | number
   rounded?: boolean
   disabled?: boolean
   inline?: boolean
@@ -31,6 +32,7 @@ const Button: React.FC<IButton> = ({
   type = 'button',
   children,
   size = 48,
+  badge,
   rounded,
   disabled,
   inline,
@@ -60,7 +62,8 @@ const Button: React.FC<IButton> = ({
         filled,
         transparent,
         square,
-        icon
+        icon,
+        badge,
       }, className) }
       disabled={ disabled }
       onClick={ handleClick }
@@ -69,6 +72,7 @@ const Button: React.FC<IButton> = ({
       { leftIcon && <span { ...cls('left-icon') }><LeftIcon /></span> }
       { children || <Icon /> }
       { rightIcon && <span { ...cls('right-icon') }><RightIcon /></span> }
+      { badge && <div { ...cls('badge') }>{badge}</div> }
     </button>
   );
 };

@@ -104,6 +104,7 @@ const Messages: React.FC = () => {
             color="coral"
             rounded
             onClick={ () => setIsOpenFilter(!isOpenFilter) }
+            badge={ 1249 }
           />
           {isOpenFilter && (
             <Button
