@@ -48,6 +48,11 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     { label: 'По просмотрам', onClick: () => console.log('Нажал По просмотрам') },
   ];
 
+  const moreMenu = [
+    { label: '100 сообщений на странице', onClick: () => console.log('Нажал 100 сообщений на странице') },
+    { label: 'Показать всё', onClick: () => console.log('Показать всё') }
+  ];
+
   const handleCloseDropDown = () => {
     setIsOpenSoftMenu(false);
     setIsOpenMoreMenu(false);
@@ -125,6 +130,26 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     </div>
   );
 
+  const moreElement = (
+    <div { ...cls('menu-with-drop-down', 'more-menu') }>
+      <Button
+        { ...cls('more-menu') }
+        icon={ MoreIcon }
+        size={ 24 }
+        color="gray"
+        transparent
+        onClick={ () => setIsOpenMoreMenu(true) }
+      />
+      <DropDown
+        { ...cls('drop-down', 'more-menu') }
+        isOpen={ isOpenMoreMenu }
+        onClose={ handleCloseDropDown }
+      >
+        {menuElement(moreMenu)}
+      </DropDown>
+    </div>
+  );
+
   const paginationElement = (
     <div { ...cls('pagination') }>
       <Button
@@ -145,7 +170,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         transparent
       />
       <span { ...cls('pagination-total-count') }>
-        из&nbsp;{ pagination?.currentPage }
+        из&nbsp;{ pagination?.totalCount }
       </span>
     </div>
   );
@@ -180,13 +205,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
             <FilterPortal />
           </div>
         ) }
-        <Button
-          { ...cls('more-menu') }
-          icon={ MoreIcon }
-          size={ 24 }
-          color="gray"
-          transparent
-        />
+        { moreElement }
       </div>
       {/* <div { ...cls('search-panel') }>
         { isMobile && searchElement }
