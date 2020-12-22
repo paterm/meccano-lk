@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Input from 'src/components/ui/Input/Input';
@@ -12,6 +12,7 @@ import { ReactComponent as MoreIcon } from '@assets/icons/button/more.svg';
 import { ReactComponent as SearchIcon } from '@assets/icons/button/search.svg';
 import './MessagesControlPanel.css';
 import Button from 'src/components/ui/Button/Button';
+import DropDown from 'src/components/ui/DropDown/DropDown';
 
 const cls = classes('messages-control-panel');
 
@@ -34,6 +35,45 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   filterPortal: FilterPortal = () => null,
 }) => {
   const { isMobile } = useSelector((state: IStore) => state.mobile);
+  const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
+  const [ isOpenMoreMenu, setIsOpenMoreMenu ] = useState(false);
+  const [ isOpenReactionMenu, setIsReactionMenu ] = useState(false);
+
+  const sortMenu = [
+    { label: 'Сначала новые', onClick: () => console.log('Нажал Сначала новые') },
+    { label: 'Сначала старые', onClick: () => console.log('Нажал Сначала старые') },
+    { label: 'По вовлечению', onClick: () => console.log('Нажал По вовлечению') },
+    { label: 'По комментариям', onClick: () => console.log('Нажал По комментариям') },
+    { label: 'По аудитории', onClick: () => console.log('Нажал По аудитории') },
+    { label: 'По просмотрам', onClick: () => console.log('Нажал По просмотрам') },
+  ];
+
+  const handleCloseDropDown = () => {
+    setIsOpenSoftMenu(false);
+    setIsOpenMoreMenu(false);
+    setIsReactionMenu(false);
+  };
+
+  const menuElement = (menu: {
+    label: string | React.ComponentType
+    onClick: () => void
+  }[]) => (
+    <ul { ...cls('menu-list') }>
+      {menu?.map(({ label, onClick }, index) => (
+        <li key={ index } { ...cls('menu-item') }>
+          <Button
+            { ...cls('menu-button') }
+            onClick={ onClick }
+            onClickCallback={ handleCloseDropDown }
+            color="gray"
+            transparent
+          >
+            {label}
+          </Button>
+        </li>
+      ))}
+    </ul>
+  );
 
   const selectAllCheckboxElement = (
     <Checkbox
@@ -63,17 +103,26 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   );
 
   const softElement = (
-    // TODO заменить на leftIcon после вливания ветки MECCANO-190
-    <Button
-      { ...cls('sort-menu') }
-      size={ 24 }
-      color="gray"
-      transparent
-      icon={ !isMobile ? undefined : SortIcon }
-    >
-      <SortIcon />
-      { !isMobile && <span>Сначала экспортированные</span> }
-    </Button>
+    <div { ...cls('menu-with-drop-down', 'sort-menu') }>
+      <Button
+        { ...cls('sort-button') }
+        size={ 24 }
+        color="gray"
+        transparent
+        icon={ !isMobile ? undefined : SortIcon }
+        onClick={ () => setIsOpenSoftMenu(true) }
+      >
+        <SortIcon />
+        { !isMobile && <span>Сначала экспортированные</span> }
+      </Button>
+      <DropDown
+        { ...cls('drop-down') }
+        isOpen={ isOpenSoftMenu }
+        onClose={ handleCloseDropDown }
+      >
+        {menuElement(sortMenu)}
+      </DropDown>
+    </div>
   );
 
   const paginationElement = (

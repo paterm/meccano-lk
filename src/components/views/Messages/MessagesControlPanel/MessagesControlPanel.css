@@ -51,14 +51,12 @@
   }
 }
 
-
-
-.messages-control-panel__sort-menu {
+.messages-control-panel__menu-with-drop-down--sort-menu {
   margin: 0 auto;
 }
 
 @media screen and (max-width: 767px) {
-  .messages-control-panel__sort-menu {
+  .messages-control-panel__menu-with-drop-down--sort-menu {
     margin: 0 0 0 16px;
   }
 }
@@ -89,4 +87,40 @@
 /* Панель поиска */
 .messages-control-panel__search {
   max-width: none;
+}
+
+/* Dropdown меню */
+.messages-control-panel__menu-with-drop-down {
+  position: relative;
+}
+
+
+.messages-control-panel__drop-down {
+  left: 0;
+  top: 40px;
+  min-width: 255px;
+  padding: 16px 0;
+  border-radius: 4px;
+  box-shadow: 0 16px 16px -4px rgba(20, 16, 41, 0.06), 0 4px 8px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+
+.messages-control-panel__menu-button {
+  font: inherit;
+  width: 100%;
+  justify-content: flex-start;
+  padding: 0 16px;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--dark-60);
+}
+
+.messages-control-panel__menu-button:hover {
+  color: var(--dark-60);
+  background-color: var(--midnight-purple-2);
+}
+
+.messages-control-panel__menu-button:active {
+  color: var(--dark-60);
+  background-color: var(--midnight-purple-2);
 }
