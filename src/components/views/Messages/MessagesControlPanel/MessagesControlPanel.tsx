@@ -38,6 +38,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
   const [ isOpenMoreMenu, setIsOpenMoreMenu ] = useState(false);
   const [ isOpenReactionMenu, setIsReactionMenu ] = useState(false);
+  const [ isOpenSeachSubPanel, setIsOpenSeachSubPanel ] = useState(false);
 
   const sortMenu = [
     { label: 'Сначала новые', onClick: () => console.log('Нажал Сначала новые') },
@@ -177,7 +178,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
 
   return (
     <div { ...cls('', '', className) }>
-      <div { ...cls('main-panel') }>
+      <div { ...cls('main-panel', { sub: isOpenSeachSubPanel }) }>
         { selectAllCheckboxElement }
         { !isMobile
           ? searchElement
@@ -188,6 +189,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
               size={ 24 }
               color="gray"
               transparent
+              onClick={ () => setIsOpenSeachSubPanel(!isOpenSeachSubPanel) }
             />
           )}
         { softElement }
@@ -207,9 +209,35 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         ) }
         { moreElement }
       </div>
-      {/* <div { ...cls('search-panel') }>
-        { isMobile && searchElement }
-      </div> */}
+      { isOpenSeachSubPanel && (
+        <div { ...cls('search-panel') }>
+          { isMobile && searchElement }
+          <span
+            { ...cls('search-counter') }
+          >
+            Найдено 2 сообщения
+          </span>
+          <div
+            { ...cls('search-target') }
+          >
+            <span { ...cls('search-label') }>
+              Искать только
+            </span>
+            <Checkbox
+              { ...cls('search-title') }
+              size="m"
+              label="В заголовках"
+              onChange={ (value) => console.log(value) }
+            />
+            <Checkbox
+              { ...cls('search-text') }
+              size="m"
+              label="В тексте"
+              onChange={ (value) => console.log(value) }
+            />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
