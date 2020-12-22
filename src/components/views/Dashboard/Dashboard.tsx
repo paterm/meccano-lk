@@ -6,6 +6,7 @@ import { ReactComponent as ConfigIcon } from '@assets/icons/dashboard/config.svg
 import Button from '../../ui/Button/Button';
 import RatesWidget from './src/Widgets/ReatesWidget/RatesWidget';
 import './Dashboard.css';
+import PossibilityWidget from './src/Widgets/PossibilityWidget/PossibilityWidget';
 
 const cls = classes('dashboard');
 
@@ -35,6 +36,7 @@ const Dashboard:React.FC = () => (
         </div>
       </div>
 
+      <PossibilityWidget />
       <RatesWidget />
     </div>
 
