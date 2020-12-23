@@ -4,9 +4,11 @@ import './Button.css';
 
 const cls = classes('button');
 
+export type TButtonColor = 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray';
+
 interface IButton {
   className?: string
-  color?: 'coral' | 'green' | 'blue' | 'violet' | 'dark' | 'gray'
+  color?: TButtonColor
   type?: 'button' | 'submit' | 'reset'
   size?: 48 | 36 | 24
   badge?: string | number
