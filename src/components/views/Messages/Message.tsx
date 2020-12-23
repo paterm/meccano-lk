@@ -143,8 +143,7 @@ const Messages: React.FC = () => {
         <MessagesControlPanel
           { ...cls('messages-control-panel') }
           onSelectAll={ handleSeletAllMessages }
-          // TODO Передать сюда копию панели фильтра, после вливания MECCANO-190
-          filterPortal={ undefined }
+          onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
             {
               currentPage: 1,

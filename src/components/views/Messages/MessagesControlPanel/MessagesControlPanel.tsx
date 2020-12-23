@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Input from 'src/components/ui/Input/Input';
@@ -10,6 +10,12 @@ import { ReactComponent as ArrowLeftIcon } from '@assets/icons/button/arrow-left
 import { ReactComponent as ArrowRightIcon } from '@assets/icons/button/arrow-right.svg';
 import { ReactComponent as MoreIcon } from '@assets/icons/button/more.svg';
 import { ReactComponent as SearchIcon } from '@assets/icons/button/search.svg';
+import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
+import { ReactComponent as CheckIcon } from '@assets/icons/button/check.svg';
+import { ReactComponent as StarIcon } from '@assets/icons/button/star.svg';
+import { ReactComponent as AddPersonIcon } from '@assets/icons/button/add-person.svg';
+import { ReactComponent as TagIcon } from '@assets/icons/button/tag.svg';
+import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
 import './MessagesControlPanel.css';
 import Button from 'src/components/ui/Button/Button';
 import DropDown from 'src/components/ui/DropDown/DropDown';
@@ -24,7 +30,7 @@ interface IMessagesControlPanel {
     totalCount: number,
     perPage: number,
   }
-  filterPortal?: React.ComponentType
+  onOpenFilter?: () => void
   onSelectAll: (value: boolean) => void
 }
 
@@ -32,13 +38,24 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   className,
   pagination,
   onSelectAll,
-  filterPortal: FilterPortal = () => null,
+  onOpenFilter
 }) => {
   const { isMobile } = useSelector((state: IStore) => state.mobile);
   const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
   const [ isOpenMoreMenu, setIsOpenMoreMenu ] = useState(false);
-  const [ isOpenReactionMenu, setIsReactionMenu ] = useState(false);
+  const [ isOpenToneMenu, setIsOpenToneMenu ] = useState(false);
   const [ isOpenSeachSubPanel, setIsOpenSeachSubPanel ] = useState(false);
+  const [ isOpenSelectedSubPanel, setIsOpenSelectedSubPanel ] = useState(false);
+
+  useEffect(() => {
+    setIsOpenSelectedSubPanel(false);
+  }, [isOpenSeachSubPanel]);
+
+  const handleSelectAll = (value: boolean) => {
+    setIsOpenSelectedSubPanel(value);
+    setIsOpenSeachSubPanel(false);
+    onSelectAll(value);
+  };
 
   const sortMenu = [
     { label: 'Сначала новые', onClick: () => console.log('Нажал Сначала новые') },
@@ -54,10 +71,16 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     { label: 'Показать всё', onClick: () => console.log('Показать всё') }
   ];
 
+  const toneMenu = [
+    { label: '😁', onClick: () => console.log('Позитив') },
+    { label: '😐', onClick: () => console.log('Нейтрал') },
+    { label: '😡', onClick: () => console.log('Негатив') }
+  ];
+
   const handleCloseDropDown = () => {
     setIsOpenSoftMenu(false);
     setIsOpenMoreMenu(false);
-    setIsReactionMenu(false);
+    setIsOpenToneMenu(false);
   };
 
   const menuElement = (menu: {
@@ -84,9 +107,8 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   const selectAllCheckboxElement = (
     <Checkbox
       { ...cls('select-all') }
-      size="s"
-      checked
-      onChange={ onSelectAll }
+      size="m"
+      onChange={ handleSelectAll }
     />
   );
 
@@ -118,7 +140,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         icon={ !isMobile ? undefined : SortIcon }
         onClick={ () => setIsOpenSoftMenu(true) }
       >
-        <SortIcon />
+        <SortIcon { ...cls('sort-icon') } />
         { !isMobile && <span>Сначала экспортированные</span> }
       </Button>
       <DropDown
@@ -195,17 +217,14 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         { softElement }
         { !isMobile && pagination && paginationElement }
         { isMobile && (
-          <div { ...cls('filter-drop-down') }>
-            <Button
-              // TODO Заменить на иконку фильтра, после вливания MECCANO-190
-              { ...cls('filter-button') }
-              icon={ SearchIcon }
-              size={ 24 }
-              color="coral"
-              transparent
-            />
-            <FilterPortal />
-          </div>
+          <Button
+            { ...cls('filter-button') }
+            icon={ FilterIcon }
+            size={ 24 }
+            color="coral"
+            transparent
+            onClick={ onOpenFilter }
+          />
         ) }
         { moreElement }
       </div>
@@ -235,6 +254,81 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
               label="В тексте"
               onChange={ (value) => console.log(value) }
             />
+          </div>
+        </div>
+      )}
+      { isOpenSelectedSubPanel && (
+        <div { ...cls('selected-panel') }>
+          <span
+            { ...cls('selected-counter') }
+          >
+            23 сообщения выделено
+          </span>
+          <div { ...cls('selected-buttons') }>
+            <div { ...cls('menu-with-drop-down', 'tone-menu') }>
+              <Button
+                { ...cls('tone-menu') }
+                size={ 24 }
+                color="gray"
+                transparent
+                onClick={ () => setIsOpenToneMenu(true) }
+              >
+                <span role="img" aria-label="позитив">😁</span>
+              </Button>
+              <DropDown
+                { ...cls('drop-down', 'tone-menu') }
+                isOpen={ isOpenToneMenu }
+                onClose={ handleCloseDropDown }
+              >
+                {menuElement(toneMenu)}
+              </DropDown>
+            </div>
+            <Button
+              { ...cls('check-button') }
+              icon={ CheckIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+            <Button
+              { ...cls('star-button') }
+              icon={ StarIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+            <Button
+              { ...cls('add-person-button') }
+              icon={ AddPersonIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+            <Button
+              { ...cls('add-person-button') }
+              icon={ TagIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+            <Button
+              { ...cls('delete-button') }
+              icon={ TrashIcon }
+              size={ 24 }
+              color="gray"
+              transparent
+            />
+          </div>
+          <div { ...cls('select-export') }>
+            <Button
+              { ...cls('export-button') }
+              size={ 24 }
+              color="gray"
+              link
+            >
+              Экспортировать
+            </Button>
+            <span { ...cls('export-count') }>max 500</span>
           </div>
         </div>
       )}
