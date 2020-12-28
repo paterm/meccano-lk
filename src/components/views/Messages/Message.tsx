@@ -143,6 +143,7 @@ const Messages: React.FC = () => {
         <MessagesControlPanel
           { ...cls('messages-control-panel') }
           onSelectAll={ handleSeletAllMessages }
+          onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
             {
               currentPage: 1,

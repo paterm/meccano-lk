@@ -15,6 +15,7 @@ interface IButton {
   rounded?: boolean
   disabled?: boolean
   inline?: boolean
+  link?: boolean
   filled?: boolean
   transparent?: boolean
   square?: boolean
@@ -38,6 +39,7 @@ const Button: React.FC<IButton> = ({
   rounded,
   disabled,
   inline,
+  link,
   filled,
   transparent,
   square,
@@ -61,6 +63,7 @@ const Button: React.FC<IButton> = ({
         [size]: true,
         rounded,
         inline,
+        link,
         filled,
         transparent,
         square,

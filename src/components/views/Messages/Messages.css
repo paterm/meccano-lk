@@ -28,6 +28,24 @@
   background-color: var(--white);
 }
 
+
+@media screen and (max-width: 768px) {
+  .messages__filter-drop-down {
+    position: absolute;
+    width: 100%;
+    top: 64px;
+    left: 0;
+    height: auto;
+    max-height: none;
+  }
+  .messages__filter-button {
+    display: none;
+  }
+  .messages__filter-close-button {
+    display: none;
+  }
+}
+
 .messages__filter-close-button {
   position: absolute;
   top: 72px;
@@ -39,9 +57,6 @@
 
 @media screen and (max-width: 992px) {
   .messages__head .select {
-    display: none;
-  }
-  .messages__filter-with-drop-down {
     display: none;
   }
 }

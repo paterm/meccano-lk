@@ -73,3 +73,11 @@
   cursor: pointer;
   user-select: none;
 }
+
+.checkbox--m .checkbox__label {
+  margin: 0 0 0 12px;
+}
+
+.checkbox--m .checkbox__label{
+  margin: 0 0 0 10px;
+}
