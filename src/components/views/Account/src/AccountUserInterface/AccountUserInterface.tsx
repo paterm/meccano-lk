@@ -1,11 +1,23 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
 import { Link } from 'react-router-dom';
+import Select, { ISelectOption } from '../../../../ui/Select/Select';
 import Button from '../../../../ui/Button/Button';
 import Switch from '../../../../ui/Switch/Switch';
 import './AccountUserInterface.css';
 
 const cls = classes('account-user-interface');
+
+const timeOptions: ISelectOption[] = [
+  { label: <span>GMT +02:00   EUROPE / Замкадье</span>, value: '+2' },
+  { label: <span>GMT +03:00   EUROPE / MOSCOW</span>, value: '+3' },
+  { label: <span>GMT +04:00   EUROPE / Замкадье</span>, value: '+4' },
+];
+
+const langOptions: ISelectOption[] = [
+  { label: <span>Русский</span>, value: 'ru' },
+  { label: <span>Нерусский</span>, value: 'neru' },
+];
 
 const AccountUserInterface:React.FC = () => {
   const [checked1, setChecked1 ] = useState(false);
@@ -36,14 +48,24 @@ const AccountUserInterface:React.FC = () => {
   const timeElement = (
     <div { ...cls('theme') }>
       <h3 { ...cls('title') }>Временная зона</h3>
-      [GMT +03:00   EUROPE / MOSCOW v]
+      <Select
+        { ...cls('select') }
+        options={ timeOptions }
+        selected="+3"
+        onChange={ console.log }
+      />
     </div>
   );
 
   const languageElement = (
     <div { ...cls('language') }>
       <h3 { ...cls('title') }>Язык</h3>
-      [Русский v]
+      <Select
+        { ...cls('select') }
+        options={ langOptions }
+        selected="ru"
+        onChange={ console.log }
+      />
     </div>
   );
 

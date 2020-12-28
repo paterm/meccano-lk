@@ -13,7 +13,11 @@
   .pseudo-popup {
     padding: 0;
     height: auto;
-    position: absolute;
+    position: relative;
+  }
+  /* В мобильном оставляет только попап */
+  .main > :not(:nth-child(1)) {
+    display: none;
   }
 }
 
@@ -29,6 +33,15 @@
   right: -40px;
   top: 0;
   z-index: 5;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__close-button {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    z-index: 6;
+  }
 }
 
 .pseudo-popup__container {
@@ -74,7 +87,7 @@
 
 @media screen and (max-width: 767px) {
   .pseudo-popup__title {
-    padding: 24px 16px;
+    padding: 24px 56px 24px 16px;
   }
 }
 

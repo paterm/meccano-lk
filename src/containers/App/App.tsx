@@ -57,8 +57,8 @@ const App: React.FC = () => {
         <section className="content">
           <Sidebar />
           <div className="main">
-            <Router />
             <PopupRouter />
+            <Router />
           </div>
         </section>
         <Footer />
