@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
 import { TProfile } from '@types';
 import { classes } from '@utils';
 import { ReactComponent as ArrowDown } from '@assets/icons/profile/profile__down-arrow.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/header/config-icon.svg';
 import { ReactComponent as SignOutIcon } from '@assets/icons/header/sign-out.svg';
 import defaultAvatar from '@assets/images/defaultAvatar.jpg';
+import { usePopup } from '../../../../../utils/hooks';
 import DropDown from '../../../../ui/DropDown/DropDown';
 import SubscribesList from './src/SubscibesList/SubscribesList';
 import './AccountButton.css';
@@ -18,7 +18,7 @@ interface IAccountButton {
 }
 
 const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
-  const history = useHistory();
+  const popup = usePopup();
 
   const [ isOpen, setIsOpen ] = useState(false);
   const handleClick = () => {
@@ -64,7 +64,7 @@ const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
 
         <button
           { ...cls('row') }
-          onClick={ () => history.push('/account') }
+          onClick={ () => popup.open('account-main') }
         >
           <ConfigIcon { ...cls('icon') } /> <span { ...cls('text', '14') }>Настройки аккаунта</span>
         </button>

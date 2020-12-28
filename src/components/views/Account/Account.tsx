@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Helmet } from 'react-helmet';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './src/AccountGeneral/AccountGeneral';
@@ -6,35 +6,40 @@ import AccountResponse from './src/AccountResponse/AccountResponse';
 import AccountNotifications from './src/AccountNotifications/AccountNotifications';
 import AccountPassword from './src/AccountPassword/AccountPassword';
 import AccountUserInterface from './src/AccountUserInterface/AccountUserInterface';
+import { usePopup } from '../../../utils/hooks';
 
 const views = [
-  { name: 'Общие', component: AccountGeneral, },
-  { name: 'Реагирование', component: AccountResponse, },
-  { name: 'Уведомления', component: AccountNotifications, },
-  { name: 'Пароль', component: AccountPassword, },
-  { name: 'Интерфейс', component: AccountUserInterface, },
+  { view: 'account-main', name: 'Общие', component: AccountGeneral, },
+  { view: 'account-response', name: 'Реагирование', component: AccountResponse, },
+  { view: 'account-notifications', name: 'Уведомления', component: AccountNotifications, },
+  { view: 'account-password', name: 'Пароль', component: AccountPassword, },
+  { view: 'account-interface', name: 'Интерфейс', component: AccountUserInterface, },
 ];
 
-const Account:React.FC = () => {
-  const [activeViewName, setActiveViewName] = useState('Общие');
+interface IAccount {
+  view: string
+}
 
-  const menu = views.map(({ name }) => (
-    { name, onClick: () => setActiveViewName(name) }
+const Account:React.FC<IAccount> = ({ view: startView }) => {
+  const popup = usePopup();
+
+  const menu = views.map(({ view, name }) => (
+    { view, name, onClick: () => popup.open(view) }
   ));
 
-  const getActiveView = (name: string): any => views
-    .find((view) => view.name === name)?.component || null;
+  const getActiveView = (view: string): any => views
+    .find((el) => el.view === view)?.component || null;
 
-  const ActiveView = getActiveView(activeViewName);
+  const ActiveView = getActiveView(startView);
 
   return (
     <PseudoPopup
       title="Настройки аккаунта"
-      childrenViewName={ activeViewName }
+      childrenViewName={ startView }
       menu={ menu }
     >
       <Helmet>
-        <title>{activeViewName} | Настройки аккаунта | Maeccano</title>
+        <title>{startView} | Настройки аккаунта | Maeccano</title>
       </Helmet>
       <ActiveView />
     </PseudoPopup>

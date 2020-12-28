@@ -2,12 +2,45 @@
   display: flex;
   padding: 40px 72px;
   height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  justify-content: center;
 }
 
 @media screen and (max-width: 767px) {
   .pseudo-popup {
     padding: 0;
     height: auto;
+    position: relative;
+  }
+  /* В мобильном оставляет только попап */
+  .main > :not(:nth-child(1)) {
+    display: none;
+  }
+}
+
+.pseudo-popup__wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.pseudo-popup__close-button {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  z-index: 5;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__close-button {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    z-index: 6;
   }
 }
 
@@ -22,8 +55,11 @@
   box-shadow: 0 32px 32px -4px rgba(20, 16, 41, 0.06), 0 64px 96px 0 rgba(20, 16, 41, 0.12), 0 8px 16px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
   background-color: var(--white);
   z-index: 5;
-  overflow: hidden;
   padding: 0;
+  /* overflow: hidden; */
+  overflow-y: auto;
+  max-height: 900px;
+  position: relative;
 }
 
 /* Основаня сетка */
@@ -51,7 +87,7 @@
 
 @media screen and (max-width: 767px) {
   .pseudo-popup__title {
-    padding: 24px 16px;
+    padding: 24px 56px 24px 16px;
   }
 }
 

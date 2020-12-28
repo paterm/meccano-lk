@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { IStore } from '@interfaces';
 import { TProfile } from '@types';
 import Router from './Router';
+import PopupRouter from './PopupRouter';
 
 import Header from '../../components/layouts/Header/Header';
 import Footer from '../../components/layouts/Footer/Footer';
@@ -56,6 +57,7 @@ const App: React.FC = () => {
         <section className="content">
           <Sidebar />
           <div className="main">
+            <PopupRouter />
             <Router />
           </div>
         </section>

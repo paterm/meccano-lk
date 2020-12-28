@@ -3,9 +3,11 @@ import { classes } from '@utils';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
 import { ReactComponent as DropDownIcon } from '@assets/icons/button/drop-down.svg';
+import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Overlay from '../Overlay/Overlay';
 import DropDown from '../DropDown/DropDown';
 import Button from '../Button/Button';
+import { usePopup } from '../../../utils/hooks';
 import './PseudoPopup.css';
 
 const cls = classes('pseudo-popup');
@@ -19,6 +21,7 @@ interface IPseudoPopup {
   children?: React.ReactNode | string
   bar?: React.ReactNode | string
   menu?: {
+    view: string
     name: string
     onClick?: () => void
   }[]
@@ -36,6 +39,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
 }) => {
   const { isMobile } = useSelector((state:IStore) => state.mobile);
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
+  const popup = usePopup();
 
   const handleCloseDropDown = () => {
     setIsOpenDropDown(false);
@@ -43,11 +47,11 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
 
   const menuElement = (
     <ul { ...cls('menu-list') }>
-      {menu?.map(({ name, onClick }, index) => (
+      {menu?.map(({ view, name, onClick }, index) => (
         <li key={ index } { ...cls('menu-item') }>
           <Button
             { ...cls('menu-button') }
-            filled={ name === childrenViewName }
+            filled={ view === childrenViewName }
             onClick={ onClick }
             onClickCallback={ handleCloseDropDown }
           >
@@ -80,16 +84,26 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
 
   return (
     <div { ...cls('', '', className) }>
-      <div { ...cls('container', '', 'container') }>
-        <div { ...cls('title') }>
-          {title}
-        </div>
-        <div { ...cls('bar') }>
-          { !!menu && !isMobile ? menuElement : drowDownWithMenuElement }
-          {bar}
-        </div>
-        <div { ...cls('body') }>
-          {children}
+      <div { ...cls('wrapper') }>
+        <Button
+          { ...cls('close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ () => popup.close() }
+        />
+        <div { ...cls('container', '', 'container') }>
+          <div { ...cls('title') }>
+            {title}
+          </div>
+          <div { ...cls('bar') }>
+            { !!menu && !isMobile ? menuElement : drowDownWithMenuElement }
+            {bar}
+          </div>
+          <div { ...cls('body') }>
+            {children}
+          </div>
         </div>
       </div>
       {overlay && <Overlay position={ overlayPosition } />}

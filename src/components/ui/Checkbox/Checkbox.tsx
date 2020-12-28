@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classes } from '@utils';
 import './Checkbox.css';
 
@@ -26,6 +26,11 @@ const Checkbox: React.FC<ICheckbox> = ({
   onChange,
 }) => {
   const [ isChecked, setIsChecked ] = useState(checked || false);
+
+  useEffect(() => {
+    if (checked === undefined) return;
+    setIsChecked(checked);
+  }, [checked]);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setIsChecked(!!event.target.checked);
