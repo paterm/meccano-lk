@@ -64,7 +64,7 @@ const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
 
         <button
           { ...cls('row') }
-          onClick={ () => history.push('/account') }
+          onClick={ () => history.push({ search: '?popup=account-main&name=test' }) }
         >
           <ConfigIcon { ...cls('icon') } /> <span { ...cls('text', '14') }>Настройки аккаунта</span>
         </button>

@@ -19,6 +19,7 @@ interface IPseudoPopup {
   children?: React.ReactNode | string
   bar?: React.ReactNode | string
   menu?: {
+    view: string
     name: string
     onClick?: () => void
   }[]
@@ -43,11 +44,11 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
 
   const menuElement = (
     <ul { ...cls('menu-list') }>
-      {menu?.map(({ name, onClick }, index) => (
+      {menu?.map(({ view, name, onClick }, index) => (
         <li key={ index } { ...cls('menu-item') }>
           <Button
             { ...cls('menu-button') }
-            filled={ name === childrenViewName }
+            filled={ view === childrenViewName }
             onClick={ onClick }
             onClickCallback={ handleCloseDropDown }
           >
