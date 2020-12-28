@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const Account = React.lazy(() => import('../../components/views/Account/Account'));
 
-const popups: { [key: string]: any } = {
+const popups: { [key: string]: React.LazyExoticComponent<React.FC<any>> } = {
   'account-main': Account,
   'account-response': Account,
   'account-notifications': Account,

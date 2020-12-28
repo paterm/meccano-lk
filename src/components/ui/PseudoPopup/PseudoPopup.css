@@ -6,6 +6,7 @@
   position: absolute;
   top: 0;
   left: 0;
+  justify-content: center;
 }
 
 @media screen and (max-width: 767px) {
@@ -14,6 +15,20 @@
     height: auto;
     position: absolute;
   }
+}
+
+.pseudo-popup__wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.pseudo-popup__close-button {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  z-index: 5;
 }
 
 .pseudo-popup__container {
@@ -28,9 +43,10 @@
   background-color: var(--white);
   z-index: 5;
   padding: 0;
-  overflow: hidden;
+  /* overflow: hidden; */
   overflow-y: auto;
   max-height: 900px;
+  position: relative;
 }
 
 /* Основаня сетка */

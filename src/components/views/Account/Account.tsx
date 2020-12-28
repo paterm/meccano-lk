@@ -1,5 +1,4 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './src/AccountGeneral/AccountGeneral';
@@ -7,6 +6,7 @@ import AccountResponse from './src/AccountResponse/AccountResponse';
 import AccountNotifications from './src/AccountNotifications/AccountNotifications';
 import AccountPassword from './src/AccountPassword/AccountPassword';
 import AccountUserInterface from './src/AccountUserInterface/AccountUserInterface';
+import { usePopup } from '../../../utils/hooks';
 
 const views = [
   { view: 'account-main', name: 'Общие', component: AccountGeneral, },
@@ -21,10 +21,10 @@ interface IAccount {
 }
 
 const Account:React.FC<IAccount> = ({ view: startView }) => {
-  const history = useHistory();
+  const popup = usePopup();
 
   const menu = views.map(({ view, name }) => (
-    { view, name, onClick: () => history.push({ search: `?popup=${view}` }) }
+    { view, name, onClick: () => popup.open(view) }
   ));
 
   const getActiveView = (view: string): any => views
