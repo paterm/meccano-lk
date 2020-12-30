@@ -22,6 +22,11 @@ import DropDown from 'src/components/ui/DropDown/DropDown';
 
 const cls = classes('messages-control-panel');
 
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
+
 interface IMessagesControlPanel {
   className?: string
   pagination?: {
@@ -58,23 +63,23 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   };
 
   const sortMenu = [
-    { label: 'Сначала новые', onClick: () => console.log('Нажал Сначала новые') },
-    { label: 'Сначала старые', onClick: () => console.log('Нажал Сначала старые') },
-    { label: 'По вовлечению', onClick: () => console.log('Нажал По вовлечению') },
-    { label: 'По комментариям', onClick: () => console.log('Нажал По комментариям') },
-    { label: 'По аудитории', onClick: () => console.log('Нажал По аудитории') },
-    { label: 'По просмотрам', onClick: () => console.log('Нажал По просмотрам') },
+    { label: 'Сначала новые', onClick: () => testOnClick('Нажал Сначала новые') },
+    { label: 'Сначала старые', onClick: () => testOnClick('Нажал Сначала старые') },
+    { label: 'По вовлечению', onClick: () => testOnClick('Нажал По вовлечению') },
+    { label: 'По комментариям', onClick: () => testOnClick('Нажал По комментариям') },
+    { label: 'По аудитории', onClick: () => testOnClick('Нажал По аудитории') },
+    { label: 'По просмотрам', onClick: () => testOnClick('Нажал По просмотрам') },
   ];
 
   const moreMenu = [
-    { label: '100 сообщений на странице', onClick: () => console.log('Нажал 100 сообщений на странице') },
-    { label: 'Показать всё', onClick: () => console.log('Показать всё') }
+    { label: '100 сообщений на странице', onClick: () => testOnClick('Нажал 100 сообщений на странице') },
+    { label: 'Показать всё', onClick: () => testOnClick('Показать всё') }
   ];
 
   const toneMenu = [
-    { label: '😁', onClick: () => console.log('Позитив') },
-    { label: '😐', onClick: () => console.log('Нейтрал') },
-    { label: '😡', onClick: () => console.log('Негатив') }
+    { label: '😁', onClick: () => testOnClick('Позитив') },
+    { label: '😐', onClick: () => testOnClick('Нейтрал') },
+    { label: '😡', onClick: () => testOnClick('Негатив') }
   ];
 
   const handleCloseDropDown = () => {
@@ -246,13 +251,13 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
               { ...cls('search-title') }
               size="m"
               label="В заголовках"
-              onChange={ (value) => console.log(value) }
+              onChange={ (value) => testOnClick(value) }
             />
             <Checkbox
               { ...cls('search-text') }
               size="m"
               label="В тексте"
-              onChange={ (value) => console.log(value) }
+              onChange={ (value) => testOnClick(value) }
             />
           </div>
         </div>

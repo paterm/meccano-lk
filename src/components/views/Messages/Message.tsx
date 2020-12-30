@@ -14,6 +14,12 @@ import './Messages.css';
 import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 
 const cls = classes('messages');
+
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
+
 const pOptions: ISelectOption[] = [
   { label: <span>Все <i>+195</i> <b>3297</b></span>, value: 'all' },
   { label: <span>Требуют реакции <b>27</b></span>, value: 'require-reaction' },
@@ -80,7 +86,7 @@ const Messages: React.FC = () => {
   };
 
   const handleSeletAllMessages = (value: boolean) => {
-    console.log(value);
+    testOnClick(value);
   };
 
   return (
@@ -89,7 +95,7 @@ const Messages: React.FC = () => {
         <Select
           options={ pOptions }
           selected="not-processed"
-          onChange={ console.log }
+          onChange={ () => {} }
         />
         <ButtonSwitcher
           activeButtonId={ activeType }
@@ -130,8 +136,8 @@ const Messages: React.FC = () => {
               filters={ filters }
               templates={ filterTemplates }
               activeTemplateId={ activeFilterTemplateId }
-              onReset={ () => console.log('Нажал сброс') }
-              onApply={ () => console.log('Нажал применить') }
+              onReset={ () => testOnClick('Нажал сброс') }
+              onApply={ () => testOnClick('Нажал применить') }
               onChangeTemplate={ handleChangeFilterTemplate }
               onCheck={ handleCheckFilter }
               onDelete={ handleDeleteFilter }

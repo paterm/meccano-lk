@@ -1,6 +1,5 @@
 import React from 'react';
 import { classes } from '@utils';
-import defautAvatar from '@assets/images/defaultAvatar.jpg';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
 import Button from '../../../../ui/Button/Button';
@@ -8,6 +7,11 @@ import Input from '../../../../ui/Input/Input';
 import './AccountGeneral.css';
 
 const cls = classes('account-general');
+
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
 
 const AccountGeneral:React.FC = () => {
   const profile = useSelector((state: IStore) => state.profile);
@@ -24,13 +28,13 @@ const AccountGeneral:React.FC = () => {
         <div { ...cls('avatar-buttons') }>
           <button
             { ...cls('avatar-button') }
-            onClick={ () => console.log('Удалить фото') }
+            onClick={ () => testOnClick('Удалить фото') }
           >
             Удалить фото
           </button>
           <button
             { ...cls('avatar-button') }
-            onClick={ () => console.log('Загрузить новое') }
+            onClick={ () => testOnClick('Загрузить новое') }
           >
             Загрузить новое
           </button>
