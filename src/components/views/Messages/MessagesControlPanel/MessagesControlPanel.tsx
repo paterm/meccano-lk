@@ -29,6 +29,7 @@ const testOnClick = (message: any) => {
 
 interface IMessagesControlPanel {
   className?: string
+  selected?: string[]
   pagination?: {
     currentPage: number,
     pageCount: number,
@@ -41,7 +42,13 @@ interface IMessagesControlPanel {
 
 const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   className,
-  pagination,
+  selected = [],
+  pagination = {
+    currentPage: 0,
+    pageCount: 0,
+    totalCount: 0,
+    perPage: 0,
+  },
   onSelectAll,
   onOpenFilter
 }) => {
@@ -51,14 +58,24 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   const [ isOpenToneMenu, setIsOpenToneMenu ] = useState(false);
   const [ isOpenSeachSubPanel, setIsOpenSeachSubPanel ] = useState(false);
   const [ isOpenSelectedSubPanel, setIsOpenSelectedSubPanel ] = useState(false);
+  const [ isAllChecked, setIsAllChecked ] = useState(false);
+
+  useEffect(() => {
+    if (selected.length) setIsOpenSelectedSubPanel(true);
+    else setIsOpenSelectedSubPanel(false);
+    if (selected.length < pagination.totalCount) setIsAllChecked(false);
+    else setIsAllChecked(true);
+  }, [selected, pagination.totalCount]);
 
   useEffect(() => {
     setIsOpenSelectedSubPanel(false);
   }, [isOpenSeachSubPanel]);
 
-  const handleSelectAll = (value: boolean) => {
-    setIsOpenSelectedSubPanel(value);
+  useEffect(() => {
     setIsOpenSeachSubPanel(false);
+  }, [isOpenSelectedSubPanel]);
+
+  const handleSelectAll = (value: boolean) => {
     onSelectAll(value);
   };
 
@@ -113,6 +130,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     <Checkbox
       { ...cls('select-all') }
       size="m"
+      checked={ isAllChecked }
       onChange={ handleSelectAll }
     />
   );
@@ -267,7 +285,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
           <span
             { ...cls('selected-counter') }
           >
-            23 сообщения выделено
+            {selected.length} сообщения выделено
           </span>
           <div { ...cls('selected-buttons') }>
             <div { ...cls('menu-with-drop-down', 'tone-menu') }>

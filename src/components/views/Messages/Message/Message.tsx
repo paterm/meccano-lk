@@ -5,17 +5,19 @@ import './Message.css';
 
 const cls = classes('message');
 
-interface IMessageList {
+interface IMessage {
   className?: string
-  id: string,
+  id: string
+  data: any
   selectable?: boolean
   isSelect?: boolean
   onSelect?: (id: string, value: boolean) => void
 }
 
-const Message: React.FC<IMessageList> = ({
+const Message: React.FC<IMessage> = ({
   className: mix,
   id,
+  data,
   selectable = false,
   isSelect = false,
   onSelect
@@ -31,9 +33,10 @@ const Message: React.FC<IMessageList> = ({
         <Checkbox
           checked={ isSelect }
           onChange={ handleSelect }
-          label={ `Сообщение ${id}` }
+          label={ `Сообщение id: ${id}` }
         />
       )}
+      { data.text }
     </div>
   );
 };

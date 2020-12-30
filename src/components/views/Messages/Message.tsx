@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
@@ -22,26 +22,28 @@ const testOnClick = (message: any) => {
 };
 
 const testMessages = [
-  { id: 1, text: 'Ха-ха' },
-  { id: 2, text: 'Ха-ха' },
-  { id: 3, text: 'Ха-ха' },
-  { id: 4, text: 'Ха-ха' },
-  { id: 5, text: 'Ха-ха' },
-  { id: 6, text: 'Ха-ха' },
-  { id: 7, text: 'Ха-ха' },
-  { id: 8, text: 'Ха-ха' },
-  { id: 9, text: 'Ха-ха' },
-  { id: 10, text: 'Ха-ха' },
-  { id: 11, text: 'Ха-ха' },
-  { id: 12, text: 'Ха-ха' },
-  { id: 13, text: 'Ха-ха' },
-  { id: 14, text: 'Ха-ха' },
-  { id: 15, text: 'Ха-ха' },
-  { id: 16, text: 'Ха-ха' },
-  { id: 17, text: 'Ха-ха' },
-  { id: 18, text: 'Ха-ха' },
-  { id: 19, text: 'Ха-ха' },
-  { id: 20, text: 'Ха-ха' },
+  { id: '1', text: 'Зелёное яблоко' },
+  { id: '2', text: 'Сычуаньский соус' },
+  { id: '3', text: 'Вкусная дыня' },
+  { id: '4', text: 'Сладкий арбуз' },
+  { id: '5', text: 'Спелая вишня' },
+  { id: '6', text: 'Грецкий орех' },
+  { id: '7', text: 'Волосатое киви' },
+  { id: '8', text: 'Вкусное манго' },
+  { id: '9', text: 'Кислый лимон' },
+  { id: '10', text: 'Жгучий перец' },
+  { id: '11', text: 'Ядовитый гриб' },
+  { id: '12', text: 'Плесневелый сыр' },
+  { id: '13', text: 'Запрещённый хамон' },
+  { id: '14', text: 'Яркий апельсин' },
+  { id: '15', text: 'Южный виноград' },
+  { id: '16', text: 'Корейская морковка' },
+  { id: '17', text: 'Брюсельския капуста' },
+  { id: '18', text: 'Жёлтый банан' },
+  { id: '19', text: 'Двойной чисбургер' },
+  { id: '20', text: 'Колючий орурец' },
+  { id: '21', text: 'Плакучий лук' },
+  { id: '22', text: 'Антивампирский чеснок' },
 ];
 
 const pOptions: ISelectOption[] = [
@@ -88,6 +90,7 @@ const Messages: React.FC = () => {
   const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
   const [ messages, setMessages ] = useState((testMessages.slice(0, 5)));
+  const [ selectedMessages, setSelectedMessages ] = useState([] as string[]);
   const [ visibleRange, setVisibleRange ] = useState({
     startIndex: 0,
     endIndex: 0,
@@ -115,7 +118,30 @@ const Messages: React.FC = () => {
   };
 
   const handleSeletAllMessages = (value: boolean) => {
-    testOnClick(value);
+    if (value) {
+      const selected: string[] = testMessages.map((el) => el.id);
+      setSelectedMessages(selected);
+    } else {
+      setSelectedMessages([]);
+    }
+  };
+
+  const addToSelected = (id: string) => {
+    if (selectedMessages.includes(id)) return;
+    setSelectedMessages([ ...selectedMessages, id]);
+  };
+
+  const removeFromSelected = (id: string) => {
+    const indexMessage = selectedMessages.findIndex((el) => el === id);
+    if (indexMessage === -1) return;
+    const updatedMessages = [ ...selectedMessages ];
+    updatedMessages.splice(indexMessage, 1);
+    setSelectedMessages(updatedMessages);
+  };
+
+  const handleSelectMessage = (id: string, value: boolean) => {
+    if (value) addToSelected(id);
+    else removeFromSelected(id);
   };
 
   const loadMoreMessages = (lastMessageIndex: number) => {
@@ -185,6 +211,7 @@ const Messages: React.FC = () => {
       <section { ...cls('body') }>
         <MessagesControlPanel
           { ...cls('messages-control-panel') }
+          selected={ selectedMessages }
           onSelectAll={ handleSeletAllMessages }
           onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
@@ -198,7 +225,9 @@ const Messages: React.FC = () => {
         />
         <MessageList
           messages={ messages }
+          selected={ selectedMessages }
           totalMessages={ testMessages.length }
+          onSelect={ handleSelectMessage }
           onChangeRange={ setVisibleRange }
           onEndReached={ loadMoreMessages }
         />
