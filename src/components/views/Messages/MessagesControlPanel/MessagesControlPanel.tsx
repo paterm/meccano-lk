@@ -38,6 +38,7 @@ interface IMessagesControlPanel {
   }
   onOpenFilter?: () => void
   onSelectAll: (value: boolean) => void
+  onScrollToIndex?: (direction: number) => void
 }
 
 const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
@@ -50,7 +51,8 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     perPage: 0,
   },
   onSelectAll,
-  onOpenFilter
+  onOpenFilter,
+  onScrollToIndex
 }) => {
   const { isMobile } = useSelector((state: IStore) => state.mobile);
   const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
@@ -77,6 +79,11 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
 
   const handleSelectAll = (value: boolean) => {
     onSelectAll(value);
+  };
+
+  const handleScrollIndex = (direction: number) => {
+    if (!onScrollToIndex) return;
+    onScrollToIndex(direction);
   };
 
   const sortMenu = [
@@ -203,6 +210,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         size={ 24 }
         color="gray"
         transparent
+        onClick={ () => handleScrollIndex(-1) }
       />
       <span { ...cls('pagination-range') }>
         { pagination?.currentPage }
@@ -214,6 +222,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         size={ 24 }
         color="gray"
         transparent
+        onClick={ () => handleScrollIndex(1) }
       />
       <span { ...cls('pagination-total-count') }>
         из&nbsp;{ pagination?.totalCount }

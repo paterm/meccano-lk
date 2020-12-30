@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
@@ -91,6 +91,7 @@ const Messages: React.FC = () => {
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
   const [ messages, setMessages ] = useState((testMessages.slice(0, 5)));
   const [ selectedMessages, setSelectedMessages ] = useState([] as string[]);
+  const [ messagesScrollIndex, setMessagesScrollIndex ] = useState(0);
   const [ visibleRange, setVisibleRange ] = useState({
     startIndex: 0,
     endIndex: 0,
@@ -143,6 +144,21 @@ const Messages: React.FC = () => {
     if (value) addToSelected(id);
     else removeFromSelected(id);
   };
+
+  const handleScrollToIndex = (direction: number) => {
+    if (direction === -1) {
+      if (messagesScrollIndex < 0) return;
+      console.log(messagesScrollIndex);
+      setMessagesScrollIndex(messagesScrollIndex - 1);
+    } else {
+      if (messagesScrollIndex >= messages.length) return;
+      setMessagesScrollIndex(messagesScrollIndex + 1);
+    }
+  };
+
+  useEffect(() => {
+    setMessagesScrollIndex(visibleRange.startIndex);
+  }, [visibleRange.startIndex]);
 
   const loadMoreMessages = (lastMessageIndex: number) => {
     if (lastMessageIndex >= (testMessages.length - 1)) return;
@@ -222,11 +238,13 @@ const Messages: React.FC = () => {
               perPage: 20
             }
           }
+          onScrollToIndex={ handleScrollToIndex }
         />
         <MessageList
           messages={ messages }
           selected={ selectedMessages }
           totalMessages={ testMessages.length }
+          scrollIndex={ messagesScrollIndex }
           onSelect={ handleSelectMessage }
           onChangeRange={ setVisibleRange }
           onEndReached={ loadMoreMessages }

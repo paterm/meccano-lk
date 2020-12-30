@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { classes } from '@utils';
 import { Virtuoso } from 'react-virtuoso';
 import Button from 'src/components/ui/Button/Button';
@@ -19,34 +19,46 @@ interface IMessageList {
   totalMessages: number
   selected?: string[]
   onSelect?: any
+  scrollIndex?: number
   onChangeRange?: ({ startIndex, endIndex }: TRangeChanged) => void
   onEndReached?: (lastMessageIndex: number) => void
 }
-
-const newMessagesButton = (
-  <Button
-    { ...cls('update-button') }
-    rightIcon={ UpdateIcon }
-    square
-    filled
-    size={ 36 }
-  >
-    234 новых сообщений
-  </Button>
-);
 
 const MessageList: React.FC<IMessageList> = ({
   className: mix,
   messages = [],
   totalMessages = 0,
   selected = [],
+  scrollIndex = 0,
   onChangeRange,
   onEndReached,
   onSelect
 }) => {
-  const messageListRef = useRef(null);
+  const messageListRef = useRef(null as any);
+
+  useEffect(() => {
+    if (!scrollIndex) return;
+    console.log(scrollIndex, messageListRef.current);
+    messageListRef.current.scrollToIndex({
+      index: scrollIndex,
+      align: 'start',
+      behavior: 'auto'
+    });
+  }, [scrollIndex]);
 
   const checkSelected = (id: string) => selected.includes(id);
+
+  const newMessagesButtonElement = (
+    <Button
+      { ...cls('update-button') }
+      rightIcon={ UpdateIcon }
+      square
+      filled
+      size={ 36 }
+    >
+      234 новых сообщений
+    </Button>
+  );
 
   return (
     <div { ...cls('', '', mix) }>
@@ -56,7 +68,7 @@ const MessageList: React.FC<IMessageList> = ({
         endReached={ onEndReached }
         rangeChanged={ onChangeRange }
         components={ {
-          Header: () => newMessagesButton,
+          Header: () => newMessagesButtonElement,
           Footer: () => (
             <span { ...cls('footer-list') }>
               {totalMessages > messages.length ? 'Загрузка ...' : 'Больше сообщений нет'}
