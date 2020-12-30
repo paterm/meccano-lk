@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
@@ -12,6 +12,7 @@ import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
 import './Messages.css';
 import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
+import MessageList from './MessageList/MessageList';
 
 const cls = classes('messages');
 
@@ -19,6 +20,29 @@ const testOnClick = (message: any) => {
   // eslint-disable-next-line no-console
   console.log(`onClick => ${message}`);
 };
+
+const testMessages = [
+  { id: 1, text: 'Ха-ха' },
+  { id: 2, text: 'Ха-ха' },
+  { id: 3, text: 'Ха-ха' },
+  { id: 4, text: 'Ха-ха' },
+  { id: 5, text: 'Ха-ха' },
+  { id: 6, text: 'Ха-ха' },
+  { id: 7, text: 'Ха-ха' },
+  { id: 8, text: 'Ха-ха' },
+  { id: 9, text: 'Ха-ха' },
+  { id: 10, text: 'Ха-ха' },
+  { id: 11, text: 'Ха-ха' },
+  { id: 12, text: 'Ха-ха' },
+  { id: 13, text: 'Ха-ха' },
+  { id: 14, text: 'Ха-ха' },
+  { id: 15, text: 'Ха-ха' },
+  { id: 16, text: 'Ха-ха' },
+  { id: 17, text: 'Ха-ха' },
+  { id: 18, text: 'Ха-ха' },
+  { id: 19, text: 'Ха-ха' },
+  { id: 20, text: 'Ха-ха' },
+];
 
 const pOptions: ISelectOption[] = [
   { label: <span>Все <i>+195</i> <b>3297</b></span>, value: 'all' },
@@ -63,6 +87,11 @@ const Messages: React.FC = () => {
   const [ filters, setFilters ] = useState(initFilters);
   const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
+  const [ messages, setMessages ] = useState((testMessages.slice(0, 5)));
+  const [ visibleRange, setVisibleRange ] = useState({
+    startIndex: 0,
+    endIndex: 0,
+  });
 
   const handleCheckFilter = (values: any) => {
     const updatedFilres = [...filters];
@@ -87,6 +116,14 @@ const Messages: React.FC = () => {
 
   const handleSeletAllMessages = (value: boolean) => {
     testOnClick(value);
+  };
+
+  const loadMoreMessages = (lastMessageIndex: number) => {
+    if (lastMessageIndex >= (testMessages.length - 1)) return;
+    const slice = testMessages.slice(lastMessageIndex + 1, lastMessageIndex + 6);
+    setTimeout(() => {
+      setMessages([ ...messages, ...slice ]);
+    }, 1000);
   };
 
   return (
@@ -152,12 +189,18 @@ const Messages: React.FC = () => {
           onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
             {
-              currentPage: 1,
-              pageCount: 5,
-              totalCount: 86,
+              currentPage: visibleRange.startIndex + 1,
+              pageCount: visibleRange.endIndex + 1,
+              totalCount: testMessages.length,
               perPage: 20
             }
           }
+        />
+        <MessageList
+          messages={ messages }
+          totalMessages={ testMessages.length }
+          onChangeRange={ setVisibleRange }
+          onEndReached={ loadMoreMessages }
         />
       </section>
     </div>
