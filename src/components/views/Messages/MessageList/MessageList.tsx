@@ -37,8 +37,6 @@ const MessageList: React.FC<IMessageList> = ({
   const messageListRef = useRef(null as any);
 
   useEffect(() => {
-    if (!scrollIndex) return;
-    console.log(scrollIndex, messageListRef.current);
     messageListRef.current.scrollToIndex({
       index: scrollIndex,
       align: 'start',
@@ -76,14 +74,15 @@ const MessageList: React.FC<IMessageList> = ({
           )
         } }
         itemContent={ (index, message) => (
-          <Message
-            { ...cls('message') }
-            id={ message.id }
-            data={ message }
-            selectable
-            isSelect={ checkSelected(message.id) }
-            onSelect={ onSelect }
-          />
+          <div { ...cls('message') }>
+            <Message
+              id={ message.id }
+              data={ message }
+              selectable
+              isSelect={ checkSelected(message.id) }
+              onSelect={ onSelect }
+            />
+          </div>
         ) }
       />
     </div>

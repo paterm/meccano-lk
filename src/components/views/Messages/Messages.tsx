@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { classes } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
@@ -10,9 +10,9 @@ import DatePicker from '../../ui/DatePicker/DatePicker';
 import Button from '../../ui/Button/Button';
 import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
-import './Messages.css';
 import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 import MessageList from './MessageList/MessageList';
+import './Messages.css';
 
 const cls = classes('messages');
 
@@ -89,13 +89,14 @@ const Messages: React.FC = () => {
   const [ filters, setFilters ] = useState(initFilters);
   const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
-  const [ messages, setMessages ] = useState((testMessages.slice(0, 5)));
+  const [ messages, setMessages ] = useState((testMessages.slice(0, 10)));
   const [ selectedMessages, setSelectedMessages ] = useState([] as string[]);
   const [ messagesScrollIndex, setMessagesScrollIndex ] = useState(0);
   const [ visibleRange, setVisibleRange ] = useState({
     startIndex: 0,
     endIndex: 0,
   });
+  const [ rangeStep ] = useState(10);
 
   const handleCheckFilter = (values: any) => {
     const updatedFilres = [...filters];
@@ -145,24 +146,17 @@ const Messages: React.FC = () => {
     else removeFromSelected(id);
   };
 
-  const handleScrollToIndex = (direction: number) => {
-    if (direction === -1) {
-      if (messagesScrollIndex < 0) return;
-      console.log(messagesScrollIndex);
-      setMessagesScrollIndex(messagesScrollIndex - 1);
-    } else {
-      if (messagesScrollIndex >= messages.length) return;
-      setMessagesScrollIndex(messagesScrollIndex + 1);
-    }
+  const handleScrollToIndex = (index: number) => {
+    setMessagesScrollIndex(index);
   };
 
-  useEffect(() => {
-    setMessagesScrollIndex(visibleRange.startIndex);
-  }, [visibleRange.startIndex]);
+  // useEffect(() => {
+  //   setMessagesScrollIndex(visibleRange.startIndex);
+  // }, [visibleRange.startIndex]);
 
   const loadMoreMessages = (lastMessageIndex: number) => {
     if (lastMessageIndex >= (testMessages.length - 1)) return;
-    const slice = testMessages.slice(lastMessageIndex + 1, lastMessageIndex + 6);
+    const slice = testMessages.slice(lastMessageIndex + 1, lastMessageIndex + 11);
     setTimeout(() => {
       setMessages([ ...messages, ...slice ]);
     }, 1000);
@@ -232,10 +226,9 @@ const Messages: React.FC = () => {
           onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
             {
-              currentPage: visibleRange.startIndex + 1,
-              pageCount: visibleRange.endIndex + 1,
+              currentIndex: visibleRange.startIndex,
               totalCount: testMessages.length,
-              perPage: 20
+              perPage: rangeStep
             }
           }
           onScrollToIndex={ handleScrollToIndex }

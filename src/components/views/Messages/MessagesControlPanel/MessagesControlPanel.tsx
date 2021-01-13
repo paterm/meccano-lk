@@ -31,22 +31,20 @@ interface IMessagesControlPanel {
   className?: string
   selected?: string[]
   pagination?: {
-    currentPage: number,
-    pageCount: number,
+    currentIndex: number,
     totalCount: number,
     perPage: number,
   }
   onOpenFilter?: () => void
   onSelectAll: (value: boolean) => void
-  onScrollToIndex?: (direction: number) => void
+  onScrollToIndex?: (index: number) => void
 }
 
 const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   className,
   selected = [],
   pagination = {
-    currentPage: 0,
-    pageCount: 0,
+    currentIndex: 0,
     totalCount: 0,
     perPage: 0,
   },
@@ -61,6 +59,8 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   const [ isOpenSeachSubPanel, setIsOpenSeachSubPanel ] = useState(false);
   const [ isOpenSelectedSubPanel, setIsOpenSelectedSubPanel ] = useState(false);
   const [ isAllChecked, setIsAllChecked ] = useState(false);
+  const [ startRangePage, setStartRangePage ] = useState(0);
+  const [ endRangePage, setEndRangePage ] = useState(pagination.perPage);
 
   useEffect(() => {
     if (selected.length) setIsOpenSelectedSubPanel(true);
@@ -77,13 +77,28 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     setIsOpenSeachSubPanel(false);
   }, [isOpenSelectedSubPanel]);
 
+  useEffect(() => {
+    const { currentIndex, perPage, totalCount } = pagination;
+    const start = currentIndex - (currentIndex % perPage);
+    setStartRangePage(start);
+    const end = currentIndex - (currentIndex % perPage) + perPage;
+    if (totalCount > end) setEndRangePage(end);
+    else setEndRangePage(totalCount);
+  }, [pagination]);
+
   const handleSelectAll = (value: boolean) => {
     onSelectAll(value);
   };
 
   const handleScrollIndex = (direction: number) => {
     if (!onScrollToIndex) return;
-    onScrollToIndex(direction);
+    if (direction === 1) {
+      onScrollToIndex(endRangePage);
+      setEndRangePage(endRangePage);
+    } else {
+      onScrollToIndex(startRangePage - pagination.perPage);
+      setEndRangePage(startRangePage - pagination.perPage);
+    }
   };
 
   const sortMenu = [
@@ -213,9 +228,9 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         onClick={ () => handleScrollIndex(-1) }
       />
       <span { ...cls('pagination-range') }>
-        { pagination?.currentPage }
+        { startRangePage + 1}
         &nbsp;-&nbsp;
-        { pagination?.pageCount }
+        { endRangePage }
       </span>
       <Button
         icon={ ArrowRightIcon }
