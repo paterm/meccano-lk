@@ -63,7 +63,12 @@ export const SIDEBAR_MENU: ISidebarItem[] = [
     Icon: React.createElement(MsgIcon, { className: 'sidebar__icon' }),
     label: 'Сообщения',
     children: [
-      { label: 'Все', count: 3297, new: 195 },
+      {
+        label: 'Все',
+        count: 3297,
+        new: 195,
+        link: '/messages'
+      },
       { label: 'Требуют реакции', count: 27, hot: true },
       { label: 'Необработанные', count: 2502 },
       { label: 'Обработанные', count: 795 },
