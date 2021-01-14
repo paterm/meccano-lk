@@ -6,6 +6,8 @@ import LogoLink from '../../ui/LogoLink/LogoLink';
 import AccountButton from './src/AccountButton/AccountButton';
 import NotifyButton from './src/NotifyButton/NotifyButton';
 import FAQButton from './src/FAQButton/FAQButton';
+import MobileMenu from './src/MobileMenu/MobileMenu';
+import { getMenuStructure } from './src/MobileMenu/MenuStructure';
 import './Header.css';
 
 const cls = classes('header');
@@ -17,8 +19,10 @@ interface IHeader {
 
 const Header: React.FC<IHeader> = () => {
   const profile = useSelector((state:IStore) => state.profile);
+  const isMobile = useSelector((state:IStore) => state.mobile);
   const { loggedIn } = useSelector((state:IStore) => state.auth);
   const [ isOpen, setIsOpen ] = useState(false);
+  const menuStructure = getMenuStructure(profile);
 
   return (
     <header { ...cls('', { opened: isOpen }) }>
@@ -45,6 +49,13 @@ const Header: React.FC<IHeader> = () => {
           <div { ...cls('burger') } />
         </button>
       </div>
+
+      { isMobile && (
+        <MobileMenu
+          onClose={ () => setIsOpen(false) }
+          structure={ menuStructure }
+        />
+      ) }
     </header>
   );
 };

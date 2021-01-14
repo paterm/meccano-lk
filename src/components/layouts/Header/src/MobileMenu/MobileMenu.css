@@ -1,0 +1,23 @@
+.mobile-menu {
+  position: fixed;
+  top: -100vh;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - var(--m-header-height));
+  padding: 16px 0 24px;
+  background-color: var(--dark-bg);
+  transition: top .2s;
+  z-index: -1;
+}
+.mobile-menu__right-arrow {
+  margin-left: auto;
+}
+
+.mobile-menu__logout {
+  width: auto;
+  margin: auto 24px 0;
+  background-color: var(--pale-lilac-6);
+  color: var(--white);
+}

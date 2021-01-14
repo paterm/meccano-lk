@@ -5,8 +5,9 @@ import { ReactComponent as AddIcon } from '@assets/icons/dashboard/add.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/dashboard/config.svg';
 import Button from '../../ui/Button/Button';
 import RatesWidget from './src/Widgets/ReatesWidget/RatesWidget';
-import './Dashboard.css';
 import PossibilityWidget from './src/Widgets/PossibilityWidget/PossibilityWidget';
+import SummaryProjectWidget from './src/Widgets/SummaryProjectWidget/SummaryProjectWidget';
+import './Dashboard.css';
 
 const cls = classes('dashboard');
 
@@ -38,8 +39,8 @@ const Dashboard:React.FC = () => (
 
       <PossibilityWidget />
       <RatesWidget />
+      <SummaryProjectWidget />
     </div>
-
   </div>
 );
 

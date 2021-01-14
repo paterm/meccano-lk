@@ -65,9 +65,9 @@ const Footer: React.FC = () => {
         <div { ...cls('row', 'collapsable') }>
           <nav { ...cls('nav') }>
             { FOOTER_MENU.map((column, columnIndex) => (
-              <div { ...cls('nav-column') }>
+              <div { ...cls('nav-column') } key={ columnIndex }>
                 <div { ...cls('nav-column-title') }>{ column.label }</div>
-                <ul { ...cls('nav-column') } key={ columnIndex }>
+                <ul { ...cls('nav-column') }>
                   { column.links.map((link, linkIndex) => (
                     <li { ...cls('nav-item') } key={ linkIndex }>
                       <a { ...cls('nav-link') } href={ link.link }>{ link.label }</a>

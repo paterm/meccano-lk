@@ -4,11 +4,13 @@
   height: var(--header-height);
   padding: 0 72px;
   background-color: var(--dark);
+  z-index: 4;
 }
 .header__container {
   display: flex;
   align-items: center;
   height: 100%;
+  background-color: var(--dark);
 }
 .header__buttons {
   display: flex;
@@ -76,6 +78,9 @@
   bottom: 0;
   transform: rotate(-45deg);
 }
+.header--opened .mobile-menu {
+  top: 48px;
+}
 
 @media screen and (max-width: 1280px) {
   .header {
@@ -91,7 +96,12 @@
 
 @media screen and (max-width: 720px) {
   .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
     height: var(--m-header-height);
+    z-index: 4;
   }
   .header__buttons,
   .account-button__wrapper {
