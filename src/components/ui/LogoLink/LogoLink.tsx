@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { classes } from '@utils';
 import { generalData } from '../../../utils/config';
 import './LogoLink.css';
@@ -6,7 +7,7 @@ import './LogoLink.css';
 const cls = classes('logo-link');
 
 const LogoLink: React.FC<{ className?: string }> = ({ className }) => (
-  <a { ...cls('', '', className) } href="/">{ generalData.companyName }</a>
+  <Link { ...cls('', '', className) } to="/">{ generalData.companyName }</Link>
 );
 
 export default LogoLink;

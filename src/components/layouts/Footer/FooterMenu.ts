@@ -20,7 +20,7 @@ export const FOOTER_MENU = [
   {
     label: 'клиентам',
     links: [
-      { label: 'Регистрация/Вход', link: '' },
+      { label: 'Регистрация/Вход', link: '/sign-in' },
       { label: 'FAQ', link: '' },
       { label: 'База знаний', link: '' },
       { label: 'Туториал по Meccano', link: '' },
