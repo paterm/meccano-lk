@@ -101,3 +101,43 @@
   opacity: 0;
   z-index: 2;
 }
+
+@media screen and (max-width: 768px) {
+  .sidebar {
+    position: fixed;
+    top: unset;
+    bottom: 0;
+    right: 0;
+    width: unset;
+    height: unset;
+    padding-top: unset;
+  }
+  .sidebar:hover {
+    width: unset;
+  }
+  .sidebar:hover + .sidebar__overlay {
+    opacity: 0;
+  }
+  .sidebar__nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .sidebar__item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: var(--m-sidebar-height);
+    padding: unset;
+    overflow: hidden;
+    margin-bottom: unset !important;
+    border-left: none !important;
+  }
+  .sidebar__item-name {
+    display: none;
+  }
+  .sidebar__right-arrow {
+    display: none;
+  }
+}

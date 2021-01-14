@@ -8,10 +8,12 @@
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);
   --dark-40: rgba(20,16,41,.4);
+  --dark-bg: #25252c;
   --dark-12: rgba(23, 23, 31, 0.12);
   --dark-2: rgba(20,16,41,.02);
   --pale-lilac-2: rgba(224, 224, 255, 0.02);
   --pale-lilac-3: rgba(224, 224, 255, 0.03);
+  --pale-lilac-6: rgba(224, 224, 255, 0.06);
   --pale-lilac-60: rgba(224, 224, 255, 0.6);
   --pale-lilac-80: rgba(224, 224, 255, 0.8);
   --coral: #ff5c4e;
@@ -32,12 +34,15 @@
 
   --header-height: 72px;
   --m-header-height: 48px;
+  --m-sidebar-height: 48px;
   --sidebar-width: 72px;
 }
 
-html, body {
-  height: 100%;
-}
+/*html, body,*/
+/*#root,*/
+/*.main {*/
+/*  min-height: 100%;*/
+/*}*/
 
 body {
   margin: 0;
@@ -56,7 +61,8 @@ code {
   box-sizing: border-box;
 }
 
-ul {
+ul,
+menu {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -88,17 +94,9 @@ button {
   padding: 0 20px;
 }
 
-#root {
-  height: 100%;
-}
-
 .content {
   position: relative;
   flex: 1;
-}
-.main {
-  width: 100%;
-  height: 100%;
 }
 
 @media screen and (max-width: calc(1294px)) {
@@ -108,12 +106,15 @@ button {
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 720px) {
   .main {
     width: 100%;
     margin-left: unset;
   }
-  .sidebar {
-    display: none;
+  body {
+    /* header compensation */
+    padding-top: 48px;
+    /* Sidebar compensation */
+    padding-bottom: 48px;
   }
 }
