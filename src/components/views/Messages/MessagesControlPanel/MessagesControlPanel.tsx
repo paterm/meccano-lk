@@ -22,23 +22,35 @@ import DropDown from 'src/components/ui/DropDown/DropDown';
 
 const cls = classes('messages-control-panel');
 
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
+
 interface IMessagesControlPanel {
   className?: string
+  selected?: string[]
   pagination?: {
-    currentPage: number,
-    pageCount: number,
+    currentIndex: number,
     totalCount: number,
     perPage: number,
   }
   onOpenFilter?: () => void
   onSelectAll: (value: boolean) => void
+  onScrollToIndex?: (index: number) => void
 }
 
 const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   className,
-  pagination,
+  selected = [],
+  pagination = {
+    currentIndex: 0,
+    totalCount: 0,
+    perPage: 0,
+  },
   onSelectAll,
-  onOpenFilter
+  onOpenFilter,
+  onScrollToIndex
 }) => {
   const { isMobile } = useSelector((state: IStore) => state.mobile);
   const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
@@ -46,35 +58,67 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   const [ isOpenToneMenu, setIsOpenToneMenu ] = useState(false);
   const [ isOpenSeachSubPanel, setIsOpenSeachSubPanel ] = useState(false);
   const [ isOpenSelectedSubPanel, setIsOpenSelectedSubPanel ] = useState(false);
+  const [ isAllChecked, setIsAllChecked ] = useState(false);
+  const [ startRangePage, setStartRangePage ] = useState(0);
+  const [ endRangePage, setEndRangePage ] = useState(pagination.perPage);
+
+  useEffect(() => {
+    if (selected.length) setIsOpenSelectedSubPanel(true);
+    else setIsOpenSelectedSubPanel(false);
+    if (selected.length < pagination.totalCount) setIsAllChecked(false);
+    else setIsAllChecked(true);
+  }, [selected, pagination.totalCount]);
 
   useEffect(() => {
     setIsOpenSelectedSubPanel(false);
   }, [isOpenSeachSubPanel]);
 
-  const handleSelectAll = (value: boolean) => {
-    setIsOpenSelectedSubPanel(value);
+  useEffect(() => {
     setIsOpenSeachSubPanel(false);
+  }, [isOpenSelectedSubPanel]);
+
+  useEffect(() => {
+    const { currentIndex, perPage, totalCount } = pagination;
+    const start = currentIndex - (currentIndex % perPage);
+    setStartRangePage(start);
+    const end = currentIndex - (currentIndex % perPage) + perPage;
+    if (totalCount > end) setEndRangePage(end);
+    else setEndRangePage(totalCount);
+  }, [pagination]);
+
+  const handleSelectAll = (value: boolean) => {
     onSelectAll(value);
   };
 
+  const handleScrollIndex = (direction: number) => {
+    if (!onScrollToIndex) return;
+    if (direction === 1) {
+      onScrollToIndex(endRangePage);
+      setEndRangePage(endRangePage);
+    } else {
+      onScrollToIndex(startRangePage - pagination.perPage);
+      setEndRangePage(startRangePage - pagination.perPage);
+    }
+  };
+
   const sortMenu = [
-    { label: 'Сначала новые', onClick: () => console.log('Нажал Сначала новые') },
-    { label: 'Сначала старые', onClick: () => console.log('Нажал Сначала старые') },
-    { label: 'По вовлечению', onClick: () => console.log('Нажал По вовлечению') },
-    { label: 'По комментариям', onClick: () => console.log('Нажал По комментариям') },
-    { label: 'По аудитории', onClick: () => console.log('Нажал По аудитории') },
-    { label: 'По просмотрам', onClick: () => console.log('Нажал По просмотрам') },
+    { label: 'Сначала новые', onClick: () => testOnClick('Нажал Сначала новые') },
+    { label: 'Сначала старые', onClick: () => testOnClick('Нажал Сначала старые') },
+    { label: 'По вовлечению', onClick: () => testOnClick('Нажал По вовлечению') },
+    { label: 'По комментариям', onClick: () => testOnClick('Нажал По комментариям') },
+    { label: 'По аудитории', onClick: () => testOnClick('Нажал По аудитории') },
+    { label: 'По просмотрам', onClick: () => testOnClick('Нажал По просмотрам') },
   ];
 
   const moreMenu = [
-    { label: '100 сообщений на странице', onClick: () => console.log('Нажал 100 сообщений на странице') },
-    { label: 'Показать всё', onClick: () => console.log('Показать всё') }
+    { label: '100 сообщений на странице', onClick: () => testOnClick('Нажал 100 сообщений на странице') },
+    { label: 'Показать всё', onClick: () => testOnClick('Показать всё') }
   ];
 
   const toneMenu = [
-    { label: '😁', onClick: () => console.log('Позитив') },
-    { label: '😐', onClick: () => console.log('Нейтрал') },
-    { label: '😡', onClick: () => console.log('Негатив') }
+    { label: '😁', onClick: () => testOnClick('Позитив') },
+    { label: '😐', onClick: () => testOnClick('Нейтрал') },
+    { label: '😡', onClick: () => testOnClick('Негатив') }
   ];
 
   const handleCloseDropDown = () => {
@@ -108,6 +152,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
     <Checkbox
       { ...cls('select-all') }
       size="m"
+      checked={ isAllChecked }
       onChange={ handleSelectAll }
     />
   );
@@ -180,17 +225,19 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
         size={ 24 }
         color="gray"
         transparent
+        onClick={ () => handleScrollIndex(-1) }
       />
       <span { ...cls('pagination-range') }>
-        { pagination?.currentPage }
+        { startRangePage + 1}
         &nbsp;-&nbsp;
-        { pagination?.pageCount }
+        { endRangePage }
       </span>
       <Button
         icon={ ArrowRightIcon }
         size={ 24 }
         color="gray"
         transparent
+        onClick={ () => handleScrollIndex(1) }
       />
       <span { ...cls('pagination-total-count') }>
         из&nbsp;{ pagination?.totalCount }
@@ -246,13 +293,13 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
               { ...cls('search-title') }
               size="m"
               label="В заголовках"
-              onChange={ (value) => console.log(value) }
+              onChange={ (value) => testOnClick(value) }
             />
             <Checkbox
               { ...cls('search-text') }
               size="m"
               label="В тексте"
-              onChange={ (value) => console.log(value) }
+              onChange={ (value) => testOnClick(value) }
             />
           </div>
         </div>
@@ -262,7 +309,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
           <span
             { ...cls('selected-counter') }
           >
-            23 сообщения выделено
+            {selected.length} сообщения выделено
           </span>
           <div { ...cls('selected-buttons') }>
             <div { ...cls('menu-with-drop-down', 'tone-menu') }>
