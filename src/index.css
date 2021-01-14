@@ -98,6 +98,7 @@ button {
 }
 .main {
   width: 100%;
+  height: 100%;
 }
 
 @media screen and (max-width: calc(1294px)) {

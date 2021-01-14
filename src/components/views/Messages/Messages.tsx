@@ -10,10 +10,42 @@ import DatePicker from '../../ui/DatePicker/DatePicker';
 import Button from '../../ui/Button/Button';
 import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
-import './Messages.css';
 import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
+import MessageList from './MessageList/MessageList';
+import './Messages.css';
 
 const cls = classes('messages');
+
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
+
+const testMessages = [
+  { id: '1', text: 'Зелёное яблоко' },
+  { id: '2', text: 'Сычуаньский соус' },
+  { id: '3', text: 'Вкусная дыня' },
+  { id: '4', text: 'Сладкий арбуз' },
+  { id: '5', text: 'Спелая вишня' },
+  { id: '6', text: 'Грецкий орех' },
+  { id: '7', text: 'Волосатое киви' },
+  { id: '8', text: 'Вкусное манго' },
+  { id: '9', text: 'Кислый лимон' },
+  { id: '10', text: 'Жгучий перец' },
+  { id: '11', text: 'Ядовитый гриб' },
+  { id: '12', text: 'Плесневелый сыр' },
+  { id: '13', text: 'Запрещённый хамон' },
+  { id: '14', text: 'Яркий апельсин' },
+  { id: '15', text: 'Южный виноград' },
+  { id: '16', text: 'Корейская морковка' },
+  { id: '17', text: 'Брюсельския капуста' },
+  { id: '18', text: 'Жёлтый банан' },
+  { id: '19', text: 'Двойной чисбургер' },
+  { id: '20', text: 'Колючий орурец' },
+  { id: '21', text: 'Плакучий лук' },
+  { id: '22', text: 'Антивампирский чеснок' },
+];
+
 const pOptions: ISelectOption[] = [
   { label: <span>Все <i>+195</i> <b>3297</b></span>, value: 'all' },
   { label: <span>Требуют реакции <b>27</b></span>, value: 'require-reaction' },
@@ -57,6 +89,14 @@ const Messages: React.FC = () => {
   const [ filters, setFilters ] = useState(initFilters);
   const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
+  const [ messages, setMessages ] = useState((testMessages.slice(0, 10)));
+  const [ selectedMessages, setSelectedMessages ] = useState([] as string[]);
+  const [ messagesScrollIndex, setMessagesScrollIndex ] = useState(0);
+  const [ visibleRange, setVisibleRange ] = useState({
+    startIndex: 0,
+    endIndex: 0,
+  });
+  const [ rangeStep ] = useState(10);
 
   const handleCheckFilter = (values: any) => {
     const updatedFilres = [...filters];
@@ -80,7 +120,46 @@ const Messages: React.FC = () => {
   };
 
   const handleSeletAllMessages = (value: boolean) => {
-    console.log(value);
+    if (value) {
+      const selected: string[] = testMessages.map((el) => el.id);
+      setSelectedMessages(selected);
+    } else {
+      setSelectedMessages([]);
+    }
+  };
+
+  const addToSelected = (id: string) => {
+    if (selectedMessages.includes(id)) return;
+    setSelectedMessages([ ...selectedMessages, id]);
+  };
+
+  const removeFromSelected = (id: string) => {
+    const indexMessage = selectedMessages.findIndex((el) => el === id);
+    if (indexMessage === -1) return;
+    const updatedMessages = [ ...selectedMessages ];
+    updatedMessages.splice(indexMessage, 1);
+    setSelectedMessages(updatedMessages);
+  };
+
+  const handleSelectMessage = (id: string, value: boolean) => {
+    if (value) addToSelected(id);
+    else removeFromSelected(id);
+  };
+
+  const handleScrollToIndex = (index: number) => {
+    setMessagesScrollIndex(index);
+  };
+
+  // useEffect(() => {
+  //   setMessagesScrollIndex(visibleRange.startIndex);
+  // }, [visibleRange.startIndex]);
+
+  const loadMoreMessages = (lastMessageIndex: number) => {
+    if (lastMessageIndex >= (testMessages.length - 1)) return;
+    const slice = testMessages.slice(lastMessageIndex + 1, lastMessageIndex + 11);
+    setTimeout(() => {
+      setMessages([ ...messages, ...slice ]);
+    }, 1000);
   };
 
   return (
@@ -89,7 +168,7 @@ const Messages: React.FC = () => {
         <Select
           options={ pOptions }
           selected="not-processed"
-          onChange={ console.log }
+          onChange={ () => {} }
         />
         <ButtonSwitcher
           activeButtonId={ activeType }
@@ -130,8 +209,8 @@ const Messages: React.FC = () => {
               filters={ filters }
               templates={ filterTemplates }
               activeTemplateId={ activeFilterTemplateId }
-              onReset={ () => console.log('Нажал сброс') }
-              onApply={ () => console.log('Нажал применить') }
+              onReset={ () => testOnClick('Нажал сброс') }
+              onApply={ () => testOnClick('Нажал применить') }
               onChangeTemplate={ handleChangeFilterTemplate }
               onCheck={ handleCheckFilter }
               onDelete={ handleDeleteFilter }
@@ -142,16 +221,26 @@ const Messages: React.FC = () => {
       <section { ...cls('body') }>
         <MessagesControlPanel
           { ...cls('messages-control-panel') }
+          selected={ selectedMessages }
           onSelectAll={ handleSeletAllMessages }
           onOpenFilter={ () => setIsOpenFilter(true) }
           pagination={
             {
-              currentPage: 1,
-              pageCount: 5,
-              totalCount: 86,
-              perPage: 20
+              currentIndex: visibleRange.startIndex,
+              totalCount: testMessages.length,
+              perPage: rangeStep
             }
           }
+          onScrollToIndex={ handleScrollToIndex }
+        />
+        <MessageList
+          messages={ messages }
+          selected={ selectedMessages }
+          totalMessages={ testMessages.length }
+          scrollIndex={ messagesScrollIndex }
+          onSelect={ handleSelectMessage }
+          onChangeRange={ setVisibleRange }
+          onEndReached={ loadMoreMessages }
         />
       </section>
     </div>

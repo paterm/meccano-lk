@@ -9,6 +9,11 @@ import './AccountResponse.css';
 
 const cls = classes('account-response');
 
+const testOnClick = (message: any) => {
+  // eslint-disable-next-line no-console
+  console.log(`onClick => ${message}`);
+};
+
 const AccountResponse:React.FC = () => {
   const [checked1, setChecked1 ] = useState(false);
   const [checked2, setChecked2 ] = useState(false);
@@ -85,7 +90,7 @@ const AccountResponse:React.FC = () => {
       { phrasesElement }
       <form
         { ...cls('message-form') }
-        onSubmit={ () => console.log('Субмит сообщения') }
+        onSubmit={ () => testOnClick('Субмит сообщения') }
       >
         <Input
           { ...cls('message-input') }

@@ -52,7 +52,7 @@ const AccountUserInterface:React.FC = () => {
         { ...cls('select') }
         options={ timeOptions }
         selected="+3"
-        onChange={ console.log }
+        onChange={ () => {} }
       />
     </div>
   );
@@ -64,7 +64,7 @@ const AccountUserInterface:React.FC = () => {
         { ...cls('select') }
         options={ langOptions }
         selected="ru"
-        onChange={ console.log }
+        onChange={ () => {} }
       />
     </div>
   );
