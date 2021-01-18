@@ -1,4 +1,5 @@
 .button {
+  font: inherit;
   height: 48px;
   padding: 0 24px;
   background: none;
@@ -6,6 +7,7 @@
   cursor: pointer;
   font-size: 14px;
   font-weight: 600;
+  line-height: 1;
   color: var(--white);
   transition: background-color .2s, color .2s, opacity .2s;
   outline: none;
@@ -14,7 +16,6 @@
   justify-content: center;
   flex-shrink: 0;
   position: relative;
-  font: inherit;
 }
 .button:hover {
   opacity: .9;
@@ -29,12 +30,19 @@
 .button:not(.button--inline).button--36 {
   height: 36px;
 }
+.button:not(.button--inline).button--24 {
+  height: 24px;
+}
 
 .button--rounded.button--48 {
   border-radius: 24px;
 }
 .button--rounded.button--36 {
   border-radius: 18px;
+}
+.button--rounded.button--24 {
+  border-radius: 12px;
+  padding: 0 10px;
 }
 
 .button--inline {
@@ -140,6 +148,11 @@
   margin: 0 12px 0 0;
   height: 24px;
 }
+.button--24 .button__left-icon {
+  display: block;
+  margin: 0 6px 0 0;
+  height: 24px;
+}
 
 .button__right-icon {
   display: block;
@@ -196,7 +209,6 @@
   color: inherit;
   opacity: 0.8;
 }
-
 
 .button__badge {
   position: absolute;

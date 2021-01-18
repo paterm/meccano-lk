@@ -1,0 +1,28 @@
+.tone-meter {
+  width: 157px;
+  height: 24px;
+  border-radius: 12px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tone-meter--green {
+  background-color: var(--bluish-green-6);
+}
+
+.tone-meter--red {
+  background-color: var(--watermelon-12);
+}
+
+.tone-meter__value {
+  background-color: var(--white);
+  position: absolute;
+  top: 0;
+  margin: 2px 0 0 2px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
