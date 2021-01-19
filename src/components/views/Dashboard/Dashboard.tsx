@@ -8,6 +8,7 @@ import RatesWidget from './src/Widgets/ReatesWidget/RatesWidget';
 import PossibilityWidget from './src/Widgets/PossibilityWidget/PossibilityWidget';
 import SummaryProjectWidget from './src/Widgets/SummaryProjectWidget/SummaryProjectWidget';
 import './Dashboard.css';
+import TonalityDynamicWidget from './src/Widgets/TonalityDynamicWidget/TonalityDynamicWidget';
 
 const cls = classes('dashboard');
 
@@ -40,6 +41,7 @@ const Dashboard:React.FC = () => (
       <PossibilityWidget />
       <RatesWidget />
       <SummaryProjectWidget />
+      <TonalityDynamicWidget />
     </div>
   </div>
 );

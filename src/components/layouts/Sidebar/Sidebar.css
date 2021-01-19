@@ -1,11 +1,10 @@
 .sidebar {
-  position: absolute;;
+  position: fixed;
   top: 0;
   left: 0;
   height: 100%;
   width: var(--sidebar-width);
-  /*width: 310px;*/
-  padding-top: 48px;
+  padding-top: calc(var(--header-height) + 48px);
   box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
   background-color: var(--white);
   overflow: hidden;
@@ -111,6 +110,7 @@
     width: unset;
     height: unset;
     padding-top: unset;
+    z-index: 4;
   }
   .sidebar:hover {
     width: unset;
