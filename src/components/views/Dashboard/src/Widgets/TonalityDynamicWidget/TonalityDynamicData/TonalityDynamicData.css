@@ -1,0 +1,83 @@
+.tonality-dynamic-data .dashboard-card__content {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+}
+.tonality-dynamic-data__card {
+  padding: 16px;
+  border-radius: 12px;
+}
+.tonality-dynamic-data__card-label {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}
+.tonality-dynamic-data__card-value {
+  margin-bottom: 16px;
+  font-size: 48px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -2px;
+  text-align: center;
+}
+.tonality-dynamic-data__card-new {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+}
+.tonality-dynamic-data__card-new-icon {
+  margin-right: 4px;
+}
+
+/* first */
+.tonality-dynamic-data__card:first-child {
+  background-color: var(--bluish-green-2);
+}
+.tonality-dynamic-data__card:first-child .tonality-dynamic-data__card-value,
+.tonality-dynamic-data__card:first-child .tonality-dynamic-data__card-new  {
+  color: var(--bluish-green);
+}
+.tonality-dynamic-data__card:first-child .tonality-dynamic-data__card-new path[fill] {
+  fill: var(--bluish-green);
+}
+/* second */
+.tonality-dynamic-data__card:nth-child(2) {
+  background-color: var(--bright-sky-blue-3);
+}
+.tonality-dynamic-data__card:nth-child(2) .tonality-dynamic-data__card-value,
+.tonality-dynamic-data__card:nth-child(2) .tonality-dynamic-data__card-new  {
+  color: var(--bright-sky-blue);
+}
+.tonality-dynamic-data__card:nth-child(2) .tonality-dynamic-data__card-new path[fill] {
+  fill: var(--bright-sky-blue);
+}
+/* third */
+.tonality-dynamic-data__card:nth-child(3) {
+  background-color: var(--purple-pink-2);
+}
+.tonality-dynamic-data__card:nth-child(3) .tonality-dynamic-data__card-value,
+.tonality-dynamic-data__card:nth-child(3) .tonality-dynamic-data__card-new  {
+  color: var(--purple-pink);
+}
+.tonality-dynamic-data__card:nth-child(3) .tonality-dynamic-data__card-new path[fill] {
+  fill: var(--purple-pink);
+}
+/* forth */
+.tonality-dynamic-data__card:last-child {
+  background-color: var(--coral-2);
+}
+.tonality-dynamic-data__card:last-child .tonality-dynamic-data__card-value,
+.tonality-dynamic-data__card:last-child .tonality-dynamic-data__card-new {
+  color: var(--coral);
+}
+.tonality-dynamic-data__card:last-child .tonality-dynamic-data__card-new path[fill] {
+  fill: var(--coral);
+}

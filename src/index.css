@@ -19,6 +19,7 @@
   --coral: #ff5c4e;
   --coral-two: #f55c45;
   --coral-7: rgba(255, 92, 78, 0.07);
+  --coral-2: rgba(255, 92, 78, 0.02);
   --watermelon: #f54562;
   --watermelon-12: rgba(245, 69, 98, 0.12);
   --orange-red: #ff2525;
@@ -27,9 +28,11 @@
   --lighter-purple: #9c42f5;
   --purple-pink: #c32de1;
   --purple-pink-3: rgba(195, 45, 225, 0.03);
+  --purple-pink-2: rgba(195, 45, 225, 0.02);
   --bluish-green: #16b862;
   --bluish-green-6: rgba(22, 184, 98, 0.06);
   --bluish-green-3: rgba(22, 184, 98, 0.03);
+  --bluish-green-2: rgba(22, 184, 98, 0.02);
   --bright-sky-blue: #00bbff;
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
   --grey-icon: #E0E0FF;
