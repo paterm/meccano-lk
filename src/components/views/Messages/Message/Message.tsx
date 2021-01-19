@@ -11,6 +11,7 @@ import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
 import './Message.css';
+import IndexMeter from '../IndexMeter/IndexMeter';
 
 const cls = classes('message');
 
@@ -90,7 +91,21 @@ const Message: React.FC<IMessage> = ({
           <p { ...cls('source-name') }>{ data.sourceName }</p>
           <p { ...cls('source-city') }>{ data.sourceCity }</p>
         </div>
-        <div { ...cls('source-metrics') }>Метрики</div>
+        <div { ...cls('source-metrics') }>
+          <IndexMeter
+            { ...cls('meter-mfi') }
+            label="MFI"
+            prevValue={ data.mfiPrevValue }
+            value={ data.mfiValue }
+          />
+          <IndexMeter
+            { ...cls('meter-er') }
+            label="ER"
+            postfix="%"
+            prevValue={ data.erPrevValue }
+            value={ data.erValue }
+          />
+        </div>
         <ToneMeter
           { ...cls('tone') }
           value={ data.tone }

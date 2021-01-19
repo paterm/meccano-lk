@@ -23,7 +23,7 @@
 .message__source {
   display: grid;
   grid-template-columns: min-content auto;
-  gap: 16px;
+  gap: 12px;
 }
 
 .message__source-avatar {
@@ -34,8 +34,6 @@
   display: block;
   background-color: var(--dark-40);
 }
-
-.message__source-title {}
 
 .message__source-name {
   margin: 0 0 4px;
@@ -55,6 +53,13 @@
 
 .message__source-metrics {
   grid-column: 1/-1;
+  margin: 8px 0 0;
+  display: flex;
+  align-items: center;
+}
+
+.message__meter-mfi {
+  margin: 0 16px 0 0;
 }
 
 .message__tone {
