@@ -20,6 +20,10 @@
   align-items: center;
 }
 
+.message__check-button {
+  margin: 0 8px 0 0;
+}
+
 .message__source {
   display: grid;
   grid-template-columns: min-content auto;
@@ -98,6 +102,10 @@
   align-items: center;
 }
 
+.message__add-person-button {
+  margin: 0 8px 0 0;
+}
+
 .message__more-details-link {
   font-size: 14px;
   font-weight: 600;
@@ -110,4 +118,9 @@
 .message__footer-buttons-right {
   display: flex;
   align-items: center;
+}
+
+.message__replay-button,
+.message__open-in-new-button {
+  margin: 0 8px 0 0;
 }

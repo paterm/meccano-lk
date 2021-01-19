@@ -6,6 +6,8 @@ import { ReactComponent as CheckIcon } from '@assets/icons/button/check.svg';
 import { ReactComponent as StarIcon } from '@assets/icons/button/star.svg';
 import { ReactComponent as AddPersonIcon } from '@assets/icons/button/add-person.svg';
 import { ReactComponent as TagIcon } from '@assets/icons/button/tag.svg';
+import { ReactComponent as ReplyIcon } from '@assets/icons/button/reply.svg';
+import { ReactComponent as OpenInNewIcon } from '@assets/icons/button/open-in-new.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Button from '../../../ui/Button/Button';
@@ -136,7 +138,7 @@ const Message: React.FC<IMessage> = ({
           transparent
         />
         <Button
-          { ...cls('add-person-button') }
+          { ...cls('tag-button') }
           icon={ TagIcon }
           size={ 24 }
           color="gray"
@@ -152,6 +154,20 @@ const Message: React.FC<IMessage> = ({
         </Link>
       </div>
       <div { ...cls('footer-buttons-right') }>
+        <Button
+          { ...cls('replay-button') }
+          icon={ ReplyIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+        />
+        <Button
+          { ...cls('open-in-new-button') }
+          icon={ OpenInNewIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+        />
         <Button
           { ...cls('delete-button') }
           icon={ TrashIcon }
