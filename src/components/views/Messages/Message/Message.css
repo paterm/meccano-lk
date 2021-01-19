@@ -9,15 +9,31 @@
 .message__header {
   display: grid;
   grid-template-columns: 210px auto min-content;
+  row-gap: 16px;
 }
 
-.message__attention {
+@media screen and (max-width: 767px) {
+  .message__header {
+    grid-template-columns: auto auto;
+  }
+}
+
+.message__reaction-place {
   justify-self: start;
+}
+
+@media screen and (max-width: 767px) {
+  .message__reaction-place {
+    grid-column: 1/-1;
+    grid-row: 2;
+    margin: 0 0 8px;
+  }
 }
 
 .message__header-buttons {
   display: flex;
   align-items: center;
+  justify-self: end;
 }
 
 .message__check-button {
@@ -30,6 +46,12 @@
   gap: 12px;
 }
 
+@media screen and (max-width: 767px) {
+  .message__source {
+    row-gap: 6px;
+  }
+}
+
 .message__source-avatar {
   height: 72px;
   width: 72px;
@@ -37,6 +59,14 @@
   object-fit: cover;
   display: block;
   background-color: var(--dark-40);
+}
+
+@media screen and (max-width: 767px) {
+  .message__source-avatar {
+    height: 108px;
+    width: 108px;
+    grid-row: 1/4;
+  }
 }
 
 .message__source-name {
@@ -62,18 +92,48 @@
   align-items: center;
 }
 
+@media screen and (max-width: 767px) {
+  .message__source-metrics {
+    grid-column: 2;
+  }
+}
+
 .message__meter-mfi {
   margin: 0 16px 0 0;
 }
 
 .message__tone {
   grid-column: 1/-1;
+  max-width: 157px;
+}
+
+@media screen and (max-width: 767px) {
+  .message__tone {
+    grid-column: 2;
+    max-width: 240px;
+  }
 }
 
 .message__body {
   margin: 16px 0;
   display: grid;
   grid-template-columns: 210px auto;
+}
+
+@media screen and (max-width: 767px) {
+  .message__body {
+    grid-template-columns: 1fr;
+  }
+}
+
+.message__content {
+  margin: 0;
+}
+
+@media screen and (max-width: 767px) {
+  .message__content {
+    margin: 24px 0 0;
+  }
 }
 
 .message__title {
@@ -95,6 +155,13 @@
 .message__footer {
   display: grid;
   grid-template-columns: 210px auto min-content;
+}
+
+@media screen and (max-width: 767px) {
+  .message__footer {
+    display: flex;
+    justify-content: space-between;
+  }
 }
 
 .message__footer-buttons-left {
