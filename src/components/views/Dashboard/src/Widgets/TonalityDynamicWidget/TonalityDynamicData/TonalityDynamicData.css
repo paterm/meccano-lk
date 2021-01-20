@@ -81,3 +81,9 @@
 .tonality-dynamic-data__card:last-child .tonality-dynamic-data__card-new path[fill] {
   fill: var(--coral);
 }
+
+@media screen and (max-width: 500px) {
+  .tonality-dynamic-data .dashboard-card__content {
+    grid-template-columns: 1fr;
+  }
+}
