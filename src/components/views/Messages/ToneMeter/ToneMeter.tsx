@@ -6,11 +6,11 @@ const cls = classes('tone-meter');
 const METER_SIZE = 24;
 
 const emoji = {
-  negative: '😁',
-  semiNegative: '🙂',
+  negative: '😡',
+  semiNegative: '🙁',
   neutral: '😐',
-  semiPositive: '☹️',
-  positive: '😡',
+  semiPositive: '🙂',
+  positive: '😁',
 };
 
 enum ETones {

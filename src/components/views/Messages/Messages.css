@@ -6,6 +6,14 @@
   flex-direction: column;
 }
 
+@media screen and (max-width: 768px) {
+  .messages {
+    height: calc(100vh - 96px);
+    padding: 0;
+    margin: 0;
+  }
+}
+
 .messages__head {
   display: flex;
   justify-content: space-between;
@@ -22,6 +30,12 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .messages__body {
+    padding: 0;
+  }
 }
 
 .messages__filter-with-drop-down {
@@ -78,7 +92,6 @@
 @media screen and (max-width: 720px) {
   .messages {
     padding-top: 24px;
-    padding-bottom: 24px;
   }
   .messages__head {
     flex-direction: column;

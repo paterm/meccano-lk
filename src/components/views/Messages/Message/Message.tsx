@@ -12,8 +12,8 @@ import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
-import './Message.css';
 import IndexMeter from '../IndexMeter/IndexMeter';
+import './Message.css';
 
 const cls = classes('message');
 
@@ -88,7 +88,7 @@ const Message: React.FC<IMessage> = ({
   const messageSidebarElement = (
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
-        <img { ...cls('source-avatar') } src="" alt="" />
+        <img { ...cls('source-avatar') } src={ data.avatar } alt="" />
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
           <p { ...cls('source-city') }>{ data.sourceCity }</p>
