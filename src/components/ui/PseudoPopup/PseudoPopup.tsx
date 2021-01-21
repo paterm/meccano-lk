@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { classes } from '@utils';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
@@ -40,6 +40,17 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   const { isMobile } = useSelector((state:IStore) => state.mobile);
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const popup = usePopup();
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (!isMobile) {
+      if (body) body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      if (body) body.removeAttribute('style');
+    };
+  }, [isMobile]);
 
   const handleCloseDropDown = () => {
     setIsOpenDropDown(false);

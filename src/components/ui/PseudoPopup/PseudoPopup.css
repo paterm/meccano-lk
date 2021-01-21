@@ -1,16 +1,18 @@
 .pseudo-popup {
   display: flex;
   padding: 40px 72px;
-  height: 100%;
+  height: calc(100% - 72px);
   width: 100%;
-  position: absolute;
-  top: 0;
+  position: fixed;
+  top: 72px;
   left: 0;
   justify-content: center;
+  z-index: 3;
 }
 
 @media screen and (max-width: 767px) {
   .pseudo-popup {
+    top: 0;
     padding: 0;
     height: auto;
     position: relative;
