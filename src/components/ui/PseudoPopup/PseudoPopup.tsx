@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { classes } from '@utils';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
@@ -17,6 +17,7 @@ interface IPseudoPopup {
   overlay?: boolean
   overlayPosition?: 'absolute' | 'fixed'
   title?: string
+  childrenView?: string
   childrenViewName?: string
   children?: React.ReactNode | string
   bar?: React.ReactNode | string
@@ -32,7 +33,8 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   overlay = true,
   overlayPosition = 'absolute',
   title,
-  childrenViewName,
+  childrenView,
+  childrenViewName = '',
   children,
   bar,
   menu,
@@ -40,6 +42,17 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   const { isMobile } = useSelector((state:IStore) => state.mobile);
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const popup = usePopup();
+
+  useEffect(() => {
+    const body = document.querySelector('body');
+    if (!isMobile) {
+      if (body) body.style.overflow = 'hidden';
+    }
+
+    return () => {
+      if (body) body.removeAttribute('style');
+    };
+  }, [isMobile]);
 
   const handleCloseDropDown = () => {
     setIsOpenDropDown(false);
@@ -51,7 +64,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
         <li key={ index } { ...cls('menu-item') }>
           <Button
             { ...cls('menu-button') }
-            filled={ view === childrenViewName }
+            filled={ view === childrenView }
             onClick={ onClick }
             onClickCallback={ handleCloseDropDown }
           >
@@ -70,7 +83,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
         rounded
         onClick={ () => setIsOpenDropDown(!isOpenDropDown) }
       >
-        {childrenViewName}
+        { childrenViewName }
       </Button>
       <DropDown
         { ...cls('drop-down') }
