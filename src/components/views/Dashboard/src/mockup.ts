@@ -1,3 +1,6 @@
+import { TDashboardEvent } from './Widgets/LastEventsWidget/LastEventsWidget';
+import DefaultAdsImage from '../../../../assets/images/widget-ads.jpg';
+
 export const projectData = [
   {
     date: '2020-01-03T00:00:00',
@@ -138,5 +141,90 @@ export const projectData = [
       total: 43,
       new: -12
     }
+  }
+];
+
+export const lastEvents: TDashboardEvent[] = [
+  {
+    type: 'event',
+    hasUpdates: true,
+    description: 'Последний раз вы работали над проектом <b>Проект #2</b>',
+    buttons: [
+      {
+        name: 'Открыть',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'event',
+    hasUpdates: false,
+    description: 'Тариф <b>Мониторинг СМИ</b> заканчивается через 5 дней',
+    buttons: [
+      {
+        name: 'Продлить',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'event',
+    hasUpdates: false,
+    description: 'Новый отчет <b>Статистика за 3 квартал</b> в проекте <b>Проект #1</b> доступен в Отчеты и дайджест',
+    buttons: [
+      {
+        name: 'Отчеты и дайджест',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'event',
+    hasUpdates: false,
+    description: 'В проекте <b>Репутация контрагентов</b> появились новые сообщения',
+    buttons: [
+      {
+        name: 'Открыть',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'event',
+    hasUpdates: false,
+    description: 'Новый отчет в проекте <b>Лояльность клиентов</b> доступны в Отчеты и дайджест',
+    buttons: [
+      {
+        name: 'Перейти',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'event',
+    hasUpdates: false,
+    description: 'В проекте <b>Репутация контрагентов</b> появились новые сообщения',
+    buttons: [
+      {
+        name: 'Открыть',
+        href: '/',
+      }
+    ]
+  },
+  {
+    type: 'adv',
+    hasUpdates: false,
+    image: DefaultAdsImage,
+    buttons: [
+      {
+        name: 'Подробнее',
+        href: '/',
+        color: 'violet'
+      },
+      {
+        name: 'Открыть',
+        href: '/',
+      }
+    ]
   }
 ];

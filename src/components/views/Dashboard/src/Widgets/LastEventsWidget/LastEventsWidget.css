@@ -1,0 +1,86 @@
+.last-events-widget__container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-row-gap: 16px;
+  grid-column-gap: 16px;
+}
+.last-events-widget__item {
+  display: flex;
+  flex-direction: column;
+  min-height: 228px;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  transition: box-shadow .2s;
+}
+.last-events-widget__item:hover {
+  box-shadow: 0 16px 16px -4px rgba(20, 16, 41, 0.06), 0 32px 48px 0 rgba(20, 16, 41, 0.12), 0 4px 8px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+.last-events-widget__item--adv {
+  grid-column: span 2;
+  background-size: cover;
+}
+.last-events-widget__item-update {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 8px;
+  background-color: transparent;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--red);
+  cursor: pointer;
+  transition: opacity .2s;
+}
+.last-events-widget__item-update:hover {
+  opacity: .7;
+}
+.last-events-widget__item-update-icon {
+  margin-left: 8px;
+}
+.last-events-widget__item-description {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--dark-60);
+}
+.last-events-widget__item-footer {
+  display: flex;
+  margin-top: auto;
+}
+.last-events-widget__item-footer > * + * {
+  margin-left: 12px;
+}
+.last-events-widget__item-button {
+  flex: 1;
+}
+
+.last-events-widget__item--adv .last-events-widget__item-button {
+  flex: unset;
+  background-color: var(--white);
+}
+
+@media screen and (max-width: 992px) {
+  .last-events-widget__container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .last-events-widget__container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .last-events-widget__container {
+    grid-template-columns: 1fr;
+  }
+  .last-events-widget__item--adv {
+    grid-column: span 1;
+  }
+}
