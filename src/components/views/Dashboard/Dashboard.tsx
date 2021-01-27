@@ -7,8 +7,10 @@ import Button from '../../ui/Button/Button';
 import RatesWidget from './src/Widgets/ReatesWidget/RatesWidget';
 import PossibilityWidget from './src/Widgets/PossibilityWidget/PossibilityWidget';
 import SummaryProjectWidget from './src/Widgets/SummaryProjectWidget/SummaryProjectWidget';
-import './Dashboard.css';
 import TonalityDynamicWidget from './src/Widgets/TonalityDynamicWidget/TonalityDynamicWidget';
+import LastEventsWidget from './src/Widgets/LastEventsWidget/LastEventsWidget';
+import { lastEvents } from './src/mockup';
+import './Dashboard.css';
 
 const cls = classes('dashboard');
 
@@ -38,10 +40,11 @@ const Dashboard:React.FC = () => (
         </div>
       </div>
 
-      <PossibilityWidget />
-      <RatesWidget />
+      <LastEventsWidget events={ lastEvents } />
       <SummaryProjectWidget />
       <TonalityDynamicWidget />
+      <PossibilityWidget />
+      <RatesWidget />
     </div>
   </div>
 );
