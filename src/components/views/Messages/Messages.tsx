@@ -12,6 +12,8 @@ import DropDown from '../../ui/DropDown/DropDown';
 import FilterPanel from './FilterPanel/FilterPanel';
 import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 import MessageList from './MessageList/MessageList';
+import avatarRbk from '../../../assets/temp/rbk.jpg';
+import avatarSber from '../../../assets/temp/sber.jpg';
 import './Messages.css';
 
 const cls = classes('messages');
@@ -21,7 +23,7 @@ const testOnClick = (message: any) => {
   console.log(`onClick => ${message}`);
 };
 
-const testMessages = [
+const testMessagesExemple = [
   {
     id: '1',
     date: '11:25 15.01.2021',
@@ -35,6 +37,7 @@ const testMessages = [
     erPrevValue: 60,
     erValue: 57,
     tone: 'neutral',
+    avatar: avatarRbk
   },
   {
     id: '2',
@@ -49,8 +52,22 @@ const testMessages = [
     erPrevValue: 63,
     erValue: 63,
     tone: 'negative',
+    avatar: avatarSber
   },
 ];
+
+const testMessages: any[] = [];
+
+Array.apply('', Array(42)).forEach((el, index) => {
+  testMessages.push({
+    ...testMessagesExemple[0],
+    id: (+testMessagesExemple[1].id * index + 1).toString()
+  });
+  testMessages.push({
+    ...testMessagesExemple[1],
+    id: (+testMessagesExemple[1].id * index + 2).toString()
+  });
+});
 
 const pOptions: ISelectOption[] = [
   { label: <span>Все <i>+195</i> <b>3297</b></span>, value: 'all' },
@@ -169,8 +186,8 @@ const Messages: React.FC = () => {
   };
 
   return (
-    <div { ...cls('', '', 'container') }>
-      <section { ...cls('head') }>
+    <div { ...cls('') }>
+      <section { ...cls('head', '', 'container') }>
         <Select
           options={ pOptions }
           selected="not-processed"
@@ -224,7 +241,7 @@ const Messages: React.FC = () => {
           </DropDown>
         </div>
       </section>
-      <section { ...cls('body') }>
+      <section { ...cls('body', '', 'container') }>
         <MessagesControlPanel
           { ...cls('messages-control-panel') }
           selected={ selectedMessages }
@@ -246,7 +263,7 @@ const Messages: React.FC = () => {
           scrollIndex={ messagesScrollIndex }
           onSelect={ handleSelectMessage }
           onChangeRange={ setVisibleRange }
-          onEndReached={ loadMoreMessages }
+          onShowMore={ loadMoreMessages }
         />
       </section>
     </div>

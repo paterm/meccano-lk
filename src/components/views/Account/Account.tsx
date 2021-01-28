@@ -20,26 +20,31 @@ interface IAccount {
   view: string
 }
 
-const Account:React.FC<IAccount> = ({ view: startView }) => {
+const Account:React.FC<IAccount> = ({ view }) => {
   const popup = usePopup();
 
-  const menu = views.map(({ view, name }) => (
-    { view, name, onClick: () => popup.open(view) }
+  const menu = views.map((el) => (
+    { view: el.view, name: el.name, onClick: () => popup.open(el.view) }
   ));
 
-  const getActiveView = (view: string): any => views
-    .find((el) => el.view === view)?.component || null;
+  const getActiveView = (slug: string): any => views
+    .find((el) => el.view === slug)?.component || null;
 
-  const ActiveView = getActiveView(startView);
+  const getViewName = (slug: string): any => views
+    .find((el) => el.view === slug)?.name || '';
+
+  const ActiveView = getActiveView(view);
+  const activeViewName = getViewName(view);
 
   return (
     <PseudoPopup
       title="Настройки аккаунта"
-      childrenViewName={ startView }
+      childrenView={ view }
+      childrenViewName={ activeViewName }
       menu={ menu }
     >
       <Helmet>
-        <title>{startView} | Настройки аккаунта | Maeccano</title>
+        <title>{ activeViewName } | Настройки аккаунта | Maeccano</title>
       </Helmet>
       <ActiveView />
     </PseudoPopup>

@@ -7,6 +7,13 @@
   flex-grow: 1;
 }
 
+@media screen and (max-width: 768px) {
+  .message-list {
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+
 .message-list__update-button {
   width: calc(100% - 16px * 2);
   margin: 16px;
@@ -23,6 +30,12 @@
   justify-content: center;
   text-align: center;
   color: var(--dark-60);
-  height: 96px;
-  transform: translateY(-8px);
+  padding: 32px 16px 49px;
+}
+
+.message-list__more-button {
+  box-shadow: 0 12px 12px -4px rgba(255, 92, 78, 0.06), 0 4px 4px -1px rgba(255, 92, 78, 0.06), 0 1px 1px 0 rgba(255, 92, 78, 0.12);
+  background-color: #ffffff;
+  width: 100%;
+  max-width: 360px;
 }

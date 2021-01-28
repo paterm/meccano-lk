@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { classes } from '@utils';
 import { Virtuoso } from 'react-virtuoso';
 import Button from 'src/components/ui/Button/Button';
@@ -22,6 +22,7 @@ interface IMessageList {
   scrollIndex?: number
   onChangeRange?: ({ startIndex, endIndex }: TRangeChanged) => void
   onEndReached?: (lastMessageIndex: number) => void
+  onShowMore?: (lastMessageIndex: number) => void
 }
 
 const MessageList: React.FC<IMessageList> = ({
@@ -32,9 +33,11 @@ const MessageList: React.FC<IMessageList> = ({
   scrollIndex = 0,
   onChangeRange,
   onEndReached,
+  onShowMore,
   onSelect
 }) => {
   const messageListRef = useRef(null as any);
+  const [endIndex, setEndIndex] = useState(0);
 
   useEffect(() => {
     messageListRef.current.scrollToIndex({
@@ -45,6 +48,15 @@ const MessageList: React.FC<IMessageList> = ({
   }, [scrollIndex]);
 
   const checkSelected = (id: string) => selected.includes(id);
+
+  const handleChangeRange = (range: TRangeChanged) => {
+    setEndIndex(range.endIndex);
+    if (onChangeRange) onChangeRange(range);
+  };
+
+  const handleShowMore = (index: number) => {
+    if (onShowMore) onShowMore(index);
+  };
 
   const newMessagesButtonElement = (
     <Button
@@ -64,12 +76,24 @@ const MessageList: React.FC<IMessageList> = ({
         data={ messages }
         ref={ messageListRef }
         endReached={ onEndReached }
-        rangeChanged={ onChangeRange }
+        rangeChanged={ handleChangeRange }
         components={ {
           Header: () => newMessagesButtonElement,
           Footer: () => (
             <span { ...cls('footer-list') }>
-              {totalMessages > messages.length ? 'Загрузка ...' : 'Больше сообщений нет'}
+              {totalMessages > messages.length
+                ? (
+                  <Button
+                    { ...cls('more-button') }
+                    color="coral"
+                    transparent
+                    square
+                    onClick={ () => handleShowMore(endIndex) }
+                  >
+                    Следующие сообщения
+                  </Button>
+                )
+                : 'Больше сообщений нет'}
             </span>
           )
         } }
