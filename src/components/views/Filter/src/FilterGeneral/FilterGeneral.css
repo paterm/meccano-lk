@@ -9,11 +9,13 @@
   padding: 30px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
 }
 
 .filter-general__footer {
-  margin: auto 0 0;
-  padding: 64px 0 0;
+  margin: 0;
+  padding: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
 }

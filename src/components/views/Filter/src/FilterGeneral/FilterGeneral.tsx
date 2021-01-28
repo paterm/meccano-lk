@@ -8,7 +8,7 @@ const cls = classes('filter-general');
 const AccountGeneral:React.FC = () => (
   <div { ...cls() }>
     <div { ...cls('body') }>
-      1
+      Создать шаблон
     </div>
     <div { ...cls('footer') }>
       <Button
