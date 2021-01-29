@@ -1,6 +1,7 @@
 import React from 'react';
 import { classes } from '@utils';
 import './Button.css';
+import { T_UNKNOWN_OBJ } from '@types';
 
 const cls = classes('button');
 
@@ -25,6 +26,7 @@ interface IButton {
   rightIcon?: React.ComponentType
   onClick?: () => void
   onClickCallback?: () => void
+  style?: T_UNKNOWN_OBJ
 }
 
 const Button: React.FC<IButton> = ({
@@ -43,6 +45,7 @@ const Button: React.FC<IButton> = ({
   filled,
   transparent,
   square,
+  style = {},
   icon: Icon = () => null,
   leftIcon: LeftIcon = () => null,
   rightIcon: RightIcon = () => null,
@@ -73,6 +76,7 @@ const Button: React.FC<IButton> = ({
       disabled={ disabled }
       onClick={ handleClick }
       type={ type }
+      style={ style }
     >
       { leftIcon && <span { ...cls('left-icon') }><LeftIcon /></span> }
       { children || <Icon /> }
