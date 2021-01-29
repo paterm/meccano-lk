@@ -8,9 +8,10 @@ import './LastEventsWidget.css';
 const cls = classes('last-events-widget');
 
 type TButton = {
-  name: string
+  name?: string
   href: string
   color?: TButtonColor
+  icon?: React.ComponentType
 };
 
 export type TDashboardEvent = {
@@ -65,6 +66,8 @@ const LastEventsWidget: React.FC<TProps> = ({ events }) => (
                     color={ button.color || 'coral' }
                     size={ 36 }
                     rounded
+                    icon={ button.icon }
+                    style={ button.icon ? { flex: '0 0 36px' } : {} }
                   >
                     {button.name}
                   </Button>
