@@ -10,7 +10,7 @@ interface IButton {
   className?: string
   color?: TButtonColor
   type?: 'button' | 'submit' | 'reset'
-  size?: 48 | 36 | 24
+  size?: 48 | 36 | 24 | 16
   badge?: string | number
   rounded?: boolean
   disabled?: boolean

@@ -13,6 +13,56 @@
   flex-grow: 1;
 }
 
+.filter-general__control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-general__button {
+  display: flex;
+  align-items: center;
+}
+
+.filter-general__button--disabled {
+  margin: 0 16px 0 auto;
+}
+
+.filter-general__filter-template {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px 16px 0;
+  background-color: var(--midnight-purple-2);
+  margin: 24px 0 0;
+}
+
+.filter-general__template-item {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 16px 0;
+}
+
+.filter-general__template-item-disable-icon {
+  margin: 0 4px 0 0;
+}
+
+.filter-general__template-item-type {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-60);
+  margin: 0 4px 0 0;
+}
+
+.filter-general__template-item-value {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-80);
+  margin: 0 4px 0 0;
+}
+
 .filter-general__footer {
   margin: 0;
   padding: 0;
