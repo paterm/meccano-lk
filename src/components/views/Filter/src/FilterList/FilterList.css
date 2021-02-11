@@ -1,0 +1,71 @@
+.filter-list {
+
+}
+
+/* Модификаторы всего контейнера на Desktop | Mobile */
+
+.filter-list--desktop {
+
+}
+
+.filter-list--mobile {
+
+}
+
+/* Элемент фильтра */
+
+.filter-list__filter-item {
+  display: flex;
+  align-items: center;
+}
+
+.filter-list__filter-checkbox {
+  margin: 0 12px 0 0;
+}
+
+.filter-list__filter-name {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  color: var(--dark-60);
+}
+
+.filter-list__filter-name--actived {
+  color: var(--dark-80);
+}
+
+.filter-list__filter-counter {
+  margin: 0 0 0 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.14;
+  color: var(--dark-60);
+}
+
+.filter-list__filter-counter--actived {
+  color: var(--dark-80);
+}
+
+/* Группы списка на Desktop */
+
+.filter-list__desktop-group {
+  margin: 48px 0 0;
+}
+
+.filter-list__desktop-group:first-of-type {
+  margin: 0;
+}
+
+.filter-list__desktop-group-name {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+}
+
+.filter-list__desktop-filters {
+  margin: 24px 0 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px 24px;
+}

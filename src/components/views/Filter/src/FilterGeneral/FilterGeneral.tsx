@@ -4,9 +4,103 @@ import { ReactComponent as EditIcon } from '@assets/icons/button/edit.svg';
 import { ReactComponent as MinusIcon } from '@assets/icons/button/chekbox-minus.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Button from '../../../../ui/Button/Button';
+import FilterList, { IFilterData } from '../FilterList/FilterList';
 import './FilterGeneral.css';
 
 const cls = classes('filter-general');
+
+const filterKeysTempData: IFilterData[] = [
+  {
+    groupId: 'g1',
+    groupName: 'Тональность',
+    filterId: 'g1f1',
+    filterName: '😁 Позитив',
+    isDisabled: false,
+    isActivated: false,
+    counter: 33
+  },
+  {
+    groupId: 'g1',
+    groupName: 'Тональность',
+    filterId: 'g1f2',
+    filterName: '😐 Нейтрал',
+    isDisabled: true,
+    isActivated: true,
+    counter: 43
+  },
+  {
+    groupId: 'g1',
+    groupName: 'Тональность',
+    filterId: 'g1f3',
+    filterName: '😡 Негатив',
+    isDisabled: false,
+    isActivated: true,
+    counter: 266
+  },
+  {
+    groupId: 'g2',
+    groupName: 'Язык',
+    filterId: 'g2f1',
+    filterName: 'Русский',
+    isDisabled: false,
+    isActivated: true,
+    counter: 342
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f1',
+    filterName: 'Компании',
+    isDisabled: false,
+    isActivated: false,
+    counter: 3
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f2',
+    filterName: 'Конкуренты',
+    isDisabled: false,
+    isActivated: false,
+    counter: 13
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f3',
+    filterName: 'Отрасль',
+    isDisabled: false,
+    isActivated: false,
+    counter: null
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f4',
+    filterName: 'Компании',
+    isDisabled: false,
+    isActivated: false,
+    counter: null
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f5',
+    filterName: 'Отрасль',
+    isDisabled: false,
+    isActivated: false,
+    counter: null
+  },
+  {
+    groupId: 'g3',
+    groupName: 'Рубрика',
+    filterId: 'g3f6',
+    filterName: 'Компании',
+    isDisabled: false,
+    isActivated: false,
+    counter: null
+  },
+];
 
 const templateTempData = [
   {
@@ -43,7 +137,7 @@ const templateTempData = [
   },
 ];
 
-const AccountGeneral:React.FC = () => {
+const FilterGeneral:React.FC = () => {
   const getFilterTemplateElement = (data: any) => data.map((el: any) => {
     const colorStyle = el?.color
       ? { color: el.color }
@@ -105,8 +199,11 @@ const AccountGeneral:React.FC = () => {
         <div { ...cls('filter-template') }>
           { getFilterTemplateElement(templateTempData) }
         </div>
-        <div { ...cls('filter-keys') }>Группы</div>
-        Создать шаблон
+        <FilterList
+          { ...cls('filter-list') }
+          screen="desktop"
+          filters={ filterKeysTempData }
+        />
       </div>
       <div { ...cls('footer') }>
         <Button
@@ -128,4 +225,4 @@ const AccountGeneral:React.FC = () => {
   );
 };
 
-export default AccountGeneral;
+export default FilterGeneral;
