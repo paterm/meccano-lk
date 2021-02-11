@@ -1,5 +1,6 @@
 import { TDashboardEvent } from './Widgets/LastEventsWidget/LastEventsWidget';
 import DefaultAdsImage from '../../../../assets/images/widget-ads.jpg';
+import { ReactComponent as DownloadIcon } from './Widgets/LastEventsWidget/assets/download-icon.svg';
 
 export const projectData = [
   {
@@ -172,6 +173,10 @@ export const lastEvents: TDashboardEvent[] = [
     hasUpdates: false,
     description: 'Новый отчет <b>Статистика за 3 квартал</b> в проекте <b>Проект #1</b> доступен в Отчеты и дайджест',
     buttons: [
+      {
+        icon: DownloadIcon,
+        href: '/'
+      },
       {
         name: 'Отчеты и дайджест',
         href: '/',

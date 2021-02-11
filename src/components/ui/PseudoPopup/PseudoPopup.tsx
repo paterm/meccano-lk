@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { classes } from '@utils';
+import { classes, usePopup } from '@utils';
 import { IStore } from '@interfaces';
 import { useSelector } from 'react-redux';
 import { ReactComponent as DropDownIcon } from '@assets/icons/button/drop-down.svg';
@@ -7,7 +7,6 @@ import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Overlay from '../Overlay/Overlay';
 import DropDown from '../DropDown/DropDown';
 import Button from '../Button/Button';
-import { usePopup } from '../../../utils/hooks';
 import './PseudoPopup.css';
 
 const cls = classes('pseudo-popup');
