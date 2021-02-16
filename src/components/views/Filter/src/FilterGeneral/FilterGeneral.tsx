@@ -201,7 +201,7 @@ const FilterGeneral:React.FC = () => {
         </div>
         <FilterList
           { ...cls('filter-list') }
-          screen="desktop"
+          screen="mobile"
           filters={ filterKeysTempData }
         />
       </div>

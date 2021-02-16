@@ -1,7 +1,9 @@
 import React from 'react';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
+import Accordion from 'src/components/ui/Accordion/Accordion';
 import './FilterList.css';
+import Button from 'src/components/ui/Button/Button';
 
 const cls = classes('filter-list');
 
@@ -86,12 +88,31 @@ const FilterList:React.FC<IFilterList> = (props) => {
   ));
 
   const filterListMobileElement = (
-    <div>Мобильная версия</div>
+    <Accordion
+      { ...cls('accordion') }
+      Header={ (headerProps: any) => (
+        <Button
+          { ...cls('accordion-button-group') }
+          onClick={ headerProps.onClick }
+        >
+          { headerProps.groupName }
+          { headerProps.isOpen ? <span>1</span> : <span>0</span> }
+          { console.log(headerProps.isOpen) }
+        </Button>
+      ) }
+      Body={ (contentProps: any) => (
+        <div { ...cls('accordion-body', { 'is-open': contentProps.isOpen }) }>
+          { contentProps.filters.map(getFilterItemElement) }
+        </div>
+      ) }
+      data={ groupedFilters }
+      keyField="groupId"
+    />
   );
 
   return (
     <div { ...cls('', screen, mix) }>
-      {screen ? filterListDesktopElement : filterListMobileElement}
+      {screen === 'desktop' ? filterListDesktopElement : filterListMobileElement}
     </div>
   );
 };
