@@ -91,17 +91,18 @@ const FilterList:React.FC<IFilterList> = (props) => {
     <Accordion
       { ...cls('accordion') }
       Header={ (headerProps: any) => (
-        <Button
-          { ...cls('accordion-button-group') }
-          onClick={ headerProps.onClick }
-        >
-          { headerProps.groupName }
-          { headerProps.isOpen ? <span>1</span> : <span>0</span> }
-          { console.log(headerProps.isOpen) }
-        </Button>
+        <div { ...cls('accordion-header') }>
+          <Button
+            { ...cls('accordion-header-button') }
+            onClick={ headerProps.onClick }
+          >
+            { headerProps.groupName }
+            { headerProps.isOpen ? <span>&darr;</span> : <span>&rarr;</span> }
+          </Button>
+        </div>
       ) }
       Body={ (contentProps: any) => (
-        <div { ...cls('accordion-body', { 'is-open': contentProps.isOpen }) }>
+        <div { ...cls('accordion-body') }>
           { contentProps.filters.map(getFilterItemElement) }
         </div>
       ) }
