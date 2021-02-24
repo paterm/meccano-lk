@@ -68,7 +68,7 @@ const Accordion: React.FC<IAccordion> = (props) => {
             <div { ...cls('header') }>
               <Header
                 { ...group }
-                onClick={ () => handleHeaderClick(key) }
+                onToggle={ () => handleHeaderClick(key) }
                 isOpen={ hasOpen(key) }
               />
             </div>

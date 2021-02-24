@@ -94,16 +94,16 @@ const FilterList:React.FC<IFilterList> = (props) => {
         <div { ...cls('accordion-header') }>
           <Button
             { ...cls('accordion-header-button') }
-            onClick={ headerProps.onClick }
+            onClick={ headerProps.onToggle }
           >
             { headerProps.groupName }
             { headerProps.isOpen ? <span>&darr;</span> : <span>&rarr;</span> }
           </Button>
         </div>
       ) }
-      Body={ (contentProps: any) => (
+      Body={ (bodyProps: any) => (
         <div { ...cls('accordion-body') }>
-          { contentProps.filters.map(getFilterItemElement) }
+          { bodyProps.filters.map(getFilterItemElement) }
         </div>
       ) }
       data={ groupedFilters }
