@@ -1,8 +1,8 @@
 import { createStore, combineReducers } from 'redux';
-import { auth, profile, mobile } from './reducers';
+import { auth, profile } from './reducers';
 
 const getStore = () => createStore(
-  combineReducers({ auth, profile, mobile })
+  combineReducers({ auth, profile })
 );
 
 export default getStore();

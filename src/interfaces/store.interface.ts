@@ -1,7 +1,6 @@
-import { TAuth, TProfile, TMobile } from '@types';
+import { TAuth, TProfile } from '@types';
 
 export interface IStore {
   auth: TAuth,
   profile: TProfile,
-  mobile: TMobile,
 }

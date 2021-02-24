@@ -11,7 +11,7 @@ interface IButton {
   className?: string
   color?: TButtonColor
   type?: 'button' | 'submit' | 'reset'
-  size?: 48 | 36 | 24
+  size?: 48 | 36 | 24 | 16
   badge?: string | number
   rounded?: boolean
   disabled?: boolean
@@ -21,7 +21,7 @@ interface IButton {
   transparent?: boolean
   square?: boolean
   children?: React.ReactNode | string
-  icon?: React.ComponentType
+  icon?: React.ComponentType<{ className?: string }>
   leftIcon?: React.ComponentType
   rightIcon?: React.ComponentType
   onClick?: () => void
@@ -79,7 +79,7 @@ const Button: React.FC<IButton> = ({
       style={ style }
     >
       { leftIcon && <span { ...cls('left-icon') }><LeftIcon /></span> }
-      { children || <Icon /> }
+      { children || <Icon { ...cls('icon', size.toString()) } /> }
       { rightIcon && <span { ...cls('right-icon') }><RightIcon /></span> }
       { badge && <div { ...cls('badge') }>{badge}</div> }
     </button>

@@ -1,0 +1,45 @@
+.filter__bar {
+  margin-top: auto;
+}
+
+.filter__template-button {
+  width: 100%;
+  justify-content: start;
+  padding-left: 48px;
+}
+
+@media screen and (max-width: 767px) {
+  .filter__template-button {
+    display: none;
+  }
+}
+
+.filter__guide {
+  padding: 16px;
+  min-height: 184px;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .filter__guide {
+    margin: 24px;
+    min-height: auto;
+    padding: 0;
+  }
+}
+
+.filter__guide-link {
+  margin: 0;
+  text-decoration: none;
+  color: var(--dark-60);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+}
+
+.filter__guide-icon {
+  color: var(--dark-60);
+  height: 16px;
+  width: 16px;
+  margin: 3px 8px 0 0;
+}

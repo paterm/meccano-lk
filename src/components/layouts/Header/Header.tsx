@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { MobileContext } from 'src/contexts/MobileContext';
 import { IStore } from '@interfaces';
 import { classes } from '@utils';
 import { useSelector } from 'react-redux';
@@ -18,8 +19,8 @@ interface IHeader {
 }
 
 const Header: React.FC<IHeader> = () => {
+  const { isMobile } = useContext(MobileContext);
   const profile = useSelector((state:IStore) => state.profile);
-  const isMobile = useSelector((state:IStore) => state.mobile);
   const { loggedIn } = useSelector((state:IStore) => state.auth);
   const [ isOpen, setIsOpen ] = useState(false);
   const menuStructure = getMenuStructure(profile);

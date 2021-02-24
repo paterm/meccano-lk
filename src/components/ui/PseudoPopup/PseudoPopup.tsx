@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { MobileContext } from 'src/contexts/MobileContext';
 import { classes, usePopup } from '@utils';
-import { IStore } from '@interfaces';
-import { useSelector } from 'react-redux';
 import { ReactComponent as DropDownIcon } from '@assets/icons/button/drop-down.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Overlay from '../Overlay/Overlay';
@@ -38,7 +37,7 @@ const PseudoPopup: React.FC<IPseudoPopup> = ({
   bar,
   menu,
 }) => {
-  const { isMobile } = useSelector((state:IStore) => state.mobile);
+  const { isMobile } = useContext(MobileContext);
   const [isOpenDropDown, setIsOpenDropDown] = useState(false);
   const popup = usePopup();
 
