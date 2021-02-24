@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { MobileContext } from 'src/contexts/MobileContext';
 import { classes } from '@utils';
 import { ReactComponent as EditIcon } from '@assets/icons/button/edit.svg';
+import { ReactComponent as SaveIcon } from '@assets/icons/button/save.svg';
 import { ReactComponent as MinusIcon } from '@assets/icons/button/chekbox-minus.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Button from '../../../../ui/Button/Button';
@@ -138,6 +140,8 @@ const templateTempData = [
 ];
 
 const FilterGeneral:React.FC = () => {
+  const { isMobile } = useContext(MobileContext);
+
   const getFilterTemplateElement = (data: any) => data.map((el: any) => {
     const colorStyle = el?.color
       ? { color: el.color }
@@ -167,43 +171,66 @@ const FilterGeneral:React.FC = () => {
         <div { ...cls('control-panel') }>
           <Button
             { ...cls('button', 'create') }
-            size={ 16 }
+            size={ isMobile ? 48 : 16 }
             color="gray"
-            square
-            link
-            leftIcon={ EditIcon }
+            square={ !isMobile }
+            link={ !isMobile }
+            leftIcon={ isMobile ? undefined : EditIcon }
+            icon={ isMobile ? EditIcon : undefined }
+            rounded={ isMobile }
           >
-            Создать шаблон
+            { !isMobile && 'Создать шаблон' }
           </Button>
+          { isMobile && (
+            <Button
+              { ...cls('button', 'save') }
+              size={ 48 }
+              color="gray"
+              icon={ SaveIcon }
+              rounded
+            />
+          ) }
           <Button
             { ...cls('button', 'disabled') }
-            size={ 16 }
-            color="gray"
-            square
-            link
-            leftIcon={ MinusIcon }
+            size={ isMobile ? 48 : 16 }
+            color={ isMobile ? 'coral' : 'gray' }
+            filled={ isMobile }
+            square={ !isMobile }
+            link={ !isMobile }
+            leftIcon={ isMobile ? undefined : MinusIcon }
+            icon={ isMobile ? MinusIcon : undefined }
+            rounded={ isMobile }
           >
-            Отключить все
+            { !isMobile && 'Отключить все' }
           </Button>
           <Button
             { ...cls('button', 'reset') }
-            size={ 16 }
+            size={ isMobile ? 48 : 16 }
             color="gray"
-            square
-            link
-            leftIcon={ CloseIcon }
+            square={ !isMobile }
+            link={ !isMobile }
+            leftIcon={ isMobile ? undefined : CloseIcon }
+            icon={ isMobile ? CloseIcon : undefined }
+            rounded={ isMobile }
           >
-            Сбросить все
+            { !isMobile && 'Сбросить все' }
           </Button>
         </div>
-        <div { ...cls('filter-template') }>
-          { getFilterTemplateElement(templateTempData) }
-        </div>
+        { !isMobile && (
+          <div { ...cls('filter-template') }>
+            { getFilterTemplateElement(templateTempData) }
+          </div>
+        ) }
         <FilterList
           { ...cls('filter-list') }
-          screen="mobile"
+          screen={ isMobile ? 'mobile' : 'desktop' }
           filters={ filterKeysTempData }
         />
+        { isMobile && (
+          <div { ...cls('filter-template', 'mobile') }>
+            { getFilterTemplateElement(templateTempData) }
+          </div>
+        ) }
       </div>
       <div { ...cls('footer') }>
         <Button

@@ -2,6 +2,7 @@ import React from 'react';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Accordion from 'src/components/ui/Accordion/Accordion';
+import { ReactComponent as ArrowRightIcon } from '@assets/icons/button/arrow-right.svg';
 import './FilterList.css';
 import Button from 'src/components/ui/Button/Button';
 
@@ -93,11 +94,12 @@ const FilterList:React.FC<IFilterList> = (props) => {
       Header={ (headerProps: any) => (
         <div { ...cls('accordion-header') }>
           <Button
-            { ...cls('accordion-header-button') }
+            { ...cls('accordion-header-button', { first: headerProps.index === 0 }) }
             onClick={ headerProps.onToggle }
           >
             { headerProps.groupName }
-            { headerProps.isOpen ? <span>&darr;</span> : <span>&rarr;</span> }
+            <span { ...cls('accordion-header-badge') }>{ headerProps.filters.length }</span>
+            <ArrowRightIcon { ...cls('accordion-header-arrow', { 'is-open': headerProps.isOpen }) } />
           </Button>
         </div>
       ) }

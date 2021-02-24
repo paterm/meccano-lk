@@ -66,7 +66,7 @@
 .filter-list__desktop-filters {
   margin: 24px 0 0;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
   gap: 16px 24px;
 }
 
@@ -76,7 +76,49 @@
 }
 
 .filter-list__accordion-header-button {
-  justify-content: start;
+  justify-content: space-between;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+  background: transparent;
+  padding: 0;
+  border-top: 1px solid var(--dark-12);
+  min-height: 55px;
+}
+
+.filter-list__accordion-header-button--first {
+  border: transparent;
+}
+
+.filter-list__accordion-header-button:active {
+  color: var(--dark-80);
+  background: transparent;
+  box-shadow: none;
+}
+
+.filter-list__accordion-header-badge {
+  background-color: var(--coral);
+  color: var(--white);
+  padding: 0 6px;
+  min-width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: 0 auto 0 12px;
+}
+
+.filter-list__accordion-header-arrow {
+  color: var(--dark-60);
+  width: 24px;
+  height: 24px;
+  transition: transform 0.2s;
+}
+
+.filter-list__accordion-header-arrow--is-open {
+  transform: rotate(90deg);
 }
 
 .filter-list__accordion-body {

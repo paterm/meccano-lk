@@ -186,6 +186,11 @@
   vertical-align: bottom;
 }
 
+.button__icon--48 {
+  width: 24px;
+  height: 24px;
+}
+
 .button--icon.button--36 {
   width: 36px;
   height: 36px;

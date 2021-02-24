@@ -13,29 +13,39 @@ const cls = classes('filter');
 
 const views = [
   { view: 'filter-main', name: 'Общие', component: FilterGeneral, },
+  { view: 'filter-objects', name: 'Обьекты', component: FilterGeneral, },
+  { view: 'filter-sources', name: 'Источники', component: FilterGeneral, },
+  { view: 'filter-geo', name: 'География', component: FilterGeneral, },
+  { view: 'filter-authors', name: 'Авторы', component: FilterGeneral, },
+  { view: 'filter-tags', name: 'Теги', component: FilterGeneral, }
 ];
 
 interface IFilter {
   view: string
 }
 
-const Filter:React.FC<IFilter> = ({ view: startView }) => {
+const Filter:React.FC<IFilter> = ({ view }) => {
   const popup = usePopup();
 
-  const menu = views.map(({ view, name }) => (
-    { view, name, onClick: () => popup.open(view) }
+  const menu = views.map((el) => (
+    { view: el.view, name: el.name, onClick: () => popup.open(el.view) }
   ));
 
-  const getActiveView = (view: string): any => views
-    .find((el) => el.view === view)?.component || null;
+  const getActiveView = (slug: string): any => views
+    .find((el) => el.view === slug)?.component || null;
 
-  const ActiveView = getActiveView(startView);
+  const getViewName = (slug: string): any => views
+    .find((el) => el.view === slug)?.name || '';
+
+  const ActiveView = getActiveView(view);
+  const activeViewName = getViewName(view);
 
   return (
     <PseudoPopup
       { ...cls() }
       title="Фильтр"
-      childrenViewName={ startView }
+      childrenView={ view }
+      childrenViewName={ activeViewName }
       menu={ menu }
       bar={ (
         <div { ...cls('bar') }>
@@ -58,7 +68,7 @@ const Filter:React.FC<IFilter> = ({ view: startView }) => {
       ) }
     >
       <Helmet>
-        <title>{startView} | Настройки фильтра | Maeccano</title>
+        <title>{activeViewName} | Настройки фильтра | Maeccano</title>
       </Helmet>
       <ActiveView />
     </PseudoPopup>

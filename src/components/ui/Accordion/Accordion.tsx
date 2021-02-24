@@ -70,6 +70,7 @@ const Accordion: React.FC<IAccordion> = (props) => {
                 { ...group }
                 onToggle={ () => handleHeaderClick(key) }
                 isOpen={ hasOpen(key) }
+                index={ index }
               />
             </div>
             <div
@@ -87,6 +88,7 @@ const Accordion: React.FC<IAccordion> = (props) => {
                 <Body
                   { ...group }
                   isOpen={ hasOpen(key) }
+                  index={ index }
                 />
               </div>
             </div>
