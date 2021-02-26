@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { classes } from '@utils';
+import { classes, usePopup } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as DownArrowIcon } from '@assets/icons/button/down-arrow.svg';
 import { ReactComponent as EditIcon } from '@assets/icons/button/edit.svg';
@@ -39,6 +39,7 @@ const FilterPanel: React.FC<IFilterPanel> = ({
   onDelete
 }) => {
   const [ isOpenTemplates, setIsOpenTemplates ] = useState(false);
+  const popup = usePopup();
 
   const groups = Array.from(new Set(filters.map((el) => el.group)));
   const groupedFilters = groups.map((g) => (
@@ -171,6 +172,7 @@ const FilterPanel: React.FC<IFilterPanel> = ({
           size={ 48 }
           color="coral"
           transparent
+          onClick={ () => popup.open('filter-main') }
         >
           <FilterIcon />
           Настроить фильтр

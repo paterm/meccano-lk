@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { MobileContext } from 'src/contexts/MobileContext';
 import { classes } from '@utils';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Input from 'src/components/ui/Input/Input';
-import { IStore } from '@interfaces';
-import { useSelector } from 'react-redux';
+import Button from 'src/components/ui/Button/Button';
+import DropDown from 'src/components/ui/DropDown/DropDown';
 import { ReactComponent as HelpIcon } from '@assets/icons/button/help.svg';
 import { ReactComponent as SortIcon } from '@assets/icons/button/sort.svg';
 import { ReactComponent as ArrowLeftIcon } from '@assets/icons/button/arrow-left.svg';
@@ -17,8 +18,6 @@ import { ReactComponent as AddPersonIcon } from '@assets/icons/button/add-person
 import { ReactComponent as TagIcon } from '@assets/icons/button/tag.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
 import './MessagesControlPanel.css';
-import Button from 'src/components/ui/Button/Button';
-import DropDown from 'src/components/ui/DropDown/DropDown';
 
 const cls = classes('messages-control-panel');
 
@@ -52,7 +51,7 @@ const MessagesControlPanel: React.FC<IMessagesControlPanel> = ({
   onOpenFilter,
   onScrollToIndex
 }) => {
-  const { isMobile } = useSelector((state: IStore) => state.mobile);
+  const { isMobile } = useContext(MobileContext);
   const [ isOpenSoftMenu, setIsOpenSoftMenu ] = useState(false);
   const [ isOpenMoreMenu, setIsOpenMoreMenu ] = useState(false);
   const [ isOpenToneMenu, setIsOpenToneMenu ] = useState(false);

@@ -2,13 +2,15 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 
 const Account = React.lazy(() => import('../../components/views/Account/Account'));
+const Filter = React.lazy(() => import('../../components/views/Filter/Filter'));
 
 const popups: { [key: string]: React.LazyExoticComponent<React.FC<any>> } = {
   'account-main': Account,
   'account-response': Account,
   'account-notifications': Account,
   'account-password': Account,
-  'account-interface': Account
+  'account-interface': Account,
+  'filter-main': Filter,
 };
 
 const getQueryParam = (param: string, paramString: string) => {
