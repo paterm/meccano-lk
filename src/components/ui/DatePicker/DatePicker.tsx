@@ -33,13 +33,13 @@ const RightIcon = React.createElement(ChevronRight, { ...cls('icon', 'right') })
 
 type TFocusChange = 'startDate' | 'endDate' | null;
 
-const DatePicker: React.FC<IDatePicker> = (
-  {
-    value = { startDate: moment().subtract(1, 'w'), endDate: moment() },
-    onChange = () => {
-    },
-  }
-) => {
+const DatePicker: React.FC<IDatePicker> = ({
+  value = {
+    startDate: moment().subtract(1, 'w'),
+    endDate: moment()
+  },
+  onChange = () => {},
+}) => {
   const [ isOpen, setIsOpen ] = useState(false);
   const [ isMobile, setIsMobile ] = useState(window.innerWidth < 1024);
   const [ dates, setDates ] = useState<TDatesPeriod>(value);

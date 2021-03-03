@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { classes } from '@utils';
-import Button, { TButtonColor } from '../../../../../../../ui/Button/Button';
+import Button, { TButtonColor } from '../../../../../ui/Button/Button';
 import './PossibilityWidgetItem.css';
 
 const cls = classes('possibility-widget-item');

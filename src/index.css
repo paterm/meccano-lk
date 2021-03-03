@@ -95,6 +95,8 @@ menu {
 
 button {
   padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .container {

@@ -1,8 +1,8 @@
 import React from 'react';
 import { classes, toPriceFormat } from '@utils';
-import DashboardCard from '../../../DashboardCard/DashboardCard';
+import DashboardCard from '../../../Dashboard/src/DashboardCard/DashboardCard';
 import { ReactComponent as ArrowIcon } from './assets/arrow-icon.svg';
-import InfoTooltip from '../../../../../../ui/InfoTooltip/InfoTooltip';
+import InfoTooltip from '../../../../ui/InfoTooltip/InfoTooltip';
 import './TonalityDynamicData.css';
 
 const cls = classes('tonality-dynamic-data');
@@ -60,9 +60,10 @@ type TProjectData = {
 
 type PROPS = {
   data: TProjectData[]
+  className?: string
 };
 
-const TonalityDynamicData: React.FC<PROPS> = ({ data }) => {
+const TonalityDynamicData: React.FC<PROPS> = ({ data, className }) => {
   const reduceData: { [key: string]: any } = data.reduce((prev, current) => {
     const acc = { ...prev };
 
@@ -84,7 +85,7 @@ const TonalityDynamicData: React.FC<PROPS> = ({ data }) => {
   });
 
   return (
-    <DashboardCard { ...cls() }>
+    <DashboardCard { ...cls('', '', className) }>
       { Object.keys(reduceData).map((key) => (
         <div { ...cls('card') } key={ key }>
           <div { ...cls('card-label') }>

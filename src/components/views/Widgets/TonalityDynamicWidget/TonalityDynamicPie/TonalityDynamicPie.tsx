@@ -9,7 +9,6 @@ import {
   Tooltip
 } from 'recharts';
 import { classes, toPriceFormat } from '@utils';
-import DashboardCard from '../../../DashboardCard/DashboardCard';
 
 const cls = classes('tonality-dynamic-pie');
 
@@ -86,37 +85,35 @@ const TonalityDynamicPie: React.FC<ITonalityDynamicPie> = ({ data }) => {
   };
 
   return (
-    <DashboardCard title="Динамика тональности">
-      <ResponsiveContainer
-        { ...cls() }
-        height={ 360 }
-        width="100%"
+    <ResponsiveContainer
+      { ...cls() }
+      height={ 360 }
+      width="100%"
+    >
+      <PieChart
+        width={ 259 }
+        height={ 259 }
       >
-        <PieChart
-          width={ 259 }
-          height={ 259 }
+        <Pie
+          data={ data }
+          dataKey="value"
+          nameKey="name"
+          labelLine={ false }
+          label={ renderCustomizedLabel }
         >
-          <Pie
-            data={ data }
-            dataKey="value"
-            nameKey="name"
-            labelLine={ false }
-            label={ renderCustomizedLabel }
-          >
-            {
-              data.map((entry, index) => (
-                <Cell
-                  key={ `cell-${index}` }
-                  fill={ entry.color }
-                />
-              ))
-            }
-          </Pie>
-          <Tooltip />
-          <Legend />
-        </PieChart>
-      </ResponsiveContainer>
-    </DashboardCard>
+          {
+            data.map((entry, index) => (
+              <Cell
+                key={ `cell-${index}` }
+                fill={ entry.color }
+              />
+            ))
+          }
+        </Pie>
+        <Tooltip />
+        <Legend />
+      </PieChart>
+    </ResponsiveContainer>
   );
 };
 

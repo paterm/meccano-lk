@@ -69,28 +69,57 @@ export const SIDEBAR_MENU: ISidebarItem[] = [
         new: 195,
         link: '/messages'
       },
-      { label: 'Требуют реакции', count: 27, hot: true },
-      { label: 'Необработанные', count: 2502 },
-      { label: 'Обработанные', count: 795 },
-      { label: 'Назначенные мне', count: 4 },
-      { label: 'Назначил', count: 2 },
-      { label: 'Избранные', count: 34 },
-      { label: 'Удаленные', count: 250 },
+      {
+        label: 'Требуют реакции',
+        count: 27,
+        hot: true,
+        link: '/messages'
+      },
+      {
+        label: 'Необработанные',
+        count: 2502,
+        link: '/messages'
+      },
+      {
+        label: 'Обработанные',
+        count: 795,
+        link: '/messages'
+      },
+      {
+        label: 'Назначенные мне',
+        count: 4,
+        link: '/messages'
+      },
+      {
+        label: 'Назначил',
+        count: 2,
+        link: '/messages'
+      },
+      {
+        label: 'Избранные',
+        count: 34,
+        link: '/messages'
+      },
+      {
+        label: 'Удаленные',
+        count: 250,
+        link: '/messages'
+      },
     ]
   },
   {
     Icon: React.createElement(AnalyticIcon, { className: 'sidebar__icon' }),
     label: 'Аналитика',
     children: [
-      { label: 'Все', link: '' },
-      { label: 'Общие показатели', link: '' },
-      { label: 'Тональность', link: '' },
-      { label: 'География', link: '' },
-      { label: 'Источники', link: '' },
-      { label: 'Демография', link: '' },
-      { label: 'Сообщения', link: '' },
-      { label: 'Типы площадок', link: '' },
-      { label: 'Авторы', link: '' },
+      { label: 'Все', link: '/analytics' },
+      { label: 'Общие показатели', link: '/analytics' },
+      { label: 'Тональность', link: '/analytics' },
+      { label: 'География', link: '/analytics' },
+      { label: 'Источники', link: '/analytics' },
+      { label: 'Демография', link: '/analytics' },
+      { label: 'Сообщения', link: '/analytics' },
+      { label: 'Типы площадок', link: '/analytics' },
+      { label: 'Авторы', link: '/analytics' },
     ]
   },
   {
