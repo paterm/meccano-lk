@@ -12,14 +12,19 @@ interface IButtonSwitcherItem {
 interface IButtonSwitcher {
   activeButtonId: string | number
   buttons: IButtonSwitcherItem[]
-  onChange: (buttonId: string | number) => void
+  onChange: (buttonId: string) => void
 }
 
-const ButtonSwitcher: React.FC<IButtonSwitcher> = ({ buttons, activeButtonId, onChange }) => {
+const ButtonSwitcher: React.FC<IButtonSwitcher> = ({
+  buttons,
+  activeButtonId,
+  onChange
+}) => {
   const backEffectRef = useRef<HTMLDivElement>(null);
   const calculateWidth = useCallback(() => {
     if (backEffectRef && backEffectRef.current && activeButtonId) {
-      const btn: HTMLButtonElement | null = document.querySelector(`.button-switcher__item[data-id=${activeButtonId}]`);
+      const btn: HTMLButtonElement | null = document
+        .querySelector(`.button-switcher__item[data-id=${activeButtonId}]`);
 
       backEffectRef.current.style.width = `${btn?.clientWidth}px`;
       backEffectRef.current.style.left = `${btn?.offsetLeft}px`;
@@ -43,7 +48,7 @@ const ButtonSwitcher: React.FC<IButtonSwitcher> = ({ buttons, activeButtonId, on
             { ...cls('item', { active: isActive }) }
             key={ item.id }
             data-id={ item.id }
-            onClick={ () => !isActive && onChange(item.id) }
+            onClick={ () => !isActive && onChange(item.id.toString()) }
           >
             { item.label }
           </button>

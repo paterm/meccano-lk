@@ -3,9 +3,11 @@ import { classes } from '@utils';
 import TonalityDynamicPie from './TonalityDynamicPie/TonalityDynamicPie';
 import './TonalityDynamicWidget.css';
 import TonalityDynamicData from './TonalityDynamicData/TonalityDynamicData';
-import { projectData } from '../../mockup';
+import { projectData } from '../../Dashboard/src/mockup';
+import Card from '../../../ui/Card/Card';
 
 const cls = classes('tonality-dynamic-widget');
+
 const TonalityDynamicWidget: React.FC = () => {
   const PieData = [
     {
@@ -27,7 +29,10 @@ const TonalityDynamicWidget: React.FC = () => {
 
   return (
     <section { ...cls() }>
-      <TonalityDynamicPie data={ PieData } />
+      <Card title="Динамика тональности">
+        <TonalityDynamicPie data={ PieData } />
+      </Card>
+
       <TonalityDynamicData data={ projectData } />
     </section>
   );

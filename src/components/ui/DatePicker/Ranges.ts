@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 
 export interface IRangeItem {
   id: string,

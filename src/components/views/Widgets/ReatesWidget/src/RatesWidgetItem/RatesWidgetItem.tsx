@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { classes, toPriceFormat } from '@utils';
 import DefaultImage from './assets/rates-bg.jpg';
-import Button from '../../../../../../../ui/Button/Button';
+import Button from '../../../../../ui/Button/Button';
 import './RatesWidgetItem.css';
 
 const cls = classes('rates-widget-item');
