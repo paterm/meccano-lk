@@ -1,6 +1,7 @@
 .footer {
   position: relative;
   background-color: var(--dark);
+  margin-top: auto;
   padding: 32px 0;
   z-index: 4;
 }

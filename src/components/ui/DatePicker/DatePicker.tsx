@@ -9,7 +9,7 @@ import 'react-dates/lib/css/_datepicker.css';
 import { DayPickerRangeController } from 'react-dates';
 import moment from 'moment';
 import { classes } from '@utils';
-import { TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 import { ReactComponent as CalendarIcon } from './assets/calendar.svg';
 import { ReactComponent as ChevronLeft } from './assets/chevron-left.svg';
 import { ReactComponent as ChevronRight } from './assets/chevron-right.svg';

@@ -47,11 +47,11 @@
   --sidebar-width: 72px;
 }
 
-/*html, body,*/
-/*#root,*/
-/*.main {*/
-/*  min-height: 100%;*/
-/*}*/
+html,
+body,
+#root {
+  height: 100%;
+}
 
 body {
   margin: 0;

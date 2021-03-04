@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react';
-import { TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 import { classes } from '@utils';
 import { useHistory } from 'react-router-dom';
 import { RouteComponentProps, useParams } from 'react-router';
@@ -11,8 +11,8 @@ import {
   initialPeriod, TonalityPieData, TonalityBarData,
 } from './data';
 import './Analytics.css';
-import TonalityDynamicData from '../Widgets/TonalityDynamicWidget/TonalityDynamicData/TonalityDynamicData';
 import { projectData } from '../Dashboard/src/mockup';
+import TonalityDynamicData from '../Widgets/TonalityDynamicWidget/TonalityDynamicData/TonalityDynamicData';
 import SummaryProjectWidget from '../Widgets/SummaryProjectWidget/SummaryProjectWidget';
 import TonalityDynamicPie from '../Widgets/TonalityDynamicWidget/TonalityDynamicPie/TonalityDynamicPie';
 import Card from '../../ui/Card/Card';
@@ -53,7 +53,10 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
   switch (type) {
     case 'tonality':
       section = (
-        <Card { ...cls('tonality-card') }>
+        <Card
+          title="Тональность"
+          { ...cls('tonality-card') }
+        >
           <TonalityDynamicPie data={ TonalityPieData } />
           <TonalityBarWidget data={ TonalityBarData } />
         </Card>
@@ -90,7 +93,9 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
       <div
         { ...cls('body', '', 'container') }
       >
-        { section }
+        <Card withoutTopBorder>
+          { section }
+        </Card>
       </div>
     </div>
   );

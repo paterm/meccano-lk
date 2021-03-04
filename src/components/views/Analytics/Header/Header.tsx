@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
-import { T_UNKNOWN_OBJ, TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import Select from '../../../ui/Select/Select';

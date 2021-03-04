@@ -1,4 +1,4 @@
-import { TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 import moment from 'moment';
 
 export enum ScreenType {
@@ -147,6 +147,6 @@ export const TonalityBarData = [
     pos: 1600,
     ng: 9650,
     ne: 11200,
-    date: '2020-06-10T00:00:00'
+    date: '2020-08-10T00:00:00'
   }
 ]

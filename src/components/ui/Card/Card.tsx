@@ -9,6 +9,7 @@ interface ICard {
   title?: React.ReactNode | string
   rightContent?: React.ReactNode
   children?: React.ReactNode
+  withoutTopBorder?: boolean
 }
 
 const Card: React.FC<ICard> = (
@@ -16,10 +17,11 @@ const Card: React.FC<ICard> = (
     className,
     title,
     rightContent,
-    children
+    children,
+    withoutTopBorder = false
   }
 ) => (
-  <div { ...cls('', '', className) }>
+  <div { ...cls('', { 'without-top-border': withoutTopBorder }, className) }>
     { (title || rightContent) && (
       <div { ...cls('header') }>
         <h2 { ...cls('title') }>{ title }</h2>

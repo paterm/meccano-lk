@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { TProfile } from '@types';
+import { TProfile } from '@t';
 import { classes, usePopup } from '@utils';
 import { ReactComponent as ArrowDown } from '@assets/icons/profile/profile__down-arrow.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/header/config-icon.svg';

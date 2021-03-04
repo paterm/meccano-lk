@@ -3,7 +3,6 @@ import ReactSelect from 'react-select';
 import { classes } from '@utils';
 import { ReactSelectStyle } from './ReactSelectStyle';
 import './Select.css';
-import { T_UNKNOWN_OBJ } from '@types';
 
 const cls = classes('select');
 
