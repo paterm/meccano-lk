@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { classes } from '@utils';
+import React, { useEffect, useState } from 'react';
+import { classes, useQueryParams } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import moment from 'moment';
@@ -24,11 +24,17 @@ const testOnClick = (message: any) => {
   console.log(`onClick => ${message}`);
 };
 
+enum ScreenType {
+  SMI = 'smi',
+  SOCIAL = 'social',
+}
+
 const testMessagesExemple: IMessage[] = [
   {
     id: '1',
-    typeId: '',
-    typeName: '',
+    typeId: 'T1',
+    typeSlug: ScreenType.SMI,
+    typeName: 'СМИ',
     date: '11:25 15.01.2021',
     needReaction: true,
     isCompleted: false,
@@ -52,8 +58,9 @@ const testMessagesExemple: IMessage[] = [
   },
   {
     id: '2',
-    typeId: '',
-    typeName: '',
+    typeId: 'T1',
+    typeSlug: ScreenType.SMI,
+    typeName: 'СМИ',
     date: '12:30 15.06.2020',
     needReaction: false,
     isCompleted: false,
@@ -117,11 +124,6 @@ const initFilters = [
   { group: 'Что-то ещё', label: 'Отрасль 7030', isActived: false },
 ];
 
-enum ScreenType {
-  SMI = 'smi',
-  SOCIAL = 'social',
-}
-
 const initialPeriod: TDatesPeriod = {
   startDate: moment().subtract(1, 'w').startOf('day'),
   endDate: moment()
@@ -141,6 +143,12 @@ const Messages: React.FC = () => {
     endIndex: 0,
   });
   const [ rangeStep ] = useState(10);
+  const queryParams = useQueryParams();
+
+  useEffect(() => {
+    const type = queryParams.get('type');
+    setActiveType(type || activeType);
+  }, [queryParams, activeType]);
 
   const handleCheckFilter = (values: any) => {
     const updatedFilres = [...filters];
@@ -220,7 +228,7 @@ const Messages: React.FC = () => {
             { id: ScreenType.SMI, label: 'СМИ 1 022' },
             { id: ScreenType.SOCIAL, label: 'СОЦМЕДИА 1 480' },
           ] }
-          onChange={ (buttonId) => setActiveType(buttonId) }
+          onChange={ (buttonId) => queryParams.set({ type: buttonId as string }) }
         />
 
         <DatePicker value={ datePeriod } onChange={ setDatePeriod } />
