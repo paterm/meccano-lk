@@ -12,8 +12,8 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/ru';
 import './SummaryProjectWidget.css';
 import { classes } from '@utils';
-import Card from '../../DashboardCard/DashboardCard';
-import { projectData } from '../../mockup';
+import Card from '../../Dashboard/src/DashboardCard/DashboardCard';
+import { projectData } from '../../Dashboard/src/mockup';
 
 dayjs.locale('ru');
 

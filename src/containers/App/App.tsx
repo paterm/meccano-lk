@@ -1,7 +1,7 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
-import { TProfile } from '@types';
+import { TProfile } from '@t';
 import Router from './Router';
 import PopupRouter from './PopupRouter';
 import Header from '../../components/layouts/Header/Header';

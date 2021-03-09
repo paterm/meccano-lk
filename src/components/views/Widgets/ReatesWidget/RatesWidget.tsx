@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { classes } from '@utils';
-import Card from '../../DashboardCard/DashboardCard';
+import Card from '../../Dashboard/src/DashboardCard/DashboardCard';
 import RatesWidgetItem, { IRatesWidgetItem } from './src/RatesWidgetItem/RatesWidgetItem';
 import './RatesWidget.css';
 

@@ -19,7 +19,7 @@ interface ISelect {
   isMulti?: boolean
   isDisabled?: boolean
   isClearable?: boolean
-  onChange: () => void
+  onChange: (item: any) => void
 }
 
 const Select: React.FC<ISelect> = (

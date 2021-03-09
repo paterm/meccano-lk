@@ -1,6 +1,6 @@
-import { TDashboardEvent } from './Widgets/LastEventsWidget/LastEventsWidget';
+import { TDashboardEvent } from '../../Widgets/LastEventsWidget/LastEventsWidget';
 import DefaultAdsImage from '../../../../assets/images/widget-ads.jpg';
-import { ReactComponent as DownloadIcon } from './Widgets/LastEventsWidget/assets/download-icon.svg';
+import { ReactComponent as DownloadIcon } from '../../Widgets/LastEventsWidget/assets/download-icon.svg';
 
 export const projectData = [
   {

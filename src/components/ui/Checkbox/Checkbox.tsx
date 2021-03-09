@@ -13,6 +13,7 @@ interface ICheckbox {
   checked?: boolean
   disabled?: boolean
   onChange: (checked: boolean) => void
+  children?: React.ReactNode
 }
 
 const Checkbox: React.FC<ICheckbox> = ({
@@ -23,6 +24,7 @@ const Checkbox: React.FC<ICheckbox> = ({
   label,
   checked,
   disabled,
+  children,
   onChange,
 }) => {
   const [ isChecked, setIsChecked ] = useState(checked || false);
@@ -62,6 +64,7 @@ const Checkbox: React.FC<ICheckbox> = ({
           { label }
         </span>
       )}
+      { children }
     </label>
   );
 };

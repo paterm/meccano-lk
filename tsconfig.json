@@ -22,15 +22,15 @@
     "baseUrl": "./",
     "paths": {
       "@assets": ["src/assets"],
-      "@components": ["src/components"],
-      "@ui": ["src/components/ui"],
-      "@layouts": ["src/components/layouts"],
-      "@views": ["src/components/views"],
+      "@components/*": ["src/components/*"],
+      "@ui/*": ["src/components/ui/*"],
+      "@layouts/*": ["src/components/layouts/*"],
+      "@views/*": ["src/components/views/*"],
       "@utils": ["src/utils"],
       "@store": ["src/store"],
       "@interfaces": ["src/interfaces"],
-      "@types": ["src/types"],
-      "@enums": ["src/enums"]
+      "@t": ["src/types"],
+      "@enum*": ["src/enums"]
     }
   },
   "include": [

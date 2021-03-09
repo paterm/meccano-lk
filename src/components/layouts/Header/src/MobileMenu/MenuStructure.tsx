@@ -1,6 +1,6 @@
 import React from 'react';
 import defaultAvatar from '@assets/images/defaultAvatar.jpg';
-import { TProfile } from '@types';
+import { TProfile } from '@t';
 import { IMobileMenuItem } from './src/MobileMenuItem/MobileMenuItem';
 
 export interface IMobileStructure extends IMobileMenuItem{

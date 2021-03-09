@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { classes } from '@utils';
-import Card from '../../DashboardCard/DashboardCard';
-import Button from '../../../../../ui/Button/Button';
+import Card from '../../Dashboard/src/DashboardCard/DashboardCard';
+import Button from '../../../ui/Button/Button';
 import { Possibilities } from './src/Possibilities';
 import PossibilityWidgetItem from './src/PossibilityWidgetItem/PossibilityWidgetItem';
 import './PossibilityWidget.css';
