@@ -14,6 +14,7 @@ import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 import MessageList from './MessageList/MessageList';
 import avatarRbk from '../../../assets/temp/rbk.jpg';
 import avatarSber from '../../../assets/temp/sber.jpg';
+import { IMessage } from '../../../interfaces/IMessage';
 import './Messages.css';
 
 const cls = classes('messages');
@@ -23,36 +24,56 @@ const testOnClick = (message: any) => {
   console.log(`onClick => ${message}`);
 };
 
-const testMessagesExemple = [
+const testMessagesExemple: IMessage[] = [
   {
     id: '1',
+    typeId: '',
+    typeName: '',
     date: '11:25 15.01.2021',
     needReaction: true,
+    isCompleted: false,
+    isFavorited: false,
+    isDeleted: false,
     title: 'Сбербанк купит сервис 2ГИС Зачем госбанку понадобился один из конкурентов «Яндекс.Карты»',
     annotation: 'Сбербанк получит 72% сервиса 2ГИС, одной из самых дорогих компаний Рунета, — в рамках сделки ее оценили в 14,3 млрд руб. Еще 3% будет у СП банка и Mail.ru Group. Из капитала выйдут Baring Vostok и структуры Леонида Богуславского. Сбербанк подписал обязывающие документы об инвестициях…',
-    sourceName: 'РИА Новости',
-    sourceCity: 'Москва',
+    text: '',
     mfiPrevValue: 30,
     mfiValue: 34,
     erPrevValue: 60,
     erValue: 57,
     tone: 'neutral',
-    avatar: avatarRbk
+    sourceId: '',
+    sourceName: 'РИА Новости',
+    sourceLink: 'https://qwertyqwertyqwerty.com/news/1',
+    cityId: '',
+    cityName: 'Москва',
+    sourceAvatar: avatarRbk,
+    tags: []
   },
   {
     id: '2',
+    typeId: '',
+    typeName: '',
     date: '12:30 15.06.2020',
     needReaction: false,
+    isCompleted: false,
+    isFavorited: false,
+    isDeleted: false,
     title: 'В работе онлайн-сервисов Сбербанка произошел сбой',
     annotation: 'У пользователей Сбербанка возникли трудности с доступом к его онлайн-сервисам. О невозможности воспользоваться приложением «Сбербанк Онлайн» сообщали пользователи сети Twitter (1, 2). Данные о сбоях в онлайн-сервисах банка появились и на портале Downdetector, отслеживающем работу различных интернет-ресурсов.',
-    sourceName: 'Лента',
-    sourceCity: 'Москва',
+    text: '',
     mfiPrevValue: 0,
     mfiValue: 47,
     erPrevValue: 63,
     erValue: 63,
     tone: 'negative',
-    avatar: avatarSber
+    sourceId: '',
+    sourceName: 'Лента',
+    sourceLink: 'https://qwertyqwertyqwerty.com/news/1',
+    cityId: '',
+    cityName: 'Москва',
+    sourceAvatar: avatarSber,
+    tags: []
   },
 ];
 
