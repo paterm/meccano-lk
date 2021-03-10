@@ -244,14 +244,17 @@ const Message: React.FC<IMessage> = ({
           color="gray"
           onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
         >
-          { isDiscussionOpen ? 'Скрыть обсуждение' : 'Ответить' }
+          { isDiscussionOpen ? 'Скрыть' : 'Ответить' }
         </Button>
       </div>
       { isDiscussionOpen && (
         <div { ...cls('discussion-drawer') }>
           {
-            discussionExample.map((message) => (
-              <div { ...cls('discussion-message', { 'is-agent': message.isAgent }) }>
+            discussionExample.map((message, index) => (
+              <div
+                { ...cls('discussion-message', { 'is-agent': message.isAgent }) }
+                key={ index }
+              >
                 <div { ...cls('discussion-header') }>
                   <div { ...cls('discussion-message-author') }>{ message.author }</div>
                   <div { ...cls('discussion-message-date') }>{ message.date }</div>
