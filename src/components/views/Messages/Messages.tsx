@@ -29,7 +29,7 @@ enum ScreenType {
   SOCIAL = 'social',
 }
 
-const testMessagesExemple: IMessage[] = [
+const testMessagesExample: IMessage[] = [
   {
     id: '1',
     typeId: 'T1',
@@ -82,20 +82,52 @@ const testMessagesExemple: IMessage[] = [
     sourceAvatar: avatarSber,
     tags: []
   },
+  {
+    id: '3',
+    typeId: 'T2',
+    typeSlug: ScreenType.SOCIAL,
+    typeName: 'СОЦМЕДИА',
+    date: '14:44 15.06.2020',
+    needReaction: false,
+    isCompleted: false,
+    isFavorited: false,
+    isDeleted: false,
+    title: 'Подслушано Сбербанк | Как вам новая карта сбербанка?',
+    annotation: 'Мне очень нравится, сам пользую, хочу родителям тоже взять. Единственное, непонятно, какая сумма обслуживания за год использования? Кто знает подскажите плиз.',
+    text: '',
+    mfiPrevValue: 21,
+    mfiValue: 34,
+    erPrevValue: 59,
+    erValue: 57,
+    tone: 'positive',
+    sourceId: '',
+    sourceName: 'Дмитрий Волков',
+    sourceLink: 'https://qwertyqwertyqwerty.com/news/1',
+    cityId: '',
+    cityName: 'Калининград',
+    sourceAvatar: '',
+    tags: []
+  },
 ];
 
 const testMessages: any[] = [];
 
 Array.apply('', Array(42)).forEach((el, index) => {
   testMessages.push({
-    ...testMessagesExemple[0],
-    id: (+testMessagesExemple[1].id * index + 1).toString()
+    ...testMessagesExample[0],
+    id: (+testMessagesExample[1].id * index + 1).toString()
   });
   testMessages.push({
-    ...testMessagesExemple[1],
-    id: (+testMessagesExemple[1].id * index + 2).toString()
+    ...testMessagesExample[1],
+    id: (+testMessagesExample[1].id * index + 2).toString()
+  });
+  testMessages.push({
+    ...testMessagesExample[2],
+    id: (+testMessagesExample[2].id * index + 3).toString()
   });
 });
+
+const getTestMessages = (type: any) => testMessages.filter((el: any) => el.typeSlug === type);
 
 const pOptions: ISelectOption[] = [
   { label: <span>Все <i>+195</i> <b>3297</b></span>, value: 'all' },
@@ -135,7 +167,7 @@ const Messages: React.FC = () => {
   const [ filters, setFilters ] = useState(initFilters);
   const [ activeFilterTemplateId, setActiveFilterTemplateId ] = useState(filterTemplates[2].id);
   const [ isOpenFilter, setIsOpenFilter ] = useState(false);
-  const [ messages, setMessages ] = useState((testMessages.slice(0, 10)));
+  const [ messages, setMessages ] = useState((getTestMessages(activeType).slice(0, 10)));
   const [ selectedMessages, setSelectedMessages ] = useState([] as string[]);
   const [ messagesScrollIndex, setMessagesScrollIndex ] = useState(0);
   const [ visibleRange, setVisibleRange ] = useState({
@@ -144,6 +176,10 @@ const Messages: React.FC = () => {
   });
   const [ rangeStep ] = useState(10);
   const queryParams = useQueryParams();
+
+  useEffect(() => {
+    setMessages(getTestMessages(activeType));
+  }, [activeType]);
 
   useEffect(() => {
     const type = queryParams.get('type');
@@ -173,7 +209,7 @@ const Messages: React.FC = () => {
 
   const handleSeletAllMessages = (value: boolean) => {
     if (value) {
-      const selected: string[] = testMessages.map((el) => el.id);
+      const selected: string[] = getTestMessages(activeType).map((el) => el.id);
       setSelectedMessages(selected);
     } else {
       setSelectedMessages([]);
@@ -207,8 +243,8 @@ const Messages: React.FC = () => {
   // }, [visibleRange.startIndex]);
 
   const loadMoreMessages = (lastMessageIndex: number) => {
-    if (lastMessageIndex >= (testMessages.length - 1)) return;
-    const slice = testMessages.slice(lastMessageIndex + 1, lastMessageIndex + 11);
+    if (lastMessageIndex >= (getTestMessages(activeType).length - 1)) return;
+    const slice = getTestMessages(activeType).slice(lastMessageIndex + 1, lastMessageIndex + 11);
     setTimeout(() => {
       setMessages([ ...messages, ...slice ]);
     }, 1000);
@@ -279,7 +315,7 @@ const Messages: React.FC = () => {
           pagination={
             {
               currentIndex: visibleRange.startIndex,
-              totalCount: testMessages.length,
+              totalCount: getTestMessages(activeType).length,
               perPage: rangeStep
             }
           }
@@ -288,7 +324,7 @@ const Messages: React.FC = () => {
         <MessageList
           messages={ messages }
           selected={ selectedMessages }
-          totalMessages={ testMessages.length }
+          totalMessages={ getTestMessages(activeType).length }
           scrollIndex={ messagesScrollIndex }
           onSelect={ handleSelectMessage }
           onChangeRange={ setVisibleRange }

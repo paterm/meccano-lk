@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { classes, usePopup } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
-import { ReactComponent as DownArrowIcon } from '@assets/icons/button/down-arrow.svg';
+import { ReactComponent as DownArrowIcon } from '@assets/icons/button/arrow-down.svg';
 import { ReactComponent as EditIcon } from '@assets/icons/button/edit.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/dashboard/config.svg';
 import Input from '../../../ui/Input/Input';

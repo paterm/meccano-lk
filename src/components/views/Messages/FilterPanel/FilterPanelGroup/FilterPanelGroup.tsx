@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { classes } from '@utils';
-import { ReactComponent as DownArrowIcon } from '@assets/icons/button/down-arrow.svg';
+import { ReactComponent as DownArrowIcon } from '@assets/icons/button/arrow-down.svg';
 import { ReactComponent as DeleteIcon } from '@assets/icons/filter-panel/delete.svg';
 import Button from '../../../../ui/Button/Button';
 import Checkbox from '../../../../ui/Checkbox/Checkbox';

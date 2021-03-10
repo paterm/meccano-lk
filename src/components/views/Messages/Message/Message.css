@@ -1,9 +1,16 @@
 .message {
   min-height: 260px;
+}
+
+.message__wrapper {
   padding: 16px;
   border-radius: 12px;
   box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
   background-color: var(--white);
+}
+
+.message__wrapper--social {
+  border-radius: 12px 12px 0 0;
 }
 
 .message__header {
@@ -190,4 +197,91 @@
 .message__replay-button,
 .message__open-in-new-button {
   margin: 0 8px 0 0;
+}
+
+.message__discussion-panel {
+
+}
+
+.message__discussion-toolbar {
+  border-radius: 0 0 12px 12px;
+  padding: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.message__discussion-drawer {
+  margin: -24px 32px 0;
+  padding: 48px 16px 16px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  display: grid;
+  gap: 12px;
+}
+
+.message__discussion-toggle {
+  padding: 0 6px;
+  min-width: 208px;
+  justify-content: flex-start;
+}
+
+.message__discussion-reply {
+  padding: 0 6px;
+  min-width: 208px;
+  justify-content: flex-end;
+}
+
+
+.message__discussion-actions {
+  display: grid;
+  gap: 12px;
+  align-items: center;
+  grid-auto-flow: column;
+}
+
+.message__discussion-message {
+  justify-self: start;
+  max-width: 800px;
+}
+
+.message__discussion-header {
+  display: flex;
+  align-items: center;
+}
+
+.message__discussion-message-author {
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: var(--dark-80);
+  margin: 0 8px 0 12px;
+
+}
+
+.message__discussion-message-date {
+  font-size: 10px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--dark-40);
+}
+
+.message__discussion-message-body {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: var(--dark-80);
+  margin: 4px 0 0;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background-color: var(--dark-2);
+}
+
+.message__discussion-message--is-agent {
+  justify-self: end;
+  max-width: 400px;
 }
