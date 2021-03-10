@@ -336,7 +336,7 @@ module.exports = function (webpackEnv) {
         "@utils": path.resolve(__dirname, "../src/utils"),
         "@store": path.resolve(__dirname, "../src/store"),
         "@interfaces": path.resolve(__dirname, "../src/interfaces"),
-        "@types": path.resolve(__dirname, "../src/types"),
+        "@t": path.resolve(__dirname, "../src/types"),
         "@enums": path.resolve(__dirname, "../src/enums"),
         "@ui": path.resolve(__dirname, "../src/components/ui"),
         "@layouts": path.resolve(__dirname, "../src/components/layouts"),

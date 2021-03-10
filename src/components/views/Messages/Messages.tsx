@@ -3,7 +3,7 @@ import { classes, useQueryParams } from '@utils';
 import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import moment from 'moment';
-import { TDatesPeriod } from '@types';
+import { TDatesPeriod } from '@t';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
 import DatePicker from '../../ui/DatePicker/DatePicker';

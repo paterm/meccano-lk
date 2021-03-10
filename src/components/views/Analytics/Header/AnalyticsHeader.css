@@ -1,0 +1,13 @@
+.analytics-header {
+
+}
+.analytics-header__container {
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+  margin-bottom: 32px;
+  z-index: 2;
+}
+.analytics-header .select {
+  width: 300px;
+}

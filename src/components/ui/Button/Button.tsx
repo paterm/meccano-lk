@@ -1,7 +1,7 @@
 import React from 'react';
 import { classes } from '@utils';
 import './Button.css';
-import { T_UNKNOWN_OBJ } from '@types';
+import { T_UNKNOWN_OBJ } from '@t';
 
 const cls = classes('button');
 

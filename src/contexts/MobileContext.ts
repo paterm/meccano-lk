@@ -1,5 +1,5 @@
 import { createContext } from 'react';
-import { TMobile } from '@types';
+import { TMobile } from '@t';
 
 export const MobileContext = createContext({
   isMobile: false

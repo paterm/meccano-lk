@@ -1,0 +1,36 @@
+.analytics-filters {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+.analytics-filters__button {
+  position: relative;
+  color: var(--dark-60);
+  transition: fill .2s ease;
+}
+.analytics-filters__button:hover,
+.analytics-filters__button--active {
+  color: var(--coral);
+}
+.analytics-filters__drop-down {
+  right: 0;
+  width: 234px;
+  padding: 16px;
+  text-align: left;
+  font-family: inherit;
+}
+.analytics-filters__filter + .analytics-filters__filter {
+  margin-top: 24px;
+}
+.analytics-filters__filter-label {
+  margin-bottom: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--midnight-purple-80);
+}

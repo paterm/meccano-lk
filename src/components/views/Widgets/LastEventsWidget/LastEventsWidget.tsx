@@ -1,7 +1,7 @@
 import React from 'react';
 import { classes } from '@utils';
-import Button, { TButtonColor } from '../../../../../ui/Button/Button';
-import DashboardCard from '../../DashboardCard/DashboardCard';
+import Button, { TButtonColor } from '../../../ui/Button/Button';
+import DashboardCard from '../../Dashboard/src/DashboardCard/DashboardCard';
 import { ReactComponent as RefreshIcon } from './assets/refresh-icon.svg';
 import './LastEventsWidget.css';
 
