@@ -150,3 +150,10 @@ export const TonalityBarData = [
     date: '2020-08-10T00:00:00'
   }
 ]
+
+export const GeographyData = [
+  { cityName: 'Москва', value: 702, geo: [55.7504461, 37.6174943] },
+  { cityName: 'Калининград', value: 209, geo: [54.710128, 20.5105838] },
+  { cityName: 'Екатеринбург', value: 514, geo: [56.839104, 60.60825] },
+  { cityName: 'Сочи', value: 132, geo: [43.5854823, 39.723109] },
+]
