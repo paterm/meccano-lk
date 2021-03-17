@@ -9,11 +9,36 @@ import { ReactComponent as TagIcon } from '@assets/icons/button/tag.svg';
 import { ReactComponent as ReplyIcon } from '@assets/icons/button/reply.svg';
 import { ReactComponent as OpenInNewIcon } from '@assets/icons/button/open-in-new.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down.svg';
+import { ReactComponent as ArrowUpIcon } from '@assets/icons/button/arrow-up.svg';
+import { ReactComponent as LikeIcon } from '@assets/icons/button/like.svg';
+import { ReactComponent as SendIcon } from '@assets/icons/button/send.svg';
 import Checkbox from 'src/components/ui/Checkbox/Checkbox';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
 import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
+
+const discussionExample = [
+  {
+    author: 'Дмитрий Волков',
+    date: '14:51 15.06.2020',
+    isAgent: false,
+    message: 'Мне очень нравится, сам пользую, хочу родителям тоже взять.'
+  },
+  {
+    author: 'Дмитрий Волков',
+    date: '14:52 15.06.2020',
+    isAgent: false,
+    message: 'Единственное, непонятно, какая сумма обслуживания за год использования? Кто знает подскажите плиз'
+  },
+  {
+    author: 'Сбербанк Россия',
+    date: '14:55 15.06.2020',
+    isAgent: true,
+    message: 'Здравствуйте, Дмитрий! Сумма обслуживания карты Сбербанк Суперкэшбэк 600 рублей в год'
+  },
+];
 
 const cls = classes('message');
 
@@ -36,6 +61,7 @@ const Message: React.FC<IMessage> = ({
 }) => {
   const [ checked, setChecked ] = useState(false);
   const [ favorite, setFavorite ] = useState(false);
+  const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -88,10 +114,10 @@ const Message: React.FC<IMessage> = ({
   const messageSidebarElement = (
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
-        <img { ...cls('source-avatar') } src={ data.avatar } alt="" />
+        <img { ...cls('source-avatar') } src={ data.sourceAvatar } alt="" />
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
-          <p { ...cls('source-city') }>{ data.sourceCity }</p>
+          <p { ...cls('source-city') }>{ data.cityName }</p>
         </div>
         <div { ...cls('source-metrics') }>
           <IndexMeter
@@ -179,14 +205,80 @@ const Message: React.FC<IMessage> = ({
     </div>
   );
 
+  const discussionPanelElement = (
+    <div { ...cls('discussion-panel') }>
+      <div { ...cls('discussion-toolbar') }>
+        <Button
+          { ...cls('discussion-toggle') }
+          leftIcon={ isDiscussionOpen ? ArrowUpIcon : ArrowDownIcon }
+          size={ 24 }
+          transparent
+          color="gray"
+          onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
+        >
+          Сбербанк Россия
+        </Button>
+        <div { ...cls('discussion-actions') }>
+          <Button
+            { ...cls('discussion-like') }
+            icon={ LikeIcon }
+            size={ 24 }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          />
+          <Button
+            { ...cls('discussion-like') }
+            icon={ SendIcon }
+            size={ 24 }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          />
+        </div>
+        <Button
+          { ...cls('discussion-reply') }
+          leftIcon={ isDiscussionOpen ? ArrowUpIcon : ArrowDownIcon }
+          size={ 24 }
+          transparent
+          color="gray"
+          onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
+        >
+          { isDiscussionOpen ? 'Скрыть' : 'Ответить' }
+        </Button>
+      </div>
+      { isDiscussionOpen && (
+        <div { ...cls('discussion-drawer') }>
+          {
+            discussionExample.map((message, index) => (
+              <div
+                { ...cls('discussion-message', { 'is-agent': message.isAgent }) }
+                key={ index }
+              >
+                <div { ...cls('discussion-header') }>
+                  <div { ...cls('discussion-message-author') }>{ message.author }</div>
+                  <div { ...cls('discussion-message-date') }>{ message.date }</div>
+                </div>
+                <div { ...cls('discussion-message-body') }>{ message.message }</div>
+              </div>
+            ))
+          }
+        </div>
+      ) }
+    </div>
+  );
+
   return (
     <div { ...cls('', '', mix) }>
-      { messageHeaderElement }
-      <div { ...cls('body') }>
-        { messageSidebarElement }
-        { messageContentElement }
+      <div { ...cls('wrapper', { social: data.typeSlug === 'social' }, mix) }>
+        { messageHeaderElement }
+        <div { ...cls('body') }>
+          { messageSidebarElement }
+          { messageContentElement }
+        </div>
+        { messageFooterElement }
       </div>
-      { messageFooterElement }
+      { data?.typeSlug === 'social' && discussionPanelElement }
     </div>
   );
 };
