@@ -8,7 +8,7 @@ import {
   ScreenType,
   sectionOptions,
   screenTypes,
-  initialPeriod, TonalityPieData, TonalityBarData,
+  initialPeriod, TonalityPieData, TonalityBarData, GeographyData
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -17,6 +17,7 @@ import SummaryProjectWidget from '../Widgets/SummaryProjectWidget/SummaryProject
 import TonalityDynamicPie from '../Widgets/TonalityDynamicWidget/TonalityDynamicPie/TonalityDynamicPie';
 import Card from '../../ui/Card/Card';
 import TonalityBarWidget from '../Widgets/TonalitybarWidget/TonalityBarWidget';
+import GeographyWidget from '../Widgets/GeographyWidget/GeographyWidget';
 
 const cls = classes('analytics');
 
@@ -62,6 +63,13 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
         </Card>
       )
       break
+
+    case 'geography':
+      section = (
+        <GeographyWidget data={ GeographyData } />
+      )
+      break
+
     case 'general':
     default:
       section = (
