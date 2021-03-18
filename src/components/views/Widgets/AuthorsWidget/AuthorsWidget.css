@@ -1,0 +1,8 @@
+.authors-widget__button-sort {
+  padding: 0 6px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-80);
+}
