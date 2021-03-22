@@ -63,29 +63,63 @@ export const SIDEBAR_MENU: ISidebarItem[] = [
     Icon: React.createElement(MsgIcon, { className: 'sidebar__icon' }),
     label: 'Сообщения',
     children: [
-      { label: 'Все', count: 3297, new: 195 },
-      { label: 'Требуют реакции', count: 27, hot: true },
-      { label: 'Необработанные', count: 2502 },
-      { label: 'Обработанные', count: 795 },
-      { label: 'Назначенные мне', count: 4 },
-      { label: 'Назначил', count: 2 },
-      { label: 'Избранные', count: 34 },
-      { label: 'Удаленные', count: 250 },
+      {
+        label: 'Все',
+        count: 3297,
+        new: 195,
+        link: '/messages'
+      },
+      {
+        label: 'Требуют реакции',
+        count: 27,
+        hot: true,
+        link: '/messages'
+      },
+      {
+        label: 'Необработанные',
+        count: 2502,
+        link: '/messages'
+      },
+      {
+        label: 'Обработанные',
+        count: 795,
+        link: '/messages'
+      },
+      {
+        label: 'Назначенные мне',
+        count: 4,
+        link: '/messages'
+      },
+      {
+        label: 'Назначил',
+        count: 2,
+        link: '/messages'
+      },
+      {
+        label: 'Избранные',
+        count: 34,
+        link: '/messages'
+      },
+      {
+        label: 'Удаленные',
+        count: 250,
+        link: '/messages'
+      },
     ]
   },
   {
     Icon: React.createElement(AnalyticIcon, { className: 'sidebar__icon' }),
     label: 'Аналитика',
     children: [
-      { label: 'Все', link: '' },
-      { label: 'Общие показатели', link: '' },
-      { label: 'Тональность', link: '' },
-      { label: 'География', link: '' },
-      { label: 'Источники', link: '' },
-      { label: 'Демография', link: '' },
-      { label: 'Сообщения', link: '' },
-      { label: 'Типы площадок', link: '' },
-      { label: 'Авторы', link: '' },
+      { label: 'Все', link: '/analytics' },
+      { label: 'Общие показатели', link: '/analytics' },
+      { label: 'Тональность', link: '/analytics/tonality' },
+      { label: 'География', link: '/analytics/geography' },
+      { label: 'Источники', link: '/analytics/sources' },
+      { label: 'Демография', link: '/analytics/demography' },
+      { label: 'Сообщения', link: '/analytics/messages' },
+      { label: 'Типы площадок', link: '/analytics/area-types' },
+      { label: 'Авторы', link: '/analytics/authors' },
     ]
   },
   {

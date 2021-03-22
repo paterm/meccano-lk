@@ -1,0 +1,4 @@
+.accordion__body-wrapper {
+  transition: all 0.25s;
+  overflow: hidden;
+}

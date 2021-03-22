@@ -1,0 +1,79 @@
+.account-notifications {
+  margin: 134px 16px 30px 0;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  display: flex;
+  flex-direction: column;
+  height: calc(100% - 164px);
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .account-notifications {
+    margin: 0;
+    padding: 24px 16px;
+    box-shadow: none;
+    overflow-y: inherit;
+    height: auto;
+  }
+}
+
+.account-notifications__title {
+  margin: 0 0 16px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+}
+
+.account-notifications__switch {
+  max-width: 300px;
+}
+
+@media screen and (max-width: 575px) {
+  .account-notifications__switch {
+    max-width: none;
+  }
+}
+
+.account-notifications__submit-button {
+  margin: auto 0 0 0;
+  max-width: 198px;
+}
+
+@media screen and (max-width: 575px) {
+  .account-notifications__submit-button {
+    max-width: none;
+  }
+}
+
+.account-notifications__inside {
+  margin: 0 0 40px 0;
+}
+
+.account-notifications__outside {
+  margin: 0 0 40px 0;
+}
+
+.account-notifications__grid {
+  display: grid;
+  grid-auto-flow: column;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(5, auto);
+  gap: 16px 24px;
+}
+
+.account-notifications__telegram {
+  grid-row: 3;
+  grid-column: 1;
+  max-width: 221px;
+}
+
+@media screen and (max-width: 991px) {
+  .account-notifications__grid {
+    grid-auto-flow: row;
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

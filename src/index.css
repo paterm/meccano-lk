@@ -2,37 +2,60 @@
   --midnight-purple-80: rgba(20,1,41,.8);
   --midnight-purple-60: rgba(20, 1, 41, 0.6);
   --midnight-purple-6: rgba(20, 1, 41, 0.06);
+  --midnight-purple-3: rgba(20, 1, 41, 0.03);
   --midnight-purple-2: rgba(20, 1, 41, 0.02);
   --dark: #17171F;
   --dark-80: rgba(20,16,41,.8);
   --dark-60: rgba(20,16,41,.6);
   --dark-40: rgba(20,16,41,.4);
+  --dark-bg: #25252c;
+  --dark-12: rgba(23, 23, 31, 0.12);
   --dark-2: rgba(20,16,41,.02);
   --pale-lilac-2: rgba(224, 224, 255, 0.02);
   --pale-lilac-3: rgba(224, 224, 255, 0.03);
+  --pale-lilac-6: rgba(224, 224, 255, 0.06);
   --pale-lilac-60: rgba(224, 224, 255, 0.6);
+  --pale-lilac-80: rgba(224, 224, 255, 0.8);
   --coral: #ff5c4e;
   --coral-two: #f55c45;
+  --coral-7: rgba(255, 92, 78, 0.07);
+  --coral-2: rgba(255, 92, 78, 0.02);
   --watermelon: #f54562;
+  --watermelon-12: rgba(245, 69, 98, 0.12);
+  --red: #ff0000;
+  --orange-red: #ff2525;
   --coral-3: rgba(255,92,78,.03);
   --white: #fff;
   --lighter-purple: #9c42f5;
   --purple-pink: #c32de1;
   --purple-pink-3: rgba(195, 45, 225, 0.03);
+  --purple-pink-2: rgba(195, 45, 225, 0.02);
   --bluish-green: #16b862;
+  --bluish-green-6: rgba(22, 184, 98, 0.06);
   --bluish-green-3: rgba(22, 184, 98, 0.03);
+  --bluish-green-2: rgba(22, 184, 98, 0.02);
   --bright-sky-blue: #00bbff;
   --bright-sky-blue-3: rgba(0, 187, 255, 0.03);
   --grey-icon: #E0E0FF;
   --very-light-pink: #fffaf9;
+  --orange-yellow: #ffaa00;
+
+
+  --header-height: 72px;
+  --m-header-height: 48px;
+  --m-sidebar-height: 48px;
+  --sidebar-width: 72px;
 }
 
-html, body {
+html,
+body,
+#root {
   height: 100%;
 }
 
 body {
   margin: 0;
+  padding-top: var(--header-height);
   font-family: Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
@@ -48,7 +71,8 @@ code {
   box-sizing: border-box;
 }
 
-ul {
+ul,
+menu {
   margin: 0;
   padding: 0;
   list-style: none;
@@ -56,6 +80,7 @@ ul {
 
 *::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 *::-webkit-scrollbar-track {
   background-color: var(--midnight-purple-2);
@@ -64,9 +89,14 @@ ul {
   background-color: var(--midnight-purple-6);
   border-radius: 4px;
 }
+*:focus {
+  outline: none;
+}
 
 button {
   padding: 0;
+  font: inherit;
+  cursor: pointer;
 }
 
 .container {
@@ -76,11 +106,27 @@ button {
   padding: 0 20px;
 }
 
-#root {
-  height: 100%;
-}
-
 .content {
   position: relative;
   flex: 1;
+}
+
+@media screen and (max-width: calc(1294px)) {
+  .main {
+    width: calc(100% - var(--sidebar-width));
+    margin-left: var(--sidebar-width);
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .main {
+    width: 100%;
+    margin-left: unset;
+  }
+  body {
+    /* header compensation */
+    padding-top: 48px;
+    /* Sidebar compensation */
+    padding-bottom: 48px;
+  }
 }

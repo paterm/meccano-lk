@@ -1,0 +1,46 @@
+.info-tooltip {
+  display: inline-block;
+}
+.info-tooltip__target {
+  display: inline-block;
+  padding: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+.info-tooltip__icon {
+  width: 20px;
+  height: 20px;
+}
+.info-tooltip__target:hover + .info-tooltip__tooltip {
+  visibility: visible;
+}
+.info-tooltip__tooltip {
+  visibility: hidden;
+  max-width: 260px;
+  background-color: var(--white);
+  padding: 6px 12px;
+  box-shadow: 0 16px 16px -4px rgba(20, 16, 41, 0.06), 0 4px 8px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  transition: visibility .2s ease;
+  pointer-events: none;
+}
+.info-tooltip__tooltip-arrow {
+  top: -4px;
+  width: 10px;
+  height: 10px;
+  z-index: -1;
+}
+.info-tooltip__tooltip-arrow:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 10px;
+  height: 10px;
+  background-color: var(--white);
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  z-index: -1;
+  box-shadow: 0 -16px 16px -4px rgba(20, 16, 41, 0.06), 0 -4px 8px -1px rgba(20, 16, 41, 0.06);
+}

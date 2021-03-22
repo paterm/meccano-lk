@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { TProfile } from '@types';
-import { classes } from '@utils';
+import { TProfile } from '@t';
+import { classes, usePopup } from '@utils';
 import { ReactComponent as ArrowDown } from '@assets/icons/profile/profile__down-arrow.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/header/config-icon.svg';
 import { ReactComponent as SignOutIcon } from '@assets/icons/header/sign-out.svg';
@@ -17,6 +17,8 @@ interface IAccountButton {
 }
 
 const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
+  const popup = usePopup();
+
   const [ isOpen, setIsOpen ] = useState(false);
   const handleClick = () => {
     setIsOpen(!isOpen);
@@ -59,7 +61,13 @@ const AccountButton: React.FC<IAccountButton> = ({ profile, className }) => {
           <SubscribesList { ...cls('subscribes-list') } />
         </div>
 
-        <button { ...cls('row') }>
+        <button
+          { ...cls('row') }
+          onClick={ () => {
+            popup.open('account-main');
+            setIsOpen(false);
+          } }
+        >
           <ConfigIcon { ...cls('icon') } /> <span { ...cls('text', '14') }>Настройки аккаунта</span>
         </button>
 

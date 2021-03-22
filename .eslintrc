@@ -39,6 +39,11 @@
     "react/button-has-type": "off",
     "react/jsx-one-expression-per-line": "off",
     "@typescript-eslint/comma-dangle": "off",
-    "react/no-array-index-key": "off"
+    "@typescript-eslint/semi": "off",
+    "react/no-array-index-key": "off",
+    "no-nested-ternary": "off",
+    "jsx-a11y/click-events-have-key-events": "off",
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/no-noninteractive-element-interactions": "off"
   }
 }

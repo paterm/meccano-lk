@@ -1,0 +1,141 @@
+.pseudo-popup {
+  display: flex;
+  padding: 40px 72px;
+  height: calc(100% - 72px);
+  width: 100%;
+  position: fixed;
+  top: 72px;
+  left: 0;
+  justify-content: center;
+  z-index: 3;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup {
+    top: 0;
+    padding: 0;
+    height: auto;
+    position: relative;
+  }
+  /* В мобильном оставляет только попап */
+  .main > :not(:nth-child(1)) {
+    display: none;
+  }
+}
+
+.pseudo-popup__wrapper {
+  position: relative;
+  display: flex;
+  width: 100%;
+  max-width: 1150px;
+}
+
+.pseudo-popup__close-button {
+  position: absolute;
+  right: -40px;
+  top: 0;
+  z-index: 5;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__close-button {
+    position: absolute;
+    right: 20px;
+    top: 38px;
+    z-index: 6;
+  }
+}
+
+.pseudo-popup__container {
+  display: grid;
+  grid-template-columns: 254px auto;
+  grid-template-rows: 134px auto;
+  grid-template-areas:
+    "title  body"
+    "bar    body";
+  border-radius: 12px;
+  box-shadow: 0 32px 32px -4px rgba(20, 16, 41, 0.06), 0 64px 96px 0 rgba(20, 16, 41, 0.12), 0 8px 16px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  z-index: 5;
+  padding: 0;
+  /* max-height: 900px; */
+  position: relative;
+}
+
+/* Основаня сетка */
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__container {
+    grid-template-columns: auto;
+    grid-template-rows: auto;
+    grid-template-areas:
+      "title"
+      "bar"
+      "body";
+    border-radius: 0;
+  }
+}
+
+.pseudo-popup__title {
+  grid-area: title;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 1.33;
+  padding: 30px 16px 0 48px;
+  color: var(--dark-80);
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__title {
+    padding: 24px 56px 24px 16px;
+  }
+}
+
+.pseudo-popup__bar {
+  grid-area: bar;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__bar {
+    padding: 24px 16px;
+    box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+    overflow-y: initial;
+  }
+}
+
+.pseudo-popup__body {
+  grid-area: body;
+  overflow-y: hidden;
+  border-radius: 0 12px 12px 0;
+}
+
+/* Меню */
+
+.pseudo-popup__menu-with-drop-down {
+  position: relative;
+}
+
+.pseudo-popup__menu-button {
+  padding-left: 48px;
+  width: 100%;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 767px) {
+  .pseudo-popup__menu-button {
+    padding-left: 24px;
+    justify-content: space-between;
+  }
+}
+
+.pseudo-popup__drop-down {
+  width: 100%;
+  top: 0;
+  padding: 0;
+  border-radius: 24px;
+  overflow: hidden;
+}

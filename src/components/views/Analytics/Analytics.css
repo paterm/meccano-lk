@@ -1,0 +1,12 @@
+.analytics {
+  padding: 50px 0;
+}
+.analytics__tonality-card .card__content {
+  display: flex;
+}
+.analytics__tonality-widget--horizontal-4 .dashboard-card__content {
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+.analytics__tonality-widget--horizontal-2 .dashboard-card__content {
+  grid-template-columns: repeat(2, 1fr) !important;
+}

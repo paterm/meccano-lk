@@ -1,4 +1,4 @@
-import { TProfile } from '@types';
+import { TProfile } from '@t';
 import { StoreAction } from '../storeEnum';
 
 export const profile = (state:TProfile = { firstName: '', lastName: '' }, action: any) => {

@@ -1,0 +1,11 @@
+.tonality-dynamic-widget {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: 40px;
+}
+
+@media screen and (max-width: 992px) {
+  .tonality-dynamic-widget {
+    grid-template-columns: 100%;
+  }
+}

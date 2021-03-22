@@ -1,0 +1,118 @@
+.filter-general {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+
+.filter-general__body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .filter-general__body {
+    padding: 16px;
+  }
+}
+
+.filter-general__control-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-general__button {
+  display: flex;
+  align-items: center;
+}
+
+.filter-general__button--create {
+  margin: 0 16px 0 0;
+}
+
+.filter-general__button--disabled {
+  margin: 0 16px 0 auto;
+}
+
+.filter-general__filter-template {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 16px 16px 0;
+  background-color: var(--midnight-purple-2);
+  margin: 24px 0 0;
+}
+
+.filter-general__filter-template--mobile {
+  padding: 16px 16px 0;
+  margin: 0 -16px;
+}
+
+.filter-general__template-item {
+  display: flex;
+  align-items: center;
+  margin: 0 16px 16px 0;
+}
+
+.filter-general__template-item-disable-icon {
+  margin: 0 4px 0 0;
+}
+
+.filter-general__template-item-type {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-60);
+  margin: 0 4px 0 0;
+}
+
+.filter-general__template-item-value {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-80);
+  margin: 0 4px 0 0;
+}
+
+.filter-general__filter-list {
+  margin: 48px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .filter-general__filter-list {
+    margin: 24px 0 0;
+  }
+}
+
+.filter-general__accordion {
+  margin: 48px 0 0;
+}
+
+.filter-general__footer {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 767px) {
+  .filter-general__footer {
+    margin: 0;
+    padding: 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .filter-general__apply-button {
+    grid-row: 1;
+  }
+
+  .filter-general__footer > * {
+    border-radius: 4px;
+  }
+}

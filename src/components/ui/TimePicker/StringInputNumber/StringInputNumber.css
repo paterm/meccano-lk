@@ -1,0 +1,42 @@
+.string-input-number {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.string-input-number__field {
+  width: 25px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--dark-80);
+}
+.string-input-number__buttons {
+  position: absolute;
+  left: 100%;
+  width: 100%;
+  display: none;
+  flex-direction: column;
+  z-index: 1;
+}
+.string-input-number--left .string-input-number__buttons {
+  left: unset;
+  right: 100%;
+}
+.string-input-number:hover .string-input-number__buttons,
+.string-input-number__field:focus .string-input-number__buttons {
+  display: flex;
+}
+.string-input-number__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: var(--coral);
+  border: none;
+  color: var(--white);
+  cursor: pointer;
+}
+.string-input-number__button + .string-input-number__button {
+  margin-top: 2px;
+}
