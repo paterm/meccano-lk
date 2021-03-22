@@ -7,6 +7,8 @@
   color: var(--midnight-purple-80);
 }
 
+/* Таблица на ширине D */
+
 .authors-widget__authors-table  {
   width: 100%;
   border: none;
@@ -105,4 +107,41 @@
 
 .authors-widget__button-next span {
   margin: 0 0 0 6px;
+}
+
+/* Карточки на ширине M */
+
+.authors-widget__author-cards {
+
+}
+
+.authors-widget__author-card {
+  padding: 24px 16px;
+  margin: 0 0 16px;
+  border-radius: 12px;
+  box-shadow:
+    0 8px 8px -4px rgba(20, 16, 41, 0.06),
+    0 2px 4px -1px rgba(20, 16, 41, 0.06),
+    0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+
+.authors-widget__card-header {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--dark-80);
+}
+
+.authors-widget__card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--dark-80);
 }

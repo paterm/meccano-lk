@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { MobileContext } from 'src/contexts/MobileContext';
-import { Virtuoso } from 'react-virtuoso';
 import Button from '@components/ui/Button/Button';
 import { ReactComponent as SortIcon } from '@assets/icons/button/sort.svg';
 import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down.svg';
@@ -109,7 +108,6 @@ const AuthorsWidget: React.FC<IAuthorsWidget> = (props) => {
               <td { ...cls('table-cell') }>{ getNumberValueElement(author.positiveCounterCounter) }</td>
               <td { ...cls('table-cell') }>{ getNumberValueElement(author.neutralCounter) }</td>
               <td { ...cls('table-cell') }>{ getNumberValueElement(author.negativeCounter) }</td>
-
             </tr>
           ))}
         </tbody>
@@ -119,12 +117,46 @@ const AuthorsWidget: React.FC<IAuthorsWidget> = (props) => {
 
   const authorCardsElement = (
     <div { ...cls('author-cards') }>
-      <Virtuoso
-        data={ data }
-        itemContent={ (index, author) => (
-          1
-        ) }
-      />
+      { data.map((author, index) => (
+        <div
+          { ...cls('author-card') }
+          key={ author.id }
+        >
+          <div { ...cls('card-header') }>
+            { getAuthorNameWithAvatar(author, index) }
+          </div>
+          <div { ...cls('card-body') }>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') }>Площадка</span>
+              { getValueWithIcon(author.playgroundName) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') }>Сообщения</span>
+              { getNumberValueElement(author.messageCounter) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') }>Media Outreach</span>
+              { getNumberValueElement(author.mediaOutreachValue) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') }>MFI</span>
+              { getNumberValueElement(author.mfiValue) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') } role="img" aria-label="Позитив">😁</span>
+              { getNumberValueElement(author.positiveCounterCounter) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') } role="img" aria-label="Позитив">😐</span>
+              { getNumberValueElement(author.neutralCounter) }
+            </div>
+            <div { ...cls('card-row') }>
+              <span { ...cls('card-label') } role="img" aria-label="Позитив">😡</span>
+              { getNumberValueElement(author.negativeCounter) }
+            </div>
+          </div>
+        </div>
+      )) }
     </div>
   )
 
@@ -137,17 +169,19 @@ const AuthorsWidget: React.FC<IAuthorsWidget> = (props) => {
       hasDownloadButton
       hasFullScreenButton
       isZeroPadding
-      customTools={ (
-        <Button
-          { ...cls('button-sort') }
-          size={ 24 }
-          color="gray"
-          leftIcon={ SortIcon }
-          transparent
-        >
-          По сообщениям
-        </Button>
-      ) }
+      customTools={
+        !isMobile && (
+          <Button
+            { ...cls('button-sort') }
+            size={ 24 }
+            color="gray"
+            leftIcon={ SortIcon }
+            transparent
+          >
+            По сообщениям
+          </Button>
+        )
+      }
     >
       { isMobile ? authorCardsElement : authorsTableElement }
       <Button
