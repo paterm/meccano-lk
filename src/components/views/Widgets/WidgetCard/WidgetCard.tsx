@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Button from '@components/ui/Button/Button';
 import InfoTooltip from '@components/ui/InfoTooltip/InfoTooltip';
 import { ReactComponent as DownloadIcon } from '@assets/icons/button/download.svg';
@@ -21,6 +21,7 @@ interface IWidgetCard {
   isOverlayHeader?: boolean
   // Нулевые отступы у тела карточки
   isZeroPadding?: boolean
+  className?: string
 }
 
 const WidgetCard: React.FC<IWidgetCard> = (props) => {
@@ -32,8 +33,20 @@ const WidgetCard: React.FC<IWidgetCard> = (props) => {
     isOverlayHeader = false,
     isZeroPadding = false,
     customTools = null,
-    children = null
+    children = null,
+    onClickDownload,
+    onClickFullScreen,
+    className: mix = '',
   } = props
+
+  const [isFullscreenActive, setIsFullscreenActive] = useState(false)
+
+  const handleClickFullScreen = () => {
+    if (onClickFullScreen) {
+      onClickFullScreen();
+    }
+    setIsFullscreenActive(!isFullscreenActive)
+  }
 
   const headerElement = (
     <div { ...cls('header', { overlay: isOverlayHeader }) }>
@@ -52,23 +65,25 @@ const WidgetCard: React.FC<IWidgetCard> = (props) => {
             color="gray"
             icon={ DownloadIcon }
             transparent
+            onClick={ onClickDownload }
           />
         ) }
         { hasFullScreenButton && (
-        <Button
-          { ...cls('button-full-screen') }
-          size={ 24 }
-          color="gray"
-          icon={ FullScreenIcon }
-          transparent
-        />
+          <Button
+            { ...cls('button-full-screen') }
+            size={ 24 }
+            color="gray"
+            icon={ FullScreenIcon }
+            transparent
+            onClick={ handleClickFullScreen }
+          />
         ) }
       </div>
     </div>
   )
 
   return (
-    <div { ...cls() }>
+    <div { ...cls('', { 'full-screen': isFullscreenActive }, mix) }>
       { headerElement }
       <div { ...cls('body', { 'zero-padding': isZeroPadding }) }>
         { children }
