@@ -42,7 +42,7 @@
 }
 
 .widget-card__button-download {
-  margin: 0 0 0 12px;
+  margin: 0 0 0 32px;
 }
 
 .widget-card__button-full-screen {
@@ -51,8 +51,7 @@
 
 .widget-card__body {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
   padding: 16px;
 }
 
