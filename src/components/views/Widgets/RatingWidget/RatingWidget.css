@@ -40,6 +40,12 @@
   flex-shrink: 0;
 }
 
+@media screen and (max-width: 767px) {
+  .rating-widget__progress {
+    width: 40%;
+  }
+}
+
 .rating-widget__progress-bar {
   padding: 0 0 0 16px;
   position: absolute;
