@@ -1,5 +1,7 @@
 import React from 'react';
 import { classes } from '@utils';
+import Button from '@components/ui/Button/Button';
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down.svg';
 import defaultAvatar from '@assets/images/defaultAvatar.jpg';
 import './RatingWidget.css';
 import WidgetCard from '../WidgetCard/WidgetCard';
@@ -66,6 +68,15 @@ const RatingWidget: React.FC<IRatingWidget> = (props) => {
           </li>
         )) }
       </ul>
+      <Button
+        { ...cls('button-next') }
+        size={ 24 }
+        color="gray"
+        rightIcon={ ArrowDownIcon }
+        transparent
+      >
+        Показать остальные
+      </Button>
     </WidgetCard>
   )
 };
