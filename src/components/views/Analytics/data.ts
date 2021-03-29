@@ -224,3 +224,69 @@ export const AuthorsData = [
     negativeCounter: 155,
   },
 ]
+
+export const SourceRatingData = [
+  {
+    id: '1',
+    avatar: '',
+    name: 'РБК',
+    value: 23200
+  },
+  {
+    id: '2',
+    avatar: '',
+    name: 'Коммерсант',
+    value: 18582
+  },
+  {
+    id: '3',
+    avatar: '',
+    name: 'Лайф',
+    value: 17100
+  },
+  {
+    id: '4',
+    avatar: '',
+    name: 'Новая газета',
+    value: 12212
+  },
+  {
+    id: '5',
+    avatar: '',
+    name: 'лента ру',
+    value: 12212
+  },
+];
+
+export const AuthorsRatingData = [
+  {
+    id: '1',
+    avatar: '',
+    name: 'Андрей Петров',
+    value: 2450
+  },
+  {
+    id: '2',
+    avatar: '',
+    name: 'Иван Крылов',
+    value: 2120
+  },
+  {
+    id: '3',
+    avatar: '',
+    name: 'Михаил Ершов',
+    value: 1789
+  },
+  {
+    id: '4',
+    avatar: '',
+    name: 'Анна Климова',
+    value: 1567
+  },
+  {
+    id: '5',
+    avatar: '',
+    name: 'Алексей Иванов',
+    value: 220
+  },
+];

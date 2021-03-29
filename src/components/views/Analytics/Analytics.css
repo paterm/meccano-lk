@@ -10,3 +10,19 @@
 .analytics__tonality-widget--horizontal-2 .dashboard-card__content {
   grid-template-columns: repeat(2, 1fr) !important;
 }
+
+.analytics__grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 16px;
+}
+
+.analytics__grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 767px) {
+  .analytics__grid--2 {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

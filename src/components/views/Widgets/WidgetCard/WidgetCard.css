@@ -23,6 +23,8 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px;
+  position: relative;
+  z-index: 1;
 }
 
 .widget-card__header--overlay {
