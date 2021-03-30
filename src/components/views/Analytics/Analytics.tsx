@@ -8,7 +8,13 @@ import {
   ScreenType,
   sectionOptions,
   screenTypes,
-  initialPeriod, TonalityPieData, TonalityBarData, GeographyData, AuthorsData
+  initialPeriod,
+  TonalityPieData,
+  TonalityBarData,
+  GeographyData,
+  SourceRatingData,
+  AuthorsRatingData,
+  AuthorsData,
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -18,6 +24,7 @@ import TonalityDynamicPie from '../Widgets/TonalityDynamicWidget/TonalityDynamic
 import Card from '../../ui/Card/Card';
 import TonalityBarWidget from '../Widgets/TonalitybarWidget/TonalityBarWidget';
 import GeographyWidget from '../Widgets/GeographyWidget/GeographyWidget';
+import RatingWidget from '../Widgets/RatingWidget/RatingWidget';
 import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
 
 const cls = classes('analytics');
@@ -68,6 +75,22 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'geography':
       section = (
         <GeographyWidget data={ GeographyData } />
+      )
+      break
+
+    case 'sources':
+      section = (
+        <div { ...cls('grid', '2') }>
+          <RatingWidget
+            title="Рейтинг источников"
+            info="Рейтинг СОЦМЕДИА и прочих источником"
+            data={ SourceRatingData }
+          />
+          <RatingWidget
+            title="Рейтинг авторов"
+            data={ AuthorsRatingData }
+          />
+        </div>
       )
       break
 
