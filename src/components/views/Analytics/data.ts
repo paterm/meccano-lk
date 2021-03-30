@@ -160,8 +160,8 @@ export const GeographyData = [
 
 export const DemographyData = {
   gender: {
-    male: 81.8,
-    female: 18.2
+    male: 72.3,
+    female: 27.7
   },
   age: [
     {
