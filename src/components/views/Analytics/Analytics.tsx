@@ -5,14 +5,6 @@ import { classes } from '@utils';
 import { useHistory } from 'react-router-dom';
 import { RouteComponentProps, useParams } from 'react-router';
 
-import DemographyWidget from '@views/Widgets/DemographyWidget/DemographyWidget'
-import TonalityDynamicData from '../Widgets/TonalityDynamicWidget/TonalityDynamicData/TonalityDynamicData';
-import SummaryProjectWidget from '../Widgets/SummaryProjectWidget/SummaryProjectWidget';
-import TonalityDynamicPie from '../Widgets/TonalityDynamicWidget/TonalityDynamicPie/TonalityDynamicPie';
-import TonalityBarWidget from '../Widgets/TonalitybarWidget/TonalityBarWidget';
-import GeographyWidget from '../Widgets/GeographyWidget/GeographyWidget';
-import Header from './Header/Header';
-import Card from '../../ui/Card/Card';
 import {
   ScreenType,
   sectionOptions,
@@ -21,10 +13,23 @@ import {
   TonalityPieData,
   TonalityBarData,
   GeographyData,
+  SourceRatingData,
+  AuthorsRatingData,
+  AuthorsData,
   DemographyData,
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
+import TonalityDynamicData from '../Widgets/TonalityDynamicWidget/TonalityDynamicData/TonalityDynamicData';
+import SummaryProjectWidget from '../Widgets/SummaryProjectWidget/SummaryProjectWidget';
+import TonalityDynamicPie from '../Widgets/TonalityDynamicWidget/TonalityDynamicPie/TonalityDynamicPie';
+import Header from './Header/Header';
+import Card from '../../ui/Card/Card';
+import TonalityBarWidget from '../Widgets/TonalitybarWidget/TonalityBarWidget';
+import GeographyWidget from '../Widgets/GeographyWidget/GeographyWidget';
+import RatingWidget from '../Widgets/RatingWidget/RatingWidget';
+import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
+import DemographyWidget from '../Widgets/DemographyWidget/DemographyWidget';
 
 const cls = classes('analytics');
 
@@ -74,6 +79,28 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'geography':
       section = (
         <GeographyWidget data={ GeographyData } />
+      )
+      break
+
+    case 'sources':
+      section = (
+        <div { ...cls('grid', '2') }>
+          <RatingWidget
+            title="Рейтинг источников"
+            info="Рейтинг СОЦМЕДИА и прочих источником"
+            data={ SourceRatingData }
+          />
+          <RatingWidget
+            title="Рейтинг авторов"
+            data={ AuthorsRatingData }
+          />
+        </div>
+      )
+      break
+
+    case 'authors':
+      section = (
+        <AuthorsWidget data={ AuthorsData } />
       )
       break
 
