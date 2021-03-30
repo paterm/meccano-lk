@@ -11,7 +11,7 @@ export const sectionOptions = [
   { label: 'Тональность', value: 'tonality' },
   { label: 'География', value: 'geography' },
   { label: 'Источники', value: 'sources' },
-  { label: 'Демография', value: 'demographics' },
+  { label: 'Демография', value: 'demography' },
   { label: 'Сообщения', value: 'messages' },
   { label: 'Типы площадок', value: 'platform_types' },
   { label: 'Авторы', value: 'authors' },
@@ -290,3 +290,42 @@ export const AuthorsRatingData = [
     value: 220
   },
 ];
+
+export const DemographyData = {
+  gender: {
+    male: 72.3,
+    female: 27.7
+  },
+  age: [
+    {
+      age: '0-12',
+      male: 12,
+      female: 8
+    },
+    {
+      age: '12-20',
+      male: 34,
+      female: 21
+    },
+    {
+      age: '20-25',
+      male: 32,
+      female: 19
+    },
+    {
+      age: '25-35',
+      male: 46,
+      female: 31
+    },
+    {
+      age: '35-45',
+      male: 12,
+      female: 8
+    },
+    {
+      age: '45-65',
+      male: 6,
+      female: 3
+    }
+  ]
+}

@@ -10,6 +10,14 @@
 .analytics__tonality-widget--horizontal-2 .dashboard-card__content {
   grid-template-columns: repeat(2, 1fr) !important;
 }
+.analytics .card__title {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-80);
+  text-transform: uppercase;
+}
+
 
 .analytics__grid {
   display: grid;
