@@ -5,19 +5,29 @@ import {
   MapContainer,
   TileLayer,
   Marker,
-  useMap
+  useMap,
 } from 'react-leaflet'
 import { divIcon } from 'leaflet';
 import 'leaflet/dist/leaflet.css'
 import './GeographyWidget.css';
 import Button from '@ui/Button/Button';
-import { ReactComponent as FullScreenIcon } from '@assets/icons/button/full-screen.svg';
 import { ReactComponent as AddIcon } from '@assets/icons/button/add.svg';
 import { ReactComponent as MinusIcon } from '@assets/icons/button/minus.svg';
+import WidgetCard from '../WidgetCard/WidgetCard';
 
 const cls = classes('geography-widget');
 
-function MapConsumer({ zoom }: any) {
+interface IAnalyticGeographyData {
+  cityName: string
+  value: number
+  latlng: number[]
+}
+
+interface IGeographyWidget {
+  data: IAnalyticGeographyData[]
+}
+
+function MapConsumer({ zoom }: { zoom: number }) {
   const map = useMap()
   setTimeout(() => map.invalidateSize(), 100)
   map.zoomControl.remove();
@@ -25,16 +35,18 @@ function MapConsumer({ zoom }: any) {
   return null
 }
 
-const GeographyWidget: React.FC<any> = ({ data }) => {
-  const [isFullscreenActive, setIsFullscreenActive] = useState(false)
+const GeographyWidget: React.FC<IGeographyWidget> = ({ data }) => {
   const [zoom, setZoom] = useState(3)
-  const maxValue = Math.max(...data.map((marker: any) => marker.value))
+  const [, updateState] = React.useState({});
+  const forceUpdate = React.useCallback(() => updateState({}), []);
+
+  const maxValue = Math.max(...data.map((marker: IAnalyticGeographyData) => marker.value))
   const getScaleMultiply = (value: number, max: number) => (value / max) + 0.5
-  const markers = data.map((marker: any) => {
+  const markers = data.map((marker: IAnalyticGeographyData) => {
     const scale = getScaleMultiply(marker.value, maxValue);
     return (
       {
-        geo: marker.geo,
+        latlng: marker.latlng,
         divicon: divIcon({
           className: 'geography-widget-divicon',
           html: renderToString(
@@ -53,16 +65,18 @@ const GeographyWidget: React.FC<any> = ({ data }) => {
   });
 
   return (
-    <section { ...cls('', { 'full-screen': isFullscreenActive }) }>
+    <WidgetCard
+      { ...cls() }
+      title="География"
+      info="Тут подробная информация о необходимости этих значений и значения этих значений,
+      а также значимости этих значений"
+      hasDownloadButton
+      hasFullScreenButton
+      isOverlayHeader
+      isZeroPadding
+      onClickFullScreen={ forceUpdate }
+    >
       <div { ...cls('controls') }>
-        <Button
-          { ...cls('button-full-screen') }
-          icon={ FullScreenIcon }
-          size={ 24 }
-          color="gray"
-          transparent
-          onClick={ () => setIsFullscreenActive(!isFullscreenActive) }
-        />
         <Button
           { ...cls('button-plus') }
           icon={ AddIcon }
@@ -80,9 +94,8 @@ const GeographyWidget: React.FC<any> = ({ data }) => {
       </div>
       <MapContainer
         { ...cls('map') }
-        center={ data[0].geo }
+        center={ data[0].latlng as [number, number] }
         zoom={ zoom }
-        placeholder={ isFullscreenActive }
         scrollWheelZoom={ false }
       >
         <MapConsumer
@@ -93,16 +106,16 @@ const GeographyWidget: React.FC<any> = ({ data }) => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
         {
-          markers.map((marker: any, index: number) => (
+          markers.map((marker, index: number) => (
             <Marker
               key={ index }
-              position={ marker.geo }
+              position={ marker.latlng as [number, number] }
               icon={ marker.divicon }
             />
           ))
         }
       </MapContainer>
-    </section>
+    </WidgetCard>
   )
 };
 

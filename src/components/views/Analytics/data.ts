@@ -152,8 +152,75 @@ export const TonalityBarData = [
 ]
 
 export const GeographyData = [
-  { cityName: 'Москва', value: 702, geo: [55.7504461, 37.6174943] },
-  { cityName: 'Калининград', value: 209, geo: [54.710128, 20.5105838] },
-  { cityName: 'Екатеринбург', value: 514, geo: [56.839104, 60.60825] },
-  { cityName: 'Сочи', value: 132, geo: [43.5854823, 39.723109] },
+  {
+    cityName: 'Москва',
+    value: 702,
+    latlng: [55.7504461, 37.6174943]
+  },
+  {
+    cityName: 'Калининград',
+    value: 209,
+    latlng: [54.710128, 20.5105838]
+  },
+  {
+    cityName: 'Екатеринбург',
+    value: 514,
+    latlng: [56.839104, 60.60825]
+  },
+  {
+    cityName: 'Сочи',
+    value: 132,
+    latlng: [43.5854823, 39.723109]
+  },
+]
+
+export const AuthorsData = [
+  {
+    id: '1',
+    avatar: '',
+    name: 'Андрей Петров',
+    playgroundId: 'fas',
+    playgroundName: 'facebook',
+    messageCounter: 256,
+    mediaOutreachValue: 234,
+    mfiValue: 122,
+    positiveCounter: 0,
+    semiPositiveCounter: 0,
+    positiveCounterCounter: 122,
+    neutralCounter: 0,
+    semiNegativeCounter: 0,
+    negativeCounter: 0,
+  },
+  {
+    id: '2',
+    avatar: '',
+    name: 'Подслушано Сбербанк',
+    playgroundId: 'vk1',
+    playgroundName: 'vk.com',
+    messageCounter: 777,
+    mediaOutreachValue: 42,
+    mfiValue: 122,
+    positiveCounter: 5,
+    semiPositiveCounter: 12,
+    positiveCounterCounter: 122,
+    neutralCounter: 0,
+    semiNegativeCounter: 24,
+    negativeCounter: 0,
+  },
+  {
+    id: '3',
+    avatar: '',
+    name: 'Алексей Иванов',
+    playgroundId: 'vk1',
+    playgroundName: 'vk.com',
+    messageCounter: 232,
+    mediaOutreachValue: 155,
+    mfiValue: 122,
+    positiveCounter: 0,
+    semiPositiveCounter: 12,
+    positiveCounterCounter: 0,
+    neutralCounter: 155,
+    semiNegativeCounter: 24,
+    negativeCounter: 155,
+  },
 ]

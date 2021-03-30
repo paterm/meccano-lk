@@ -1,0 +1,147 @@
+.authors-widget__button-sort {
+  padding: 0 6px;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-80);
+}
+
+/* Таблица на ширине D */
+
+.authors-widget__authors-table  {
+  width: 100%;
+  border: none;
+  border-spacing: 0;
+}
+
+.authors-widget__scroll-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.authors-widget__table-row  {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--dark-60);
+  transition: 0.2s;
+}
+
+.authors-widget__table-row:hover  {
+  background-color: var(--watermelon-12);
+}
+
+.authors-widget__table-row--is-header {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--dark-80);
+}
+
+.authors-widget__table-row--is-header:hover {
+  background-color: white;
+}
+
+.authors-widget__table-cell {
+  text-align: left;
+  margin: 0;
+  padding: 12px;
+  cursor: pointer;
+}
+
+.authors-widget__table-cell:first-of-type {
+  padding-left: 16px;
+}
+
+.authors-widget__table-cell:last-of-type {
+  padding-right: 16px;
+}
+
+.authors-widget__value {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.authors-widget__value--with-icon {
+  display: flex;
+  align-items: center;
+}
+
+.authors-widget__value-icon {
+  margin: 0 8px 0 0;
+  width: 24px;
+  height: 24px;
+}
+
+.authors-widget__value--is-zero {
+  color: var(--dark-40);
+}
+
+.authors-widget__value--with-avatar {
+  display: flex;
+  align-items: center;
+}
+
+.authors-widget__author-index {
+  width: 24px;
+}
+
+.authors-widget__author-avatar {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+  border-radius: 2px;
+  margin: 0 8px 0 0;
+}
+
+.authors-widget__button-next {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--dark-80);
+  padding: 0 6px;
+  margin: 12px auto;
+}
+
+.authors-widget__button-next span {
+  margin: 0 0 0 6px;
+}
+
+/* Карточки на ширине M */
+
+.authors-widget__author-cards {
+
+}
+
+.authors-widget__author-card {
+  padding: 24px 16px;
+  margin: 0 0 16px;
+  border-radius: 12px;
+  box-shadow:
+    0 8px 8px -4px rgba(20, 16, 41, 0.06),
+    0 2px 4px -1px rgba(20, 16, 41, 0.06),
+    0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+
+.authors-widget__card-header {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--dark-80);
+}
+
+.authors-widget__card-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  letter-spacing: normal;
+  color: var(--dark-80);
+}
