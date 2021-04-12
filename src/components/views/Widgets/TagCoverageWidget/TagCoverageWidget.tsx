@@ -114,7 +114,7 @@ const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
       <div { ...cls('scatter-chart') }>
         <ResponsiveContainer
           width="100%"
-          height={ 235 }
+          height="100%"
         >
           <ScatterChart>
             <CartesianGrid

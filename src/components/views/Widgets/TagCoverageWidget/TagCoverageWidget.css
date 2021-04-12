@@ -1,21 +1,28 @@
 .tag-coverage-widget__body {
-  display: grid;
-  gap: 16px;
-  grid-template-columns: auto minmax(auto, 440px);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 @media screen and (max-width: 767px) {
   .tag-coverage-widget__body {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    justify-content: start;
   }
 }
 
 .tag-coverage-widget__scatter-chart {
-  width: 100%;
+  width: 50%;
   height: 235px;
   font-size: 14px;
   font-weight: 600;
   fill: var(--midnight-purple-60);
+}
+
+@media screen and (max-width: 767px) {
+  .tag-coverage-widget__scatter-chart {
+    width: 100%;
+  }
 }
 
 .tag-coverage-widget__label-text {
@@ -23,16 +30,19 @@
 }
 
 .tag-coverage-widget__table {
+  min-width: 280px;
+  padding: 0 0 0 16px;
   display: grid;
   gap: 16px;
-  grid-template-columns: auto minmax(auto, 92px);
-  margin: 0 0 0 120px;
+  grid-template-columns: auto minmax(auto, 96px);
+  margin: 0;
   align-self: start;
 }
 
 @media screen and (max-width: 767px) {
   .tag-coverage-widget__table {
     margin: 24px 0 0;
+    width: 100%;
   }
 }
 
