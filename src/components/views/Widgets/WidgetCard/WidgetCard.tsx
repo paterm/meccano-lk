@@ -22,6 +22,8 @@ interface IWidgetCard {
   // Нулевые отступы у тела карточки
   isZeroPadding?: boolean
   className?: string
+  // БЭМ-микс к телу виджета
+  bodyMixClass? : string
 }
 
 const WidgetCard: React.FC<IWidgetCard> = (props) => {
@@ -37,6 +39,7 @@ const WidgetCard: React.FC<IWidgetCard> = (props) => {
     onClickDownload,
     onClickFullScreen,
     className: mix = '',
+    bodyMixClass: bodyMix = '',
   } = props
 
   const [isFullscreenActive, setIsFullscreenActive] = useState(false)
@@ -85,7 +88,7 @@ const WidgetCard: React.FC<IWidgetCard> = (props) => {
   return (
     <div { ...cls('', { 'full-screen': isFullscreenActive }, mix) }>
       { headerElement }
-      <div { ...cls('body', { 'zero-padding': isZeroPadding }) }>
+      <div { ...cls('body', { 'zero-padding': isZeroPadding }, bodyMix) }>
         { children }
       </div>
     </div>

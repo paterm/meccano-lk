@@ -17,6 +17,7 @@ import {
   AuthorsRatingData,
   AuthorsData,
   DemographyData,
+  TagCoverageData
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -30,6 +31,7 @@ import GeographyWidget from '../Widgets/GeographyWidget/GeographyWidget';
 import RatingWidget from '../Widgets/RatingWidget/RatingWidget';
 import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
 import DemographyWidget from '../Widgets/DemographyWidget/DemographyWidget';
+import TagCoverageWidget from '../Widgets/TagCoverageWidget/TagCoverageWidget';
 
 const cls = classes('analytics');
 
@@ -107,6 +109,12 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'demography':
       section = (
         <DemographyWidget data={ DemographyData } />
+      )
+      break
+
+    case 'tag-coverage':
+      section = (
+        <TagCoverageWidget data={ TagCoverageData } />
       )
       break
 

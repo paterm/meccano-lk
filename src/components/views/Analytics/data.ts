@@ -13,6 +13,7 @@ export const sectionOptions = [
   { label: 'Источники', value: 'sources' },
   { label: 'Демография', value: 'demography' },
   { label: 'Сообщения', value: 'messages' },
+  { label: 'Охват тегов', value: 'tag-coverage' },
   { label: 'Типы площадок', value: 'platform_types' },
   { label: 'Авторы', value: 'authors' },
 ];
@@ -329,3 +330,26 @@ export const DemographyData = {
     }
   ]
 }
+
+export const TagCoverageData = [
+  {
+    tag: 'Услуги',
+    value: 43
+  },
+  {
+    tag: 'Кредиты',
+    value: 22
+  },
+  {
+    tag: 'Сбер',
+    value: 11
+  },
+  {
+    tag: 'Банкомат',
+    value: 32
+  },
+  {
+    tag: 'Банк',
+    value: 11
+  }
+]
