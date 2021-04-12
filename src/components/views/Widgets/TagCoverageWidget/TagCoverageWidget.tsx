@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { classes } from '@utils';
 import {
   ScatterChart,
@@ -74,7 +74,7 @@ const ScatterLabel = (props: IScatterLabel) => {
 const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
   const { data } = props
 
-  const DATA = data.map(((el) => (
+  const ScatterChartData = data.map(((el) => (
     {
       tag: el.tag,
       x: getRandomIntFromRange(0, 100),
@@ -82,6 +82,25 @@ const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
       z: getRandomIntFromRange(10, 30),
     }
   )))
+
+  const tagListElement = (
+    <div { ...cls('table') }>
+      <div { ...cls('table-header') }>Теги</div>
+      <div { ...cls('table-header') }>Охват</div>
+      { data.map(({ tag, value }, index) => (
+        <Fragment key={ index }>
+          <div { ...cls('table-cell') }>
+            <div
+              { ...cls('marker') }
+              style={ { backgroundColor: COLORS[index % (COLORS.length)] } }
+            />
+            { tag }
+          </div>
+          <div { ...cls('table-cell') }>{ value }</div>
+        </Fragment>
+      )) }
+    </div>
+  )
 
   return (
     <WidgetCard
@@ -109,7 +128,6 @@ const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
               padding={
                 { left: 50, right: 100 }
               }
-              tickLine={ { className: '11' } }
               hide
             />
             <YAxis
@@ -122,7 +140,7 @@ const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
             <Tooltip cursor={ { strokeDasharray: '3 3' } } />
             <Scatter
               name="A school"
-              data={ DATA }
+              data={ ScatterChartData }
               color="#FFF"
               shape={ (
                 <ScatterLabel
@@ -144,6 +162,7 @@ const TagCoverageWidget: React.FC<ITagCoverageWidget> = (props) => {
           </ScatterChart>
         </ResponsiveContainer>
       </div>
+      { tagListElement }
     </WidgetCard>
   )
 };

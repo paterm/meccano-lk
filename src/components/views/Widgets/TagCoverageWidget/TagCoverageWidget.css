@@ -1,7 +1,7 @@
 .tag-coverage-widget__body {
   display: grid;
   gap: 16px;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: auto minmax(auto, 440px);
 }
 
 @media screen and (max-width: 767px) {
@@ -20,4 +20,43 @@
 
 .tag-coverage-widget__label-text {
   font-weight: 500;
+}
+
+.tag-coverage-widget__table {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: auto minmax(auto, 92px);
+  margin: 0 0 0 120px;
+  align-self: start;
+}
+
+@media screen and (max-width: 767px) {
+  .tag-coverage-widget__table {
+    margin: 24px 0 0;
+  }
+}
+
+.tag-coverage-widget__table-header {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__table-cell {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__marker {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+  background-color: var(--midnight-purple-60);
 }
