@@ -17,7 +17,8 @@ import {
   AuthorsRatingData,
   AuthorsData,
   DemographyData,
-  TagCoverageData
+  TagCoverageData,
+  TagTonalityData
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -32,6 +33,7 @@ import RatingWidget from '../Widgets/RatingWidget/RatingWidget';
 import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
 import DemographyWidget from '../Widgets/DemographyWidget/DemographyWidget';
 import TagCoverageWidget from '../Widgets/TagCoverageWidget/TagCoverageWidget';
+import TagTonalityWidget from '../Widgets/TagTonalityWidget/TagTonalityWidget';
 
 const cls = classes('analytics');
 
@@ -115,6 +117,12 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'tag-coverage':
       section = (
         <TagCoverageWidget data={ TagCoverageData } />
+      )
+      break
+
+    case 'tag-tonality':
+      section = (
+        <TagTonalityWidget data={ TagTonalityData } />
       )
       break
 
