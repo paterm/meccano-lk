@@ -354,8 +354,33 @@ export const TagCoverageData = [
   }
 ]
 
-export const CrossingMessagesData = [
-  { target: 'Сбербанк услуги' },
-  { target: 'Сбербанк кредит' },
-  { target: 'Сбербанк вклады' },
-]
+export const CrossingMessagesData = {
+  items: {
+    'Сбербанк услуги': {
+      messageCounter: 655,
+      coverageValue: 1567,
+      mfiValue: 23,
+      erValue: 43
+    },
+    'Сбербанк кредит': {
+      messageCounter: 512,
+      coverageValue: 1567,
+      mfiValue: 43,
+      erValue: 33
+    },
+    'Сбербанк вклады': {
+      messageCounter: 111,
+      coverageValue: 777,
+      mfiValue: 54,
+      erValue: 67
+    }
+  },
+  crossing: [
+    { key: ['Сбербанк услуги'], data: 200 },
+    { key: ['Сбербанк кредит'], data: 300 },
+    { key: ['Сбербанк вклады'], data: 150 },
+    { key: ['Сбербанк услуги', 'Сбербанк кредит'], data: 50 },
+    { key: ['Сбербанк кредит', 'Сбербанк вклады'], data: 90 },
+    { key: ['Сбербанк вклады', 'Сбербанк услуги'], data: 110 }
+  ]
+};
