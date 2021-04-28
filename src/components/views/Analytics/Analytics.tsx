@@ -17,7 +17,8 @@ import {
   AuthorsRatingData,
   AuthorsData,
   DemographyData,
-  TagCoverageData
+  TagCoverageData,
+  CrossingMessagesData
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -32,6 +33,7 @@ import RatingWidget from '../Widgets/RatingWidget/RatingWidget';
 import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
 import DemographyWidget from '../Widgets/DemographyWidget/DemographyWidget';
 import TagCoverageWidget from '../Widgets/TagCoverageWidget/TagCoverageWidget';
+import CrossingMessagesWidget from '../Widgets/CrossingMessagesWidget/CrossingMessagesWidget';
 
 const cls = classes('analytics');
 
@@ -115,6 +117,12 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'tag-coverage':
       section = (
         <TagCoverageWidget data={ TagCoverageData } />
+      )
+      break
+
+    case 'crossing-messages':
+      section = (
+        <CrossingMessagesWidget data={ CrossingMessagesData } />
       )
       break
 

@@ -353,3 +353,9 @@ export const TagCoverageData = [
     value: 11
   }
 ]
+
+export const CrossingMessagesData = [
+  { target: 'Сбербанк услуги' },
+  { target: 'Сбербанк кредит' },
+  { target: 'Сбербанк вклады' },
+]

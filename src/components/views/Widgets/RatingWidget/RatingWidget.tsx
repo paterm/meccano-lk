@@ -8,7 +8,7 @@ import WidgetCard from '../WidgetCard/WidgetCard';
 
 const cls = classes('rating-widget');
 
-interface IAnalyticRetingData {
+interface IAnalyticRatingData {
   id: string
   avatar: string
   name: string
@@ -16,7 +16,7 @@ interface IAnalyticRetingData {
 }
 
 interface IRatingWidget {
-  data: IAnalyticRetingData[]
+  data: IAnalyticRatingData[]
   /* Переопределяет заголовок */
   title?: string
   /* Переопределяет всплывающее описание */
@@ -26,7 +26,7 @@ interface IRatingWidget {
 const RatingWidget: React.FC<IRatingWidget> = (props) => {
   const { data, title, info } = props
 
-  const maxValue = Math.max(...data.map((item: IAnalyticRetingData) => item.value))
+  const maxValue = Math.max(...data.map((item: IAnalyticRatingData) => item.value))
   const conventToPercent = (value: number, max: number) => (
     Math.round((value * 100) / max)
   );
