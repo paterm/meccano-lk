@@ -119,6 +119,7 @@ export const SIDEBAR_MENU: ISidebarItem[] = [
       { label: 'Демография', link: '/analytics/demography' },
       { label: 'Сообщения', link: '/analytics/messages' },
       { label: 'Пересечение сообщений', link: '/analytics/crossing-messages' },
+      { label: 'Охват тегов', link: '/analytics/tag-coverage' },
       { label: 'Типы площадок', link: '/analytics/area-types' },
       { label: 'Авторы', link: '/analytics/authors' },
     ]

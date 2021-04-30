@@ -14,6 +14,7 @@ export const sectionOptions = [
   { label: 'Демография', value: 'demography' },
   { label: 'Сообщения', value: 'messages' },
   { label: 'Охват тегов', value: 'tag-coverage' },
+  { label: 'Пересечение сообщений', value: 'crossing-messages' },
   { label: 'Типы площадок', value: 'platform_types' },
   { label: 'Авторы', value: 'authors' },
 ];
