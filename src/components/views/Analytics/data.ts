@@ -333,24 +333,29 @@ export const DemographyData = {
 
 export const TagCoverageData = [
   {
-    tag: 'Услуги',
-    value: 43
+    messageCounter: 543,
+    coverageValue: 43,
+    metadata: { tag: 'Услуги', radius: 22 }
   },
   {
-    tag: 'Кредиты',
-    value: 22
+    messageCounter: 80,
+    coverageValue: 22,
+    metadata: { tag: 'Кредиты', radius: 15 }
   },
   {
-    tag: 'Сбер',
-    value: 11
+    messageCounter: 562,
+    coverageValue: 11,
+    metadata: { tag: 'Сбер', radius: 30 }
   },
   {
-    tag: 'Банкомат',
-    value: 32
+    messageCounter: 223,
+    coverageValue: 32,
+    metadata: { tag: 'Банкомат', radius: 5 }
   },
   {
-    tag: 'Банк',
-    value: 11
+    messageCounter: 656,
+    coverageValue: 11,
+    metadata: { tag: 'Банк', radius: 8 }
   }
 ]
 
