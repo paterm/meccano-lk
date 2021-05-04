@@ -26,6 +26,19 @@ type TProps = {
   events: TDashboardEvent[]
 };
 
+const getSafeJSX = (html: string) => {
+  const bTagRegex = /<b>(.*?)<\/b>/g
+  const splitString = html.split(bTagRegex)
+  const matches = Array.from(html.matchAll(bTagRegex)).map((m) => m[1])
+  return splitString.map((item, index) => {
+    const isBold = matches.includes(item)
+    if (!item) return null
+    return !isBold
+      ? <React.Fragment key={ index }>{ item }</React.Fragment>
+      : <b key={ index }>{ item }</b>
+  });
+}
+
 const LastEventsWidget: React.FC<TProps> = ({ events }) => (
   <DashboardCard title="Последние события" { ...cls() }>
     <div { ...cls('container') }>
@@ -51,10 +64,9 @@ const LastEventsWidget: React.FC<TProps> = ({ events }) => (
             ) }
 
             { description && (
-              <p
-                { ...cls('item-description') }
-                dangerouslySetInnerHTML={ { __html: description } }
-              />
+              <p { ...cls('item-description') }>
+                { getSafeJSX(description) }
+              </p>
             )}
 
             { !!buttons?.length && (

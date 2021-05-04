@@ -1,4 +1,5 @@
 import React, { Suspense, useState, useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { useHistory } from 'react-router';
 import { useDispatch } from 'react-redux';
 import { TProfile } from '@t';
@@ -49,21 +50,25 @@ const App: React.FC = () => {
     dispatch(setProfile(User));
   }, [ dispatch ]);
 
+  const Loading = () => <div>Загрузка...</div>;
+
   return (
     <MobileContext.Provider value={ mobile }>
-      <div className="app">
-        <Suspense fallback={ () => 'Загрузка' }>
-          <Header onSignIn={ handleSignIn } onSignUp={ handleSignUp } />
-          <section className="content">
-            <Sidebar />
-            <div className="main">
-              <PopupRouter />
-              <Router />
-            </div>
-          </section>
-          <Footer />
-        </Suspense>
-      </div>
+      <HelmetProvider>
+        <div className="app">
+          <Suspense fallback={ (<Loading />) }>
+            <Header onSignIn={ handleSignIn } onSignUp={ handleSignUp } />
+            <section className="content">
+              <Sidebar />
+              <div className="main">
+                <PopupRouter />
+                <Router />
+              </div>
+            </section>
+            <Footer />
+          </Suspense>
+        </div>
+      </HelmetProvider>
     </MobileContext.Provider>
   );
 };
