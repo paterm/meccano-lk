@@ -1,0 +1,11 @@
+.source-card {
+  width: 730px;
+  height: 392px;
+}
+
+@media screen and (max-width: 767px) {
+  .source-card {
+    width: auto;
+    height: auto;
+  }
+}

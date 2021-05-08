@@ -4,6 +4,7 @@ import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import moment from 'moment';
 import { TDatesPeriod } from '@t';
+import { IMessage } from '@interfaces';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
 import DatePicker from '../../ui/DatePicker/DatePicker';
@@ -14,7 +15,6 @@ import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 import MessageList from './MessageList/MessageList';
 import avatarRbk from '../../../assets/temp/rbk.jpg';
 import avatarSber from '../../../assets/temp/sber.jpg';
-import { IMessage } from '../../../interfaces/IMessage';
 import './Messages.css';
 
 const cls = classes('messages');

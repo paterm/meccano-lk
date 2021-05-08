@@ -13,11 +13,14 @@ import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down
 import { ReactComponent as ArrowUpIcon } from '@assets/icons/button/arrow-up.svg';
 import { ReactComponent as LikeIcon } from '@assets/icons/button/like.svg';
 import { ReactComponent as SendIcon } from '@assets/icons/button/send.svg';
-import Checkbox from 'src/components/ui/Checkbox/Checkbox';
+import Checkbox from '@components/ui/Checkbox/Checkbox';
+import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import DropDown from '@components/ui/DropDown/DropDown';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
 import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
+import SourceCard from '../SourceCard/SourceCard';
 
 const discussionExample = [
   {
@@ -62,11 +65,16 @@ const Message: React.FC<IMessage> = ({
   const [ checked, setChecked ] = useState(false);
   const [ favorite, setFavorite ] = useState(false);
   const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
+  const [ isMessagePopupSourceOpen, setIsMessagePopupSourceOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
     onSelect(id, value);
   };
+
+  const closeAllPopups = () => {
+    setIsMessagePopupSourceOpen(false)
+  }
 
   const messageHeaderElement = (
     <div { ...cls('header') }>
@@ -114,7 +122,13 @@ const Message: React.FC<IMessage> = ({
   const messageSidebarElement = (
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
-        <img { ...cls('source-avatar') } src={ data.sourceAvatar } alt="" />
+        <Button
+          inline
+          link
+          onClick={ () => setIsMessagePopupSourceOpen(true) }
+        >
+          <img { ...cls('source-avatar') } src={ data.sourceAvatar } alt="" />
+        </Button>
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
           <p { ...cls('source-city') }>{ data.cityName }</p>
@@ -279,6 +293,23 @@ const Message: React.FC<IMessage> = ({
         { messageFooterElement }
       </div>
       { data?.typeSlug === 'social' && discussionPanelElement }
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isMessagePopupSourceOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <SourceCard data={ data } />
+      </DropDown>
     </div>
   );
 };

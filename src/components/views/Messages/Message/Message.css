@@ -323,3 +323,21 @@
   justify-self: end;
   max-width: 400px;
 }
+
+/* Работа с сообщениями (попапы) */
+.message__popup {
+  position: relative;
+  padding: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .message__popup {
+    padding: 16px;
+  }
+}
+
+.message__popup-close-button {
+  position: absolute;
+  right: 32px;
+  top: 32px;
+}
