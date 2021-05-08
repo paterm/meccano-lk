@@ -14,6 +14,7 @@ export const sectionOptions = [
   { label: 'Демография', value: 'demography' },
   { label: 'Сообщения', value: 'messages' },
   { label: 'Охват тегов', value: 'tag-coverage' },
+  { label: 'Тональность тегов', value: 'tag-tonality' },
   { label: 'Типы площадок', value: 'platform_types' },
   { label: 'Авторы', value: 'authors' },
 ];
@@ -353,3 +354,24 @@ export const TagCoverageData = [
     value: 11
   }
 ]
+
+export const TagTonalityData = [
+  {
+    tag: 'Услуги',
+    positiveValue: 20,
+    neutralValue: 120,
+    negativeValue: 60
+  },
+  {
+    tag: 'Кредиты',
+    positiveValue: 59,
+    neutralValue: 110,
+    negativeValue: 50
+  },
+  {
+    tag: 'Сбер',
+    positiveValue: 134,
+    neutralValue: 66,
+    negativeValue: 0
+  }
+];
