@@ -14,6 +14,7 @@ export const sectionOptions = [
   { label: 'Демография', value: 'demography' },
   { label: 'Сообщения', value: 'messages' },
   { label: 'Охват тегов', value: 'tag-coverage' },
+  { label: 'Пересечение сообщений', value: 'crossing-messages' },
   { label: 'Тональность тегов', value: 'tag-tonality' },
   { label: 'Типы площадок', value: 'platform_types' },
   { label: 'Авторы', value: 'authors' },
@@ -334,27 +335,62 @@ export const DemographyData = {
 
 export const TagCoverageData = [
   {
-    tag: 'Услуги',
-    value: 43
+    messageCounter: 543,
+    coverageValue: 43,
+    metadata: { tag: 'Услуги', radius: 22 }
   },
   {
-    tag: 'Кредиты',
-    value: 22
+    messageCounter: 80,
+    coverageValue: 22,
+    metadata: { tag: 'Кредиты', radius: 15 }
   },
   {
-    tag: 'Сбер',
-    value: 11
+    messageCounter: 562,
+    coverageValue: 11,
+    metadata: { tag: 'Сбер', radius: 30 }
   },
   {
-    tag: 'Банкомат',
-    value: 32
+    messageCounter: 223,
+    coverageValue: 32,
+    metadata: { tag: 'Банкомат', radius: 5 }
   },
   {
-    tag: 'Банк',
-    value: 11
+    messageCounter: 656,
+    coverageValue: 11,
+    metadata: { tag: 'Банк', radius: 8 }
   }
 ]
 
+export const CrossingMessagesData = {
+  items: {
+    'Сбербанк услуги': {
+      messageCounter: 655,
+      coverageValue: 1567,
+      mfiValue: 23,
+      erValue: 43
+    },
+    'Сбербанк кредит': {
+      messageCounter: 512,
+      coverageValue: 1567,
+      mfiValue: 43,
+      erValue: 33
+    },
+    'Сбербанк вклады': {
+      messageCounter: 111,
+      coverageValue: 777,
+      mfiValue: 54,
+      erValue: 67
+    }
+  },
+  crossing: [
+    { key: ['Сбербанк услуги'], data: 200 },
+    { key: ['Сбербанк кредит'], data: 300 },
+    { key: ['Сбербанк вклады'], data: 150 },
+    { key: ['Сбербанк услуги', 'Сбербанк кредит'], data: 50 },
+    { key: ['Сбербанк кредит', 'Сбербанк вклады'], data: 90 },
+    { key: ['Сбербанк вклады', 'Сбербанк услуги'], data: 110 }
+  ]
+};
 export const TagTonalityData = [
   {
     tag: 'Услуги',
