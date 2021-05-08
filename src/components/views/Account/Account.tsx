@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';
 import AccountGeneral from './src/AccountGeneral/AccountGeneral';
 import AccountResponse from './src/AccountResponse/AccountResponse';

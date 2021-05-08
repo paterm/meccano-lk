@@ -1,5 +1,4 @@
 import React, { useCallback, useState } from 'react';
-
 import { TDatesPeriod } from '@t';
 import { classes } from '@utils';
 import { useHistory } from 'react-router-dom';
@@ -18,7 +17,8 @@ import {
   AuthorsData,
   DemographyData,
   TagCoverageData,
-  CrossingMessagesData
+  CrossingMessagesData,
+  TagTonalityData
 } from './data';
 import './Analytics.css';
 import { projectData } from '../Dashboard/src/mockup';
@@ -34,6 +34,7 @@ import AuthorsWidget from '../Widgets/AuthorsWidget/AuthorsWidget';
 import DemographyWidget from '../Widgets/DemographyWidget/DemographyWidget';
 import TagCoverageWidget from '../Widgets/TagCoverageWidget/TagCoverageWidget';
 import CrossingMessagesWidget from '../Widgets/CrossingMessagesWidget/CrossingMessagesWidget';
+import TagTonalityWidget from '../Widgets/TagTonalityWidget/TagTonalityWidget';
 
 const cls = classes('analytics');
 
@@ -123,6 +124,12 @@ const Analytics: React.FC<RouteComponentProps<TParams>> = () => {
     case 'crossing-messages':
       section = (
         <CrossingMessagesWidget data={ CrossingMessagesData } />
+      )
+      break
+
+    case 'tag-tonality':
+      section = (
+        <TagTonalityWidget data={ TagTonalityData } />
       )
       break
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { classes } from '@utils';
 import { ReactComponent as AddIcon } from '@assets/icons/dashboard/add.svg';
 import { ReactComponent as ConfigIcon } from '@assets/icons/dashboard/config.svg';

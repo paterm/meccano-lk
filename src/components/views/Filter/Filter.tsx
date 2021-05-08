@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 import { classes } from '@utils';
 import { ReactComponent as InfoIcon } from '@assets/icons/button/info.svg';
 import PseudoPopup from '../../ui/PseudoPopup/PseudoPopup';

@@ -32,10 +32,22 @@ interface IMyTick extends IYTick {
 const MyTick: React.FC<IMyTick> = ({
   payload: { value },
   formatter,
-  ...props
+  x,
+  y,
+  fill,
+  height,
+  width,
+  textAnchor,
+  dominantBaseline,
 }) => (
   <text
-    { ...props }
+    x={ x }
+    y={ y }
+    fill={ fill }
+    height={ height }
+    width={ width }
+    textAnchor={ textAnchor }
+    dominantBaseline={ dominantBaseline }
     fontSize={ 14 }
     fontWeight={ 600 }
     fontFamily="Montserrat"
@@ -56,18 +68,8 @@ type TTooltipItem = {
 }
 
 interface IMyTooltip {
-  active: boolean
-  animationDuration: number
-  animationEasing: string
-  coordinate: { x: number, y: number }
-  cursor: boolean
-  filterNull: boolean
-  isAnimationActive: boolean
-  label: string | number
-  offset: number
   payload: TTooltipItem[]
-  separator: string
-  viewBox: T_UNKNOWN_OBJ
+  [key: string]: any
 }
 
 const MyTooltip: React.FC<IMyTooltip> = ({
@@ -138,7 +140,7 @@ const TonalityBarWidget: React.FC<TProps> = ({ data }) => (
       <Tooltip
         isAnimationActive={ false }
         // allowEscapeViewBox={ { x: false, y: true } }
-        content={ MyTooltip }
+        content={ ({ payload }) => <MyTooltip payload={ payload as TTooltipItem[] } /> }
         cursor={ false }
       />
     </BarChart>
