@@ -67,15 +67,15 @@ const TagTonalityWidget: React.FC<ITagTonalityWidget> = (props) => {
       hasFullScreenButton
     >
       <>
-        { dataConventPercentOfSum.map((el) => (
-          <div { ...cls('row') }>
+        { dataConventPercentOfSum.map((el, index) => (
+          <div { ...cls('row') } key={ index }>
             <span { ...cls('row-label') }>{ el.tag }</span>
             { getSlicedBarElement([el.positiveValue, el.neutralValue, el.negativeValue]) }
           </div>
         )) }
         <div { ...cls('legend') }>
-          { LEGEND.map(({ label, color }) => (
-            <div { ...cls('legend-item') }>
+          { LEGEND.map(({ label, color }, index) => (
+            <div { ...cls('legend-item') } key={ index }>
               <div { ...cls('legend-color') } style={ { backgroundColor: color } } />
               <span { ...cls('legend-label') }>{ label }</span>
             </div>
