@@ -33,7 +33,7 @@ const DemographyBarChart: React.FC<TProps> = ({ data }) => {
           barGap={ 60 }
         >
           <Tooltip
-            content={ CustomTooltip }
+            content={ ({ payload }) => <CustomTooltip payload={ payload as TGender[] } /> }
             cursor={ { fill: '#eee' } }
           />
           <Bar
@@ -122,7 +122,7 @@ const CustomTooltip: React.FC<TCustomTooltip> = ({ payload }) => {
       </p>
 
       {payload
-        .sort((a) => (a.name === 'female' ? -1 : 1))
+        .sort((a: TGender) => (a.name === 'female' ? -1 : 1))
         .map((item: TGender, itemIndex: number) => {
           if (item.name === 'blank') { return null }
 
