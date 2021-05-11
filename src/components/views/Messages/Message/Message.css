@@ -341,3 +341,10 @@
   right: 32px;
   top: 32px;
 }
+
+@media screen and (max-width: 767px) {
+  .message__popup-close-button {
+    right: 16px;
+    top: 16px;
+  }
+}

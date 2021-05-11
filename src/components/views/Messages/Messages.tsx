@@ -54,7 +54,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Москва',
     sourceAvatar: avatarRbk,
-    tags: []
+    tags: [],
+    sourceWebsite: 'https://rbc.ru',
+    audienceSizeValue: 300000,
+    subject: 'Тематика: политика, экономика, бизнес, культура',
+    gender: null
   },
   {
     id: '2',
@@ -80,7 +84,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Москва',
     sourceAvatar: avatarSber,
-    tags: []
+    tags: [],
+    sourceWebsite: 'https://rbc.ru',
+    audienceSizeValue: 300000,
+    subject: 'Тематика: политика, экономика, бизнес, культура',
+    gender: null
   },
   {
     id: '3',
@@ -106,7 +114,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Калининград',
     sourceAvatar: '',
-    tags: []
+    tags: [],
+    sourceWebsite: '',
+    audienceSizeValue: 0,
+    subject: '',
+    gender: 'Мужской'
   },
 ];
 

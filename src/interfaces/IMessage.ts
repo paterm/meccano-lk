@@ -54,4 +54,12 @@ export interface IMessage {
   sourceAvatar: string
   // У сообщений есть иконка тегов, но в макете не раскрыто их использование
   tags: []
+  // Ссылка на домашнюю страницу источника
+  sourceWebsite: string | null
+  // Размер аудитории
+  audienceSizeValue: number
+  // Тематика
+  subject: string
+  // Пол
+  gender: string | null
 }

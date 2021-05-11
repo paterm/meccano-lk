@@ -13,6 +13,7 @@ import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down
 import { ReactComponent as ArrowUpIcon } from '@assets/icons/button/arrow-up.svg';
 import { ReactComponent as LikeIcon } from '@assets/icons/button/like.svg';
 import { ReactComponent as SendIcon } from '@assets/icons/button/send.svg';
+import defaultAvatar from '@assets/images/defaultAvatar.jpg';
 import Checkbox from '@components/ui/Checkbox/Checkbox';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import DropDown from '@components/ui/DropDown/DropDown';
@@ -127,7 +128,11 @@ const Message: React.FC<IMessage> = ({
           link
           onClick={ () => setIsMessagePopupSourceOpen(true) }
         >
-          <img { ...cls('source-avatar') } src={ data.sourceAvatar } alt="" />
+          <img
+            { ...cls('source-avatar') }
+            src={ data.sourceAvatar || defaultAvatar }
+            alt={ data.sourceName }
+          />
         </Button>
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
