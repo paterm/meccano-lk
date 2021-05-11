@@ -1,0 +1,20 @@
+.social-sharing-panel {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+@media screen and (max-width: 767px) {
+  .social-sharing-panel  {
+    width: 100%;
+    display: grid;
+    gap: 24px;
+    grid-template-columns: repeat(3, auto);
+  }
+}
+
+.social-sharing-panel__button {
+  height: 32px !important;
+  width: 32px !important;
+  background-color: var(--midnight-purple-2) !important;
+}

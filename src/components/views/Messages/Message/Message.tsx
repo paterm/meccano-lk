@@ -22,6 +22,7 @@ import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
 import SourceCard from '../SourceCard/SourceCard';
 import FullMessageCard from '../FullMessageCard/FullMessageCard';
+import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
 
 const discussionExample = [
   {
@@ -68,6 +69,7 @@ const Message: React.FC<IMessage> = ({
   const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
   const [ isSourceCardOpen, setIsSourceCardOpen ] = useState(false);
   const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
+  const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -77,6 +79,7 @@ const Message: React.FC<IMessage> = ({
   const closeAllPopups = () => {
     setIsSourceCardOpen(false)
     setIsFullMessageCardOpen(false)
+    setIsSocialSharingPanelOpen(false)
   }
 
   const messageHeaderElement = (
@@ -210,6 +213,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsSocialSharingPanelOpen(true) }
         />
         <Button
           { ...cls('open-in-new-button') }
@@ -336,6 +340,15 @@ const Message: React.FC<IMessage> = ({
           onClick={ closeAllPopups }
         />
         <FullMessageCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isSocialSharingPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <SocialSharingPanel data={ data } />
       </DropDown>
     </div>
   );
