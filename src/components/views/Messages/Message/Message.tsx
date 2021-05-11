@@ -23,6 +23,7 @@ import './Message.css';
 import SourceCard from '../SourceCard/SourceCard';
 import FullMessageCard from '../FullMessageCard/FullMessageCard';
 import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
+import TagPanel from '../TagPanel/TagPanel';
 
 const discussionExample = [
   {
@@ -71,6 +72,7 @@ const Message: React.FC<IMessage> = ({
   const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
   const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
   const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
+  const [ isTagPanelOpen, setIsTagPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -82,6 +84,7 @@ const Message: React.FC<IMessage> = ({
     setIsFullMessageCardOpen(false)
     setIsSocialSharingPanelOpen(false)
     setIsAccountSelectionPanelOpen(false)
+    setIsTagPanelOpen(false)
   }
 
   const messageHeaderElement = (
@@ -196,6 +199,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsTagPanelOpen(true) }
         />
       </div>
       <div { ...cls('more-details') }>
@@ -383,6 +387,15 @@ const Message: React.FC<IMessage> = ({
         usePortal
       >
         <SocialSharingPanel data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('tag-panel') }
+        isOpen={ isTagPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <TagPanel data={ data } onClose={ () => setIsTagPanelOpen(false) } />
       </DropDown>
     </div>
   );

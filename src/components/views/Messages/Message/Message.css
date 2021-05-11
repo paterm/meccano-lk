@@ -378,3 +378,9 @@
   color: var(--dark-60);
   justify-content: flex-start;
 }
+
+.message__tag-panel {
+  padding: 16px;
+  width: 100%;
+  max-width: 264px;
+}
