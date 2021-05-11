@@ -70,6 +70,7 @@ const Message: React.FC<IMessage> = ({
   const [ isSourceCardOpen, setIsSourceCardOpen ] = useState(false);
   const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
   const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
+  const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -80,6 +81,7 @@ const Message: React.FC<IMessage> = ({
     setIsSourceCardOpen(false)
     setIsFullMessageCardOpen(false)
     setIsSocialSharingPanelOpen(false)
+    setIsAccountSelectionPanelOpen(false)
   }
 
   const messageHeaderElement = (
@@ -242,10 +244,42 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           transparent
           color="gray"
-          onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
+          onClick={ () => setIsAccountSelectionPanelOpen(!isAccountSelectionPanelOpen) }
         >
           Сбербанк Россия
         </Button>
+        <DropDown
+          { ...cls('account-selection-panel') }
+          isOpen={ isAccountSelectionPanelOpen }
+          onClose={ closeAllPopups }
+        >
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Подслушано Сбербанк
+          </Button>
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Сбербанк Россия
+          </Button>
+        </DropDown>
         <div { ...cls('discussion-actions') }>
           <Button
             { ...cls('discussion-like') }
