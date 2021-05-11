@@ -50,6 +50,7 @@
 .message__source {
   display: grid;
   grid-template-columns: min-content auto;
+  grid-template-rows: auto;
   gap: 12px;
 }
 
@@ -69,7 +70,8 @@
 }
 
 @media screen and (max-width: 767px) {
-  .message__source-avatar {
+  .message__source-avatar,
+  .message__button-avatar {
     height: 108px;
     width: 108px;
     grid-row: 1/4;
@@ -186,7 +188,11 @@
   font-style: normal;
   line-height: 1.71;
   letter-spacing: normal;
-  color: var(--midnight-purple-60);
+  color: var(--midnight-purple-60) !important;
+  text-decoration: underline;
+  padding: 0;
+  min-height: auto;
+  height: auto;
 }
 
 .message__footer-buttons-right {

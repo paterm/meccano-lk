@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { classes } from '@utils';
 import { ReactComponent as FlashIcon } from '@assets/icons/button/flash.svg';
 import { ReactComponent as CheckIcon } from '@assets/icons/button/check.svg';
@@ -22,6 +21,7 @@ import ToneMeter from '../ToneMeter/ToneMeter';
 import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
 import SourceCard from '../SourceCard/SourceCard';
+import FullMessageCard from '../FullMessageCard/FullMessageCard';
 
 const discussionExample = [
   {
@@ -66,7 +66,8 @@ const Message: React.FC<IMessage> = ({
   const [ checked, setChecked ] = useState(false);
   const [ favorite, setFavorite ] = useState(false);
   const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
-  const [ isMessagePopupSourceOpen, setIsMessagePopupSourceOpen ] = useState(false);
+  const [ isSourceCardOpen, setIsSourceCardOpen ] = useState(false);
+  const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -74,7 +75,8 @@ const Message: React.FC<IMessage> = ({
   };
 
   const closeAllPopups = () => {
-    setIsMessagePopupSourceOpen(false)
+    setIsSourceCardOpen(false)
+    setIsFullMessageCardOpen(false)
   }
 
   const messageHeaderElement = (
@@ -124,9 +126,10 @@ const Message: React.FC<IMessage> = ({
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
         <Button
+          { ...cls('button-avatar') }
           inline
           link
-          onClick={ () => setIsMessagePopupSourceOpen(true) }
+          onClick={ () => setIsSourceCardOpen(true) }
         >
           <img
             { ...cls('source-avatar') }
@@ -191,12 +194,14 @@ const Message: React.FC<IMessage> = ({
         />
       </div>
       <div { ...cls('more-details') }>
-        <Link
+        <Button
           { ...cls('more-details-link') }
-          to="/messages/92736505383"
+          onClick={ () => setIsFullMessageCardOpen(true) }
+          link
+          inline
         >
           Подробнее
-        </Link>
+        </Button>
       </div>
       <div { ...cls('footer-buttons-right') }>
         <Button
@@ -301,7 +306,7 @@ const Message: React.FC<IMessage> = ({
 
       <DropDown
         { ...cls('popup') }
-        isOpen={ isMessagePopupSourceOpen }
+        isOpen={ isSourceCardOpen }
         onClose={ closeAllPopups }
         usePortal
       >
@@ -314,6 +319,23 @@ const Message: React.FC<IMessage> = ({
           onClick={ closeAllPopups }
         />
         <SourceCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isFullMessageCardOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <FullMessageCard data={ data } />
       </DropDown>
     </div>
   );
