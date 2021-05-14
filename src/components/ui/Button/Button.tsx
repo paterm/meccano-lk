@@ -27,6 +27,7 @@ interface IButton {
   onClick?: () => void
   onClickCallback?: () => void
   style?: T_UNKNOWN_OBJ
+  title?: string
 }
 
 const Button: React.FC<IButton> = ({
@@ -49,6 +50,7 @@ const Button: React.FC<IButton> = ({
   icon: Icon = () => null,
   leftIcon: LeftIcon = () => null,
   rightIcon: RightIcon = () => null,
+  title,
 }) => {
   const icon = typeof Icon === 'object';
   const leftIcon = typeof LeftIcon === 'object';
@@ -77,6 +79,7 @@ const Button: React.FC<IButton> = ({
       onClick={ handleClick }
       type={ type }
       style={ style }
+      title={ title }
     >
       { leftIcon && <span { ...cls('left-icon') }><LeftIcon /></span> }
       { children || <Icon { ...cls('icon', size.toString()) } /> }

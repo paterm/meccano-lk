@@ -1,0 +1,57 @@
+.demography-widget__row {
+  display: flex;
+  justify-content: space-between;
+}
+.demography-widget__chart {
+  position: relative;
+}
+.demography-widget__female-icon,
+.demography-widget__male-icon {
+  position: absolute;
+  transform: translateY(-50%) translateX(-25%);
+}
+.demography-widget__legend {
+  display: flex;
+  justify-content: space-around;
+}
+.demography-widget__legend-item {
+  font-size: 32px;
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: -1.33px;
+  text-align: right;
+  color: var(--midnight-purple-80);
+}
+.demography-widget__chart--bar .recharts-layer.recharts-bar:first-child {
+  transform: translateY(-10px);
+}
+.demography-widget__chart--bar .recharts-bar:last-child {
+  transform: translateY(10px);
+}
+.demography-widget__section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--midnight-purple-60);
+  text-transform: uppercase;
+}
+
+.demography-widget__bar-tooltip {
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+.demography-widget__bar-tooltip-label {
+  font-weight: bold;
+  font-size: 20px;
+  margin-top: 0;
+}
+.demography-widget__bar-tooltip-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.demography-widget__bar-tooltip-item-value {
+  margin-left: 1rem;
+  font-weight: bold;
+  font-size: 18px;
+}

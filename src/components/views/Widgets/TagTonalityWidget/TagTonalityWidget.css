@@ -1,0 +1,86 @@
+.tag-tonality-widget__bar {
+  height: 24px;
+  border-radius: 2px;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+}
+
+.tag-tonality-widget__slice {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--white);
+  padding: 0;
+  display: flex;
+  align-items: center;
+}
+
+.tag-tonality-widget__slice-label {
+  margin: 0 0 0 8px;
+}
+
+.tag-tonality-widget__row {
+  display: flex;
+  align-items: center;
+  margin: 0 0 8px;
+}
+
+.tag-tonality-widget__row-label {
+  max-width: 240px;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  margin: 0 0 8px;
+}
+
+.tag-tonality-widget__bar {
+  flex-grow: 1;
+}
+
+.tag-tonality-widget__row:last-of-type {
+  margin: 0;
+}
+
+.tag-tonality-widget__legend {
+  margin: 48px 0 0;
+  align-self: center;
+  display: flex;
+}
+
+@media screen and (max-width: 767px) {
+  .tag-tonality-widget__legend {
+    align-self: stretch;
+    justify-content: space-between;
+  }
+}
+
+.tag-tonality-widget__legend-item {
+  display: flex;
+  align-items: center;
+  margin: 0 32px 0 0;
+}
+
+@media screen and (max-width: 767px) {
+  .tag-tonality-widget__legend-item {
+    margin: 0;
+  }
+}
+
+.tag-tonality-widget__legend-item:last-of-type {
+  margin: 0;
+}
+
+.tag-tonality-widget__legend-color {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+}
+
+.tag-tonality-widget__legend-label {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}

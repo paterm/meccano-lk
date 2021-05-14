@@ -15,4 +15,5 @@ export interface IYTick {
   textAnchor: string
   verticalAnchor: string
   visibleTicksCount: number
+  dominantBaseline?: string
 }

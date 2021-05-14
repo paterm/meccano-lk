@@ -113,13 +113,15 @@ export const SIDEBAR_MENU: ISidebarItem[] = [
     children: [
       { label: 'Все', link: '/analytics' },
       { label: 'Общие показатели', link: '/analytics' },
-      { label: 'Тональность', link: '/analytics' },
-      { label: 'География', link: '/analytics' },
-      { label: 'Источники', link: '/analytics' },
-      { label: 'Демография', link: '/analytics' },
-      { label: 'Сообщения', link: '/analytics' },
-      { label: 'Типы площадок', link: '/analytics' },
-      { label: 'Авторы', link: '/analytics' },
+      { label: 'Тональность', link: '/analytics/tonality' },
+      { label: 'География', link: '/analytics/geography' },
+      { label: 'Источники', link: '/analytics/sources' },
+      { label: 'Демография', link: '/analytics/demography' },
+      { label: 'Сообщения', link: '/analytics/messages' },
+      { label: 'Пересечение сообщений', link: '/analytics/crossing-messages' },
+      { label: 'Охват тегов', link: '/analytics/tag-coverage' },
+      { label: 'Типы площадок', link: '/analytics/area-types' },
+      { label: 'Авторы', link: '/analytics/authors' },
     ]
   },
   {

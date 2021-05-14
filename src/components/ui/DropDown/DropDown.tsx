@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useRef } from 'react';
 import { classes } from '@utils';
 import './DropDown.css';
+import Portal from '../Portal/Portal';
 
 const cls = classes('drop-down');
 
@@ -10,6 +11,8 @@ interface IDropDown {
   isOpen: boolean
   canCloseByClick?: boolean
   onClose: () => void
+  // Создавать drop-down во внешнем контейнере (не в родителе)
+  usePortal?: boolean
 }
 
 const DropDown: React.FC<IDropDown> = ({
@@ -17,7 +20,8 @@ const DropDown: React.FC<IDropDown> = ({
   children,
   isOpen,
   onClose,
-  canCloseByClick = false
+  canCloseByClick = false,
+  usePortal = false,
 }) => {
   const dropDownRef = useRef<HTMLInputElement>(null);
 
@@ -46,14 +50,20 @@ const DropDown: React.FC<IDropDown> = ({
     return () => document.removeEventListener('keydown', handleKeyDown);
   }, [ handleKeyDown ]);
 
-  return isOpen ? (
+  if (!isOpen) return null;
+
+  const DropDownElement = (
     <div
       ref={ dropDownRef }
-      { ...cls('', '', className) }
+      { ...cls('', { 'use-portal': usePortal }, className) }
     >
       { children }
     </div>
-  ) : null;
+  )
+
+  return usePortal
+    ? (<Portal>{ DropDownElement }</Portal>)
+    : DropDownElement
 };
 
 export default DropDown;

@@ -1,0 +1,102 @@
+.tag-coverage-widget__body {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 767px) {
+  .tag-coverage-widget__body {
+    flex-direction: column;
+    justify-content: start;
+  }
+}
+
+.tag-coverage-widget__scatter-chart {
+  width: 100%;
+  height: 235px;
+  font-size: 14px;
+  font-weight: 600;
+  fill: var(--midnight-purple-60);
+}
+
+@media screen and (max-width: 767px) {
+  .tag-coverage-widget__scatter-chart {
+    width: 100%;
+  }
+}
+
+.tag-coverage-widget__tooltip {
+  box-shadow:
+    0 8px 8px -4px rgba(20, 16, 41, 0.06),
+    0 16px 24px 0 rgba(20, 16, 41, 0.12),
+    0 2px 4px -1px rgba(20, 16, 41, 0.06),
+    0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+  padding: 16px;
+  text-align: left;
+}
+
+.tag-coverage-widget__tooltip-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__tooltip-title--has-items {
+  margin: 0;
+}
+
+.tag-coverage-widget__tooltip-item {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__table {
+  min-width: 280px;
+  padding: 0 0 0 16px;
+  display: grid;
+  gap: 16px;
+  grid-template-columns:
+    auto
+    minmax(auto, 64px)
+    minmax(auto, 64px);
+  margin: 0;
+  align-self: start;
+}
+
+@media screen and (max-width: 767px) {
+  .tag-coverage-widget__table {
+    margin: 24px 0 0;
+    width: 100%;
+  }
+}
+
+.tag-coverage-widget__table-header {
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__table-cell {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+  color: var(--midnight-purple-60);
+}
+
+.tag-coverage-widget__marker {
+  width: 16px;
+  height: 16px;
+  margin: 0 8px 0 0;
+  border-radius: 2px;
+  background-color: var(--midnight-purple-60);
+}

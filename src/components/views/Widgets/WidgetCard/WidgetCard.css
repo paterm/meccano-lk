@@ -1,0 +1,74 @@
+.widget-card {
+  position: relative;
+  border-radius: 12px;
+  box-shadow:
+    0 8px 8px -4px rgba(20, 16, 41, 0.06),
+    0 2px 4px -1px rgba(20, 16, 41, 0.06),
+    0 0 1px 0 rgba(20, 16, 41, 0.12);
+  background-color: var(--white);
+}
+
+.widget-card--full-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99;
+  border-radius: 0;
+}
+
+.widget-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.widget-card__header--overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.widget-card__title {
+  margin: 0 4px 0 0;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.71;
+  color: var(--midnight-purple-80);
+}
+
+.widget-card__description {
+  margin-right: auto;
+}
+
+.widget-card__tools {
+  display: flex;
+  align-items: center;
+  margin: 0 0 0 auto;
+}
+
+.widget-card__button-download {
+  margin: 0 0 0 32px;
+}
+
+.widget-card__button-full-screen {
+  margin: 0 0 0 12px;
+}
+
+.widget-card__body {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  height: 100%;
+}
+
+.widget-card__body--zero-padding {
+  padding: 0;
+}

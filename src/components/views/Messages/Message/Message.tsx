@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { classes } from '@utils';
 import { ReactComponent as FlashIcon } from '@assets/icons/button/flash.svg';
 import { ReactComponent as CheckIcon } from '@assets/icons/button/check.svg';
@@ -9,11 +8,44 @@ import { ReactComponent as TagIcon } from '@assets/icons/button/tag.svg';
 import { ReactComponent as ReplyIcon } from '@assets/icons/button/reply.svg';
 import { ReactComponent as OpenInNewIcon } from '@assets/icons/button/open-in-new.svg';
 import { ReactComponent as TrashIcon } from '@assets/icons/button/trash.svg';
-import Checkbox from 'src/components/ui/Checkbox/Checkbox';
+import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down.svg';
+import { ReactComponent as ArrowUpIcon } from '@assets/icons/button/arrow-up.svg';
+import { ReactComponent as LikeIcon } from '@assets/icons/button/like.svg';
+import { ReactComponent as SendIcon } from '@assets/icons/button/send.svg';
+import defaultAvatar from '@assets/images/defaultAvatar.jpg';
+import Checkbox from '@components/ui/Checkbox/Checkbox';
+import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import DropDown from '@components/ui/DropDown/DropDown';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
 import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
+import SourceCard from '../SourceCard/SourceCard';
+import FullMessageCard from '../FullMessageCard/FullMessageCard';
+import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
+import TagPanel from '../TagPanel/TagPanel';
+import AssignmentPanel from '../AssignmentPanel/AssignmentPanel';
+
+const discussionExample = [
+  {
+    author: 'Дмитрий Волков',
+    date: '14:51 15.06.2020',
+    isAgent: false,
+    message: 'Мне очень нравится, сам пользую, хочу родителям тоже взять.'
+  },
+  {
+    author: 'Дмитрий Волков',
+    date: '14:52 15.06.2020',
+    isAgent: false,
+    message: 'Единственное, непонятно, какая сумма обслуживания за год использования? Кто знает подскажите плиз'
+  },
+  {
+    author: 'Сбербанк Россия',
+    date: '14:55 15.06.2020',
+    isAgent: true,
+    message: 'Здравствуйте, Дмитрий! Сумма обслуживания карты Сбербанк Суперкэшбэк 600 рублей в год'
+  },
+];
 
 const cls = classes('message');
 
@@ -36,11 +68,27 @@ const Message: React.FC<IMessage> = ({
 }) => {
   const [ checked, setChecked ] = useState(false);
   const [ favorite, setFavorite ] = useState(false);
+  const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
+  const [ isSourceCardOpen, setIsSourceCardOpen ] = useState(false);
+  const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
+  const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
+  const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
+  const [ isTagPanelOpen, setIsTagPanelOpen ] = useState(false);
+  const [ isTagAssignmentOpen, setIsAssignmentPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
     onSelect(id, value);
   };
+
+  const closeAllPopups = () => {
+    setIsSourceCardOpen(false)
+    setIsFullMessageCardOpen(false)
+    setIsSocialSharingPanelOpen(false)
+    setIsAccountSelectionPanelOpen(false)
+    setIsTagPanelOpen(false)
+    setIsAssignmentPanelOpen(false)
+  }
 
   const messageHeaderElement = (
     <div { ...cls('header') }>
@@ -88,10 +136,21 @@ const Message: React.FC<IMessage> = ({
   const messageSidebarElement = (
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
-        <img { ...cls('source-avatar') } src={ data.avatar } alt="" />
+        <Button
+          { ...cls('button-avatar') }
+          inline
+          link
+          onClick={ () => setIsSourceCardOpen(true) }
+        >
+          <img
+            { ...cls('source-avatar') }
+            src={ data.sourceAvatar || defaultAvatar }
+            alt={ data.sourceName }
+          />
+        </Button>
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
-          <p { ...cls('source-city') }>{ data.sourceCity }</p>
+          <p { ...cls('source-city') }>{ data.cityName }</p>
         </div>
         <div { ...cls('source-metrics') }>
           <IndexMeter
@@ -136,6 +195,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsAssignmentPanelOpen(true) }
         />
         <Button
           { ...cls('tag-button') }
@@ -143,15 +203,18 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsTagPanelOpen(true) }
         />
       </div>
       <div { ...cls('more-details') }>
-        <Link
+        <Button
           { ...cls('more-details-link') }
-          to="/messages/92736505383"
+          onClick={ () => setIsFullMessageCardOpen(true) }
+          link
+          inline
         >
           Подробнее
-        </Link>
+        </Button>
       </div>
       <div { ...cls('footer-buttons-right') }>
         <Button
@@ -160,6 +223,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsSocialSharingPanelOpen(true) }
         />
         <Button
           { ...cls('open-in-new-button') }
@@ -179,14 +243,173 @@ const Message: React.FC<IMessage> = ({
     </div>
   );
 
+  const discussionPanelElement = (
+    <div { ...cls('discussion-panel') }>
+      <div { ...cls('discussion-toolbar') }>
+        <Button
+          { ...cls('discussion-toggle') }
+          leftIcon={ isDiscussionOpen ? ArrowUpIcon : ArrowDownIcon }
+          size={ 24 }
+          transparent
+          color="gray"
+          onClick={ () => setIsAccountSelectionPanelOpen(!isAccountSelectionPanelOpen) }
+        >
+          Сбербанк Россия
+        </Button>
+        <DropDown
+          { ...cls('account-selection-panel') }
+          isOpen={ isAccountSelectionPanelOpen }
+          onClose={ closeAllPopups }
+        >
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Подслушано Сбербанк
+          </Button>
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Сбербанк Россия
+          </Button>
+        </DropDown>
+        <div { ...cls('discussion-actions') }>
+          <Button
+            { ...cls('discussion-like') }
+            icon={ LikeIcon }
+            size={ 24 }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          />
+          <Button
+            { ...cls('discussion-like') }
+            icon={ SendIcon }
+            size={ 24 }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          />
+        </div>
+        <Button
+          { ...cls('discussion-reply') }
+          leftIcon={ isDiscussionOpen ? ArrowUpIcon : ArrowDownIcon }
+          size={ 24 }
+          transparent
+          color="gray"
+          onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
+        >
+          { isDiscussionOpen ? 'Скрыть' : 'Ответить' }
+        </Button>
+      </div>
+      { isDiscussionOpen && (
+        <div { ...cls('discussion-drawer') }>
+          {
+            discussionExample.map((message, index) => (
+              <div
+                { ...cls('discussion-message', { 'is-agent': message.isAgent }) }
+                key={ index }
+              >
+                <div { ...cls('discussion-header') }>
+                  <div { ...cls('discussion-message-author') }>{ message.author }</div>
+                  <div { ...cls('discussion-message-date') }>{ message.date }</div>
+                </div>
+                <div { ...cls('discussion-message-body') }>{ message.message }</div>
+              </div>
+            ))
+          }
+        </div>
+      ) }
+    </div>
+  );
+
   return (
     <div { ...cls('', '', mix) }>
-      { messageHeaderElement }
-      <div { ...cls('body') }>
-        { messageSidebarElement }
-        { messageContentElement }
+      <div { ...cls('wrapper', { social: data.typeSlug === 'social' }, mix) }>
+        { messageHeaderElement }
+        <div { ...cls('body') }>
+          { messageSidebarElement }
+          { messageContentElement }
+        </div>
+        { messageFooterElement }
       </div>
-      { messageFooterElement }
+      { data?.typeSlug === 'social' && discussionPanelElement }
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isSourceCardOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <SourceCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isFullMessageCardOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <FullMessageCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isSocialSharingPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <SocialSharingPanel data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('tag-panel') }
+        isOpen={ isTagPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <TagPanel data={ data } onClose={ () => setIsTagPanelOpen(false) } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('tag-panel') }
+        isOpen={ isTagAssignmentOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <AssignmentPanel data={ data } onClose={ () => setIsAssignmentPanelOpen(false) } />
+      </DropDown>
     </div>
   );
 };

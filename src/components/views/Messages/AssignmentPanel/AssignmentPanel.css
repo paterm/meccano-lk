@@ -1,0 +1,71 @@
+.assignment-panel {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 64px);
+}
+
+@media screen and (max-width: 767px) {
+  .assignment-panel {
+
+  }
+}
+
+.assignment-panel__input-search input {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  padding: 0 0 0 36px;
+}
+
+.assignment-panel__input-search svg {
+  width: 16px;
+}
+
+.assignment-panel__user-list {
+  margin: 6px -16px 0;
+  padding: 0 16px;
+  list-style: none;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+.assignment-panel__user-item {
+  height: 36px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.assignment-panel__user-avatar {
+  width: 24px;
+  height: 24px;
+  margin: 0 8px 0;
+  object-fit: contain;
+  border-radius: 2px;
+  background-color: var(--coral);
+}
+
+.assignment-panel__button-assign {
+  margin: 32px 0 0;
+}
+
+.assignment-panel__button-cancel {
+  margin: 8px 0 0;
+}
+
+.assignment-panel__input-message {
+  margin: 16px 0 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: var(--dark-60);
+  outline: 0;
+  border: 0;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: var(--midnight-purple-3);
+  resize: vertical;
+  height: 122px;
+}
