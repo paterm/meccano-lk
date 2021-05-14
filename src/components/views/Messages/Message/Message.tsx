@@ -24,6 +24,7 @@ import SourceCard from '../SourceCard/SourceCard';
 import FullMessageCard from '../FullMessageCard/FullMessageCard';
 import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
 import TagPanel from '../TagPanel/TagPanel';
+import AssignmentPanel from '../AssignmentPanel/AssignmentPanel';
 
 const discussionExample = [
   {
@@ -73,6 +74,7 @@ const Message: React.FC<IMessage> = ({
   const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
   const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
   const [ isTagPanelOpen, setIsTagPanelOpen ] = useState(false);
+  const [ isTagAssignmentOpen, setIsAssignmentPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -85,6 +87,7 @@ const Message: React.FC<IMessage> = ({
     setIsSocialSharingPanelOpen(false)
     setIsAccountSelectionPanelOpen(false)
     setIsTagPanelOpen(false)
+    setIsAssignmentPanelOpen(false)
   }
 
   const messageHeaderElement = (
@@ -192,6 +195,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsAssignmentPanelOpen(true) }
         />
         <Button
           { ...cls('tag-button') }
@@ -396,6 +400,15 @@ const Message: React.FC<IMessage> = ({
         usePortal
       >
         <TagPanel data={ data } onClose={ () => setIsTagPanelOpen(false) } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('tag-panel') }
+        isOpen={ isTagAssignmentOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <AssignmentPanel data={ data } onClose={ () => setIsAssignmentPanelOpen(false) } />
       </DropDown>
     </div>
   );
