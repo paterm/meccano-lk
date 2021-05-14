@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { classes } from '@utils';
 import { ReactComponent as FlashIcon } from '@assets/icons/button/flash.svg';
 import { ReactComponent as CheckIcon } from '@assets/icons/button/check.svg';
@@ -13,11 +12,18 @@ import { ReactComponent as ArrowDownIcon } from '@assets/icons/button/arrow-down
 import { ReactComponent as ArrowUpIcon } from '@assets/icons/button/arrow-up.svg';
 import { ReactComponent as LikeIcon } from '@assets/icons/button/like.svg';
 import { ReactComponent as SendIcon } from '@assets/icons/button/send.svg';
-import Checkbox from 'src/components/ui/Checkbox/Checkbox';
+import defaultAvatar from '@assets/images/defaultAvatar.jpg';
+import Checkbox from '@components/ui/Checkbox/Checkbox';
+import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
+import DropDown from '@components/ui/DropDown/DropDown';
 import Button from '../../../ui/Button/Button';
 import ToneMeter from '../ToneMeter/ToneMeter';
 import IndexMeter from '../IndexMeter/IndexMeter';
 import './Message.css';
+import SourceCard from '../SourceCard/SourceCard';
+import FullMessageCard from '../FullMessageCard/FullMessageCard';
+import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
+import TagPanel from '../TagPanel/TagPanel';
 
 const discussionExample = [
   {
@@ -62,11 +68,24 @@ const Message: React.FC<IMessage> = ({
   const [ checked, setChecked ] = useState(false);
   const [ favorite, setFavorite ] = useState(false);
   const [ isDiscussionOpen, setIsDiscussionOpen ] = useState(false);
+  const [ isSourceCardOpen, setIsSourceCardOpen ] = useState(false);
+  const [ isFullMessageCardOpen, setIsFullMessageCardOpen ] = useState(false);
+  const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
+  const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
+  const [ isTagPanelOpen, setIsTagPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
     onSelect(id, value);
   };
+
+  const closeAllPopups = () => {
+    setIsSourceCardOpen(false)
+    setIsFullMessageCardOpen(false)
+    setIsSocialSharingPanelOpen(false)
+    setIsAccountSelectionPanelOpen(false)
+    setIsTagPanelOpen(false)
+  }
 
   const messageHeaderElement = (
     <div { ...cls('header') }>
@@ -114,7 +133,18 @@ const Message: React.FC<IMessage> = ({
   const messageSidebarElement = (
     <div { ...cls('sidebar') }>
       <div { ...cls('source') }>
-        <img { ...cls('source-avatar') } src={ data.sourceAvatar } alt="" />
+        <Button
+          { ...cls('button-avatar') }
+          inline
+          link
+          onClick={ () => setIsSourceCardOpen(true) }
+        >
+          <img
+            { ...cls('source-avatar') }
+            src={ data.sourceAvatar || defaultAvatar }
+            alt={ data.sourceName }
+          />
+        </Button>
         <div { ...cls('source-title') }>
           <p { ...cls('source-name') }>{ data.sourceName }</p>
           <p { ...cls('source-city') }>{ data.cityName }</p>
@@ -169,15 +199,18 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsTagPanelOpen(true) }
         />
       </div>
       <div { ...cls('more-details') }>
-        <Link
+        <Button
           { ...cls('more-details-link') }
-          to="/messages/92736505383"
+          onClick={ () => setIsFullMessageCardOpen(true) }
+          link
+          inline
         >
           Подробнее
-        </Link>
+        </Button>
       </div>
       <div { ...cls('footer-buttons-right') }>
         <Button
@@ -186,6 +219,7 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           color="gray"
           transparent
+          onClick={ () => setIsSocialSharingPanelOpen(true) }
         />
         <Button
           { ...cls('open-in-new-button') }
@@ -214,10 +248,42 @@ const Message: React.FC<IMessage> = ({
           size={ 24 }
           transparent
           color="gray"
-          onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
+          onClick={ () => setIsAccountSelectionPanelOpen(!isAccountSelectionPanelOpen) }
         >
           Сбербанк Россия
         </Button>
+        <DropDown
+          { ...cls('account-selection-panel') }
+          isOpen={ isAccountSelectionPanelOpen }
+          onClose={ closeAllPopups }
+        >
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Подслушано Сбербанк
+          </Button>
+          <Button
+            { ...cls('account-selection-button') }
+            transparent
+            color="gray"
+            onClick={ () => {} }
+          >
+            <img
+              { ...cls('account-selection-avatar') }
+              src={ defaultAvatar }
+              alt=""
+            />
+            Сбербанк Россия
+          </Button>
+        </DropDown>
         <div { ...cls('discussion-actions') }>
           <Button
             { ...cls('discussion-like') }
@@ -279,6 +345,58 @@ const Message: React.FC<IMessage> = ({
         { messageFooterElement }
       </div>
       { data?.typeSlug === 'social' && discussionPanelElement }
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isSourceCardOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <SourceCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isFullMessageCardOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <FullMessageCard data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isSocialSharingPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <SocialSharingPanel data={ data } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('tag-panel') }
+        isOpen={ isTagPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <TagPanel data={ data } onClose={ () => setIsTagPanelOpen(false) } />
+      </DropDown>
     </div>
   );
 };

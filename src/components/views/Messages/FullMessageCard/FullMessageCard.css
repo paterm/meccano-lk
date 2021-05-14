@@ -1,0 +1,82 @@
+.full-message-card {
+  display: flex;
+  flex-direction: column;
+  width: 660px;
+  max-height: calc(100vh - 64px);
+}
+
+@media screen and (max-width: 767px) {
+  .full-message-card {
+    width: 288px;
+  }
+}
+
+.full-message-card__header {
+  margin-right: 32px;
+}
+
+@media screen and (max-width: 767px) {
+  .full-message-card__header {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.full-message-card__date {
+  margin: 0 16px 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-60);
+}
+
+.full-message-card__name {
+  margin: 0 16px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+}
+
+.full-message-card__city {
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.23;
+  color: var(--dark-60);
+}
+
+.full-message-card__title {
+  margin: 28px 0 0;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--dark-80);
+}
+
+.full-message-card__full-text {
+  margin: 16px 0 28px;
+  flex-grow: 1;
+  overflow-x: auto;
+  padding: 0 8px 0 0;
+  color: var(--dark-60);
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.71;
+}
+
+.full-message-card__footer {
+  display: flex;
+  align-items: center;
+}
+
+.full-message-card__button {
+  margin: 0 12px 0 0;
+}
+
+.full-message-card__button:last-of-type {
+  margin: 0;
+}
+
+.full-message-card__button--on-right {
+  margin-left: auto;
+}

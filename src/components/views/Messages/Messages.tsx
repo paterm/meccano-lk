@@ -4,6 +4,7 @@ import { ReactComponent as FilterIcon } from '@assets/icons/button/filter.svg';
 import { ReactComponent as CloseIcon } from '@assets/icons/button/close.svg';
 import moment from 'moment';
 import { TDatesPeriod } from '@t';
+import { IMessage } from '@interfaces';
 import Select, { ISelectOption } from '../../ui/Select/Select';
 import ButtonSwitcher from '../../ui/ButtonSwitcher/ButtonSwicther';
 import DatePicker from '../../ui/DatePicker/DatePicker';
@@ -14,7 +15,6 @@ import MessagesControlPanel from './MessagesControlPanel/MessagesControlPanel';
 import MessageList from './MessageList/MessageList';
 import avatarRbk from '../../../assets/temp/rbk.jpg';
 import avatarSber from '../../../assets/temp/sber.jpg';
-import { IMessage } from '../../../interfaces/IMessage';
 import './Messages.css';
 
 const cls = classes('messages');
@@ -42,7 +42,7 @@ const testMessagesExample: IMessage[] = [
     isDeleted: false,
     title: 'Сбербанк купит сервис 2ГИС Зачем госбанку понадобился один из конкурентов «Яндекс.Карты»',
     annotation: 'Сбербанк получит 72% сервиса 2ГИС, одной из самых дорогих компаний Рунета, — в рамках сделки ее оценили в 14,3 млрд руб. Еще 3% будет у СП банка и Mail.ru Group. Из капитала выйдут Baring Vostok и структуры Леонида Богуславского. Сбербанк подписал обязывающие документы об инвестициях…',
-    text: '',
+    text: 'Сбербанк получит 72% сервиса 2ГИС, одной из самых дорогих компаний Рунета, — в рамках сделки ее оценили в 14,3 млрд руб. Еще 3% будет у СП банка и Mail.ru Group. Из капитала выйдут Baring Vostok и структуры Леонида Богуславского. Сбербанк подписал обязывающие документы об инвестициях',
     mfiPrevValue: 30,
     mfiValue: 34,
     erPrevValue: 60,
@@ -54,7 +54,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Москва',
     sourceAvatar: avatarRbk,
-    tags: []
+    tags: [],
+    sourceWebsite: 'https://rbc.ru',
+    audienceSizeValue: 300000,
+    subject: 'Тематика: политика, экономика, бизнес, культура',
+    gender: null
   },
   {
     id: '2',
@@ -68,7 +72,7 @@ const testMessagesExample: IMessage[] = [
     isDeleted: false,
     title: 'В работе онлайн-сервисов Сбербанка произошел сбой',
     annotation: 'У пользователей Сбербанка возникли трудности с доступом к его онлайн-сервисам. О невозможности воспользоваться приложением «Сбербанк Онлайн» сообщали пользователи сети Twitter (1, 2). Данные о сбоях в онлайн-сервисах банка появились и на портале Downdetector, отслеживающем работу различных интернет-ресурсов.',
-    text: '',
+    text: 'У пользователей Сбербанка возникли трудности с доступом к его онлайн-сервисам. О невозможности воспользоваться приложением «Сбербанк Онлайн» сообщали пользователи сети Twitter (1, 2). Данные о сбоях в онлайн-сервисах банка появились и на портале Downdetector, отслеживающем работу различных интернет-ресурсов. Сбербанк получит 72% сервиса 2ГИС, одной из самых дорогих компаний Рунета, — в рамках сделки ее оценили в 14,3 млрд руб. Еще 3% будет у СП банка и Mail.ru Group. Из капитала выйдут Baring Vostok и структуры Леонида Богуславского. Сбербанк подписал обязывающие документы об инвестициях.',
     mfiPrevValue: 0,
     mfiValue: 47,
     erPrevValue: 63,
@@ -80,7 +84,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Москва',
     sourceAvatar: avatarSber,
-    tags: []
+    tags: [],
+    sourceWebsite: 'https://rbc.ru',
+    audienceSizeValue: 300000,
+    subject: 'Тематика: политика, экономика, бизнес, культура',
+    gender: null
   },
   {
     id: '3',
@@ -94,7 +102,7 @@ const testMessagesExample: IMessage[] = [
     isDeleted: false,
     title: 'Подслушано Сбербанк | Как вам новая карта сбербанка?',
     annotation: 'Мне очень нравится, сам пользую, хочу родителям тоже взять. Единственное, непонятно, какая сумма обслуживания за год использования? Кто знает подскажите плиз.',
-    text: '',
+    text: 'Мне очень нравится, сам пользую, хочу родителям тоже взять. Единственное, непонятно, какая сумма обслуживания за год использования? Кто знает подскажите плиз.',
     mfiPrevValue: 21,
     mfiValue: 34,
     erPrevValue: 59,
@@ -106,7 +114,11 @@ const testMessagesExample: IMessage[] = [
     cityId: '',
     cityName: 'Калининград',
     sourceAvatar: '',
-    tags: []
+    tags: [],
+    sourceWebsite: '',
+    audienceSizeValue: 0,
+    subject: '',
+    gender: 'Мужской'
   },
 ];
 
