@@ -10,6 +10,11 @@ import './Projects.css';
 
 const cls = classes('projects');
 
+const testOnClick = (name: string, id: string) => {
+  // eslint-disable-next-line no-console
+  console.log(`Произошло событие ${name} для проекта ${id}`);
+};
+
 export enum EProjectTypes {
   ACTIVE = 'active',
   ARCHIVED = 'archived',
@@ -174,10 +179,37 @@ const Projects: React.FC = () => {
     }
   }, [queryParams]);
 
-  const handleProjectOpen = () => {}
-  const handleProjectEdit = () => {}
-  const handleProjectStop = () => {}
-  const handleProjectResume = () => {}
+  const handleProjectOpen = (id: string) => {
+    testOnClick('ProjectOpen', id)
+  }
+
+  const handleProjectEdit = (id: string) => {
+    testOnClick('ProjectEdit', id)
+  }
+
+  const handleProjectStop = (id: string) => {
+    testOnClick('ProjectStop', id)
+  }
+
+  const handleProjectResume = (id: string) => {
+    testOnClick('ProjectResume', id)
+  }
+
+  const handleProjectCopy = (id: string) => {
+    testOnClick('ProjectCopy', id)
+  }
+
+  const handleProjectArchive = (id: string) => {
+    testOnClick('ProjectArchive', id)
+  }
+
+  const handleProjectRestore = (id: string) => {
+    testOnClick('ProjectRestore', id)
+  }
+
+  const handleProjectDelete = (id: string) => {
+    testOnClick('ProjectDelete', id)
+  }
 
   const activeProjectsHeaderElement = (
     <>
@@ -245,6 +277,10 @@ const Projects: React.FC = () => {
           onProjectEdit={ handleProjectEdit }
           onProjectStop={ handleProjectStop }
           onProjectResume={ handleProjectResume }
+          onProjectCopy={ handleProjectCopy }
+          onProjectArchive={ handleProjectArchive }
+          onProjectRestore={ handleProjectRestore }
+          onProjectDelete={ handleProjectDelete }
         />
       </div>
     </section>

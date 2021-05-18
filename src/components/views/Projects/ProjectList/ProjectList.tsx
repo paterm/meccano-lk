@@ -20,10 +20,22 @@ interface IProjectList {
   onChangeRange?: ({ startIndex, endIndex }: TRangeChanged) => void
   onEndReached?: (lastProjectIndex: number) => void
   onShowMore?: (lastProjectIndex: number) => void
-  onProjectOpen: () => void
-  onProjectEdit: () => void
-  onProjectStop: () => void
-  onProjectResume: () => void
+  // Колбек при открытии проекта, возвращается id проекта
+  onProjectOpen: (id: string) => void
+  // Колбек при редактировании проекта, возвращается id проекта
+  onProjectEdit: (id: string) => void
+  // Колбек при остановке проекта, возвращается id проекта
+  onProjectStop: (id: string) => void
+  // Колбек при возобновлении проекта, возвращается id проекта
+  onProjectResume: (id: string) => void
+  // Колбек при согдании копии проекта, возвращается id проекта
+  onProjectCopy: (id: string) => void
+  // Колбек при архивировании проекта, возвращается id проекта
+  onProjectArchive: (id: string) => void
+  // Колбек при восстановлении проекта из архива, возвращается id проекта
+  onProjectRestore: (id: string) => void
+  // Колбек при удалении проекта на всегда, возвращается id проекта
+  onProjectDelete: (id: string) => void
 }
 
 const ProjectList: React.FC<IProjectList> = ({
@@ -38,6 +50,10 @@ const ProjectList: React.FC<IProjectList> = ({
   onProjectEdit,
   onProjectStop,
   onProjectResume,
+  onProjectCopy,
+  onProjectArchive,
+  onProjectRestore,
+  onProjectDelete
 }) => {
   const projectListRef = useRef(null as any);
   const [endIndex, setEndIndex] = useState(0);
@@ -96,6 +112,10 @@ const ProjectList: React.FC<IProjectList> = ({
               onProjectEdit={ onProjectEdit }
               onProjectStop={ onProjectStop }
               onProjectResume={ onProjectResume }
+              onProjectCopy={ onProjectCopy }
+              onProjectArchive={ onProjectArchive }
+              onProjectRestore={ onProjectRestore }
+              onProjectDelete={ onProjectDelete }
             />
           </div>
         ) }

@@ -15,14 +15,14 @@ const cls = classes('project-card');
 interface IProjectCard {
   className?: string
   data: IProjectCardData
-  // Колбек при открытии проекта, возвращается id проекта
   onProjectOpen: (id: string) => void
-  // Колбек при редактировании проекта, возвращается id проекта
   onProjectEdit: (id: string) => void
-  // Колбек при остановке проекта, возвращается id проекта
   onProjectStop: (id: string) => void
-  // Колбек при возобновлении проекта, возвращается id проекта
   onProjectResume: (id: string) => void
+  onProjectCopy: (id: string) => void
+  onProjectArchive: (id: string) => void
+  onProjectRestore: (id: string) => void
+  onProjectDelete: (id: string) => void
 }
 
 const ProjectCard: React.FC<IProjectCard> = ({
@@ -31,9 +31,13 @@ const ProjectCard: React.FC<IProjectCard> = ({
   onProjectOpen,
   onProjectEdit,
   onProjectStop,
-  onProjectResume
+  onProjectResume,
+  onProjectCopy,
+  onProjectArchive,
+  onProjectRestore,
+  onProjectDelete
 }) => {
-  const [isOpenSoftMenu, setIsOpenSoftMenu] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false)
 
   const statusButtonStopElement = (
     <Button
@@ -90,13 +94,13 @@ const ProjectCard: React.FC<IProjectCard> = ({
   )
 
   const projectActiveMenu = [
-    { label: 'Создать новый проект на основе этого', onClick: () => {} },
-    { label: 'В архив', onClick: () => {} },
+    { label: 'Создать новый проект на основе этого', onClick: () => onProjectCopy(data.id) },
+    { label: 'В архив', onClick: () => onProjectArchive(data.id) },
   ];
 
   const projectAchiverMenu = [
-    { label: 'Возобновить', onClick: () => {} },
-    { label: 'Удалить на всегда', onClick: () => {} },
+    { label: 'Возобновить', onClick: () => onProjectRestore(data.id) },
+    { label: 'Удалить на всегда', onClick: () => onProjectDelete(data.id) },
   ];
 
   let projectMenu = []
@@ -122,6 +126,7 @@ const ProjectCard: React.FC<IProjectCard> = ({
             onClick={ onClick }
             color="gray"
             transparent
+            onClickCallback={ () => setIsMenuOpen(false) }
           >
             {label}
           </Button>
@@ -141,13 +146,12 @@ const ProjectCard: React.FC<IProjectCard> = ({
             color="gray"
             transparent
             title="Дополнительные действия"
-            onClick={ () => setIsOpenSoftMenu(!isOpenSoftMenu) }
+            onClick={ () => setIsMenuOpen(!isMenuOpen) }
           />
           <DropDown
             { ...cls('drop-down') }
-            isOpen={ isOpenSoftMenu }
-            onClose={ () => setIsOpenSoftMenu(false) }
-            canCloseByClick
+            isOpen={ isMenuOpen }
+            onClose={ () => setIsMenuOpen(false) }
           >
             { getMenuElement(projectMenu) }
           </DropDown>
