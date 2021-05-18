@@ -10,7 +10,7 @@ import './Projects.css';
 
 const cls = classes('projects');
 
-enum EProjectTypes {
+export enum EProjectTypes {
   ACTIVE = 'active',
   ARCHIVED = 'archived',
 }
@@ -18,15 +18,142 @@ enum EProjectTypes {
 const projectTypes = Object.values(EProjectTypes)
 
 const testProjects: IProject[] = [
-  { id: '1', typeSlug: 'archived' },
-  { id: '2', typeSlug: 'archived' },
-  { id: '3', typeSlug: 'active' },
-  { id: '4', typeSlug: 'active' },
-  { id: '5', typeSlug: 'active' },
+  {
+    id: '3',
+    name: 'Проект #3',
+    type: 'active',
+    isActive: true,
+    startDate: '2020-06-06T00:00:00',
+    cteator: 'Михаил Ершов',
+    lastUpdateUser: 'Анна Климова',
+    lastUpdateDate: '2021-10-03T00:00:00',
+    messageStat: [
+      {
+        value: 8000,
+        date: '2020-06-03T00:00:00'
+      },
+      {
+        value: 0,
+        date: '2020-06-04T00:00:00'
+      },
+      {
+        value: 1500,
+        date: '2020-06-05T00:00:00'
+      },
+      {
+        value: 2680,
+        date: '2020-06-06T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-07T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-08T00:00:00'
+      },
+      {
+        value: 5600,
+        date: '2020-06-09T00:00:00'
+      },
+      {
+        value: 6200,
+        date: '2020-08-10T00:00:00'
+      }
+    ]
+  },
+  {
+    id: '2',
+    name: 'Проект #2',
+    type: 'active',
+    isActive: false,
+    startDate: '2020-06-06T00:00:00',
+    cteator: 'Михаил Ершов',
+    lastUpdateUser: 'Анна Климова',
+    lastUpdateDate: '2021-10-03T00:00:00',
+    messageStat: [
+      {
+        value: 8000,
+        date: '2020-06-03T00:00:00'
+      },
+      {
+        value: 0,
+        date: '2020-06-04T00:00:00'
+      },
+      {
+        value: 1500,
+        date: '2020-06-05T00:00:00'
+      },
+      {
+        value: 2680,
+        date: '2020-06-06T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-07T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-08T00:00:00'
+      },
+      {
+        value: 5600,
+        date: '2020-06-09T00:00:00'
+      },
+      {
+        value: 4700,
+        date: '2020-08-10T00:00:00'
+      }
+    ]
+  },
+  {
+    id: '1',
+    name: 'Проект #1',
+    type: 'archived',
+    isActive: false,
+    startDate: '2020-06-06T00:00:00',
+    cteator: 'Михаил Ершов',
+    lastUpdateUser: 'Анна Климова',
+    lastUpdateDate: '2021-10-03T00:00:00',
+    messageStat: [
+      {
+        value: 8000,
+        date: '2020-06-03T00:00:00'
+      },
+      {
+        value: 0,
+        date: '2020-06-04T00:00:00'
+      },
+      {
+        value: 1500,
+        date: '2020-06-05T00:00:00'
+      },
+      {
+        value: 2680,
+        date: '2020-06-06T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-07T00:00:00'
+      },
+      {
+        value: 7600,
+        date: '2020-06-08T00:00:00'
+      },
+      {
+        value: 5600,
+        date: '2020-06-09T00:00:00'
+      },
+      {
+        value: 13200,
+        date: '2020-08-10T00:00:00'
+      }
+    ]
+  },
 ];
 
 const getTestProjects = (type: string) => (
-  testProjects.filter((el: IProject) => el.typeSlug === type)
+  testProjects.filter((el: IProject) => el.type === type)
 );
 
 const Projects: React.FC = () => {
@@ -46,6 +173,11 @@ const Projects: React.FC = () => {
       queryParams.set({ type: EProjectTypes.ACTIVE })
     }
   }, [queryParams]);
+
+  const handleProjectOpen = () => {}
+  const handleProjectEdit = () => {}
+  const handleProjectStop = () => {}
+  const handleProjectResume = () => {}
 
   const activeProjectsHeaderElement = (
     <>
@@ -89,26 +221,30 @@ const Projects: React.FC = () => {
     </>
   )
 
-  let getHeaderElement = null
+  let headerElement = null
 
   switch (activeType) {
     default:
-      getHeaderElement = activeProjectsHeaderElement
+      headerElement = activeProjectsHeaderElement
       break;
     case EProjectTypes.ARCHIVED:
-      getHeaderElement = arhivedProjectsHeaderElement;
+      headerElement = arhivedProjectsHeaderElement;
       break;
   }
 
   return (
     <section { ...cls() }>
       <div { ...cls('head', '', 'container') }>
-        { getHeaderElement }
+        { headerElement }
       </div>
       <div { ...cls('body', '', 'container') }>
         <ProjectList
           projects={ projects }
           totalProjects={ projects.length }
+          onProjectOpen={ handleProjectOpen }
+          onProjectEdit={ handleProjectEdit }
+          onProjectStop={ handleProjectStop }
+          onProjectResume={ handleProjectResume }
         />
       </div>
     </section>

@@ -14,17 +14,18 @@
   }
 }
 
-.project-list__update-button {
-  width: calc(100% - 16px * 2);
-  margin: 16px;
-}
-
-.project-list__message {
+.project-list__project {
   width: calc(100%);
   padding: 0 16px 16px;
 }
 
-.project-list__footer-list {
+.project-list__header {
+  height: 30px;
+  margin: 0;
+  padding: 0;
+}
+
+.project-list__footer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -33,7 +34,7 @@
   padding: 32px 16px 49px;
 }
 
-.project-list__more-button {
+.project-list__button-more {
   box-shadow: 0 12px 12px -4px rgba(255, 92, 78, 0.06), 0 4px 4px -1px rgba(255, 92, 78, 0.06), 0 1px 1px 0 rgba(255, 92, 78, 0.12);
   background-color: #ffffff;
   width: 100%;

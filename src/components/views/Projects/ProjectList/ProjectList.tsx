@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { classes } from '@utils';
 import { Virtuoso } from 'react-virtuoso';
 import Button from 'src/components/ui/Button/Button';
-import Project from '../Project/Project';
+import Project from '../ProjectCard/ProjectCard';
 import './ProjectList.css';
 
 const cls = classes('project-list');
@@ -16,24 +16,28 @@ interface IProjectList {
   className?: string
   projects: any[]
   totalProjects: number
-  selected?: string[]
-  onSelect?: any
   scrollIndex?: number
   onChangeRange?: ({ startIndex, endIndex }: TRangeChanged) => void
   onEndReached?: (lastProjectIndex: number) => void
   onShowMore?: (lastProjectIndex: number) => void
+  onProjectOpen: () => void
+  onProjectEdit: () => void
+  onProjectStop: () => void
+  onProjectResume: () => void
 }
 
 const ProjectList: React.FC<IProjectList> = ({
   className: mix,
   projects = [],
   totalProjects = 0,
-  selected = [],
   scrollIndex = 0,
   onChangeRange,
   onEndReached,
   onShowMore,
-  onSelect
+  onProjectOpen,
+  onProjectEdit,
+  onProjectStop,
+  onProjectResume,
 }) => {
   const projectListRef = useRef(null as any);
   const [endIndex, setEndIndex] = useState(0);
@@ -45,8 +49,6 @@ const ProjectList: React.FC<IProjectList> = ({
       behavior: 'auto'
     });
   }, [scrollIndex]);
-
-  const checkSelected = (id: string) => selected.includes(id);
 
   const handleChangeRange = (range: TRangeChanged) => {
     setEndIndex(range.endIndex);
@@ -65,12 +67,15 @@ const ProjectList: React.FC<IProjectList> = ({
         endReached={ onEndReached }
         rangeChanged={ handleChangeRange }
         components={ {
+          Header: () => (
+            <div { ...cls('header') } />
+          ),
           Footer: () => (
-            <span { ...cls('footer-list') }>
+            <span { ...cls('footer') }>
               {totalProjects > projects.length
                 ? (
                   <Button
-                    { ...cls('more-button') }
+                    { ...cls('button-more') }
                     color="coral"
                     transparent
                     square
@@ -79,18 +84,18 @@ const ProjectList: React.FC<IProjectList> = ({
                     Следующие проекты
                   </Button>
                 )
-                : 'Больше сообщений нет'}
+                : 'Больше проектов нет'}
             </span>
           )
         } }
         itemContent={ (index, project) => (
           <div { ...cls('project') }>
             <Project
-              id={ project.id }
               data={ project }
-              selectable
-              isSelect={ checkSelected(project.id) }
-              onSelect={ onSelect }
+              onProjectOpen={ onProjectOpen }
+              onProjectEdit={ onProjectEdit }
+              onProjectStop={ onProjectStop }
+              onProjectResume={ onProjectResume }
             />
           </div>
         ) }
