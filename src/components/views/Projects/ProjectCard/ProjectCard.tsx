@@ -61,7 +61,7 @@ const ProjectCard: React.FC<IProjectCard> = ({
       leftIcon={ PlayIcon }
       onClick={ () => onProjectResume(data.id) }
     >
-      Остановить
+      Возобновить
     </Button>
   )
 

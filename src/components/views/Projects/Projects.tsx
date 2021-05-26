@@ -7,6 +7,7 @@ import { IProject } from '@interfaces';
 import Button from '../../ui/Button/Button';
 import ProjectList from './ProjectList/ProjectList';
 import './Projects.css';
+import ProjectsControlPanel from './ProjetsControlPanel/ProjectsControlPanel';
 
 const cls = classes('projects');
 
@@ -270,6 +271,7 @@ const Projects: React.FC = () => {
         { headerElement }
       </div>
       <div { ...cls('body', '', 'container') }>
+        <ProjectsControlPanel { ...cls('control-panel') } />
         <ProjectList
           projects={ projects }
           totalProjects={ projects.length }
