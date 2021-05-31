@@ -9,6 +9,16 @@ import { ReactComponent as DropIcon } from '@assets/icons/message/drop.svg';
 import './ProjectCard.css';
 import Button from '@components/ui/Button/Button';
 import DropDown from '@components/ui/DropDown/DropDown';
+import {
+  AreaChart,
+  AreaSeries,
+  Line,
+  LinearYAxis,
+  LinearXAxis,
+  LinearYAxisTickSeries,
+  LinearXAxisTickSeries,
+  TooltipArea
+} from 'reaviz';
 
 const cls = classes('project-card');
 
@@ -135,6 +145,16 @@ const ProjectCard: React.FC<IProjectCard> = ({
     </ul>
   );
 
+  const mapForReavizData = data.messageStat.map((item: { date: string, value: number }) => (
+    { key: new Date(item.date), data: item.value }
+  ));
+
+  const singleDateData = [
+    { key: 0, data: 2 },
+    { key: 1, data: 5 },
+    { key: 2, data: 13 },
+  ];
+
   return (
     <div { ...cls('', '', mix) }>
       <div { ...cls('wrapper') }>
@@ -184,7 +204,49 @@ const ProjectCard: React.FC<IProjectCard> = ({
             { data.type === 'active' && statusButtonElement }
           </div>
           { messageStat }
-          <div { ...cls('chart') }>График</div>
+          <div { ...cls('chart') }>
+            <AreaChart
+              data={ mapForReavizData }
+              margins={ 0 }
+              height={ 84 }
+              gridlines={ null }
+              series={ (
+                <AreaSeries
+                  colorScheme="#7a40f2"
+                  tooltip={ (
+                    <TooltipArea disabled />
+                  ) }
+                  line={ (
+                    <Line
+                      strokeWidth={ 2 }
+                    />
+                  ) }
+                />
+              ) }
+              yAxis={ (
+                <LinearYAxis
+                  axisLine={ null }
+                  tickSeries={ (
+                    <LinearYAxisTickSeries
+                      line={ null }
+                      label={ null }
+                    />
+                  ) }
+                />
+              ) }
+              xAxis={ (
+                <LinearXAxis
+                  axisLine={ null }
+                  tickSeries={ (
+                    <LinearXAxisTickSeries
+                      line={ null }
+                      label={ null }
+                    />
+                  ) }
+                />
+              ) }
+            />
+          </div>
         </div>
       </div>
     </div>

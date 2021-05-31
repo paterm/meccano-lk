@@ -39,7 +39,7 @@ const testProjects: IProject[] = [
         date: '2020-06-03T00:00:00'
       },
       {
-        value: 0,
+        value: 5400,
         date: '2020-06-04T00:00:00'
       },
       {
@@ -64,7 +64,7 @@ const testProjects: IProject[] = [
       },
       {
         value: 6200,
-        date: '2020-08-10T00:00:00'
+        date: '2020-06-10T00:00:00'
       }
     ]
   },
@@ -79,19 +79,19 @@ const testProjects: IProject[] = [
     lastUpdateDate: '2021-10-03T00:00:00',
     messageStat: [
       {
-        value: 8000,
+        value: 4000,
         date: '2020-06-03T00:00:00'
       },
       {
-        value: 0,
+        value: 2400,
         date: '2020-06-04T00:00:00'
       },
       {
-        value: 1500,
+        value: 7000,
         date: '2020-06-05T00:00:00'
       },
       {
-        value: 2680,
+        value: 4800,
         date: '2020-06-06T00:00:00'
       },
       {
@@ -107,8 +107,8 @@ const testProjects: IProject[] = [
         date: '2020-06-09T00:00:00'
       },
       {
-        value: 4700,
-        date: '2020-08-10T00:00:00'
+        value: 3334,
+        date: '2020-06-10T00:00:00'
       }
     ]
   },
@@ -123,11 +123,11 @@ const testProjects: IProject[] = [
     lastUpdateDate: '2021-10-03T00:00:00',
     messageStat: [
       {
-        value: 8000,
+        value: 4555,
         date: '2020-06-03T00:00:00'
       },
       {
-        value: 0,
+        value: 2132,
         date: '2020-06-04T00:00:00'
       },
       {
@@ -135,24 +135,24 @@ const testProjects: IProject[] = [
         date: '2020-06-05T00:00:00'
       },
       {
-        value: 2680,
+        value: 3333,
         date: '2020-06-06T00:00:00'
       },
       {
-        value: 7600,
+        value: 6547,
         date: '2020-06-07T00:00:00'
       },
       {
-        value: 7600,
+        value: 3233,
         date: '2020-06-08T00:00:00'
       },
       {
-        value: 5600,
+        value: 2344,
         date: '2020-06-09T00:00:00'
       },
       {
         value: 13200,
-        date: '2020-08-10T00:00:00'
+        date: '2020-06-10T00:00:00'
       }
     ]
   },
