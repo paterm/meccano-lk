@@ -25,6 +25,7 @@ import FullMessageCard from '../FullMessageCard/FullMessageCard';
 import SocialSharingPanel from '../SocialSharingPanel/SocialSharingPanel';
 import TagPanel from '../TagPanel/TagPanel';
 import AssignmentPanel from '../AssignmentPanel/AssignmentPanel';
+import AnswerPanel from '../AnswerPanel/AnswerPanel';
 
 const discussionExample = [
   {
@@ -74,7 +75,8 @@ const Message: React.FC<IMessage> = ({
   const [ isSocialSharingPanelOpen, setIsSocialSharingPanelOpen ] = useState(false);
   const [ isAccountSelectionPanelOpen, setIsAccountSelectionPanelOpen ] = useState(false);
   const [ isTagPanelOpen, setIsTagPanelOpen ] = useState(false);
-  const [ isTagAssignmentOpen, setIsAssignmentPanelOpen ] = useState(false);
+  const [ isAssignmentPanelOpen, setIsAssignmentPanelOpen ] = useState(false);
+  const [ isAnswerPanelOpen, setIsAnswerPanelOpen ] = useState(false);
 
   const handleSelect = (value: boolean) => {
     if (onSelect === undefined) return;
@@ -88,6 +90,7 @@ const Message: React.FC<IMessage> = ({
     setIsAccountSelectionPanelOpen(false)
     setIsTagPanelOpen(false)
     setIsAssignmentPanelOpen(false)
+    setIsAnswerPanelOpen(false)
   }
 
   const messageHeaderElement = (
@@ -248,7 +251,7 @@ const Message: React.FC<IMessage> = ({
       <div { ...cls('discussion-toolbar') }>
         <Button
           { ...cls('discussion-toggle') }
-          leftIcon={ isDiscussionOpen ? ArrowUpIcon : ArrowDownIcon }
+          leftIcon={ isAccountSelectionPanelOpen ? ArrowUpIcon : ArrowDownIcon }
           size={ 24 }
           transparent
           color="gray"
@@ -298,12 +301,12 @@ const Message: React.FC<IMessage> = ({
             onClick={ () => {} }
           />
           <Button
-            { ...cls('discussion-like') }
+            { ...cls('discussion-answer') }
             icon={ SendIcon }
             size={ 24 }
             transparent
             color="gray"
-            onClick={ () => {} }
+            onClick={ () => { setIsAnswerPanelOpen(true) } }
           />
         </div>
         <Button
@@ -314,7 +317,7 @@ const Message: React.FC<IMessage> = ({
           color="gray"
           onClick={ () => setIsDiscussionOpen(!isDiscussionOpen) }
         >
-          { isDiscussionOpen ? 'Скрыть' : 'Ответить' }
+          { isDiscussionOpen ? 'Скрыть' : 'Переписка' }
         </Button>
       </div>
       { isDiscussionOpen && (
@@ -404,11 +407,28 @@ const Message: React.FC<IMessage> = ({
 
       <DropDown
         { ...cls('tag-panel') }
-        isOpen={ isTagAssignmentOpen }
+        isOpen={ isAssignmentPanelOpen }
         onClose={ closeAllPopups }
         usePortal
       >
         <AssignmentPanel data={ data } onClose={ () => setIsAssignmentPanelOpen(false) } />
+      </DropDown>
+
+      <DropDown
+        { ...cls('popup') }
+        isOpen={ isAnswerPanelOpen }
+        onClose={ closeAllPopups }
+        usePortal
+      >
+        <Button
+          { ...cls('popup-close-button') }
+          icon={ CloseIcon }
+          size={ 24 }
+          color="gray"
+          transparent
+          onClick={ closeAllPopups }
+        />
+        <AnswerPanel data={ data } />
       </DropDown>
     </div>
   );
