@@ -1,0 +1,83 @@
+.project-settings-general {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 8px 8px -4px rgba(20, 16, 41, 0.06), 0 2px 4px -1px rgba(20, 16, 41, 0.06), 0 0 1px 0 rgba(20, 16, 41, 0.12);
+}
+
+.project-settings-general__body {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  flex-grow: 1;
+}
+
+@media screen and (max-width: 767px) {
+  .project-settings-general__body {
+    padding: 16px;
+  }
+}
+
+.project-settings-general__name-button {
+  width: max-content;
+  display: flex;
+}
+
+.project-settings-general__input {
+  margin: 48px 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.project-settings-general__input-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.43;
+  color: var(--dark-80);
+}
+
+.project-settings-general__input-words {
+  margin: 0;
+  font: inherit;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.17;
+  color: var(--dark-60);
+  outline: 0;
+  border: 0;
+  padding: 16px;
+  border-radius: 4px;
+  background-color: var(--midnight-purple-3);
+  resize: vertical;
+  height: 122px;
+}
+
+.project-settings-general__footer {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+@media screen and (max-width: 767px) {
+  .project-settings-general__footer {
+    margin: 0;
+    padding: 16px;
+    display: grid;
+    gap: 16px;
+    grid-template-columns: repeat(1, 1fr);
+  }
+
+  .project-settings-general__apply-button {
+    grid-row: 1;
+  }
+
+  .project-settings-general__footer > * {
+    border-radius: 4px;
+  }
+}

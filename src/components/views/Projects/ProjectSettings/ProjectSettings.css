@@ -1,34 +1,34 @@
-.filter__bar {
+.project-settings__bar {
   margin-top: auto;
 }
 
-.filter__template-button {
+.project-settings__template-button {
   width: 100%;
   justify-content: start;
   padding-left: 48px;
 }
 
 @media screen and (max-width: 767px) {
-  .filter__template-button {
+  .project-settings__template-button {
     display: none;
   }
 }
 
-.filter__guide {
+.project-settings__guide {
   padding: 16px;
   min-height: 184px;
   display: flex;
 }
 
 @media screen and (max-width: 767px) {
-  .filter__guide {
+  .project-settings__guide {
     margin: 24px;
     min-height: auto;
     padding: 0;
   }
 }
 
-.filter__guide-link {
+.project-settings__guide-link {
   margin: 0;
   text-decoration: none;
   color: var(--dark-60);
@@ -37,7 +37,7 @@
   line-height: 1.43;
 }
 
-.filter__guide-icon {
+.project-settings__guide-icon {
   color: var(--dark-60);
   height: 16px;
   width: 16px;

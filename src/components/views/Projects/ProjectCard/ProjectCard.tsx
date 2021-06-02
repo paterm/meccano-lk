@@ -149,12 +149,6 @@ const ProjectCard: React.FC<IProjectCard> = ({
     { key: new Date(item.date), data: item.value }
   ));
 
-  const singleDateData = [
-    { key: 0, data: 2 },
-    { key: 1, data: 5 },
-    { key: 2, data: 13 },
-  ];
-
   return (
     <div { ...cls('', '', mix) }>
       <div { ...cls('wrapper') }>

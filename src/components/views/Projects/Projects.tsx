@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { classes, useQueryParams } from '@utils';
+import { classes, usePopup, useQueryParams } from '@utils';
 import { ReactComponent as AddIcon } from '@assets/icons/button/add.svg';
 import { ReactComponent as StackIcon } from '@assets/icons/button/stack.svg';
 import { ReactComponent as ArrowLeftIcon } from '@assets/icons/button/arrow-left.svg';
 import { IProject } from '@interfaces';
 import Button from '../../ui/Button/Button';
 import ProjectList from './ProjectList/ProjectList';
-import './Projects.css';
 import ProjectsControlPanel from './ProjetsControlPanel/ProjectsControlPanel';
+import './Projects.css';
 
 const cls = classes('projects');
 
@@ -166,6 +166,7 @@ const Projects: React.FC = () => {
   const [activeType, setActiveType] = useState<string>(EProjectTypes.ACTIVE);
   const [projects, setProjects] = useState(getTestProjects(activeType));
   const queryParams = useQueryParams();
+  const popup = usePopup();
 
   useEffect(() => {
     setProjects(getTestProjects(activeType));
@@ -179,6 +180,10 @@ const Projects: React.FC = () => {
       queryParams.set({ type: EProjectTypes.ACTIVE })
     }
   }, [queryParams]);
+
+  const handleProjectCreate = () => {
+    popup.open('project-main')
+  }
 
   const handleProjectOpen = (id: string) => {
     testOnClick('ProjectOpen', id)
@@ -222,6 +227,7 @@ const Projects: React.FC = () => {
         filled
         rounded
         leftIcon={ AddIcon }
+        onClick={ handleProjectCreate }
       >
         Создать проект
       </Button>
