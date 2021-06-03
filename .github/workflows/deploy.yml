@@ -26,5 +26,5 @@ jobs:
       - run: npm ci
       - run: npm run build
       # Deploy
-      - run: cd web && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p${{ $STAGING_PORT }}" --archive --compress --delete . ${{ STAGING_USER }}@${{ STAGING_HOST }}:${{ STAGING_PATH }}/_tmp
-      - run: ssh -p${{ $STAGING_PORT }} ${{ STAGING_USER }}@${{ STAGING_HOST }} "php ${{ STAGING_PATH }}/deploy.php"
+      - run: cd web && rsync -e "ssh -i $HOME/.ssh/key -o StrictHostKeyChecking=no -p${{ STAGING_PORT }}" --archive --compress --delete . ${{ STAGING_USER }}@${{ STAGING_HOST }}:${{ STAGING_PATH }}/_tmp
+      - run: ssh -p${{ STAGING_PORT }} ${{ STAGING_USER }}@${{ STAGING_HOST }} "php ${{ STAGING_PATH }}/deploy.php"
