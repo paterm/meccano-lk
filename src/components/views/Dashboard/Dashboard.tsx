@@ -17,7 +17,7 @@ const cls = classes('dashboard');
 const Dashboard:React.FC = () => (
   <div { ...cls() }>
     <Helmet>
-      <title>Dashboard | Maeccano</title>
+      <title>Dashboard | Meccano</title>
     </Helmet>
     <div { ...cls('container', '', 'container') }>
       <div { ...cls('header') }>

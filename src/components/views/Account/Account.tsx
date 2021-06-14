@@ -44,7 +44,7 @@ const Account:React.FC<IAccount> = ({ view }) => {
       menu={ menu }
     >
       <Helmet>
-        <title>{ activeViewName } | Настройки аккаунта | Maeccano</title>
+        <title>{ activeViewName } | Настройки аккаунта | Meccano</title>
       </Helmet>
       <ActiveView />
     </PseudoPopup>

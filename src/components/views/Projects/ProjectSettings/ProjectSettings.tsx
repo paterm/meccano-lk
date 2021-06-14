@@ -4,26 +4,25 @@ import { Helmet } from 'react-helmet-async';
 import { classes, usePopup } from '@utils';
 import { ReactComponent as InfoIcon } from '@assets/icons/button/info.svg';
 import PseudoPopup from '@components/ui/PseudoPopup/PseudoPopup';
+import FilterGeneral from '@views/Filter/src/FilterGeneral/FilterGeneral';
 import Button from '@components/ui/Button/Button';
-import FilterGeneral from './src/FilterGeneral/FilterGeneral';
-import './Filter.css';
+import ProjectSettingsGeneral from './ProjectSettingsGeneral/ProjectSettingsGeneral';
+import ProjectSettingsLayout from './ProjectSettingsLayout/ProjectSettingsLayout';
+import './ProjectSettings.css';
 
-const cls = classes('filter');
+const cls = classes('project-settings');
 
 const views = [
-  { view: 'filter-main', name: 'Общие', component: FilterGeneral, },
-  { view: 'filter-objects', name: 'Объекты', component: FilterGeneral, },
-  { view: 'filter-sources', name: 'Источники', component: FilterGeneral, },
-  { view: 'filter-geo', name: 'География', component: FilterGeneral, },
-  { view: 'filter-authors', name: 'Авторы', component: FilterGeneral, },
-  { view: 'filter-tags', name: 'Теги', component: FilterGeneral, }
+  { view: 'project-main', name: 'Общие', component: ProjectSettingsGeneral },
+  { view: 'project-filter', name: 'Фильтры, шаблоны', component: FilterGeneral },
+  { view: 'project-layout', name: 'Вид', component: ProjectSettingsLayout },
 ];
 
-interface IFilter {
+interface IProjectSettings {
   view: string
 }
 
-const Filter:React.FC<IFilter> = ({ view }) => {
+const ProjectSettings:React.FC<IProjectSettings> = ({ view }) => {
   const popup = usePopup();
 
   const menu = views.map((el) => (
@@ -42,7 +41,7 @@ const Filter:React.FC<IFilter> = ({ view }) => {
   return (
     <PseudoPopup
       { ...cls() }
-      title="Фильтр"
+      title="Новый проект"
       childrenView={ view }
       childrenViewName={ activeViewName }
       menu={ menu }
@@ -60,18 +59,18 @@ const Filter:React.FC<IFilter> = ({ view }) => {
               { ...cls('guide-link') }
               to="/guide/filters"
             >
-              Гайд по&nbsp;фильтрам и&nbsp;шаблонам
+              Гайд по&nbsp;созданию и&nbsp;настройке проектов
             </Link>
           </div>
         </div>
       ) }
     >
       <Helmet>
-        <title>{activeViewName} | Настройки фильтра | Meccano</title>
+        <title>{activeViewName} | Настройка проекта | Meccano</title>
       </Helmet>
       <ActiveView />
     </PseudoPopup>
   );
 };
 
-export default Filter;
+export default ProjectSettings;

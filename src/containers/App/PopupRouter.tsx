@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 
 const Account = React.lazy(() => import('../../components/views/Account/Account'));
 const Filter = React.lazy(() => import('../../components/views/Filter/Filter'));
+const ProjectSettings = React.lazy(() => import('../../components/views/Projects/ProjectSettings/ProjectSettings'));
 
 const popups: { [key: string]: React.LazyExoticComponent<React.FC<any>> } = {
   'account-main': Account,
@@ -11,6 +12,9 @@ const popups: { [key: string]: React.LazyExoticComponent<React.FC<any>> } = {
   'account-password': Account,
   'account-interface': Account,
   'filter-main': Filter,
+  'project-main': ProjectSettings,
+  'project-filter': ProjectSettings,
+  'project-layout': ProjectSettings,
 };
 
 const getQueryParam = (param: string, paramString: string) => {
