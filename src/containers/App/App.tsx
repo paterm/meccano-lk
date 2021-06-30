@@ -12,6 +12,7 @@ import { setAuth, setProfile } from '../../store/actions';
 import { MobileContext } from '../../contexts/MobileContext';
 
 import './App.css';
+import { authApi } from '../../api';
 
 const App: React.FC = () => {
   const [ mobile, setMobile ] = useState({ isMobile: false });
@@ -19,6 +20,13 @@ const App: React.FC = () => {
   const history = useHistory();
   const handleSignIn = () => history.push('/sign-in');
   const handleSignUp = () => history.push('/sign-up');
+
+  useEffect(() => {
+    authApi.login({
+      email: '',
+      password: ''
+    });
+  }, [])
 
   useEffect(() => {
     setMobile({ isMobile: window.innerWidth < 768 });
