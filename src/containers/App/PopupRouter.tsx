@@ -1,10 +1,9 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
+import Account from '@views/Account/Account';
+import Filter from '@views/Filter/Filter';
 
-const Account = React.lazy(() => import('../../components/views/Account/Account'));
-const Filter = React.lazy(() => import('../../components/views/Filter/Filter'));
-
-const popups: { [key: string]: React.LazyExoticComponent<React.FC<any>> } = {
+const popups: Record<string, React.FC<any>> = {
   'account-main': Account,
   'account-response': Account,
   'account-notifications': Account,
@@ -18,9 +17,14 @@ const getQueryParam = (param: string, paramString: string) => {
   return params.get(param);
 };
 
-const PopupRouter: React.FC = () => {
+interface IPopupRouter {
+  loggedIn: boolean
+}
+
+const PopupRouter: React.FC<IPopupRouter> = ({ loggedIn }) => {
   const { search } = useLocation();
   const paramPopup = getQueryParam('popup', search);
+  if (!loggedIn) return null;
   if (!paramPopup) return null;
   if (!(paramPopup in popups)) return null;
   const PopupComponent = popups[paramPopup];

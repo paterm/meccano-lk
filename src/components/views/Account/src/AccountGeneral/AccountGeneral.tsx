@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import Button from '../../../../ui/Button/Button';
 import Input from '../../../../ui/Input/Input';
 import './AccountGeneral.css';
+import { useProfileQuery } from '../../../../../queries/userQueries';
 
 const cls = classes('account-general');
 
@@ -15,6 +16,8 @@ const testOnClick = (message: any) => {
 
 const AccountGeneral:React.FC = () => {
   const profile = useSelector((state: IStore) => state.profile);
+  // Получаем данные с ручки /user/profile, ниже используем data?.email для вывода Email
+  const { data } = useProfileQuery();
 
   const personElement = (
     <div { ...cls('person-data') }>
@@ -54,7 +57,7 @@ const AccountGeneral:React.FC = () => {
       <h3 { ...cls('title') }>Личные данные</h3>
       <div { ...cls('inputs') }>
         <Input size={ 36 } value="+7 983 233-22-22" />
-        <Input size={ 36 } value="ershov@mail.ru" />
+        <Input size={ 36 } value={ data?.email } />
       </div>
     </div>
   );

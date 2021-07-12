@@ -1,6 +1,6 @@
 import BaseApi from './BaseApi';
 
-interface IAuthApiLoginRequest {
+export interface IAuthApiLoginRequest {
   email: string
   password: string
 }

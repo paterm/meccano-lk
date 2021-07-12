@@ -7,17 +7,38 @@ const Dashboard = React.lazy(() => import('../../components/views/Dashboard/Dash
 const Messages = React.lazy(() => import('../../components/views/Messages/Messages'));
 const Analytics = React.lazy(() => import('../../components/views/Analytics/Analytics'));
 
-const Router:React.FC = () => (
-  <Switch>
-    <Route path="/sign-in" component={ SignIn } />
-    <Route path="/recovery" component={ Recovery } />
-    <Route path="/messages" component={ Messages } />
+interface IRouter {
+  loggedIn: boolean
+  isLoading: boolean
+}
 
-    <Route path="/analytics/:type?" component={ Analytics } />
+const Router: React.FC<IRouter> = ({ loggedIn, isLoading }) => {
+  if (isLoading) {
+    return null
+  }
 
-    <Route path="/" component={ Dashboard } />
-    <Redirect exact from="/" to="/sign-in" />
-  </Switch>
-);
+  // Роуты с авторизацией
+  if (loggedIn) {
+    return (
+      <Switch>
+        <Route path="/recovery" component={ Recovery } />
+        <Route path="/messages" component={ Messages } />
+
+        <Route path="/analytics/:type?" component={ Analytics } />
+
+        <Route path="/" exact component={ Dashboard } />
+        <Route path="*"><Redirect to="/" /></Route>
+      </Switch>
+    )
+  }
+
+  // Роуты доступные без авторизации
+  return (
+    <Switch>
+      <Route path="/sign-in" component={ SignIn } />
+      <Route path="*"><Redirect to="/sign-in" /></Route>
+    </Switch>
+  );
+};
 
 export default Router;

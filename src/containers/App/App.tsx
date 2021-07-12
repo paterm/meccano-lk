@@ -10,9 +10,9 @@ import Footer from '../../components/layouts/Footer/Footer';
 import Sidebar from '../../components/layouts/Sidebar/Sidebar';
 import { setAuth, setProfile } from '../../store/actions';
 import { MobileContext } from '../../contexts/MobileContext';
-
+import { useProfileQuery } from '../../queries/userQueries';
+import { removeAuthFromStorage } from '../../utils/helpers/authStorage';
 import './App.css';
-import { authApi } from '../../api';
 
 const App: React.FC = () => {
   const [ mobile, setMobile ] = useState({ isMobile: false });
@@ -21,12 +21,22 @@ const App: React.FC = () => {
   const handleSignIn = () => history.push('/sign-in');
   const handleSignUp = () => history.push('/sign-up');
 
-  useEffect(() => {
-    authApi.login({
-      email: '',
-      password: ''
-    });
-  }, [])
+  // Считать авторизированным, если удаётся получить профиль пользователя
+  const {
+    isSuccess: loggedIn,
+    isError,
+    isLoading,
+    error
+  } = useProfileQuery({
+    // Пути по которым не нужно проверять действительность токена
+    pathsWithDisabledQuery: ['/sign-in'],
+    retry: 0
+  });
+
+  // Если при запросе профиля ошибка связанная с авторизацией, удалять токены их хранилища
+  if (isError && (error as any).status === 401) {
+    removeAuthFromStorage();
+  }
 
   useEffect(() => {
     setMobile({ isMobile: window.innerWidth < 768 });
@@ -69,8 +79,13 @@ const App: React.FC = () => {
             <section className="content">
               <Sidebar />
               <div className="main">
-                <PopupRouter />
-                <Router />
+                <PopupRouter
+                  loggedIn={ loggedIn }
+                />
+                <Router
+                  loggedIn={ loggedIn }
+                  isLoading={ isLoading }
+                />
               </div>
             </section>
             <Footer />

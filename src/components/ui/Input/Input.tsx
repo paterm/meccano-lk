@@ -1,4 +1,8 @@
-import React, { useRef } from 'react';
+import React, {
+  ChangeEvent,
+  useEffect,
+  useRef, useState
+} from 'react';
 import { classes } from '@utils';
 import { ReactComponent as VisibilityIcon } from '@assets/icons/input/visibility.svg';
 import { ReactComponent as SearchIcon } from '@assets/icons/input/search.svg';
@@ -27,14 +31,26 @@ const Input: React.FC<IInput> = ({
   size = 48,
   label,
   placeholder,
-  value,
+  value: initializedValue = '',
   isValid = true,
   rounded,
   disabled,
   message,
   onChange,
 }) => {
+  const [value, setValue] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    setValue(initializedValue);
+  }, [initializedValue])
+
+  const handleChange = (evt: ChangeEvent) => {
+    setValue((evt.target as HTMLInputElement).value)
+    if (onChange) {
+      onChange(evt);
+    }
+  }
 
   const showPassword = () => {
     if (inputRef.current !== null) inputRef.current.type = 'text';
@@ -66,10 +82,10 @@ const Input: React.FC<IInput> = ({
             disabled,
           }) }
           type={ type }
-          defaultValue={ value }
+          value={ value }
           placeholder={ placeholder }
           disabled={ disabled }
-          onChange={ onChange }
+          onChange={ handleChange }
           ref={ inputRef }
         />
         {type === 'password' && (
