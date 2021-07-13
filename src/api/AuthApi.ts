@@ -12,15 +12,23 @@ interface IAuthApiLoginResponse {
   refresh_expire: string
 }
 
+export interface IAuthApiRefreshRequest {
+  refresh_token: string
+}
+
+type IAuthApiRefreshResponse = IAuthApiLoginResponse
+
 class AuthApi extends BaseApi {
   constructor() {
     super({ path: '/auth' });
   }
 
   public login(body: IAuthApiLoginRequest) {
-    return this.post<IAuthApiLoginResponse>('/login', {
-      body,
-    });
+    return this.post<IAuthApiLoginResponse>('/login', { body });
+  }
+
+  public refresh(body: IAuthApiRefreshRequest) {
+    return this.post<IAuthApiRefreshResponse>('/refresh', { body });
   }
 }
 

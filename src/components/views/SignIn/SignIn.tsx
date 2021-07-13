@@ -1,14 +1,14 @@
 import React, { ChangeEvent, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { useHistory } from 'react-router';
 import { classes } from '@utils';
 import Button from '../../ui/Button/Button';
 import Checkbox from '../../ui/Checkbox/Checkbox';
 import Input from '../../ui/Input/Input';
 import { useTokenQuery } from '../../../queries/authQueries';
-import './SignIn.css';
 import { setAuthToStorage } from '../../../utils/helpers/authStorage';
+import './SignIn.css';
 
 const cls = classes('sign-in');
 
@@ -16,30 +16,25 @@ const SignIn: React.FC = () => {
   const [email, setEmail] = useState('mukhin.dev@gmail.com');
   const [password, setPassword] = useState('jkWQKYLkK4ub!k8F')
   const [keepAuth, setKeepAuth ] = useState(false);
+  const history = useHistory();
 
-  // Запрос токена// TODO: Нужны прелоадер и уведомление об ошибке
-  const {
-    mutate: login,
-    data,
-    isSuccess,
-  } = useTokenQuery();
-
-  // Если успешный ответ
-  if (isSuccess && data) {
-    // Сохранить токены в хранилище (LocalStorage)
-    setAuthToStorage({
-      accessToken: data.access_token,
-      accessExpire: data.access_expire,
-      refreshToken: data.refresh_token,
-      refreshExpire: data.refresh_expire,
-    })
-    // Перенаправить на главную
-    return (<Redirect to="/" />)
-  }
+  const { mutate: login } = useTokenQuery();
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
-    login({ email, password });
+    // Запрос токена // TODO: Нужны прелоадер и уведомление об ошибке
+    login({ email, password }, {
+      onSuccess(data) {
+        setAuthToStorage({
+          accessToken: data.access_token,
+          accessExpire: data.access_expire,
+          refreshToken: data.refresh_token,
+          refreshExpire: data.refresh_expire,
+        });
+        history.push('/')
+      },
+      onError() {}
+    });
   };
 
   const handleChange = (evt: ChangeEvent, setter: React.Dispatch<React.SetStateAction<string>>) => {

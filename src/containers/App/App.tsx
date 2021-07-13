@@ -22,21 +22,11 @@ const App: React.FC = () => {
   const handleSignUp = () => history.push('/sign-up');
 
   // Считать авторизированным, если удаётся получить профиль пользователя
-  const {
-    isSuccess: loggedIn,
-    isError,
-    isLoading,
-    error
-  } = useProfileQuery({
-    // Пути по которым не нужно проверять действительность токена
+  const { isSuccess: loggedIn, isLoading } = useProfileQuery({
     pathsWithDisabledQuery: ['/sign-in'],
-    retry: 0
+    retry: 0,
+    onWrongAuth: () => removeAuthFromStorage(),
   });
-
-  // Если при запросе профиля ошибка связанная с авторизацией, удалять токены их хранилища
-  if (isError && (error as any).status === 401) {
-    removeAuthFromStorage();
-  }
 
   useEffect(() => {
     setMobile({ isMobile: window.innerWidth < 768 });
