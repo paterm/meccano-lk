@@ -17,7 +17,7 @@ export const useProfileQuery = (options?: IProfileQueryOptions) => {
   const location = useLocation()
   const isEnabled = !pathsWithDisabledQuery.includes(location.pathname as `/${string}`)
 
-  return useQuery(QueryUniqueKeys.Profile, () => userApi.getProfile(), {
+  return useQuery(QueryUniqueKeys.Profile, async () => userApi.getProfile(), {
     enabled: isEnabled,
     retry: options?.retry,
     onError(error: Record<string, any>) {
